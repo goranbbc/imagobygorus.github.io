@@ -2,83 +2,126 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Imago by Gorus</title>
-  <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      font-family: sans-serif;
-      background: #fff;
+      font-family: 'Montserrat', sans-serif;
+      background: #fdfdfd;
       color: #111;
     }
-
     header {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
       z-index: 1000;
     }
-
+    .logo {
+      font-weight: bold;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+    }
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #222;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #888;
+    }
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
-      padding: 5rem 2rem 2rem;
-      max-width: 1500px;
-      margin: 0 auto;
     }
-
-    .gallery a {
-      display: block;
-      overflow: hidden;
-    }
-
     .gallery img {
       width: 100%;
-      height: auto;
       display: block;
+      border-radius: 6px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
     }
-
     .gallery img:hover {
       transform: scale(1.03);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
 <body>
-  <header>Imago by Gorus</header>
 
-  <div class="gallery" id="gallery">
-    <!-- Replace these with your actual image paths and dimensions -->
-    <a href="IMG_3912.jpg" data-pswp-width="1200" data-pswp-height="800">
-      <img src="IMG_3912.jpg" alt="Photo 1" />
-    </a>
-    <a href="IMG_3916.jpg" data-pswp-width="1200" data-pswp-height="800">
-      <img src="IMG_3916.jpg" alt="Photo 2" />
-    </a>
-    <a href="IMG_4101.jpg" data-pswp-width="1200" data-pswp-height="800">
-      <img src="IMG_4101.jpg" alt="Photo 3" />
-    </a>
-    <a href="IMG_4121.jpg" data-pswp-width="1200" data-pswp-height="800">
-      <img src="IMG_4121.jpg" alt="Photo 4" />
-    </a>
-    <!-- Add more images here -->
+<header>
+  <div class="logo">IMAGO</div>
+  <nav>
+    <a href="#gallery">Portfolio</a>
+    <a href="#behind">Behind the Scenes</a>
+    <a href="#cv">Curriculum Vitae</a>
+    <a href="#events">Events + Headshots</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="gallery">
+  <h2>Portfolio</h2>
+  <div class="gallery">
+    <img src="IMG_3912.jpg" alt="photo1" />
+    <img src="IMG_3916.jpg" alt="photo2" />
+    <img src="IMG_4101.jpg" alt="photo3" />
+    <img src="IMG_4121.jpg" alt="photo4" />
+    <!-- Dodaj više slika po želji -->
   </div>
+</section>
 
-  <!-- PhotoSwipe core JS -->
-  <script type="module">
-    import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js';
+<section id="behind">
+  <h2>Behind the Scenes</h2>
+  <p>Ovde možeš ubaciti priče iza objektiva, kako izgleda tvoj proces rada, setovanje svetla, snimanja itd.</p>
+</section>
 
-    const lightbox = new PhotoSwipeLightbox({
-      gallery: '#gallery',
-      children: 'a',
-      pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.js')
-    });
-    lightbox.init();
-  </script>
+<section id="cv">
+  <h2>Curriculum Vitae</h2>
+  <p>U ovoj sekciji možeš napisati svoj profesionalni background, izložbe, klijente, objave, itd.</p>
+</section>
+
+<section id="events">
+  <h2>Events + Headshots</h2>
+  <p>Kratak opis tvojih usluga za portrete, korporativne headshotove, događaje i slično.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:gorus@example.com">gorus@example.com</a></p>
+  <p>Instagram: @imagogorus</p>
+</section>
+
+<footer>
+  &copy; 2025 Imago by Gorus
+</footer>
+
 </body>
 </html>
