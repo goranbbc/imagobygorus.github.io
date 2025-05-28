@@ -17,24 +17,11 @@
       color: #111;
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
-      letter-spacing: 0.08em;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: 0.15em;
+      line-height: 1.4;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: #000;
     }
 
     header {
@@ -49,28 +36,26 @@
       z-index: 1000;
     }
 
-    /* Logo styling */
+    /* LOGO - važno */
     .logo {
+      width: 180px; /* fiksna širina, prilagodi ako treba */
       user-select: none;
       font-family: 'Montserrat', sans-serif;
       letter-spacing: 0.2em;
-      display: inline-block;
-      /* fiksiraj širinu da oba reda imaju isti width */
-      width: 160px; /* prilagodi po želji */
-      text-align: justify;
+      /* koristimo flex da stavimo 2 reda jedan ispod drugog */
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
     }
 
-    .logo-line1, .logo-line2 {
+    .logo-line {
       margin: 0;
-      display: block;
-      /* full justify trika */
       text-align: justify;
-      font-variant: normal;
       position: relative;
     }
 
-    /* trika da se justify primeni i na poslednji red */
-    .logo-line1::after, .logo-line2::after {
+    /* Trick da poslednji red u justified paragrafu isto ide full justify */
+    .logo-line::after {
       content: "";
       display: inline-block;
       width: 100%;
@@ -82,24 +67,23 @@
 
     .logo-line1 {
       font-weight: 700;
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      margin-bottom: 0.1rem;
       line-height: 1.1;
+      color: #111;
     }
 
     .logo-line2 {
       font-weight: 300;
       font-size: 1.1rem;
-      text-transform: lowercase;
-      letter-spacing: 0.2em;
       line-height: 1.1;
+      color: #111;
+      text-transform: lowercase; /* by je malo slovo */
     }
 
     .logo-line2 strong {
       font-weight: 700;
-      text-transform: lowercase; /* da bude malo slovo */
+      text-transform: uppercase; /* GORUS veliko */
     }
 
     nav {
@@ -114,6 +98,8 @@
       letter-spacing: 0.15em;
       position: relative;
       padding-bottom: 0.15rem;
+      color: #111;
+      transition: color 0.3s ease;
     }
 
     nav a::after {
@@ -176,7 +162,7 @@
       user-select: none;
     }
 
-    /* Responsive tweaks */
+    /* Responsive */
     @media (max-width: 600px) {
       header {
         padding: 1.5rem 3vw;
@@ -186,13 +172,13 @@
         gap: 2rem;
       }
       .logo {
-        width: 130px;
+        width: 140px;
       }
       .logo-line1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
       .logo-line2 {
-        font-size: 0.95rem;
+        font-size: 1rem;
       }
       nav {
         gap: 1.5rem;
@@ -204,8 +190,8 @@
 
   <header>
     <div class="logo" aria-label="Site logo">
-      <p class="logo-line1">IMAGO</p>
-      <p class="logo-line2">by <strong>gorus</strong></p>
+      <p class="logo-line logo-line1">IMAGO</p>
+      <p class="logo-line logo-line2">by <strong>GORUS</strong></p>
     </div>
 
     <nav role="navigation" aria-label="Main navigation">
@@ -228,3 +214,4 @@
 
 </body>
 </html>
+
