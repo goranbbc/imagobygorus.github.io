@@ -4,30 +4,44 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Imago by Gorus</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
 <style>
   /* Reset */
   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
   }
   body, html {
     height: 100%;
     font-family: 'Montserrat', sans-serif;
-    background: #fff;
+    background: #fefefe;
     color: #111;
-    position: relative;
     overflow: hidden;
+    position: relative;
+    background: repeating-linear-gradient(
+      45deg,
+      #fafafa,
+      #fafafa 10px,
+      #f5f5f5 10px,
+      #f5f5f5 20px
+    );
   }
-  /* Pozicije slika u uglovima */
+  /* Corner images */
   .corner-image {
     position: fixed;
-    width: 400px; /* veličina slika */
-    height: 400px;
+    width: 350px;
+    height: 350px;
     object-fit: cover;
-    opacity: 0.7;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: brightness(0.85) contrast(1.1);
+    will-change: transform;
+  }
+  .corner-image:hover {
+    transform: scale(1.05);
+    filter: brightness(1) contrast(1.15) blur(0);
+    z-index: 10;
   }
   .top-left {
     top: 100px;
@@ -45,105 +59,135 @@
     bottom: 100px;
     right: 100px;
   }
-  /* Centar sa tekstom */
+  /* Center text container */
   .center-text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    max-width: 600px;
-    padding: 2rem;
-    z-index: 10;
+    max-width: 650px;
+    padding: 2rem 3rem;
+    background: rgba(255 255 255 / 0.85);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   }
+  /* Heading styles */
   h1 {
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 4rem;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.3rem;
+    font-size: 5rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
+    color: #222;
+    text-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    margin-bottom: 0.3rem;
+    user-select: none;
   }
   h2 {
     font-style: italic;
     font-weight: 400;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: #666;
     margin-bottom: 1rem;
+    user-select: none;
   }
   p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #444;
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 2rem;
   }
-  /* Dugme View Portfolio */
-  a.button {
+  /* Animated Button */
+  .btn {
+    position: relative;
     display: inline-block;
-    text-decoration: none;
-    color: #000;
-    border: 2px solid #000;
-    padding: 0.7rem 2rem;
     font-weight: 700;
-    font-size: 1rem;
-    transition: background 0.3s, color 0.3s;
+    font-size: 1.2rem;
+    color: #222;
+    border: 3px solid #222;
+    padding: 0.9rem 3rem;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    user-select: none;
   }
-  a.button:hover {
-    background: #000;
+  .btn::before, .btn::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 0;
+    background: #222;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease;
+  }
+  .btn::after {
+    top: auto;
+    bottom: 0;
+    left: auto;
+    right: 0;
+  }
+  .btn:hover {
     color: #fff;
+    background: #222;
+  }
+  .btn:hover::before, .btn:hover::after {
+    width: 100%;
   }
   /* Footer */
   footer {
     position: fixed;
-    bottom: 10px;
+    bottom: 1rem;
     width: 100%;
     text-align: center;
     font-size: 0.9rem;
     color: #aaa;
-    z-index: 10;
+    user-select: none;
+    font-family: 'Montserrat', sans-serif;
   }
-  /* Responsive */
-  @media (max-width: 1000px) {
-    .corner-image {
-      width: 200px;
-      height: 200px;
-      top: 50px !important;
-      left: 50px !important;
-      right: 50px !important;
-      bottom: 50px !important;
-    }
-    .center-text {
-      max-width: 90vw;
-      padding: 1rem;
-    }
-    h1 {
-      font-size: 3rem;
-    }
-    h2 {
-      font-size: 1.2rem;
-    }
-    p {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-    }
-  }
+  /* Parallax movement on mouse */
 </style>
+<script>
+  // Parallax effect for corner images based on mouse position
+  document.addEventListener('mousemove', e => {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const x = e.clientX;
+    const y = e.clientY;
+
+    const moveAmount = 15; // max px to move
+    // Map mouse x,y to range [-moveAmount, moveAmount]
+    const moveX = ((x / w) * 2 - 1) * moveAmount;
+    const moveY = ((y / h) * 2 - 1) * moveAmount;
+
+    document.querySelectorAll('.corner-image').forEach((img, i) => {
+      const directionX = i % 2 === 0 ? 1 : -1;
+      const directionY = i < 2 ? 1 : -1;
+      img.style.transform = `translate(${moveX * directionX}px, ${moveY * directionY}px) scale(1)`;
+    });
+  });
+</script>
 </head>
 <body>
 
-  <!-- Slike u uglovima -->
+  <!-- Corner Images -->
   <img src="IMG_3912.jpg" alt="Artistic photo 1" class="corner-image top-left" />
   <img src="IMG_3916.jpg" alt="Artistic photo 2" class="corner-image top-right" />
   <img src="IMG_4101.jpg" alt="Artistic photo 3" class="corner-image bottom-left" />
   <img src="IMG_4121.jpg" alt="Artistic photo 4" class="corner-image bottom-right" />
 
-  <!-- Centar sa tekstom -->
+  <!-- Center Text -->
   <div class="center-text">
     <h1>IMAGO</h1>
     <h2>by Gorus</h2>
     <p>Capturing moments with timeless elegance. Explore the art of photography through a minimal and refined lens.</p>
-    <a href="#portfolio" class="button">View Portfolio</a>
+    <a href="#portfolio" class="btn">View Portfolio</a>
   </div>
 
+  <!-- Footer -->
   <footer>
     &copy; 2025 Imago by Gorus
   </footer>
