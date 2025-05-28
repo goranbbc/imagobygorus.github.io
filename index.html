@@ -1,151 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Imago by Gorus</title>
-<style>
-  /* Reset */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body, html {
-    height: 100%;
-    font-family: 'Montserrat', sans-serif;
-    background: #fff;
-    color: #111;
-    position: relative;
-    overflow: hidden;
-  }
-  /* Slike u uglovima */
-  .corner-image {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-    opacity: 0.75;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-  }
-  .corner-image:hover {
-    transform: scale(1.05);
-    opacity: 1;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    z-index: 10;
-  }
-  .top-left { top: 100px; left: 100px; }
-  .top-right { top: 100px; right: 100px; }
-  .bottom-left { bottom: 100px; left: 100px; }
-  .bottom-right { bottom: 100px; right: 100px; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Imago by Gorus</title>
 
-  /* Apstraktne linije i oblici */
-  .line {
-    position: fixed;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
-    height: 2px;
-    width: 60vw;
-    top: 50%;
-    left: 20%;
-    transform-origin: center;
-    animation: slow-move 20s linear infinite;
-  }
-  .line-2 {
-    top: 60%;
-    left: 10%;
-    width: 50vw;
-    animation-delay: 10s;
-  }
-  .circle {
-    position: fixed;
-    border: 2px solid rgba(0,0,0,0.1);
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse 8s ease-in-out infinite;
-  }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
 
-  /* Animacije */
-  @keyframes slow-move {
-    0% { transform: translateX(0) rotate(0deg); }
-    50% { transform: translateX(20px) rotate(5deg); }
-    100% { transform: translateX(0) rotate(0deg); }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.15; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.1); }
-  }
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  /* Centar sa tekstom */
-  .center-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    max-width: 600px;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.1);
-  }
-  h1 {
-    font-weight: 700;
-    font-size: 4rem;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.3rem;
-    text-transform: uppercase;
-  }
-  h2 {
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.8rem;
-    color: #666;
-    margin-bottom: 1rem;
-  }
-  p {
-    font-size: 1.2rem;
-    color: #444;
-    line-height: 1.6;
-  }
-  footer {
-    position: fixed;
-    bottom: 1rem;
-    width: 100%;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #aaa;
-  }
-</style>
+    body, html {
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background: repeating-linear-gradient(
+        45deg,
+        #fafafa,
+        #fafafa 10px,
+        #f5f5f5 10px,
+        #f5f5f5 20px
+      );
+      color: #111;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Corner images */
+    .corner-image {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease, filter 0.4s ease;
+      filter: brightness(0.85) contrast(1.1);
+      will-change: transform;
+    }
+
+    .corner-image:hover {
+      transform: scale(1.05);
+      filter: brightness(1) contrast(1.15);
+      z-index: 10;
+    }
+
+    .top-left     { top: 5%; left: 5%; }
+    .top-right    { top: 5%; right: 5%; }
+    .bottom-left  { bottom: 5%; left: 5%; }
+    .bottom-right { bottom: 5%; right: 5%; }
+
+    /* Center text container */
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      max-width: 650px;
+      padding: 2rem 3rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      z-index: 5;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 4rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #222;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      margin-bottom: 0.3rem;
+    }
+
+    h2 {
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.8rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #222;
+      border: 3px solid #222;
+      padding: 0.8rem 2.5rem;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      background: transparent;
+    }
+
+    .btn:hover {
+      background: #222;
+      color: #fff;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 1rem;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    /* Portfolio section for anchor link */
+    #portfolio {
+      margin-top: 100vh;
+      padding: 5rem 2rem;
+      text-align: center;
+      background: #fff;
+      color: #222;
+    }
+
+    @media (max-width: 768px) {
+      .corner-image {
+        display: none;
+      }
+      .center-text {
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <script>
+    // Disable parallax on touch devices
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouchDevice) {
+      document.addEventListener('mousemove', e => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const x = e.clientX;
+        const y = e.clientY;
+
+        const moveAmount = 15;
+        const moveX = ((x / w) * 2 - 1) * moveAmount;
+        const moveY = ((y / h) * 2 - 1) * moveAmount;
+
+        document.querySelectorAll('.corner-image').forEach((img, i) => {
+          const directionX = i % 2 === 0 ? 1 : -1;
+          const directionY = i < 2 ? 1 : -1;
+          img.style.transform = `translate(${moveX * directionX}px, ${moveY * directionY}px) scale(1)`;
+        });
+      });
+    }
+  </script>
 </head>
 <body>
 
-  <!-- Slike u uglovima -->
+  <!-- Corner Images -->
   <img src="IMG_3912.jpg" alt="Artistic photo 1" class="corner-image top-left" />
   <img src="IMG_3916.jpg" alt="Artistic photo 2" class="corner-image top-right" />
   <img src="IMG_4101.jpg" alt="Artistic photo 3" class="corner-image bottom-left" />
   <img src="IMG_4121.jpg" alt="Artistic photo 4" class="corner-image bottom-right" />
 
-  <!-- Apstraktne linije i oblik -->
-  <div class="line"></div>
-  <div class="line line-2"></div>
-  <div class="circle"></div>
-
-  <!-- Centar sa tekstom -->
+  <!-- Center Text -->
   <div class="center-text">
     <h1>IMAGO</h1>
     <h2>by Gorus</h2>
     <p>Capturing moments with timeless elegance. Explore the art of photography through a minimal and refined lens.</p>
-    <a href="#portfolio" style="font-weight:700; text-decoration:none; color:#111; border:2px solid #111; padding:0.7rem 2rem; border-radius:5px; transition: background 0.3s, color 0.3s;">View Portfolio</a>
+    <a href="#portfolio" class="btn">View Portfolio</a>
   </div>
 
   <!-- Footer -->
-  <footer>&copy; 2025 Imago by Gorus</footer>
+  <footer>
+    &copy; 2025 Imago by Gorus
+  </footer>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio">
+    <h2>Portfolio Coming Soon</h2>
+    <p>Stay tuned for a curated selection of artistic works.</p>
+  </section>
 
 </body>
 </html>
