@@ -51,28 +51,42 @@
 
     /* Logo styling */
     .logo {
-      display: inline-block;
       user-select: none;
-      text-align: center;
-      padding: 0 0.5rem;
       font-family: 'Montserrat', sans-serif;
       letter-spacing: 0.2em;
-      /* opcionalno max-width ili width ako želiš fiksnu širinu */
+      display: inline-block;
+      /* fiksiraj širinu da oba reda imaju isti width */
+      width: 160px; /* prilagodi po želji */
+      text-align: justify;
     }
 
     .logo-line1, .logo-line2 {
+      margin: 0;
+      display: block;
+      /* full justify trika */
+      text-align: justify;
+      font-variant: normal;
+      position: relative;
+    }
+
+    /* trika da se justify primeni i na poslednji red */
+    .logo-line1::after, .logo-line2::after {
+      content: "";
       display: inline-block;
       width: 100%;
-      white-space: nowrap;
-      font-variant: small-caps;
+      height: 0;
+      position: absolute;
+      right: 0;
+      bottom: 0;
     }
 
     .logo-line1 {
       font-weight: 700;
       font-size: 2.4rem;
       text-transform: uppercase;
-      margin-bottom: 0.1rem;
       letter-spacing: 0.2em;
+      margin-bottom: 0.1rem;
+      line-height: 1.1;
     }
 
     .logo-line2 {
@@ -80,11 +94,12 @@
       font-size: 1.1rem;
       text-transform: lowercase;
       letter-spacing: 0.2em;
+      line-height: 1.1;
     }
 
     .logo-line2 strong {
       font-weight: 700;
-      text-transform: uppercase;
+      text-transform: lowercase; /* da bude malo slovo */
     }
 
     nav {
@@ -170,6 +185,9 @@
         padding: 2rem 3vw;
         gap: 2rem;
       }
+      .logo {
+        width: 130px;
+      }
       .logo-line1 {
         font-size: 1.8rem;
       }
@@ -186,8 +204,8 @@
 
   <header>
     <div class="logo" aria-label="Site logo">
-      <div class="logo-line1">IMAGO</div>
-      <div class="logo-line2">by <strong>GORUS</strong></div>
+      <p class="logo-line1">IMAGO</p>
+      <p class="logo-line2">by <strong>gorus</strong></p>
     </div>
 
     <nav role="navigation" aria-label="Main navigation">
@@ -210,6 +228,3 @@
 
 </body>
 </html>
-
-
-
