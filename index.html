@@ -6,7 +6,6 @@
   <title>IMAGO by GORUS</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset */
     *, *::before, *::after {
       box-sizing: border-box;
     }
@@ -36,9 +35,8 @@
       z-index: 1000;
     }
 
-    /* LOGO */
     .logo {
-      width: 180px; 
+      width: 180px;
       user-select: none;
       font-family: 'Montserrat', sans-serif;
       letter-spacing: 0.2em;
@@ -76,15 +74,14 @@
       font-size: 1.1rem;
       line-height: 1.1;
       color: #111;
-      text-transform: lowercase; /* by je malo slovo */
+      text-transform: lowercase;
     }
 
     .logo-line2 strong {
       font-weight: 700;
-      text-transform: uppercase; /* GORUS veliko */
+      text-transform: uppercase;
     }
 
-    /* NAVIGATION */
     nav {
       display: flex;
       gap: 3rem;
@@ -99,7 +96,6 @@
       padding-bottom: 0.15rem;
       color: #111;
       transition: color 0.3s ease;
-      text-decoration: none;
     }
 
     nav a::after {
@@ -117,77 +113,13 @@
       width: 100%;
     }
 
-    /* HAMBURGER MENU BUTTON */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 25px;
-      height: 22px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 1100;
-    }
-
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: #111;
-      border-radius: 2px;
-      transition: all 0.3s linear;
-      position: relative;
-      transform-origin: 1px;
-    }
-
-    /* Hamburger animation when active */
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav {
-        position: fixed;
-        top: 70px; /* height of header */
-        right: 0;
-        background: #fff;
-        height: calc(100vh - 70px);
-        width: 200px;
-        flex-direction: column;
-        gap: 1.5rem;
-        padding: 2rem 1.5rem;
-        box-shadow: -2px 0 12px rgba(0,0,0,0.1);
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-      }
-
-      nav.open {
-        transform: translateX(0);
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
     main {
       flex-grow: 1;
       padding: 4rem 4vw;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3.5rem;
-      max-width: 1400px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
@@ -216,6 +148,27 @@
       transform: scale(1.05);
     }
 
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 3rem auto;
+    }
+
+    .pagination a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 700;
+      border: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+      border-radius: 0.3rem;
+      transition: background 0.2s;
+    }
+
+    .pagination a:hover {
+      background: #f5f5f5;
+    }
+
     footer {
       padding: 2rem 4vw;
       font-size: 0.85rem;
@@ -226,7 +179,6 @@
       user-select: none;
     }
 
-    /* Responsive adjustments */
     @media (max-width: 600px) {
       header {
         padding: 1.5rem 3vw;
@@ -245,7 +197,7 @@
         font-size: 1rem;
       }
       nav {
-        width: 180px;
+        gap: 1.5rem;
       }
     }
   </style>
@@ -258,13 +210,7 @@
       <p class="logo-line logo-line2">by <strong>GORUS</strong></p>
     </div>
 
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <nav id="primary-navigation" role="navigation" aria-label="Main navigation">
+    <nav role="navigation" aria-label="Main navigation">
       <a href="#about">About Me</a>
       <a href="#events">Events</a>
       <a href="#contact">Contact</a>
@@ -272,27 +218,28 @@
   </header>
 
   <main>
-    <div class="gallery-item"><img src="IMG_3912.jpg" alt="Art piece 1" /></div>
-    <div class="gallery-item"><img src="IMG_3916.jpg" alt="Art piece 2" /></div>
-    <div class="gallery-item"><img src="IMG_4101.jpg" alt="Art piece 3" /></div>
-    <div class="gallery-item"><img src="IMG_4121.jpg" alt="Art piece 4" /></div>
+    <div class="gallery-item"><img src="00000097.jpg" alt="Art piece 1" /></div>
+    <div class="gallery-item"><img src="IMG_3904.jpg" alt="Art piece 2" /></div>
+    <div class="gallery-item"><img src="IMG_3912.jpg" alt="Art piece 3" /></div>
+    <div class="gallery-item"><img src="IMG_3916.jpg" alt="Art piece 4" /></div>
+    <div class="gallery-item"><img src="IMG_4101.jpg" alt="Art piece 5" /></div>
+    <div class="gallery-item"><img src="IMG_4121.jpg" alt="Art piece 6" /></div>
+    <div class="gallery-item"><img src="_53A5094.jpg" alt="Art piece 7" /></div>
+    <div class="gallery-item"><img src="_53A5356-2.jpg" alt="Art piece 8" /></div>
+    <div class="gallery-item"><img src="_53A5365.jpg" alt="Art piece 9" /></div>
   </main>
+
+  <div class="pagination">
+    <a href="#">&laquo; Prev</a>
+    <a href="#" style="font-weight: bold; border-color: #111;">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">Next &raquo;</a>
+  </div>
 
   <footer>
     &copy; 2025 IMAGO by GORUS
   </footer>
-
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
-
-    hamburger.addEventListener('click', () => {
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-      hamburger.setAttribute('aria-expanded', !expanded);
-      hamburger.classList.toggle('active');
-      nav.classList.toggle('open');
-    });
-  </script>
 
 </body>
 </html>
