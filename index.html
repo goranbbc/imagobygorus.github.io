@@ -188,6 +188,8 @@
     @media (max-width: 600px) {
       header {
         padding: 1.5rem 3vw;
+        flex-direction: column;
+        align-items: flex-start;
       }
       main {
         padding: 2rem 3vw;
@@ -195,6 +197,7 @@
       }
       .logo {
         width: 140px;
+        margin-bottom: 1rem;
       }
       .logo-line1 {
         font-size: 2rem;
@@ -204,6 +207,12 @@
       }
       nav {
         gap: 1.5rem;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      nav a {
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -231,10 +240,8 @@
 
   <script>
     const images = [
-      "00000097.jpg",
       "IMG_3904.jpg",
       "IMG_3912.jpg",
-      "IMG_3916.jpg",
       "IMG_4101.jpg",
       "IMG_4121.jpg",
       "_53A5094.jpg",
