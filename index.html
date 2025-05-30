@@ -117,7 +117,7 @@
       flex-grow: 1;
       padding: 4rem 4vw;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 3rem;
       max-width: 1200px;
       margin: 0 auto;
@@ -148,33 +148,6 @@
       transform: scale(1.05);
     }
 
-    .pagination {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 3rem auto;
-    }
-
-    .pagination a {
-      text-decoration: none;
-      color: #111;
-      font-weight: 700;
-      border: 1px solid #ddd;
-      padding: 0.5rem 1rem;
-      border-radius: 0.3rem;
-      transition: background 0.2s;
-      cursor: pointer;
-    }
-
-    .pagination a:hover {
-      background: #f5f5f5;
-    }
-
-    .pagination a.active {
-      font-weight: bold;
-      border-color: #111;
-    }
-
     footer {
       padding: 2rem 4vw;
       font-size: 0.85rem;
@@ -183,6 +156,12 @@
       color: #999;
       border-top: 1px solid #eee;
       user-select: none;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 600px) {
@@ -194,6 +173,7 @@
       main {
         padding: 2rem 3vw;
         gap: 2rem;
+        grid-template-columns: 1fr;
       }
       .logo {
         width: 140px;
@@ -232,8 +212,6 @@
 
   <main id="gallery"></main>
 
-  <div class="pagination" id="pagination"></div>
-
   <footer>
     &copy; 2025 IMAGO by GORUS
   </footer>
@@ -251,17 +229,10 @@
       "_53A5094.jpg"
     ];
 
-    const itemsPerPage = 9;
-    let currentPage = 1;
-
-    function renderGallery(page) {
+    function renderGallery() {
       const gallery = document.getElementById("gallery");
       gallery.innerHTML = "";
-      const start = (page - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-      const itemsToShow = images.slice(start, end);
-
-      itemsToShow.forEach(src => {
+      images.forEach(src => {
         const div = document.createElement("div");
         div.className = "gallery-item";
         const filename = src.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ');
@@ -271,48 +242,7 @@
       });
     }
 
-    function renderPagination() {
-      const totalPages = Math.ceil(images.length / itemsPerPage);
-      const pagination = document.getElementById("pagination");
-      pagination.innerHTML = "";
-
-      const prev = document.createElement("a");
-      prev.textContent = "« Prev";
-      prev.onclick = () => {
-        if (currentPage > 1) {
-          currentPage--;
-          renderGallery(currentPage);
-          renderPagination();
-        }
-      };
-      pagination.appendChild(prev);
-
-      for (let i = 1; i <= totalPages; i++) {
-        const link = document.createElement("a");
-        link.textContent = i;
-        if (i === currentPage) link.classList.add("active");
-        link.onclick = () => {
-          currentPage = i;
-          renderGallery(currentPage);
-          renderPagination();
-        };
-        pagination.appendChild(link);
-      }
-
-      const next = document.createElement("a");
-      next.textContent = "Next »";
-      next.onclick = () => {
-        if (currentPage < totalPages) {
-          currentPage++;
-          renderGallery(currentPage);
-          renderPagination();
-        }
-      };
-      pagination.appendChild(next);
-    }
-
-    renderGallery(currentPage);
-    renderPagination();
+    renderGallery();
   </script>
 </body>
 </html>
