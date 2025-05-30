@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IMAGO by GORUS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
+    html, body {
+      height: 100%;
+      margin: 0;
     }
 
     body {
-      margin: 0;
       background: #fff;
       color: #111;
       font-family: 'Montserrat', sans-serif;
@@ -20,219 +20,70 @@
       line-height: 1.4;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
     }
 
     header {
+      padding: 2rem 4vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 2rem 4vw;
-      border-bottom: 1px solid #eee;
-      position: sticky;
-      top: 0;
-      background: #fff;
-      z-index: 1000;
+      background-color: #f7f7f7;
     }
 
-    .logo {
-      width: 180px;
-      user-select: none;
-      font-family: 'Montserrat', sans-serif;
-      letter-spacing: 0.2em;
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-
-    .logo-line {
+    h1 {
+      font-weight: 700;
+      font-size: 2rem;
       margin: 0;
-      text-align: justify;
-      position: relative;
-    }
-
-    .logo-line1 {
-      font-weight: 700;
-      font-size: 2.6rem;
-      text-transform: uppercase;
-      line-height: 1.1;
-      color: #111;
-    }
-
-    .logo-line2 {
-      font-weight: 300;
-      font-size: 1.1rem;
-      line-height: 1.1;
-      color: #111;
-      text-transform: lowercase;
-    }
-
-    .logo-line2 strong {
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    nav {
-      display: flex;
-      gap: 3rem;
-    }
-
-    nav a {
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      position: relative;
-      padding-bottom: 0.15rem;
-      color: #111;
-      transition: color 0.3s ease;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: 0;
-      left: 0;
-      background: #111;
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
     }
 
     main {
-      flex-grow: 1;
       padding: 4rem 4vw;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 3rem;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .gallery-item {
+    article {
       position: relative;
       overflow: hidden;
+      aspect-ratio: 3 / 4;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       cursor: pointer;
-      border-radius: 0.3rem;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-      transition: box-shadow 0.3s ease;
+      transition: transform 0.3s;
     }
 
-    .gallery-item:hover {
-      box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+    article:hover {
+      transform: scale(1.02);
     }
 
-    .gallery-item img {
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
-    footer {
-      padding: 2rem 4vw;
-      font-size: 0.85rem;
-      font-weight: 300;
-      text-align: center;
-      color: #999;
-      border-top: 1px solid #eee;
-      user-select: none;
-    }
-
-    @media (max-width: 900px) {
-      main {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 1.5rem 3vw;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      main {
-        padding: 2rem 3vw;
-        gap: 2rem;
-        grid-template-columns: 1fr;
-      }
-      .logo {
-        width: 140px;
-        margin-bottom: 1rem;
-      }
-      .logo-line1 {
-        font-size: 2rem;
-      }
-      .logo-line2 {
-        font-size: 1rem;
-      }
-      nav {
-        gap: 1.5rem;
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
-      nav a {
-        font-size: 0.8rem;
-      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo" aria-label="Site logo">
-      <p class="logo-line logo-line1">IMAGO</p>
-      <p class="logo-line logo-line2">by <strong>GORUS</strong></p>
-    </div>
-    <nav role="navigation" aria-label="Main navigation">
-      <a href="#about">About Me</a>
-      <a href="#events">Events</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <h1>Galerija</h1>
   </header>
-
-  <main id="gallery"></main>
-
-  <footer>
-    &copy; 2025 IMAGO by GORUS
-  </footer>
-
-  <script>
-    const images = [
-      "IMG_3904.jpg",
-      "IMG_3912.jpg",
-      "IMG_4101.jpg",
-      "00000097.jpg",
-      "00000079.jpg",
-      "00000080.jpg",
-      "_53A5413-2.jpg",
-      "_53A5356-2.jpg",
-      "_53A5094.jpg"
-    ];
-
-    function renderGallery() {
-      const gallery = document.getElementById("gallery");
-      gallery.innerHTML = "";
-      images.forEach(src => {
-        const div = document.createElement("div");
-        div.className = "gallery-item";
-        const filename = src.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ');
-        const altText = filename.replace(/\b\w/g, l => l.toUpperCase());
-        div.innerHTML = `<img src="${src}" alt="${altText}" />`;
-        gallery.appendChild(div);
-      });
-    }
-
-    renderGallery();
-  </script>
+  <main>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=1" alt="slika 1" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=2" alt="slika 2" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=3" alt="slika 3" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=4" alt="slika 4" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=5" alt="slika 5" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=6" alt="slika 6" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=7" alt="slika 7" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=8" alt="slika 8" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=9" alt="slika 9" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=10" alt="slika 10" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=11" alt="slika 11" /></article>
+    <article><img src="https://source.unsplash.com/random/800x1067?sig=12" alt="slika 12" /></article>
+  </main>
 </body>
 </html>
