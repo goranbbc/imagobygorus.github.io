@@ -264,7 +264,9 @@
       itemsToShow.forEach(src => {
         const div = document.createElement("div");
         div.className = "gallery-item";
-        div.innerHTML = `<img src="${src}" alt="Artwork" />`;
+        const filename = src.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ');
+        const altText = filename.replace(/\b\w/g, l => l.toUpperCase());
+        div.innerHTML = `<img src="${src}" alt="${altText}" />`;
         gallery.appendChild(div);
       });
     }
