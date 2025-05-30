@@ -163,10 +163,16 @@
       padding: 0.5rem 1rem;
       border-radius: 0.3rem;
       transition: background 0.2s;
+      cursor: pointer;
     }
 
     .pagination a:hover {
       background: #f5f5f5;
+    }
+
+    .pagination a.active {
+      font-weight: bold;
+      border-color: #111;
     }
 
     footer {
@@ -203,13 +209,11 @@
   </style>
 </head>
 <body>
-
   <header>
     <div class="logo" aria-label="Site logo">
       <p class="logo-line logo-line1">IMAGO</p>
       <p class="logo-line logo-line2">by <strong>GORUS</strong></p>
     </div>
-
     <nav role="navigation" aria-label="Main navigation">
       <a href="#about">About Me</a>
       <a href="#events">Events</a>
@@ -217,29 +221,89 @@
     </nav>
   </header>
 
-  <main>
-    <div class="gallery-item"><img src="00000097.jpg" alt="Art piece 1" /></div>
-    <div class="gallery-item"><img src="IMG_3904.jpg" alt="Art piece 2" /></div>
-    <div class="gallery-item"><img src="IMG_3912.jpg" alt="Art piece 3" /></div>
-    <div class="gallery-item"><img src="IMG_3916.jpg" alt="Art piece 4" /></div>
-    <div class="gallery-item"><img src="IMG_4101.jpg" alt="Art piece 5" /></div>
-    <div class="gallery-item"><img src="IMG_4121.jpg" alt="Art piece 6" /></div>
-    <div class="gallery-item"><img src="_53A5094.jpg" alt="Art piece 7" /></div>
-    <div class="gallery-item"><img src="_53A5356-2.jpg" alt="Art piece 8" /></div>
-    <div class="gallery-item"><img src="_53A5365.jpg" alt="Art piece 9" /></div>
-  </main>
+  <main id="gallery"></main>
 
-  <div class="pagination">
-    <a href="#">&laquo; Prev</a>
-    <a href="#" style="font-weight: bold; border-color: #111;">1</a>
-    <a href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">Next &raquo;</a>
-  </div>
+  <div class="pagination" id="pagination"></div>
 
   <footer>
     &copy; 2025 IMAGO by GORUS
   </footer>
 
+  <script>
+    const images = [
+      "00000097.jpg",
+      "IMG_3904.jpg",
+      "IMG_3912.jpg",
+      "IMG_3916.jpg",
+      "IMG_4101.jpg",
+      "IMG_4121.jpg",
+      "_53A5094.jpg",
+      "_53A5356-2.jpg",
+      "_53A5365.jpg",
+      "_53A5400.jpg",
+      "_53A5413-2.jpg"
+    ];
+
+    const itemsPerPage = 9;
+    let currentPage = 1;
+
+    function renderGallery(page) {
+      const gallery = document.getElementById("gallery");
+      gallery.innerHTML = "";
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const itemsToShow = images.slice(start, end);
+
+      itemsToShow.forEach(src => {
+        const div = document.createElement("div");
+        div.className = "gallery-item";
+        div.innerHTML = `<img src="${src}" alt="Artwork" />`;
+        gallery.appendChild(div);
+      });
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(images.length / itemsPerPage);
+      const pagination = document.getElementById("pagination");
+      pagination.innerHTML = "";
+
+      const prev = document.createElement("a");
+      prev.textContent = "« Prev";
+      prev.onclick = () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderGallery(currentPage);
+          renderPagination();
+        }
+      };
+      pagination.appendChild(prev);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const link = document.createElement("a");
+        link.textContent = i;
+        if (i === currentPage) link.classList.add("active");
+        link.onclick = () => {
+          currentPage = i;
+          renderGallery(currentPage);
+          renderPagination();
+        };
+        pagination.appendChild(link);
+      }
+
+      const next = document.createElement("a");
+      next.textContent = "Next »";
+      next.onclick = () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderGallery(currentPage);
+          renderPagination();
+        }
+      };
+      pagination.appendChild(next);
+    }
+
+    renderGallery(currentPage);
+    renderPagination();
+  </script>
 </body>
 </html>
