@@ -36,13 +36,12 @@
       z-index: 1000;
     }
 
-    /* LOGO - važno */
+    /* LOGO */
     .logo {
-      width: 180px; /* fiksna širina, prilagodi ako treba */
+      width: 180px; 
       user-select: none;
       font-family: 'Montserrat', sans-serif;
       letter-spacing: 0.2em;
-      /* koristimo flex da stavimo 2 reda jedan ispod drugog */
       display: flex;
       flex-direction: column;
       gap: 0.1rem;
@@ -54,7 +53,6 @@
       position: relative;
     }
 
-    /* Trick da poslednji red u justified paragrafu isto ide full justify */
     .logo-line::after {
       content: "";
       display: inline-block;
@@ -86,6 +84,7 @@
       text-transform: uppercase; /* GORUS veliko */
     }
 
+    /* NAVIGATION */
     nav {
       display: flex;
       gap: 3rem;
@@ -100,6 +99,7 @@
       padding-bottom: 0.15rem;
       color: #111;
       transition: color 0.3s ease;
+      text-decoration: none;
     }
 
     nav a::after {
@@ -115,6 +115,70 @@
 
     nav a:hover::after {
       width: 100%;
+    }
+
+    /* HAMBURGER MENU BUTTON */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 25px;
+      height: 22px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1100;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #111;
+      border-radius: 2px;
+      transition: all 0.3s linear;
+      position: relative;
+      transform-origin: 1px;
+    }
+
+    /* Hamburger animation when active */
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        position: fixed;
+        top: 70px; /* height of header */
+        right: 0;
+        background: #fff;
+        height: calc(100vh - 70px);
+        width: 200px;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+        box-shadow: -2px 0 12px rgba(0,0,0,0.1);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      nav.open {
+        transform: translateX(0);
+      }
+
+      .hamburger {
+        display: flex;
+      }
     }
 
     main {
@@ -162,7 +226,7 @@
       user-select: none;
     }
 
-    /* Responsive */
+    /* Responsive adjustments */
     @media (max-width: 600px) {
       header {
         padding: 1.5rem 3vw;
@@ -181,7 +245,7 @@
         font-size: 1rem;
       }
       nav {
-        gap: 1.5rem;
+        width: 180px;
       }
     }
   </style>
@@ -194,7 +258,13 @@
       <p class="logo-line logo-line2">by <strong>GORUS</strong></p>
     </div>
 
-    <nav role="navigation" aria-label="Main navigation">
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="primary-navigation" role="navigation" aria-label="Main navigation">
       <a href="#about">About Me</a>
       <a href="#events">Events</a>
       <a href="#contact">Contact</a>
@@ -212,6 +282,17 @@
     &copy; 2025 IMAGO by GORUS
   </footer>
 
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+      hamburger.setAttribute('aria-expanded', !expanded);
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+  </script>
+
 </body>
 </html>
-
