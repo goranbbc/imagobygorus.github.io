@@ -148,13 +148,16 @@
     /* About Me section styles */
     #about {
       padding: 4rem 4vw;
-      max-width: 900px;
+      max-width: 1100px;
       margin: 3rem auto;
-      font-family: 'Montserrat', sans-serif;
-      letter-spacing: 0.12em;
-      color: #222;
-      line-height: 1.6;
-      text-align: left;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    #about-text {
+      flex: 1 1 400px;
     }
 
     #about h2 {
@@ -168,8 +171,19 @@
     #about p {
       font-weight: 300;
       font-size: 1.1rem;
-      max-width: 700px;
-      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    #about-img {
+      flex: 1 1 350px;
+      max-width: 450px;
+    }
+
+    #about-img img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     }
 
     footer {
@@ -191,6 +205,19 @@
       }
       .gallery-item img {
         height: 220px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      #about {
+        flex-direction: column;
+        text-align: center;
+      }
+      #about h2 {
+        font-size: 2.2rem;
+      }
+      #about p {
+        font-size: 1rem;
       }
     }
 
@@ -249,16 +276,21 @@
   <main id="gallery"></main>
 
   <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I am a passionate visual storyteller who captures fleeting emotions and transforms them into timeless art.<br/>
-    Photography, for me, transcends mere imagery — it is an intimate dance between light and soul, where every frame whispers a unique story.<br/>
-    IMAGO by GORUS is not just a brand; it is a celebration of beauty, luxury, and exclusivity — a sanctuary for those who truly appreciate the art of emotion.<br/>
-    Crafted with precision and fueled by passion, each photograph is a masterpiece designed to resonate with those who demand more than just a picture.<br/>
-    For those who seek to immortalize their essence, IMAGO by GORUS offers an experience reserved for the discerning few who understand that true luxury lies in authentic expression.
-  </p>
-  <img src="000.jpg" alt="About Me Image" style="max-width:100%; height:auto; border-radius: 0.3rem; margin-top: 2rem;" />
-</section>
+    <div id="about-text">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate visual storyteller who captures fleeting emotions and transforms them into timeless art.<br/>
+        Photography, for me, transcends mere imagery — it is an intimate dance between light and soul, where every frame whispers a unique story.<br/>
+        IMAGO by GORUS is not just a brand; it is a celebration of beauty, luxury, and exclusivity — a sanctuary for those who truly appreciate the art of emotion.<br/>
+        Crafted with precision and fueled by passion, each photograph is a masterpiece designed to resonate with those who demand more than just a picture.<br/>
+        For those who seek to immortalize their essence, IMAGO by GORUS offers an experience reserved for the discerning few who understand that true luxury lies in authentic expression.
+      </p>
+    </div>
+    <div id="about-img">
+      <img src="000.jpg" alt="Portrait of GORUS" />
+    </div>
+  </section>
+
   <footer>
     &copy; 2025 IMAGO by GORUS
   </footer>
