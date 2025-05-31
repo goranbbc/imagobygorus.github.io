@@ -227,7 +227,7 @@
         div.className = "gallery-item";
         const filename = src.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ');
         const altText = filename.replace(/\b\w/g, l => l.toUpperCase());
-        div.innerHTML = <img src="${src}" alt="${altText}" />;
+        div.innerHTML = `<img src="${src}" alt="${altText}" />`;
         gallery.appendChild(div);
       });
     }
