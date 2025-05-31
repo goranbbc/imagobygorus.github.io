@@ -1,89 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Image Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
 
-    body {
-      background: #fff;
-      color: #111;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      line-height: 1.4;
-      display: flex;
-      flex-direction: column;
-    }
+      body {
+        background: #fff;
+        color: #111;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        letter-spacing: 0.15em;
+        line-height: 1.4;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
 
-    header {
-      padding: 2rem 4vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #f7f7f7;
-    }
+      header,
+      footer {
+        padding: 2rem 4vw;
+      }
 
-    h1 {
-      font-weight: 700;
-      font-size: 2rem;
-      margin: 0;
-    }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-    main {
-      padding: 4rem 4vw;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+      h1 {
+        font-weight: 700;
+        font-size: 2rem;
+        margin: 0;
+      }
 
-    article {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 3 / 4;
-      border-radius: 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
+      main {
+        padding: 4rem 4vw;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
-    article:hover {
-      transform: scale(1.02);
-    }
+      article {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 3 / 4;
+      }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Galerija</h1>
-  </header>
-  <main>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=1" alt="slika 1" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=2" alt="slika 2" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=3" alt="slika 3" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=4" alt="slika 4" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=5" alt="slika 5" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=6" alt="slika 6" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=7" alt="slika 7" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=8" alt="slika 8" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=9" alt="slika 9" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=10" alt="slika 10" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=11" alt="slika 11" /></article>
-    <article><img src="https://source.unsplash.com/random/800x1067?sig=12" alt="slika 12" /></article>
-  </main>
-</body>
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Gallery</h1>
+    </header>
+    <main>
+      <article>
+        <img src="https://source.unsplash.com/random/800x1067?sig=1" alt="Random image 1" />
+      </article>
+      <article>
+        <img src="https://source.unsplash.com/random/800x1067?sig=2" alt="Random image 2" />
+      </article>
+      <article>
+        <img src="https://source.unsplash.com/random/800x1067?sig=3" alt="Random image 3" />
+      </article>
+      <article>
+        <img src="https://source.unsplash.com/random/800x1067?sig=4" alt="Random image 4" />
+      </article>
+      <article>
+        <img src="https://source.unsplash.com/random/800x1067?sig=5" alt="Random image 5" />
+      </article>
+      <article>
+        <img src="https://source.unsplash.com/random/800x1067?sig=6" alt="Random image 6" />
+      </article>
+      <article>
+        <img src="https://source.unsplash.com/random/800x1067?sig=7" alt="Random image 7" />
+      </article>
+      <article>
+        <img src="https://source.unsplash.com/random/800x1067?sig=8" alt="Random image 8" />
+      </article>
+      <article>
+        <img src="https://source.unsplash.com/random/800x1067?sig=9" alt="Random image 9" />
+      </article>
+    </main>
+    <footer>
+      <button>Prev</button>
+      <button>Next</button>
+    </footer>
+  </body>
 </html>
