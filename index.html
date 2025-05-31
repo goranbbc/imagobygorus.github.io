@@ -186,6 +186,44 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     }
 
+    /* Contact section styles */
+    #contact {
+      padding: 4rem 4vw;
+      max-width: 600px;
+      margin: 3rem auto;
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      margin-bottom: 1rem;
+      color: #111;
+    }
+
+    #contact p {
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: #111;
+    }
+
+    #contact .contact-info {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      color: #111;
+    }
+
+    #contact a {
+      color: #111;
+      text-decoration: underline;
+    }
+
     footer {
       padding: 2rem 4vw;
       font-size: 0.85rem;
@@ -291,37 +329,25 @@
     </div>
   </section>
 
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      If you truly wish to immortalize your moment,<br/>
+      to capture not just a picture but a timeless work of art,<br/>
+      then you are in the right place.<br/>
+      Reach out without hesitation — here, you don’t just contact a photographer,<br/>
+      you connect with a true visual artist.<br/>
+      Let’s create something extraordinary together.
+    </p>
+    <p class="contact-info">Phone: xxx xxx</p>
+    <p class="contact-info">Email: xxx xxx</p>
+    <p class="contact-info">
+      Instagram: <a href="https://instagram.com/imagogorus" target="_blank" rel="noopener noreferrer">@imagogorus</a>
+    </p>
+  </section>
+
   <footer>
-    &copy; 2025 IMAGO by GORUS
+    &copy; 2025 IMAGO by GORUS — All rights reserved.
   </footer>
-
-  <script>
-    const images = [
-      "IMG_3904.jpg",
-      "IMG_3912.jpg",
-      "IMG_4101.jpg",
-      "00000097.jpg",
-      "00000079.jpg",
-      "00000080.jpg",
-      "222.jpg",
-      "333.jpg",
-      "444.jpg"
-    ];
-
-    function renderGallery() {
-      const gallery = document.getElementById("gallery");
-      gallery.innerHTML = "";
-      images.forEach(src => {
-        const div = document.createElement("div");
-        div.className = "gallery-item";
-        const filename = src.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ');
-        const altText = filename.replace(/\b\w/g, l => l.toUpperCase());
-        div.innerHTML = `<img src="${src}" alt="${altText}" />`;
-        gallery.appendChild(div);
-      });
-    }
-
-    renderGallery();
-  </script>
 </body>
 </html>
