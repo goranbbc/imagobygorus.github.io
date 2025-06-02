@@ -46,7 +46,7 @@
     }
 
     .logo img {
-      height: 150px; /* visina logotipa */
+      height: 150px;
       width: auto;
       display: block;
     }
@@ -85,16 +85,23 @@
     main {
       flex-grow: 1;
       padding: 4rem 4vw;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* Gallery section */
+    #gallery {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
     }
 
     .gallery-item {
       position: relative;
-      overflow: visible;
+      overflow: hidden;
       cursor: pointer;
       border-radius: 0.3rem;
       box-shadow: 0 6px 15px rgba(0,0,0,0.05);
@@ -120,15 +127,14 @@
       transform: scale(1.2);
     }
 
-    /* About Me section styles */
+    /* About Me section */
     #about {
-      padding: 4rem 4vw;
-      max-width: 1100px;
-      margin: 3rem auto;
       display: flex;
       flex-wrap: wrap;
       gap: 3rem;
       align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     #about-text {
@@ -159,6 +165,57 @@
       height: auto;
       border-radius: 0.5rem;
       box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    /* Services section */
+    #services {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 4vw;
+    }
+
+    #services h2 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      letter-spacing: 0.25em;
+      color: #111;
+      text-align: center;
+    }
+
+    #services ul {
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      margin: 0 auto;
+      font-weight: 300;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #222;
+    }
+
+    #services ul li {
+      margin-bottom: 1.5rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    #services ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    #services ul li strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      text-transform: none;
     }
 
     /* Contact Me section styles */
@@ -210,7 +267,7 @@
     }
 
     @media (max-width: 900px) {
-      main {
+      #gallery {
         grid-template-columns: repeat(2, 1fr);
       }
       .gallery-item {
@@ -243,7 +300,7 @@
       main {
         padding: 2rem 3vw;
         gap: 2rem;
-        grid-template-columns: 1fr;
+        flex-direction: column;
       }
       nav {
         gap: 1.5rem;
@@ -253,6 +310,9 @@
       }
       nav a {
         font-size: 0.8rem;
+      }
+      #gallery {
+        grid-template-columns: 1fr;
       }
       .gallery-item {
         max-height: 180px;
@@ -271,47 +331,66 @@
     <nav role="navigation" aria-label="Main navigation">
       <a href="#about">About Me</a>
       <a href="#gallery">Gallery</a>
+      <a href="#services">Services</a>
       <a href="#events">Events</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <main id="gallery"></main>
+  <main>
+    <section id="gallery" aria-label="Gallery of photographs">
+      <!-- Gallery images will be inserted here -->
+    </section>
 
-  <section id="about">
-    <div id="about-text">
-      <h2>About Me</h2>
-      <p>
-        I am a passionate visual storyteller who captures fleeting emotions and transforms them into timeless art.<br/>
-        Photography, for me, transcends mere imagery — it is an intimate dance between light and soul, where every frame whispers a unique story.<br/>
-        IMAGO by GORUS is not just a brand; it is a celebration of beauty, luxury, and exclusivity — a sanctuary for those who truly appreciate the art of emotion.<br/>
-        Crafted with precision and fueled by passion, each photograph is a masterpiece designed to resonate with those who demand more than just a picture.<br/>
-        For those who seek to immortalize their essence, IMAGO by GORUS offers an experience reserved for the discerning few who understand that true luxury lies in authentic expression.
-      </p>
-    </div>
-    <div id="about-img">
-      <img src="0000.jpg" alt="0000.jpg" />
-    </div>
-  </section>
+    <section id="about">
+      <div id="about-text">
+        <h2>About Me</h2>
+        <p>
+          I am a passionate visual storyteller who loves to capture the unique moments of life with a thoughtful, artistic touch.
+          My work spans portraits, events, travel, and artistic projects — always aiming to reveal the soul behind the image.
+        </p>
+      </div>
+      <div id="about-img">
+        <img src="IMG_4101.jpg" alt="Photographer portrait" />
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>If you truly wish to immortalize your moment and transform it into timeless art, you've reached the right artist.<br/>
-      Don’t hesitate — reach out and let’s create something extraordinary together.<br/>
-      Contact me freely via phone, email, or Instagram.</p>
-    <div id="contact-info">
-      <div>Phone: xxx</div>
-      <div>Email: xxx</div>
-      <div>Instagram: <a href="https://instagram.com/imago.gorus" target="_blank" rel="noopener noreferrer">@imago.gorus</a></div>
-    </div>
-  </section>
+    <section id="services" aria-label="Photography services offered">
+      <h2>Services</h2>
+      <ul>
+        <li><strong>Portrait Photography</strong>Thoughtful, artistic portraits – in natural light or studio settings. Capturing who you are, not just how you look.</li>
+        <li><strong>Event Photography</strong>Discreet and honest documentation of real moments – from private celebrations to cultural gatherings.</li>
+        <li><strong>Travel & Landscape Photography</strong>Atmospheric images of places and time. Available for editorial use, personal collections, or interior decoration.</li>
+        <li><strong>Product & Detail Photography</strong>Minimalist aesthetics for objects with character. Perfect for creators, artists, and conscious brands.</li>
+        <li><strong>Personal Branding Sessions</strong>Authentic portraits that reflect your identity – ideal for portfolios, websites, and social presence.</li>
+        <li><strong>Artistic Projects & Visual Storytelling</strong>Collaborative work based on emotion, memory, and narrative. For those who want to say more with an image.</li>
+        <li><strong>Prints & Custom Photo Books</strong>Handpicked photos turned into timeless prints or photo books. Designed with intention, crafted with care.</li>
+      </ul>
+    </section>
+
+    <section id="events" aria-label="Event photography">
+      <h2>Events</h2>
+      <p>Coming soon...</p>
+    </section>
+
+    <section id="contact" aria-label="Contact information">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out for bookings, questions, or collaborations.</p>
+      <div id="contact-info">
+        <div>Email: imago@example.com</div>
+        <div>Phone: +123 456 7890</div>
+        <div>Location: Belgrade, Serbia</div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2025 IMAGO by GORUS
+    &copy; 2025 IMAGO by GORUS. All rights reserved.
   </footer>
 
   <script>
-    const images = [
+    // Gallery image file names from your list
+    const galleryImages = [
       "IMG_39041.jpg",
       "IMG_3912.jpg",
       "IMG_4101.jpg",
@@ -323,20 +402,19 @@
       "4441.jpg"
     ];
 
-    function renderGallery() {
-      const gallery = document.getElementById("gallery");
-      gallery.innerHTML = "";
-      images.forEach(src => {
-        const div = document.createElement("div");
-        div.className = "gallery-item";
-        const filename = src.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ');
-        const altText = filename.replace(/\b\w/g, l => l.toUpperCase());
-        div.innerHTML = `<img src="${src}" alt="${altText}" />`;
-        gallery.appendChild(div);
-      });
-    }
+    const galleryContainer = document.getElementById('gallery');
 
-    renderGallery();
+    galleryImages.forEach(src => {
+      const div = document.createElement('div');
+      div.className = 'gallery-item';
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = "Photograph " + src.split('.')[0];
+
+      div.appendChild(img);
+      galleryContainer.appendChild(div);
+    });
   </script>
 </body>
 </html>
