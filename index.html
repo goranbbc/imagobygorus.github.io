@@ -3,97 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IMAGO by GORUS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet" />
+  <title>Photography Portfolio</title>
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
+      font-family: 'Arial', sans-serif;
       margin: 0;
+      padding: 0;
+      color: #222;
       background: #fff;
-      color: #111;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      line-height: 1.4;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      line-height: 1.6;
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem 4vw;
-      border-bottom: 1px solid #eee;
-      position: sticky;
-      top: 0;
-      background: #fff;
-      z-index: 1000;
+      background-color: #f7f7f7;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      user-select: none;
-    }
-
-    .logo img {
-      height: 150px;
-      width: auto;
-      display: block;
-    }
-
-    nav {
-      display: flex;
-      gap: 3rem;
-    }
-
-    nav a {
-      font-weight: 700;
-      font-size: 0.9rem;
+    header h1 {
+      font-weight: 900;
+      font-size: 3rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      position: relative;
-      padding-bottom: 0.15rem;
+      margin: 0;
       color: #111;
-      transition: color 0.3s ease;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: 0;
-      left: 0;
-      background: #111;
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
     }
 
     main {
-      flex-grow: 1;
-      padding: 4rem 4vw;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
 
-    /* Gallery section */
+    /* Services Section */
+    #services {
+      margin-bottom: 5rem;
+    }
+
+    #services h2 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      letter-spacing: 0.25em;
+      color: #111;
+      text-align: center;
+    }
+
+    #services ul {
+      list-style: none;
+      padding: 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    #services li {
+      margin-bottom: 2rem;
+      font-size: 1.15rem;
+      line-height: 1.4;
+      color: #444;
+    }
+
+    #services li strong {
+      display: block;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+
+    /* Gallery Section */
     #gallery {
+      margin-bottom: 5rem;
+    }
+
+    #gallery h2 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      letter-spacing: 0.25em;
+      color: #111;
+      text-align: center;
+    }
+
+    #gallery .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 2rem;
@@ -126,295 +121,64 @@
     .gallery-item:hover img {
       transform: scale(1.2);
     }
-
-    /* About Me section */
-    #about {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-      align-items: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    #about-text {
-      flex: 1 1 400px;
-    }
-
-    #about h2 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      letter-spacing: 0.25em;
-    }
-
-    #about p {
-      font-weight: 300;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    #about-img {
-      flex: 1 1 350px;
-      max-width: 450px;
-    }
-
-    #about-img img {
-      width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    }
-
-    /* Services section */
-    #services {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 4vw;
-    }
-
-    #services h2 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      letter-spacing: 0.25em;
-      color: #111;
-      text-align: center;
-    }
-
-    #services ul {
-      list-style: none;
-      padding: 0;
-      max-width: 700px;
-      margin: 0 auto;
-      font-weight: 300;
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: #222;
-    }
-
-    #services ul li {
-      margin-bottom: 1.5rem;
-      padding-left: 1.2rem;
-      position: relative;
-    }
-
-    #services ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: #111;
-      font-weight: 700;
-      font-size: 1.4rem;
-      line-height: 1;
-    }
-
-    #services ul li strong {
-      display: block;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      text-transform: none;
-    }
-
-    /* Contact Me section styles */
-    #contact {
-      padding: 4rem 4vw;
-      max-width: 700px;
-      margin: 3rem auto 5rem;
-      text-align: center;
-      border-top: 1px solid #eee;
-    }
-
-    #contact h2 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      letter-spacing: 0.25em;
-      color: #111;
-    }
-
-    #contact p {
-      font-weight: 300;
-      font-size: 1.15rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      color: #333;
-    }
-
-    #contact-info {
-      font-weight: 300;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #111;
-      letter-spacing: 0.1em;
-    }
-
-    #contact-info div {
-      margin-bottom: 0.5rem;
-    }
-
-    footer {
-      padding: 2rem 4vw;
-      font-size: 0.85rem;
-      font-weight: 300;
-      text-align: center;
-      color: #999;
-      border-top: 1px solid #eee;
-      user-select: none;
-    }
-
-    @media (max-width: 900px) {
-      #gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .gallery-item {
-        max-height: 220px;
-      }
-      .gallery-item img {
-        height: 220px;
-      }
-    }
-
-    @media (max-width: 700px) {
-      #about {
-        flex-direction: column;
-        text-align: center;
-      }
-      #about h2 {
-        font-size: 2.2rem;
-      }
-      #about p {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 1.5rem 3vw;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      main {
-        padding: 2rem 3vw;
-        gap: 2rem;
-        flex-direction: column;
-      }
-      nav {
-        gap: 1.5rem;
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
-      nav a {
-        font-size: 0.8rem;
-      }
-      #gallery {
-        grid-template-columns: 1fr;
-      }
-      .gallery-item {
-        max-height: 180px;
-      }
-      .gallery-item img {
-        height: 180px;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo" aria-label="Site logo">
-      <img src="ibg.png" alt="IMAGO logo" />
-    </div>
-    <nav role="navigation" aria-label="Main navigation">
-      <a href="#about">About Me</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#services">Services</a>
-      <a href="#events">Events</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <h1>Gallery</h1>
   </header>
 
   <main>
-    <section id="gallery" aria-label="Gallery of photographs">
-      <!-- Gallery images will be inserted here -->
-    </section>
-
-    <section id="about">
-      <div id="about-text">
-        <h2>About Me</h2>
-        <p>
-          I am a passionate visual storyteller who loves to capture the unique moments of life with a thoughtful, artistic touch.
-          My work spans portraits, events, travel, and artistic projects — always aiming to reveal the soul behind the image.
-        </p>
-      </div>
-      <div id="about-img">
-        <img src="IMG_4101.jpg" alt="Photographer portrait" />
-      </div>
-    </section>
-
+    <!-- Services Section -->
     <section id="services" aria-label="Photography services offered">
       <h2>Services</h2>
       <ul>
-        <li><strong>Portrait Photography</strong>Thoughtful, artistic portraits – in natural light or studio settings. Capturing who you are, not just how you look.</li>
-        <li><strong>Event Photography</strong>Discreet and honest documentation of real moments – from private celebrations to cultural gatherings.</li>
-        <li><strong>Travel & Landscape Photography</strong>Atmospheric images of places and time. Available for editorial use, personal collections, or interior decoration.</li>
-        <li><strong>Product & Detail Photography</strong>Minimalist aesthetics for objects with character. Perfect for creators, artists, and conscious brands.</li>
-        <li><strong>Personal Branding Sessions</strong>Authentic portraits that reflect your identity – ideal for portfolios, websites, and social presence.</li>
-        <li><strong>Artistic Projects & Visual Storytelling</strong>Collaborative work based on emotion, memory, and narrative. For those who want to say more with an image.</li>
-        <li><strong>Prints & Custom Photo Books</strong>Handpicked photos turned into timeless prints or photo books. Designed with intention, crafted with care.</li>
+        <li>
+          <strong>Portrait Photography</strong>
+          Thoughtful, artistic portraits – in natural light or studio settings. Capturing who you are, not just how you look.
+        </li>
+        <li>
+          <strong>Event Photography</strong>
+          Discreet and honest documentation of real moments – from private celebrations to cultural gatherings.
+        </li>
+        <li>
+          <strong>Travel & Landscape Photography</strong>
+          Atmospheric images of places and time. Available for editorial use, personal collections, or interior decoration.
+        </li>
+        <li>
+          <strong>Product & Detail Photography</strong>
+          Minimalist aesthetics for objects with character. Perfect for creators, artists, and conscious brands.
+        </li>
+        <li>
+          <strong>Personal Branding Sessions</strong>
+          Authentic portraits that reflect your identity – ideal for portfolios, websites, and social presence.
+        </li>
+        <li>
+          <strong>Artistic Projects & Visual Storytelling</strong>
+          Collaborative work based on emotion, memory, and narrative. For those who want to say more with an image.
+        </li>
+        <li>
+          <strong>Prints & Custom Photo Books</strong>
+          Handpicked photos turned into timeless prints or photo books. Designed with intention, crafted with care.
+        </li>
       </ul>
     </section>
 
-    <section id="events" aria-label="Event photography">
-      <h2>Events</h2>
-      <p>Coming soon...</p>
-    </section>
-
-    <section id="contact" aria-label="Contact information">
-      <h2>Contact Me</h2>
-      <p>Feel free to reach out for bookings, questions, or collaborations.</p>
-      <div id="contact-info">
-        <div>Email: imago@example.com</div>
-        <div>Phone: +123 456 7890</div>
-        <div>Location: Belgrade, Serbia</div>
+    <!-- Gallery Section -->
+    <section id="gallery" aria-label="Gallery of photographs">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="IMG_39041.jpg" alt="Gallery Image 1" /></div>
+        <div class="gallery-item"><img src="IMG_3912.jpg" alt="Gallery Image 2" /></div>
+        <div class="gallery-item"><img src="IMG_4101.jpg" alt="Gallery Image 3" /></div>
+        <div class="gallery-item"><img src="000000971.jpg" alt="Gallery Image 4" /></div>
+        <div class="gallery-item"><img src="000000791.jpg" alt="Gallery Image 5" /></div>
+        <div class="gallery-item"><img src="000000801.jpg" alt="Gallery Image 6" /></div>
+        <div class="gallery-item"><img src="2221.jpg" alt="Gallery Image 7" /></div>
+        <div class="gallery-item"><img src="3331.jpg" alt="Gallery Image 8" /></div>
+        <div class="gallery-item"><img src="4441.jpg" alt="Gallery Image 9" /></div>
       </div>
     </section>
   </main>
-
-  <footer>
-    &copy; 2025 IMAGO by GORUS. All rights reserved.
-  </footer>
-
-  <script>
-    // Gallery image file names from your list
-    const galleryImages = [
-      "IMG_39041.jpg",
-      "IMG_3912.jpg",
-      "IMG_4101.jpg",
-      "000000971.jpg",
-      "000000791.jpg",
-      "000000801.jpg",
-      "2221.jpg",
-      "3331.jpg",
-      "4441.jpg"
-    ];
-
-    const galleryContainer = document.getElementById('gallery');
-
-    galleryImages.forEach(src => {
-      const div = document.createElement('div');
-      div.className = 'gallery-item';
-
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = "Photograph " + src.split('.')[0];
-
-      div.appendChild(img);
-      galleryContainer.appendChild(div);
-    });
-  </script>
 </body>
 </html>
