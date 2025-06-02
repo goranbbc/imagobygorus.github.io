@@ -161,6 +161,49 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     }
 
+    /* Services section styles */
+    #services {
+      max-width: 900px;
+      margin: 3rem auto 5rem;
+      padding: 0 4vw;
+    }
+
+    #services h2 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      letter-spacing: 0.25em;
+      text-align: center;
+    }
+
+    #services ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    #services li {
+      background: #f9f9f9;
+      border-radius: 0.4rem;
+      padding: 1.4rem 1.6rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    #services li strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+      color: #111;
+      font-size: 1.1rem;
+    }
+
     /* Contact Me section styles */
     #contact {
       padding: 4rem 4vw;
@@ -271,7 +314,7 @@
     <nav role="navigation" aria-label="Main navigation">
       <a href="#about">About Me</a>
       <a href="#gallery">Gallery</a>
-      <a href="#events">Events</a>
+      <a href="#services">Services</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -294,49 +337,40 @@
     </div>
   </section>
 
+  <section id="services">
+    <h2>Services</h2>
+    <ul>
+      <li><strong>Portrait Photography</strong> Thoughtful, artistic portraits – in natural light or studio settings. Capturing who you are, not just how you look.</li>
+      <li><strong>Event Photography</strong> Discreet and honest documentation of real moments – from private celebrations to cultural gatherings.</li>
+      <li><strong>Travel & Landscape Photography</strong> Atmospheric images of places and time. Available for editorial use, personal collections, or interior decoration.</li>
+      <li><strong>Product & Detail Photography</strong> Minimalist aesthetics for objects with character. Perfect for creators, artists, and conscious brands.</li>
+      <li><strong>Personal Branding Sessions</strong> Authentic portraits that reflect your identity – ideal for portfolios, websites, and social presence.</li>
+      <li><strong>Artistic Projects & Visual Storytelling</strong> Collaborative work based on emotion, memory, and narrative. For those who want to say more with an image.</li>
+      <li><strong>Prints & Custom Photo Books</strong> Handpicked photos turned into timeless prints or photo books. Designed with intention, crafted with care.</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <div class="gallery-item"><img src="0001.jpg" alt="Photo 0001" /></div>
+    <div class="gallery-item"><img src="0002.jpg" alt="Photo 0002" /></div>
+    <div class="gallery-item"><img src="0003.jpg" alt="Photo 0003" /></div>
+    <div class="gallery-item"><img src="0004.jpg" alt="Photo 0004" /></div>
+    <div class="gallery-item"><img src="0005.jpg" alt="Photo 0005" /></div>
+    <div class="gallery-item"><img src="0006.jpg" alt="Photo 0006" /></div>
+  </section>
+
   <section id="contact">
     <h2>Contact Me</h2>
-    <p>If you truly wish to immortalize your moment and transform it into timeless art, you've reached the right artist.<br/>
-      Don’t hesitate — reach out and let’s create something extraordinary together.<br/>
-      Contact me freely via phone, email, or Instagram.</p>
+    <p>Interested in working together or booking a session? Reach out!</p>
     <div id="contact-info">
-      <div>Phone: xxx</div>
-      <div>Email: xxx</div>
-      <div>Instagram: <a href="https://instagram.com/imago.gorus" target="_blank" rel="noopener noreferrer">@imago.gorus</a></div>
+      <div>Email: <a href="mailto:imago@gorus.com">imago@gorus.com</a></div>
+      <div>Phone: +123 456 7890</div>
+      <div>Location: Banja Luka, Bosnia and Herzegovina</div>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 IMAGO by GORUS
+    &copy; 2025 IMAGO by GORUS. All rights reserved.
   </footer>
-
-  <script>
-    const images = [
-      "IMG_39041.jpg",
-      "IMG_3912.jpg",
-      "IMG_4101.jpg",
-      "000000971.jpg",
-      "000000791.jpg",
-      "000000801.jpg",
-      "2221.jpg",
-      "3331.jpg",
-      "4441.jpg"
-    ];
-
-    function renderGallery() {
-      const gallery = document.getElementById("gallery");
-      gallery.innerHTML = "";
-      images.forEach(src => {
-        const div = document.createElement("div");
-        div.className = "gallery-item";
-        const filename = src.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ');
-        const altText = filename.replace(/\b\w/g, l => l.toUpperCase());
-        div.innerHTML = `<img src="${src}" alt="${altText}" />`;
-        gallery.appendChild(div);
-      });
-    }
-
-    renderGallery();
-  </script>
 </body>
 </html>
