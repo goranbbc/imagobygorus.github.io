@@ -84,12 +84,27 @@
 
     main {
       flex-grow: 1;
-      padding: 4rem 4vw;
+    }
+
+    #gallery-section {
+      max-width: 1200px;
+      margin: 0 auto 4rem auto;
+      padding: 0 4vw;
+    }
+
+    #gallery-section h2 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      letter-spacing: 0.25em;
+      color: #111;
+    }
+
+    #gallery {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
     }
 
     .gallery-item {
@@ -210,7 +225,7 @@
     }
 
     @media (max-width: 900px) {
-      main {
+      #gallery {
         grid-template-columns: repeat(2, 1fr);
       }
       .gallery-item {
@@ -240,10 +255,12 @@
         flex-direction: column;
         align-items: flex-start;
       }
+      #gallery {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
       main {
         padding: 2rem 3vw;
-        gap: 2rem;
-        grid-template-columns: 1fr;
       }
       nav {
         gap: 1.5rem;
@@ -270,13 +287,18 @@
     </div>
     <nav role="navigation" aria-label="Main navigation">
       <a href="#about">About Me</a>
-      <a href="#gallery">Gallery</a>
+      <a href="#gallery-section">Gallery</a>
       <a href="#events">Events</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <main id="gallery"></main>
+  <main>
+    <section id="gallery-section">
+      <h2>Gallery</h2>
+      <div id="gallery"></div>
+    </section>
+  </main>
 
   <section id="about">
     <div id="about-text">
@@ -307,31 +329,33 @@
   </section>
 
   <footer>
-    &copy; 2025 IMAGO by GORUS
+    &copy; 2025 IMAGO by GORUS. All rights reserved.
   </footer>
 
   <script>
-    const images = [
-      "IMG_39041.jpg",
-      "IMG_3912.jpg",
-      "IMG_4101.jpg",
-      "000000971.jpg",
-      "000000791.jpg",
-      "000000801.jpg",
-      "2221.jpg",
-      "3331.jpg",
-      "4441.jpg"
+    // Galerija - slike
+    const galleryData = [
+     { id: 1, src: "IMG_39041.jpg", alt: "IMG_39041" },
+  { id: 2, src: "IMG_3912.jpg", alt: "IMG_3912" },
+  { id: 3, src: "IMG_4101.jpg", alt: "IMG_4101" },
+  { id: 4, src: "000000971.jpg", alt: "000000971" },
+  { id: 5, src: "000000791.jpg", alt: "000000791" },
+  { id: 6, src: "000000801.jpg", alt: "000000801" },
+  { id: 7, src: "2221.jpg", alt: "2221" },
+  { id: 8, src: "3331.jpg", alt: "3331" },
+  { id: 9, src: "4441.jpg", alt: "4441" }
     ];
 
     function renderGallery() {
       const gallery = document.getElementById("gallery");
       gallery.innerHTML = "";
-      images.forEach(src => {
+      galleryData.forEach(item => {
         const div = document.createElement("div");
-        div.className = "gallery-item";
-        const filename = src.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ');
-        const altText = filename.replace(/\b\w/g, l => l.toUpperCase());
-        div.innerHTML = `<img src="${src}" alt="${altText}" />`;
+        div.classList.add("gallery-item");
+        const img = document.createElement("img");
+        img.src = item.src;
+        img.alt = item.alt;
+        div.appendChild(img);
         gallery.appendChild(div);
       });
     }
