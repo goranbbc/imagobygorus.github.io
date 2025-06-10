@@ -20,8 +20,8 @@
       color: #111;
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
-      letter-spacing: 0.08em;
-      line-height: 1.6;
+      letter-spacing: 0.15em;
+      line-height: 1.4;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -42,29 +42,28 @@
     .logo {
       display: flex;
       align-items: center;
+      user-select: none;
     }
 
     .logo img {
-      height: 180px;
+      height: 250px; /* visina logotipa */
       width: auto;
       display: block;
     }
 
     nav {
       display: flex;
-      gap: 2.5rem;
-      flex-wrap: wrap;
+      gap: 3rem;
     }
 
     nav a {
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       position: relative;
-      padding-bottom: 0.2rem;
+      padding-bottom: 0.15rem;
       color: #111;
-      text-decoration: none;
       transition: color 0.3s ease;
     }
 
@@ -95,49 +94,52 @@
 
     #gallery-section h2 {
       font-weight: 700;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       text-transform: uppercase;
       margin-bottom: 2rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
       color: #111;
-      text-align: center;
     }
 
     #gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 2rem;
     }
 
     .gallery-item {
       position: relative;
-      overflow: hidden;
-      border-radius: 0.5rem;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: visible;
+      cursor: pointer;
+      border-radius: 0.3rem;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease;
+      max-height: 270px;
     }
 
     .gallery-item:hover {
-      transform: scale(1.015);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.1);
+      z-index: 10;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.12);
     }
 
     .gallery-item img {
       width: 100%;
-      height: 280px;
+      height: 270px;
       object-fit: cover;
       display: block;
+      border-radius: 0.3rem;
       transition: transform 0.4s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.08);
+      transform: scale(1.2);
     }
 
+    /* About Me section styles */
     #about {
       padding: 4rem 4vw;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 3rem auto;
       display: flex;
       flex-wrap: wrap;
       gap: 3rem;
@@ -150,15 +152,16 @@
 
     #about h2 {
       font-weight: 700;
-      font-size: 2.4rem;
+      font-size: 2.8rem;
       text-transform: uppercase;
       margin-bottom: 1rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
     }
 
     #about p {
       font-weight: 300;
       font-size: 1.1rem;
+      line-height: 1.6;
     }
 
     #about-img {
@@ -168,35 +171,41 @@
 
     #about-img img {
       width: 100%;
-      border-radius: 0.6rem;
+      height: auto;
+      border-radius: 0.5rem;
       box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     }
 
+    /* Contact Me section styles */
     #contact {
       padding: 4rem 4vw;
       max-width: 700px;
-      margin: 4rem auto 5rem;
+      margin: 3rem auto 5rem;
       text-align: center;
       border-top: 1px solid #eee;
     }
 
     #contact h2 {
       font-weight: 700;
-      font-size: 2.4rem;
+      font-size: 2.8rem;
       text-transform: uppercase;
       margin-bottom: 1rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
+      color: #111;
     }
 
     #contact p {
       font-weight: 300;
       font-size: 1.15rem;
+      line-height: 1.6;
       margin-bottom: 2rem;
       color: #333;
     }
 
     #contact-info {
+      font-weight: 300;
       font-size: 1rem;
+      line-height: 1.5;
       color: #111;
       letter-spacing: 0.1em;
     }
@@ -205,48 +214,68 @@
       margin-bottom: 0.5rem;
     }
 
-    #contact-info a {
-      color: #111;
-      text-decoration: underline;
-    }
-
     footer {
       padding: 2rem 4vw;
       font-size: 0.85rem;
+      font-weight: 300;
       text-align: center;
       color: #999;
       border-top: 1px solid #eee;
+      user-select: none;
+    }
+
+    @media (max-width: 900px) {
+      #gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery-item {
+        max-height: 220px;
+      }
+      .gallery-item img {
+        height: 220px;
+      }
     }
 
     @media (max-width: 700px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1.5rem 4vw;
-      }
-
-      .logo img {
-        height: 140px;
-      }
-
-      nav {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-
       #about {
         flex-direction: column;
         text-align: center;
       }
+      #about h2 {
+        font-size: 2.2rem;
+      }
+      #about p {
+        font-size: 1rem;
+      }
+    }
 
+    @media (max-width: 600px) {
+      header {
+        padding: 1.5rem 3vw;
+        flex-direction: column;
+        align-items: flex-start;
+      }
       #gallery {
         grid-template-columns: 1fr;
+        gap: 2rem;
       }
-
+      main {
+        padding: 2rem 3vw;
+      }
+      nav {
+        gap: 1.5rem;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      nav a {
+        font-size: 0.8rem;
+      }
+      .gallery-item {
+        max-height: 180px;
+      }
       .gallery-item img {
-        height: 220px;
+        height: 180px;
       }
     }
   </style>
@@ -257,7 +286,7 @@
       <img src="imggpos.jpg" alt="IMAGO logo" />
     </div>
     <nav role="navigation" aria-label="Main navigation">
-      <a href="#about">About</a>
+      <a href="#about">About Me</a>
       <a href="#gallery-section">Gallery</a>
       <a href="#events">Events</a>
       <a href="#contact">Contact</a>
@@ -283,7 +312,7 @@
       </p>
     </div>
     <div id="about-img">
-      <img src="0000.jpg" alt="Portrait" />
+      <img src="0000.jpg" alt="0000.jpg" />
     </div>
   </section>
 
@@ -291,7 +320,7 @@
     <h2>Contact Me</h2>
     <p>If you truly wish to immortalize your moment and transform it into timeless art, you've reached the right artist.<br/>
       Don’t hesitate — reach out and let’s create something extraordinary together.<br/>
-      Contact me via phone, email, or Instagram.</p>
+      Contact me freely via phone, email, or Instagram.</p>
     <div id="contact-info">
       <div>Phone: xxx</div>
       <div>Email: xxx</div>
@@ -304,24 +333,34 @@
   </footer>
 
   <script>
+    // Galerija - slike
     const galleryData = [
-      { id: 1, src: "IMG_39041.jpg", alt: "IMG_39041" },
-      { id: 2, src: "IMG_3912.jpg", alt: "IMG_3912" },
-      { id: 3, src: "IMG_4101.jpg", alt: "IMG_4101" },
-      { id: 4, src: "000000971.jpg", alt: "000000971" },
-      { id: 5, src: "000000791.jpg", alt: "000000791" },
-      { id: 6, src: "000000801.jpg", alt: "000000801" },
-      { id: 7, src: "2221.jpg", alt: "2221" },
-      { id: 8, src: "0000.jpg", alt: "0000" }
+     { id: 1, src: "IMG_39041.jpg", alt: "IMG_39041" },
+  { id: 2, src: "IMG_3912.jpg", alt: "IMG_3912" },
+  { id: 3, src: "IMG_4101.jpg", alt: "IMG_4101" },
+  { id: 4, src: "000000971.jpg", alt: "000000971" },
+  { id: 5, src: "000000791.jpg", alt: "000000791" },
+  { id: 6, src: "000000801.jpg", alt: "000000801" },
+  { id: 7, src: "2221.jpg", alt: "2221" },
+  { id: 8, src: "3331.jpg", alt: "3331" },
+  { id: 9, src: "4441.jpg", alt: "4441" }
     ];
 
-    const galleryContainer = document.getElementById("gallery");
-    galleryData.forEach(({ src, alt }) => {
-      const item = document.createElement("div");
-      item.className = "gallery-item";
-      item.innerHTML = `<img src="${src}" alt="${alt}" />`;
-      galleryContainer.appendChild(item);
-    });
+    function renderGallery() {
+      const gallery = document.getElementById("gallery");
+      gallery.innerHTML = "";
+      galleryData.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("gallery-item");
+        const img = document.createElement("img");
+        img.src = item.src;
+        img.alt = item.alt;
+        div.appendChild(img);
+        gallery.appendChild(div);
+      });
+    }
+
+    renderGallery();
   </script>
 </body>
 </html>
