@@ -46,7 +46,7 @@
     }
 
     .logo img {
-      height: 250px;
+      height: 250px; /* visina logotipa */
       width: auto;
       display: block;
     }
@@ -333,27 +333,36 @@
   </footer>
 
   <script>
+    // Galerija - slike
     const galleryData = [
-      { id: 1, src: "IMG_39041.jpg", alt: "IMG_39041" },
-      { id: 2, src: "IMG_3912.jpg", alt: "IMG_3912" },
-      { id: 3, src: "IMG_4101.jpg", alt: "IMG_4101" },
-      { id: 4, src: "000000971.jpg", alt: "000000971" },
-      { id: 5, src: "000000791.jpg", alt: "000000791" },
-      { id: 6, src: "000000801.jpg", alt: "000000801" },
+     { id: 1, src: "IMG_39041.jpg", alt: "IMG_39041" },
+  { id: 2, src: "IMG_3912.jpg", alt: "IMG_3912" },
+  { id: 3, src: "IMG_4101.jpg", alt: "IMG_4101" },
+  { id: 4, src: "000000971.jpg", alt: "000000971" },
+  { id: 5, src: "000000791.jpg", alt: "000000791" },
+  { id: 6, src: "000000801.jpg", alt: "000000801" },
+  { id: 7, src: "2221.jpg", alt: "2221" },
+  { id: 8, src: "3331.jpg", alt: "3331" },
+  { id: 9, src: "4441.jpg", alt: "4441" }
     ];
 
-    const galleryElement = document.getElementById("gallery");
+    function renderGallery() {
+      const gallery = document.getElementById("gallery");
+      gallery.innerHTML = "";
+      galleryData.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("gallery-item");
+        const img = document.createElement("img");
+        img.src = item.src;
+        img.alt = item.alt;
+        div.appendChild(img);
+        gallery.appendChild(div);
+      });
+    }
 
-    galleryData.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "gallery-item";
-      const img = document.createElement("img");
-      img.src = item.src;
-      img.alt = item.alt;
-      div.appendChild(img);
-      galleryElement.appendChild(div);
-    });
+    renderGallery();
   </script>
 </body>
 </html>
+
 
