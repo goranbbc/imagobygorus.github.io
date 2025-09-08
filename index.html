@@ -90,6 +90,7 @@
       max-width: 1200px;
       margin: 0 auto 4rem auto;
       padding: 0 4vw;
+      text-align: center;
     }
 
     #gallery-section h2 {
@@ -101,6 +102,29 @@
       color: #111;
     }
 
+    /* Filter buttons */
+    #gallery-filters {
+      margin-bottom: 2rem;
+    }
+
+    #gallery-filters button {
+      margin: 0 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background: #111;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      border-radius: 0.3rem;
+      transition: background 0.3s ease;
+    }
+
+    #gallery-filters button:hover {
+      background: #444;
+    }
+
     #gallery {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -109,7 +133,7 @@
 
     .gallery-item {
       position: relative;
-      overflow: visible;
+      overflow: hidden;
       cursor: pointer;
       border-radius: 0.3rem;
       box-shadow: 0 6px 15px rgba(0,0,0,0.05);
@@ -129,10 +153,36 @@
       display: block;
       border-radius: 0.3rem;
       transition: transform 0.4s ease;
+      cursor: zoom-in;
     }
 
     .gallery-item:hover img {
       transform: scale(1.2);
+    }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    }
+
+    #lightbox:target {
+      display: flex;
     }
 
     /* About Me section styles */
@@ -296,6 +346,15 @@
   <main>
     <section id="gallery-section">
       <h2>Gallery</h2>
+
+      <!-- Filter dugmići -->
+      <div id="gallery-filters">
+        <button onclick="filterGallery('all')">All</button>
+        <button onclick="filterGallery('Events')">Events</button>
+        <button onclick="filterGallery('Portraits')">Portraits</button>
+        <button onclick="filterGallery('Landscapes')">Landscapes</button>
+      </div>
+
       <div id="gallery"></div>
     </section>
   </main>
@@ -332,37 +391,66 @@
     &copy; 2025 IMAGO by GORUS. All rights reserved.
   </footer>
 
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <img id="lightbox-img" src="" alt="Expanded view">
+  </div>
+
   <script>
-    // Galerija - slike
+    // Galerija sa kategorijama
     const galleryData = [
-     { id: 1, src: "IMG_39041.jpg", alt: "IMG_39041" },
-  { id: 2, src: "IMG_3912.jpg", alt: "IMG_3912" },
-  { id: 3, src: "IMG_4101.jpg", alt: "IMG_4101" },
-  { id: 4, src: "000000971.jpg", alt: "000000971" },
-  { id: 5, src: "000000791.jpg", alt: "000000791" },
-  { id: 6, src: "000000801.jpg", alt: "000000801" },
-  { id: 7, src: "2221.jpg", alt: "2221" },
-  { id: 8, src: "3331.jpg", alt: "3331" },
-  { id: 9, src: "4441.jpg", alt: "4441" }
+      { id: 1, src: "IMG_39041.jpg", alt: "IMG_39041", category: "Events" },
+      { id: 2, src: "IMG_3912.jpg", alt: "IMG_3912", category: "Events" },
+      { id: 3, src: "IMG_4101.jpg", alt: "IMG_4101", category: "Portraits" },
+      { id: 4, src: "000000971.jpg", alt: "000000971", category: "Portraits" },
+      { id: 5, src: "000000791.jpg", alt: "000000791", category: "Landscapes" },
+      { id: 6, src: "000000801.jpg", alt: "000000801", category: "Landscapes" },
+      { id: 7, src: "2221.jpg", alt: "2221", category: "Events" },
+      { id: 8, src: "3331.jpg", alt: "3331", category: "Portraits" },
+      { id: 9, src: "4441.jpg", alt: "4441", category: "Landscapes" }
     ];
 
-    function renderGallery() {
+    function renderGallery(category = "all") {
       const gallery = document.getElementById("gallery");
       gallery.innerHTML = "";
-      galleryData.forEach(item => {
-        const div = document.createElement("div");
-        div.classList.add("gallery-item");
-        const img = document.createElement("img");
-        img.src = item.src;
-        img.alt = item.alt;
-        div.appendChild(img);
-        gallery.appendChild(div);
-      });
+
+      galleryData
+        .filter(item => category === "all" || item.category === category)
+        .forEach(item => {
+          const div = document.createElement("div");
+          div.classList.add("gallery-item");
+          const img = document.createElement("img");
+          img.src = item.src;
+          img.alt = item.alt;
+          img.loading = "lazy";
+
+          img.addEventListener("click", () => openLightbox(item.src));
+
+          div.appendChild(img);
+          gallery.appendChild(div);
+        });
     }
 
+    function filterGallery(category) {
+      renderGallery(category);
+    }
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    function openLightbox(src) {
+      lightbox.style.display = "flex";
+      lightboxImg.src = src;
+    }
+
+    lightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+      lightboxImg.src = "";
+    });
+
+    // inicijalno
     renderGallery();
   </script>
 </body>
 </html>
-
-
