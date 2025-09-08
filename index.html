@@ -46,7 +46,7 @@
     }
 
     .logo img {
-      height: 250px; /* visina logotipa */
+      height: 250px;
       width: auto;
       display: block;
     }
@@ -104,11 +104,14 @@
 
     /* Filter buttons */
     #gallery-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
       margin-bottom: 2rem;
     }
 
     #gallery-filters button {
-      margin: 0 0.5rem;
       padding: 0.6rem 1.2rem;
       border: none;
       background: #111;
@@ -119,6 +122,8 @@
       cursor: pointer;
       border-radius: 0.3rem;
       transition: background 0.3s ease;
+      flex: 1 1 auto;
+      max-width: 150px;
     }
 
     #gallery-filters button:hover {
@@ -274,6 +279,7 @@
       user-select: none;
     }
 
+    /* Responsivnost */
     @media (max-width: 900px) {
       #gallery {
         grid-template-columns: repeat(2, 1fr);
@@ -307,7 +313,7 @@
       }
       #gallery {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 2.5rem;
       }
       main {
         padding: 2rem 3vw;
@@ -326,6 +332,17 @@
       }
       .gallery-item img {
         height: 180px;
+      }
+
+      /* Dugmad filtera vertikalno */
+      #gallery-filters {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      #gallery-filters button {
+        flex: 1 1 100%;
+        max-width: 300px;
       }
     }
   </style>
@@ -454,3 +471,4 @@
   </script>
 </body>
 </html>
+
