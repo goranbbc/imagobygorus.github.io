@@ -3,39 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Imago by Gorus</title>
+<title>Whispers of the Mara - Imago by Gorus</title>
 <style>
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fafafa;
+    margin: 0; padding: 0;
+    background: #fafafa;
     color: #111;
     line-height: 1.7;
     overflow-x: hidden;
   }
 
   header {
-    text-align: center;
-    padding: 60px 20px 40px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 20px 30px;
     border-bottom: 1px solid #e5e5e5;
+    z-index: 100;
   }
 
-  header h1 {
-    font-weight: 300;
+  .logo {
+    font-weight: 700;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    font-size: 1.6rem;
-    margin: 0;
+    font-size: 1.2rem;
+    cursor: default;
+  }
+
+  .about-btn {
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border: 1px solid #111;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: transparent;
+    transition: 0.3s;
+  }
+  .about-btn:hover {
+    background: #111;
+    color: #fff;
+  }
+
+  .gallery-title {
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    margin-top: 60px;
+    font-size: 1.5rem;
+    color: #555;
   }
 
   .gallery {
     max-width: 1000px;
-    margin: 60px auto;
+    margin: 40px auto;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    gap: 6rem;
+    gap: 5rem;
   }
 
   .gallery-item {
@@ -49,10 +78,7 @@
     cursor: pointer;
   }
 
-  .gallery-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .gallery-item.visible { opacity: 1; transform: translateY(0); }
 
   .gallery-item img {
     width: 100%;
@@ -61,159 +87,60 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: transform 0.6s ease, opacity 0.6s ease;
   }
+  .gallery-item img:hover { transform: scale(1.02); opacity: 0.95; }
 
-  .gallery-item img:hover {
-    transform: scale(1.02);
-    opacity: 0.95;
-  }
-
-  .caption {
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    color: #222;
-    margin-top: 1.5rem;
-    font-weight: 500;
-    opacity: 0.9;
-  }
-
-  .description {
-    font-size: 0.95rem;
-    color: #555;
-    max-width: 700px;
-    margin-top: 1rem;
-    line-height: 1.8;
-    text-align: justify;
-    opacity: 0.85;
-  }
-
-  #about {
-    padding: 6rem 10vw;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-    border-top: 1px solid #e5e5e5;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-  }
-
-  #about.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  #about h2 {
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-
-  #about p {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #444;
-  }
+  .caption { font-size: 1rem; color: #222; margin-top: 1rem; font-weight: 500; opacity: 0.9; }
+  .description { font-size: 0.95rem; color: #555; max-width: 700px; margin-top: 0.5rem; line-height: 1.8; text-align: justify; opacity: 0.85; }
 
   footer {
     text-align: center;
-    padding: 3rem 0;
+    padding: 2rem 0;
     font-size: 0.85rem;
     color: #888;
     border-top: 1px solid #e5e5e5;
   }
 
-  footer a {
-    color: #555;
-    text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s;
-  }
-
-  footer a:hover {
-    color: #000;
-  }
+  footer a { color: #555; text-decoration: none; margin: 0 10px; }
+  footer a:hover { color: #000; }
 
   /* Lightbox overlay */
   .lightbox {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    position: fixed; top:0; left:0; width:100%; height:100%;
     background: rgba(0,0,0,0.95);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 1000;
-    padding: 10px;
-    overflow-y: auto;
+    display: none; justify-content: center; align-items: center;
+    flex-direction: column; z-index: 1000; padding: 10px; overflow-y: auto;
   }
-
-  .lightbox img {
-    width: 100%;
-    max-width: 1000px;
-    height: auto;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-  }
-
-  .lightbox .text {
-    color: #fff;
-    text-align: center;
-    max-width: 800px;
-    font-size: 1rem;
-    line-height: 1.6;
-    padding: 0 10px;
-  }
-
-  .lightbox .close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 2rem;
-    color: #fff;
-    cursor: pointer;
-    z-index: 1010;
-  }
-
-  .lightbox .prev, .lightbox .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 3rem;
-    color: #fff;
-    cursor: pointer;
-    user-select: none;
-    z-index: 1010;
-    padding: 0 15px;
-  }
-
-  .lightbox .prev { left: 10px; }
-  .lightbox .next { right: 10px; }
+  .lightbox img { width:100%; max-width:1000px; height:auto; border-radius:6px; margin-bottom:1rem; }
+  .lightbox .text { color: #fff; text-align:center; max-width:800px; font-size:1rem; line-height:1.6; padding: 0 10px; }
+  .lightbox .close { position:absolute; top:20px; right:30px; font-size:2rem; color:#fff; cursor:pointer; z-index:1010; }
+  .lightbox .prev, .lightbox .next { position:absolute; top:50%; transform:translateY(-50%); font-size:3rem; color:#fff; cursor:pointer; user-select:none; z-index:1010; padding:0 15px; }
+  .lightbox .prev { left:10px; } .lightbox .next { right:10px; }
 
   @media (max-width: 600px) {
     .description { text-align: left; }
-    .lightbox img { max-height: 70vh; }
-    .lightbox .text { font-size: 0.95rem; }
-    .lightbox .prev, .lightbox .next { font-size: 2.5rem; }
+    .lightbox img { max-height:70vh; }
+    .lightbox .text { font-size:0.95rem; }
+    .lightbox .prev, .lightbox .next { font-size:2.5rem; }
   }
+
+  /* About Me modal */
+  .about-modal {
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center;
+    padding:20px; z-index:1100; overflow-y:auto; color:#fff;
+  }
+  .about-modal .content { max-width:700px; background:#111; padding:30px; border-radius:8px; text-align:left; line-height:1.7; }
+  .about-modal .close { position:absolute; top:20px; right:30px; font-size:2rem; cursor:pointer; }
 </style>
 </head>
 <body>
 <header>
-  <h1>IMAGO BY GORUS</h1>
+  <div class="logo">IMAGO by GORUS</div>
+  <div class="about-btn" id="about-btn">About Me</div>
 </header>
 
+<div class="gallery-title">Exhibition: Whispers of the Mara</div>
 <section class="gallery" id="gallery"></section>
-
-<section id="about">
-  <h2>About Me</h2>
-  <p>
-    I’m Goran, a photographer fascinated by stillness, emotion, and light.<br><br>
-    My work is an ongoing exploration of quiet spaces — from ancient streets and forgotten corners to vast landscapes where time seems to stop.<br><br>
-    “Imago by Gorus” is my visual journal — a gallery of journeys, emotions, and the beauty hidden between moments.
-  </p>
-</section>
 
 <footer>
   <p>
@@ -222,13 +149,26 @@
   </p>
 </footer>
 
-<!-- Lightbox element -->
+<!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <span class="close" id="lightbox-close">&times;</span>
   <span class="prev" id="lightbox-prev">&#10094;</span>
   <span class="next" id="lightbox-next">&#10095;</span>
   <img id="lightbox-img" src="" alt="">
   <div class="text" id="lightbox-text"></div>
+</div>
+
+<!-- About modal -->
+<div class="about-modal" id="about-modal">
+  <span class="close" id="about-close">&times;</span>
+  <div class="content">
+    <h2>About Me</h2>
+    <p>
+      I’m Goran, a photographer fascinated by the wild beauty of Africa, especially the Masai Mara.  
+      “Whispers of the Mara” is my visual diary capturing the elegance of wildlife, the silence of vast landscapes, and fleeting moments of life in the savannah.<br><br>
+      My work transforms safari experiences into timeless images, telling stories of nature, emotion, and the poetry hidden in every frame.
+    </p>
+  </div>
 </div>
 
 <script>
@@ -248,28 +188,12 @@ function renderGallery() {
   galleryData.forEach((item, index) => {
     const div = document.createElement("div");
     div.classList.add("gallery-item");
-
     const img = document.createElement("img");
-    img.src = item.src;
-    img.alt = item.caption;
-
-    const caption = document.createElement("p");
-    caption.classList.add("caption");
-    caption.textContent = item.caption;
-
-    const desc = document.createElement("p");
-    desc.classList.add("description");
-    desc.textContent = item.description;
-
-    div.appendChild(img);
-    div.appendChild(caption);
-    div.appendChild(desc);
-
-    div.addEventListener('click', () => {
-      currentIndex = index;
-      openLightbox();
-    });
-
+    img.src = item.src; img.alt = item.caption;
+    const caption = document.createElement("p"); caption.className = "caption"; caption.textContent = item.caption;
+    const desc = document.createElement("p"); desc.className = "description"; desc.textContent = item.description;
+    div.appendChild(img); div.appendChild(caption); div.appendChild(desc);
+    div.addEventListener('click', () => { currentIndex = index; openLightbox(); });
     gallery.appendChild(div);
   });
 }
@@ -281,22 +205,16 @@ function openLightbox() {
   document.getElementById('lightbox').style.display = 'flex';
 }
 
-function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+function closeLightbox(){ document.getElementById('lightbox').style.display = 'none'; }
+function prevImage(){ currentIndex = (currentIndex-1+galleryData.length)%galleryData.length; openLightbox(); }
+function nextImage(){ currentIndex = (currentIndex+1)%galleryData.length; openLightbox(); }
 
-function prevImage() { currentIndex = (currentIndex-1 + galleryData.length) % galleryData.length; openLightbox(); }
-function nextImage() { currentIndex = (currentIndex+1) % galleryData.length; openLightbox(); }
-
-// Fade-in on scroll
-function revealOnScroll() {
-  const elements = document.querySelectorAll('.gallery-item, #about');
+function revealOnScroll(){
+  const elements = document.querySelectorAll('.gallery-item');
   const triggerBottom = window.innerHeight * 0.9;
-  elements.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if(top < triggerBottom) el.classList.add('visible');
-  });
+  elements.forEach(el => { if(el.getBoundingClientRect().top<triggerBottom) el.classList.add('visible'); });
 }
 
-// Event listeners
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', () => { renderGallery(); revealOnScroll(); });
 
@@ -305,16 +223,17 @@ document.getElementById('lightbox-prev').addEventListener('click', prevImage);
 document.getElementById('lightbox-next').addEventListener('click', nextImage);
 document.getElementById('lightbox').addEventListener('click', e => { if(e.target===e.currentTarget) closeLightbox(); });
 
-// Swipe support for mobile
-let touchStartX = 0;
-let touchEndX = 0;
-const lightbox = document.getElementById('lightbox');
-lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
-lightbox.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  if(touchEndX < touchStartX - 40) nextImage();
-  if(touchEndX > touchStartX + 40) prevImage();
-});
+// Swipe support
+let touchStartX=0,touchEndX=0;
+const lightbox=document.getElementById('lightbox');
+lightbox.addEventListener('touchstart', e=>{ touchStartX=e.changedTouches[0].screenX; });
+lightbox.addEventListener('touchend', e=>{ touchEndX=e.changedTouches[0].screenX; if(touchEndX<touchStartX-40) nextImage(); if(touchEndX>touchStartX+40) prevImage(); });
+
+// About modal
+const aboutModal = document.getElementById('about-modal');
+document.getElementById('about-btn').addEventListener('click', ()=>aboutModal.style.display='flex');
+document.getElementById('about-close').addEventListener('click', ()=>aboutModal.style.display='none');
+aboutModal.addEventListener('click', e=>{ if(e.target===aboutModal) aboutModal.style.display='none'; });
 </script>
 </body>
 </html>
