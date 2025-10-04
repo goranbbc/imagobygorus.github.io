@@ -28,12 +28,30 @@
   }
 
   .logo img {
-    height: 80px;
+    height: 120px; /* povećan logo */
     width:auto;
     display:block;
   }
 
-  .about-btn {
+  .center-title {
+    text-align:center;
+    flex:1;
+  }
+  .center-title h1 {
+    margin:0;
+    font-size:1.8rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+  }
+  .center-title p {
+    margin:0;
+    font-size:1rem;
+    opacity:0.8;
+    font-style:italic;
+    text-transform:lowercase;
+  }
+
+  .about-btn, .contact-btn {
     font-weight:700;
     cursor:pointer;
     border:1px solid #111;
@@ -42,8 +60,11 @@
     background:transparent;
     transition:0.3s;
     letter-spacing:0.1em;
+    margin-left:10px;
+    text-decoration:none;
+    color:#111;
   }
-  .about-btn:hover { background:#111; color:#fff; }
+  .about-btn:hover, .contact-btn:hover { background:#111; color:#fff; }
 
   .gallery-title {
     text-align:center;
@@ -110,6 +131,9 @@
     .lightbox img { max-height:70vh; }
     .lightbox .text { font-size:0.95rem; }
     .lightbox .prev, .lightbox .next { font-size:2.5rem; }
+    .center-title h1 { font-size:1.3rem; }
+    .center-title p { font-size:0.85rem; }
+    header { flex-direction:column; gap:10px; }
   }
 
   /* About Me modal */
@@ -125,7 +149,14 @@
 <body>
 <header>
   <div class="logo"><img src="imggpos.jpg" alt="IMAGO logo" /></div>
-  <div class="about-btn" id="about-btn">About Me</div>
+  <div class="center-title">
+    <h1>IMAGO BY GORUS</h1>
+    <p>imago artis aeterna</p>
+  </div>
+  <div>
+    <a href="https://wa.me/381616651755" target="_blank" class="contact-btn">Contact Me</a>
+    <div class="about-btn" id="about-btn">About Me</div>
+  </div>
 </header>
 
 <div class="gallery-title">Exhibition: Whispers of the Mara</div>
@@ -134,7 +165,7 @@
 <footer>
   <p>
     <a href="https://instagram.com/imagobygorus" target="_blank">Instagram</a> |
-    <a href="mailto:imagobygorus@gmail.com">Contact</a>
+    <a href="mailto:imagobygorus@gmail.com">Email</a>
   </p>
 </footer>
 
