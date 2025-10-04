@@ -28,12 +28,14 @@ header {
   z-index:100;
 }
 
+/* Logo */
 .logo img {
   height: 100px;
   width:auto;
   display:block;
 }
 
+/* Navigation buttons */
 .nav-buttons {
   display:flex;
   gap:15px;
@@ -57,7 +59,7 @@ header {
 /* Centered title & slogan */
 .title-section {
   text-align:center;
-  margin-top:40px;
+  margin:20px 0;
 }
 .title-section h1 {
   font-size:2rem;
@@ -139,6 +141,7 @@ footer a:hover { color:#000; }
   .lightbox .text { font-size:0.95rem; }
   .lightbox .prev, .lightbox .next { font-size:2.5rem; }
   .nav-buttons { flex-direction:column; align-items:flex-end; gap:10px; }
+  header { flex-direction:column; align-items:center; gap:10px; }
 }
 
 /* About Me modal */
@@ -179,22 +182,22 @@ footer a:hover { color:#000; }
 }
 
 .about-modal .close { position:absolute; top:20px; right:30px; font-size:2rem; cursor:pointer; }
+
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo"><img src="imggpos.jpg" alt="IMAGO logo" /></div>
+  <div class="title-section" style="flex:1;">
+    <h1>IMAGO BY GORUS</h1>
+    <p>imago artis aeterna</p>
+  </div>
   <div class="nav-buttons">
     <div class="about-btn" id="about-btn">About Me</div>
     <a class="contact-btn" href="https://wa.me/3816651755" target="_blank">Contact Me</a>
   </div>
 </header>
-
-<div class="title-section">
-  <h1>IMAGO BY GORUS</h1>
-  <p>imago artis aeterna</p>
-</div>
 
 <div class="gallery-title">Exhibition: Whispers of the Mara</div>
 <section class="gallery" id="gallery"></section>
@@ -247,4 +250,59 @@ function renderGallery(){
   const gallery=document.getElementById("gallery");
   gallery.innerHTML="";
   galleryData.forEach((item,index)=>{
-    const div=document.createElement("div"); div.classList.add("gallery-item
+    const div=document.createElement("div"); div.classList.add("gallery-item");
+    const img=document.createElement("img"); img.src=item.src; img.alt=item.caption;
+    const caption=document.createElement("p"); caption.className="caption"; caption.textContent=item.caption;
+    const desc=document.createElement("p"); desc.className="description"; desc.textContent=item.description;
+    div.appendChild(img); div.appendChild(caption); div.appendChild(desc);
+    div.addEventListener('click',()=>{ currentIndex=index; openLightbox(); });
+    gallery.appendChild(div);
+  });
+}
+
+function openLightbox(){
+  const item=galleryData[currentIndex];
+  document.getElementById('lightbox-img').src=item.src;
+  document.getElementById('lightbox-text').textContent=item.caption+" — "+item.description;
+  document.getElementById('lightbox').style.display='flex';
+}
+function closeLightbox(){ document.getElementById('lightbox').style.display='none'; }
+function prevImage(){ currentIndex=(currentIndex-1+galleryData.length)%galleryData.length; openLightbox(); }
+function nextImage(){ currentIndex=(currentIndex+1)%galleryData.length; openLightbox(); }
+
+function revealOnScroll(){
+  document.querySelectorAll('.gallery-item').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight*0.9) el.classList.add('visible');
+  });
+}
+
+window.addEventListener('scroll',revealOnScroll);
+window.addEventListener('load',()=>{ renderGallery(); revealOnScroll(); });
+
+document.getElementById('lightbox-close').addEventListener('click',closeLightbox);
+document.getElementById('lightbox-prev').addEventListener('click',prevImage);
+document.getElementById('lightbox-next').addEventListener('click',nextImage);
+document.getElementById('lightbox').addEventListener('click', e=>{ if(e.target===e.currentTarget) closeLightbox(); });
+
+// Swipe support
+let touchStartX=0,touchEndX=0;
+const lightbox=document.getElementById('lightbox');
+lightbox.addEventListener('touchstart',e=>{ touchStartX=e.changedTouches[0].screenX; });
+lightbox.addEventListener('touchend',e=>{ touchEndX=e.changedTouches[0].screenX; if(touchEndX<touchStartX-40) nextImage(); if(touchEndX>touchStartX+40) prevImage(); });
+
+// About modal
+const aboutModal=document.getElementById('about-modal');
+const aboutContent=aboutModal.querySelector('.content');
+document.getElementById('about-btn').addEventListener('click',()=>{
+  aboutModal.style.display='flex';
+  setTimeout(()=>aboutContent.classList.add('show'),10);
+});
+document.getElementById('about-close').addEventListener('click',()=>{
+  aboutContent.classList.remove('show');
+  setTimeout(()=>aboutModal.style.display='none',500);
+});
+aboutModal.addEventListener('click',e=>{ if(e.target===aboutModal) { aboutContent.classList.remove('show'); setTimeout(()=>aboutModal.style.display='none',500); } });
+
+</script>
+</body>
+</html>
