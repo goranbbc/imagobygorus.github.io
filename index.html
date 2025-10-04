@@ -27,28 +27,31 @@
     z-index:100;
   }
 
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
   .logo img {
-    height: 120px; /* povećan logo */
+    height: 100px; /* povećan logo */
     width:auto;
     display:block;
   }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .logo-text h1 {
+    margin: 0; font-size: 1.8rem; font-weight: 700; letter-spacing:0.1em;
+  }
+  .logo-text p {
+    margin: 0; font-size: 0.9rem; font-weight: 300; letter-spacing:0.05em;
+  }
 
-  .center-title {
-    text-align:center;
-    flex:1;
-  }
-  .center-title h1 {
-    margin:0;
-    font-size:1.8rem;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-  }
-  .center-title p {
-    margin:0;
-    font-size:1rem;
-    opacity:0.8;
-    font-style:italic;
-    text-transform:lowercase;
+  .header-buttons {
+    display: flex;
+    gap: 15px;
   }
 
   .about-btn, .contact-btn {
@@ -60,7 +63,6 @@
     background:transparent;
     transition:0.3s;
     letter-spacing:0.1em;
-    margin-left:10px;
     text-decoration:none;
     color:#111;
   }
@@ -131,9 +133,6 @@
     .lightbox img { max-height:70vh; }
     .lightbox .text { font-size:0.95rem; }
     .lightbox .prev, .lightbox .next { font-size:2.5rem; }
-    .center-title h1 { font-size:1.3rem; }
-    .center-title p { font-size:0.85rem; }
-    header { flex-direction:column; gap:10px; }
   }
 
   /* About Me modal */
@@ -142,20 +141,46 @@
     background: rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center;
     padding:20px; z-index:1100; overflow-y:auto; color:#fff;
   }
-  .about-modal .content { max-width:700px; background:#111; padding:30px; border-radius:8px; text-align:left; line-height:1.7; }
+  .about-modal .content { max-width:800px; background:#111; padding:30px; border-radius:8px; line-height:1.7; }
   .about-modal .close { position:absolute; top:20px; right:30px; font-size:2rem; cursor:pointer; }
+
+  .about-flex {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .about-text {
+    flex: 1 1 300px;
+  }
+  .about-image {
+    flex: 1 1 200px;
+  }
+  .about-image img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  @media (max-width:600px) {
+    .about-flex { flex-direction: column; align-items: center; }
+    .about-image img { max-width: 80%; margin-top: 20px; }
+  }
+
 </style>
 </head>
 <body>
+
 <header>
-  <div class="logo"><img src="imggpos.jpg" alt="IMAGO logo" /></div>
-  <div class="center-title">
-    <h1>IMAGO BY GORUS</h1>
-    <p>imago artis aeterna</p>
+  <div class="logo">
+    <img src="imggpos.jpg" alt="IMAGO logo" />
+    <div class="logo-text">
+      <h1>IMAGO BY GORUS</h1>
+      <p>imago artis aeterna</p>
+    </div>
   </div>
-  <div>
-    <a href="https://wa.me/381616651755" target="_blank" class="contact-btn">Contact Me</a>
+  <div class="header-buttons">
     <div class="about-btn" id="about-btn">About Me</div>
+    <a class="contact-btn" href="https://wa.me/3816651755" target="_blank">Contact Me</a>
   </div>
 </header>
 
@@ -182,12 +207,19 @@
 <div class="about-modal" id="about-modal">
   <span class="close" id="about-close">&times;</span>
   <div class="content">
-    <h2>About Me</h2>
-    <p>
-      I’m Goran, a photographer fascinated by the wild beauty of Africa, especially the Masai Mara.<br>
-      “Whispers of the Mara” is my visual diary capturing wildlife, landscapes, and fleeting moments of life in the savannah.<br>
-      My work transforms safari experiences into timeless images, telling stories of nature, emotion, and the poetry hidden in every frame.
-    </p>
+    <div class="about-flex">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          I’m Goran, a photographer fascinated by the wild beauty of Africa, especially the Masai Mara.<br>
+          “Whispers of the Mara” is my visual diary capturing wildlife, landscapes, and fleeting moments of life in the savannah.<br>
+          My work transforms safari experiences into timeless images, telling stories of nature, emotion, and the poetry hidden in every frame.
+        </p>
+      </div>
+      <div class="about-image">
+        <img src="goran.jpg" alt="Goran" />
+      </div>
+    </div>
   </div>
 </div>
 
