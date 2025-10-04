@@ -22,42 +22,40 @@
     justify-content: space-between;
     align-items: center;
     background:#fff;
-    padding:20px 30px;
+    padding:15px 20px;
     border-bottom:1px solid #e5e5e5;
     z-index:100;
     flex-wrap: wrap;
+    text-align:center;
   }
 
-  .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    flex: 1 1 100%;
-  }
   .logo img {
     height: 100px;
     width:auto;
     display:block;
   }
-  .logo-text {
-    text-align: center;
-  }
-  .logo-text h1 {
-    margin: 0; font-size: 1.8rem; font-weight: 700; letter-spacing:0.1em;
-  }
-  .logo-text p {
-    margin: 0; font-size: 0.9rem; font-weight: 300; letter-spacing:0.05em;
+
+  .header-center {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    min-width:200px;
   }
 
-  .header-buttons {
-    display: flex;
-    gap: 10px;
-    flex: 1 1 100%;
-    justify-content: center;
-    margin-top: 10px;
+  .header-center h1 {
+    margin:0;
+    font-size:1.8rem;
+    letter-spacing:0.1em;
   }
-  .header-buttons button {
+  .header-center p {
+    margin:5px 0 0 0;
+    font-size:0.9rem;
+    font-style:italic;
+  }
+
+  .about-btn, .contact-btn {
     font-weight:700;
     cursor:pointer;
     border:1px solid #111;
@@ -66,8 +64,9 @@
     background:transparent;
     transition:0.3s;
     letter-spacing:0.1em;
+    margin-top:5px;
   }
-  .header-buttons button:hover { background:#111; color:#fff; }
+  .about-btn:hover, .contact-btn:hover { background:#111; color:#fff; }
 
   .gallery-title {
     text-align:center;
@@ -84,7 +83,7 @@
     padding:0 20px;
     display:flex;
     flex-direction:column;
-    gap:5rem;
+    gap:3rem;
   }
 
   .gallery-item {
@@ -135,60 +134,28 @@
     background: rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center;
     padding:20px; z-index:1100; overflow-y:auto; color:#fff;
   }
-  .about-modal .content {
-    max-width:800px; 
-    background:#111; 
-    padding:30px; 
-    border-radius:8px; 
-    display:flex; 
-    gap:20px; 
-    flex-wrap:wrap;
-    align-items:center;
-  }
-  .about-modal .content img {
-    width:250px;
-    height:auto;
-    border-radius:6px;
-  }
-  .about-modal .text {
-    flex:1;
-    font-size:1rem;
-    line-height:1.6;
-  }
+  .about-modal .content { max-width:800px; background:#111; padding:30px; border-radius:8px; text-align:left; line-height:1.7; display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
+  .about-modal .content img { max-width:300px; width:100%; border-radius:6px; object-fit:cover; }
+  .about-modal .content .text-block { max-width:450px; }
+
   .about-modal .close { position:absolute; top:20px; right:30px; font-size:2rem; cursor:pointer; }
 
-  /* Responsive adjustments */
   @media (max-width:768px){
-    .logo img { height:80px; }
-    .logo-text h1 { font-size:1.5rem; }
-    .logo-text p { font-size:0.85rem; }
-    .header-buttons { flex-direction: column; margin-top: 10px; gap: 8px; }
-    .about-modal .content { flex-direction: column; text-align: center; }
-    .about-modal .content img { width:80%; max-width:300px; }
-  }
-
-  @media (max-width:480px){
-    .logo img { height:70px; }
-    .logo-text h1 { font-size:1.3rem; }
-    .logo-text p { font-size:0.8rem; }
-    .header-buttons button { padding:6px 10px; font-size:0.85rem; }
-    .about-modal .text { font-size:0.95rem; }
+    header { flex-direction: column; }
+    .about-modal .content { flex-direction: column; text-align:center; }
+    .about-modal .content .text-block { max-width:100%; }
   }
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">
-    <img src="imggpos.jpg" alt="IMAGO logo" />
-    <div class="logo-text">
-      <h1>IMAGO BY GORUS</h1>
-      <p>imago artis aeterna</p>
-    </div>
+  <div class="logo"><img src="imggpos.jpg" alt="IMAGO logo" /></div>
+  <div class="header-center">
+    <h1>IMAGO BY GORUS</h1>
+    <p>imago artis aeterna</p>
+    <button class="contact-btn" onclick="window.open('https://wa.me/3816651755','_blank')">Contact Me</button>
   </div>
-  <div class="header-buttons">
-    <button id="about-btn">About Me</button>
-    <button onclick="window.open('https://wa.me/3816651755','_blank')">Contact Me</button>
-  </div>
+  <div class="about-btn" id="about-btn">About Me</div>
 </header>
 
 <div class="gallery-title">Exhibition: Whispers of the Mara</div>
@@ -215,7 +182,7 @@
   <span class="close" id="about-close">&times;</span>
   <div class="content">
     <img src="IVP_8418.jpg" alt="Goran">
-    <div class="text">
+    <div class="text-block">
       <h2>About Me</h2>
       <p>
         I’m Goran, a photographer fascinated by the wild beauty of Africa, especially the Masai Mara.<br>
