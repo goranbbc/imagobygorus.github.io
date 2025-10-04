@@ -26,11 +26,10 @@
     border-bottom:1px solid #e5e5e5;
     z-index:100;
     flex-wrap: wrap;
-    text-align:center;
   }
 
   .logo img {
-    height: 100px;
+    height: 120px;
     width:auto;
     display:block;
   }
@@ -42,6 +41,7 @@
     justify-content:center;
     align-items:center;
     min-width:200px;
+    text-align:center;
   }
 
   .header-center h1 {
@@ -55,6 +55,12 @@
     font-style:italic;
   }
 
+  .header-right {
+    display:flex;
+    gap:10px;
+    flex-wrap: wrap;
+  }
+
   .about-btn, .contact-btn {
     font-weight:700;
     cursor:pointer;
@@ -64,7 +70,6 @@
     background:transparent;
     transition:0.3s;
     letter-spacing:0.1em;
-    margin-top:5px;
   }
   .about-btn:hover, .contact-btn:hover { background:#111; color:#fff; }
 
@@ -141,7 +146,8 @@
   .about-modal .close { position:absolute; top:20px; right:30px; font-size:2rem; cursor:pointer; }
 
   @media (max-width:768px){
-    header { flex-direction: column; }
+    header { flex-direction: column; align-items:center; text-align:center; gap:10px; }
+    .header-right { flex-direction: column; gap:5px; }
     .about-modal .content { flex-direction: column; text-align:center; }
     .about-modal .content .text-block { max-width:100%; }
   }
@@ -153,9 +159,11 @@
   <div class="header-center">
     <h1>IMAGO BY GORUS</h1>
     <p>imago artis aeterna</p>
-    <button class="contact-btn" onclick="window.open('https://wa.me/381616651755','_blank')">Contact Me</button>
   </div>
-  <div class="about-btn" id="about-btn">About Me</div>
+  <div class="header-right">
+    <div class="about-btn" id="about-btn">About Me</div>
+    <button class="contact-btn" onclick="window.open('https://wa.me/3816651755','_blank')">Contact Me</button>
+  </div>
 </header>
 
 <div class="gallery-title">Exhibition: Whispers of the Mara</div>
@@ -245,9 +253,9 @@ document.getElementById('lightbox').addEventListener('click', e=>{ if(e.target==
 
 // Swipe support
 let touchStartX=0,touchEndX=0;
-const lightbox=document.getElementById('lightbox');
-lightbox.addEventListener('touchstart',e=>{ touchStartX=e.changedTouches[0].screenX; });
-lightbox.addEventListener('touchend',e=>{ touchEndX=e.changedTouches[0].screenX; if(touchEndX<touchStartX-40) nextImage(); if(touchEndX>touchStartX+40) prevImage(); });
+const lightboxEl=document.getElementById('lightbox');
+lightboxEl.addEventListener('touchstart',e=>{ touchStartX=e.changedTouches[0].screenX; });
+lightboxEl.addEventListener('touchend',e=>{ touchEndX=e.changedTouches[0].screenX; if(touchEndX<touchStartX-40) nextImage(); if(touchEndX>touchStartX+40) prevImage(); });
 
 // About modal
 const aboutModal=document.getElementById('about-modal');
