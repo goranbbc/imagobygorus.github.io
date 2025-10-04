@@ -1,367 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IMAGO by GORUS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imago by Gorus</title>
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    /* General style */
     body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       margin: 0;
-      background: #fff;
+      padding: 0;
+      background-color: #fafafa;
       color: #111;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      line-height: 1.4;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      line-height: 1.7;
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem 4vw;
-      border-bottom: 1px solid #eee;
-      position: sticky;
-      top: 0;
-      background: #fff;
-      z-index: 1000;
+      text-align: center;
+      padding: 60px 20px 40px;
+      border-bottom: 1px solid #e5e5e5;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      user-select: none;
-    }
-
-    .logo img {
-      height: 250px;
-      width: auto;
-      display: block;
-    }
-
-    nav {
-      display: flex;
-      gap: 3rem;
-    }
-
-    nav a {
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      position: relative;
-      padding-bottom: 0.15rem;
-      color: #111;
-      transition: color 0.3s ease;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: 0;
-      left: 0;
-      background: #111;
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    main {
-      flex-grow: 1;
-    }
-
-    #gallery-section {
-      max-width: 1200px;
-      margin: 0 auto 4rem auto;
-      padding: 0 4vw;
-    }
-
-    #gallery-section h2 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
+    header h1 {
+      font-weight: 300;
       letter-spacing: 0.25em;
-      color: #111;
+      text-transform: uppercase;
+      font-size: 1.6rem;
+      margin: 0;
     }
 
-    #gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 2rem;
+    .gallery {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
     }
 
     .gallery-item {
-      position: relative;
-      overflow: visible;
-      cursor: pointer;
-      border-radius: 0.3rem;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-      transition: box-shadow 0.3s ease;
-      max-height: 270px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-    }
-
-    .gallery-item:hover {
-      z-index: 10;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.12);
     }
 
     .gallery-item img {
       width: 100%;
-      height: 270px;
-      object-fit: cover;
-      display: block;
-      border-radius: 0.3rem;
-      transition: transform 0.4s ease;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.6s ease, opacity 0.6s ease;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.2);
+    .gallery-item img:hover {
+      transform: scale(1.02);
+      opacity: 0.95;
     }
 
     .caption {
-      margin-top: 0.8rem;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      color: #222;
+      margin-top: 1.5rem;
+      font-weight: 500;
+    }
+
+    .description {
+      font-size: 0.95rem;
       color: #555;
-      text-transform: uppercase;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.6s ease, transform 0.6s ease, color 0.3s ease;
+      max-width: 700px;
+      margin-top: 1rem;
+      line-height: 1.8;
+      text-align: justify;
     }
 
-    .gallery-item:hover .caption {
-      opacity: 1;
-      transform: translateY(0);
-      color: #000;
-    }
-
-    /* About Me section styles */
     #about {
-      padding: 4rem 4vw;
-      max-width: 1100px;
-      margin: 3rem auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    #about-text {
-      flex: 1 1 400px;
+      padding: 6rem 10vw;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      border-top: 1px solid #e5e5e5;
     }
 
     #about h2 {
-      font-weight: 700;
-      font-size: 2.8rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
-      letter-spacing: 0.25em;
+      margin-bottom: 1.5rem;
     }
 
     #about p {
-      font-weight: 300;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    #about-img {
-      flex: 1 1 350px;
-      max-width: 450px;
-    }
-
-    #about-img img {
-      width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    }
-
-    /* Contact Me section styles */
-    #contact {
-      padding: 4rem 4vw;
-      max-width: 700px;
-      margin: 3rem auto 5rem;
-      text-align: center;
-      border-top: 1px solid #eee;
-    }
-
-    #contact h2 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      letter-spacing: 0.25em;
-      color: #111;
-    }
-
-    #contact p {
-      font-weight: 300;
-      font-size: 1.15rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      color: #333;
-    }
-
-    #contact-info {
-      font-weight: 300;
       font-size: 1rem;
-      line-height: 1.5;
-      color: #111;
-      letter-spacing: 0.1em;
-    }
-
-    #contact-info div {
-      margin-bottom: 0.5rem;
+      line-height: 1.8;
+      color: #444;
     }
 
     footer {
-      padding: 2rem 4vw;
-      font-size: 0.85rem;
-      font-weight: 300;
       text-align: center;
-      color: #999;
-      border-top: 1px solid #eee;
-      user-select: none;
+      padding: 3rem 0;
+      font-size: 0.85rem;
+      color: #888;
+      border-top: 1px solid #e5e5e5;
     }
 
-    @media (max-width: 900px) {
-      #gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .gallery-item {
-        max-height: 220px;
-      }
-      .gallery-item img {
-        height: 220px;
-      }
+    footer a {
+      color: #555;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
     }
 
-    @media (max-width: 700px) {
-      #about {
-        flex-direction: column;
-        text-align: center;
-      }
-      #about h2 {
-        font-size: 2.2rem;
-      }
-      #about p {
-        font-size: 1rem;
-      }
+    footer a:hover {
+      color: #000;
     }
 
     @media (max-width: 600px) {
-      header {
-        padding: 1.5rem 3vw;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      #gallery {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      main {
-        padding: 2rem 3vw;
-      }
-      nav {
-        gap: 1.5rem;
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
-      nav a {
-        font-size: 0.8rem;
-      }
-      .gallery-item {
-        max-height: 180px;
-      }
-      .gallery-item img {
-        height: 180px;
+      .description {
+        text-align: left;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo" aria-label="Site logo">
-      <img src="imggpos.jpg" alt="IMAGO logo" />
-    </div>
-    <nav role="navigation" aria-label="Main navigation">
-      <a href="#about">About Me</a>
-      <a href="#gallery-section">Gallery</a>
-      <a href="#events">Events</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <h1>IMAGO BY GORUS</h1>
   </header>
 
-  <main>
-    <section id="gallery-section">
-      <h2>Gallery</h2>
-      <div id="gallery"></div>
-    </section>
-  </main>
+  <section class="gallery" id="gallery"></section>
 
   <section id="about">
-    <div id="about-text">
-      <h2>About Me</h2>
-      <p>
-        I am a passionate visual storyteller who captures fleeting emotions and transforms them into timeless art.<br/>
-        Photography, for me, transcends mere imagery — it is an intimate dance between light and soul, where every frame whispers a unique story.<br/>
-        IMAGO by GORUS is not just a brand; it is a celebration of beauty, luxury, and exclusivity — a sanctuary for those who truly appreciate the art of emotion.<br/>
-        Crafted with precision and fueled by passion, each photograph is a masterpiece designed to resonate with those who demand more than just a picture.<br/>
-        For those who seek to immortalize their essence, IMAGO by GORUS offers an experience reserved for the discerning few who understand that true luxury lies in authentic expression.
-      </p>
-    </div>
-    <div id="about-img">
-      <img src="0000.jpg" alt="0000.jpg" />
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>If you truly wish to immortalize your moment and transform it into timeless art, you've reached the right artist.<br/>
-      Don’t hesitate — reach out and let’s create something extraordinary together.<br/>
-      Contact me freely via phone, email, or Instagram.</p>
-    <div id="contact-info">
-      <div>Phone: xxx</div>
-      <div>Email: xxx</div>
-      <div>Instagram: <a href="https://instagram.com/imago.gorus" target="_blank" rel="noopener noreferrer">@imago.gorus</a></div>
-    </div>
+    <h2>About Me</h2>
+    <p>
+      I’m Goran, a photographer fascinated by stillness, emotion, and light.  
+      <br><br>
+      My work is an ongoing exploration of quiet spaces — from ancient streets and forgotten corners to vast landscapes where time seems to stop.  
+      <br><br>
+      “Imago by Gorus” is my visual journal — a gallery of journeys, emotions, and the beauty hidden between moments.
+    </p>
   </section>
 
   <footer>
-    &copy; 2025 IMAGO by GORUS. All rights reserved.
+    <p>
+      <a href="https://instagram.com/imagobygorus" target="_blank">Instagram</a> |
+      <a href="mailto:imagobygorus@gmail.com">Contact</a>
+    </p>
   </footer>
 
   <script>
     const galleryData = [
-      { id: 1, src: "IMG_39041.jpg", alt: "IMG_39041", caption: "Grace in motion" },
-      { id: 2, src: "IMG_3912.jpg", alt: "IMG_3912", caption: "Light and silence" },
-      { id: 3, src: "IMG_4101.jpg", alt: "IMG_4101", caption: "The soul of stillness" },
-      { id: 4, src: "000000971.jpg", alt: "000000971", caption: "Timeless beauty" },
-      { id: 5, src: "000000791.jpg", alt: "000000791", caption: "Moments suspended in light" },
-      { id: 6, src: "000000801.jpg", alt: "000000801", caption: "Intimate elegance" },
-      { id: 7, src: "2221.jpg", alt: "2221", caption: "Raw emotion" },
-      { id: 8, src: "3331.jpg", alt: "3331", caption: "Beyond presence" },
-      { id: 9, src: "4441.jpg", alt: "4441", caption: "Essence of quiet" }
+      {
+        id: 1,
+        src: "IMG_39041.jpg",
+        alt: "IMG_39041",
+        caption: "Grace in motion",
+        description: "Somewhere between dusk and dawn, the air carries a stillness that moves faster than time. In that silence, every step feels like part of a story waiting to be remembered."
+      },
+      {
+        id: 2,
+        src: "IMG_3912.jpg",
+        alt: "IMG_3912",
+        caption: "Light and silence",
+        description: "A forgotten alley, washed in soft gold. The light touches the walls like memory — fleeting, quiet, unassuming — yet eternal in the frame."
+      },
+      {
+        id: 3,
+        src: "IMG_4101.jpg",
+        alt: "IMG_4101",
+        caption: "The soul of stillness",
+        description: "Sometimes stillness speaks louder than movement. The pause between breaths, the unspoken calm — this is where the image finds its soul."
+      },
+      {
+        id: 4,
+        src: "000000971.jpg",
+        alt: "000000971",
+        caption: "Timeless beauty",
+        description: "In a place where nothing changes, beauty becomes infinite. Each shadow and reflection tells a story of patience and grace."
+      },
+      {
+        id: 5,
+        src: "000000791.jpg",
+        alt: "000000791",
+        caption: "Moments suspended in light",
+        description: "Light doesn’t just illuminate — it remembers. It traces the curve of a face, the edge of a leaf, the silence of a room long after we’ve gone."
+      },
+      {
+        id: 6,
+        src: "000000801.jpg",
+        alt: "000000801",
+        caption: "Intimate elegance",
+        description: "The closer we look, the softer the world becomes. Elegance is not in perfection, but in presence."
+      },
+      {
+        id: 7,
+        src: "2221.jpg",
+        alt: "2221",
+        caption: "Raw emotion",
+        description: "Sometimes, clarity is overrated. Blurred lines tell stories our eyes can’t see but our hearts can feel."
+      },
+      {
+        id: 8,
+        src: "3331.jpg",
+        alt: "3331",
+        caption: "Beyond presence",
+        description: "Between reality and dream lies the space where the soul travels — where seeing becomes feeling, and the image becomes alive."
+      },
+      {
+        id: 9,
+        src: "4441.jpg",
+        alt: "4441",
+        caption: "Essence of quiet",
+        description: "Quiet is not the absence of sound — it’s the presence of peace. It’s where vision becomes truth."
+      }
     ];
 
     function renderGallery() {
@@ -379,8 +229,13 @@
         caption.classList.add("caption");
         caption.textContent = item.caption;
 
+        const desc = document.createElement("p");
+        desc.classList.add("description");
+        desc.textContent = item.description;
+
         div.appendChild(img);
         div.appendChild(caption);
+        div.appendChild(desc);
         gallery.appendChild(div);
       });
     }
