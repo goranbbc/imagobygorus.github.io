@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Whispers of the Mara - Imago by Gorus</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Whispers of the Mara - IMAGO by GORUS</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet" />
 <style>
+  *, *::before, *::after { box-sizing: border-box; }
   body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0; padding: 0;
-    background: #fafafa;
-    color: #111;
-    line-height: 1.7;
-    overflow-x: hidden;
+    margin:0; padding:0;
+    background:#fafafa; color:#111;
+    font-family:'Montserrat', sans-serif;
+    line-height:1.7;
+    overflow-x:hidden;
   }
 
   header {
-    position: sticky;
-    top:0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     background:#fff;
     padding:20px 30px;
     border-bottom:1px solid #e5e5e5;
+    position:sticky; top:0;
     z-index:100;
   }
+  .logo img { height:60px; width:auto; display:block; }
 
-  .logo img {
-    height: 80px;
-    width:auto;
-    display:block;
+  .site-center {
+    text-align:center; flex:1;
+  }
+  .site-center .title {
+    font-weight:700; letter-spacing:0.2em; font-size:1.3rem;
+  }
+  .site-center .slogan {
+    font-weight:300; font-size:0.85rem; letter-spacing:0.1em; color:#555;
   }
 
+  .header-buttons { display:flex; gap:10px; }
   .about-btn {
-    font-weight:700;
-    cursor:pointer;
-    border:1px solid #111;
-    padding:6px 12px;
-    border-radius:4px;
-    background:transparent;
-    transition:0.3s;
-    letter-spacing:0.1em;
+    font-weight:500; letter-spacing:0.1em; cursor:pointer;
+    border:1px solid #111; padding:6px 12px; border-radius:4px;
+    background:transparent; transition:0.3s; text-align:center;
   }
   .about-btn:hover { background:#111; color:#fff; }
 
   .gallery-title {
     text-align:center;
-    font-weight:700;
+    font-weight:400;
     letter-spacing:0.15em;
     margin-top:60px;
     font-size:1.5rem;
@@ -73,7 +73,6 @@
     transition: opacity 1s ease-out, transform 1s ease-out;
     cursor:pointer;
   }
-
   .gallery-item.visible { opacity:1; transform:translateY(0); }
 
   .gallery-item img {
@@ -83,7 +82,7 @@
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
     transition: transform 0.6s ease, opacity 0.6s ease;
   }
-  .gallery-item img:hover { transform: scale(1.02); opacity:0.95; }
+  .gallery-item img:hover { transform:scale(1.02); opacity:0.95; }
 
   .caption { font-size:1rem; color:#222; margin-top:1rem; font-weight:500; opacity:0.9; }
   .description { font-size:0.95rem; color:#555; max-width:700px; margin-top:0.5rem; line-height:1.8; text-align:justify; opacity:0.85; }
@@ -105,27 +104,41 @@
   .lightbox .prev, .lightbox .next { position:absolute; top:50%; transform:translateY(-50%); font-size:3rem; color:#fff; cursor:pointer; user-select:none; z-index:1010; padding:0 15px; }
   .lightbox .prev { left:10px; } .lightbox .next { right:10px; }
 
-  @media (max-width:600px) {
-    .description { text-align:left; }
-    .lightbox img { max-height:70vh; }
-    .lightbox .text { font-size:0.95rem; }
-    .lightbox .prev, .lightbox .next { font-size:2.5rem; }
+  @media(max-width:600px){
+    .description{text-align:left;}
+    .lightbox img{max-height:70vh;}
+    .lightbox .text{font-size:0.95rem;}
+    .lightbox .prev,.lightbox .next{font-size:2.5rem;}
+    header { flex-direction:column; align-items:center; gap:10px; }
+    .header-buttons { flex-wrap:wrap; justify-content:center; }
   }
 
   /* About Me modal */
   .about-modal {
-    position: fixed; top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center;
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center;
     padding:20px; z-index:1100; overflow-y:auto; color:#fff;
   }
-  .about-modal .content { max-width:700px; background:#111; padding:30px; border-radius:8px; text-align:left; line-height:1.7; }
+  .about-modal .content {
+    max-width:700px; background:#111; padding:30px; border-radius:8px; text-align:left; line-height:1.7;
+  }
   .about-modal .close { position:absolute; top:20px; right:30px; font-size:2rem; cursor:pointer; }
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo"><img src="imggpos.jpg" alt="IMAGO logo" /></div>
-  <div class="about-btn" id="about-btn">About Me</div>
+
+  <div class="site-center">
+    <div class="title">IMAGO BY GORUS</div>
+    <div class="slogan">Capturing Moments, Immortalizing Emotion</div>
+  </div>
+
+  <div class="header-buttons">
+    <div class="about-btn" id="about-btn">About Me</div>
+    <a href="#contact" style="text-decoration:none;"><div class="about-btn">Contact</div></a>
+  </div>
 </header>
 
 <div class="gallery-title">Exhibition: Whispers of the Mara</div>
@@ -134,7 +147,7 @@
 <footer>
   <p>
     <a href="https://instagram.com/imagobygorus" target="_blank">Instagram</a> |
-    <a href="mailto:imagobygorus@gmail.com">Contact</a>
+    <a href="#contact">Contact</a>
   </p>
 </footer>
 
@@ -153,21 +166,21 @@
   <div class="content">
     <h2>About Me</h2>
     <p>
-      I’m Goran, a photographer fascinated by the wild beauty of Africa, especially the Masai Mara.<br>
-      “Whispers of the Mara” is my visual diary capturing wildlife, landscapes, and fleeting moments of life in the savannah.<br>
+      I’m Goran, a photographer fascinated by the wild beauty of Africa, especially the Masai Mara.  
+      “Whispers of the Mara” is my visual diary capturing the elegance of wildlife, the silence of vast landscapes, and fleeting moments of life in the savannah.<br><br>
       My work transforms safari experiences into timeless images, telling stories of nature, emotion, and the poetry hidden in every frame.
     </p>
   </div>
 </div>
 
 <script>
-const galleryData = [
-  { src:"IMG_39041.jpg", caption:"Grace in motion", description:"Somewhere between dusk and dawn, the air carries a stillness that moves faster than time. In that silence, every step feels like part of a story waiting to be remembered." },
-  { src:"IMG_3912.jpg", caption:"Light and silence", description:"A forgotten alley, washed in soft gold. The light touches the walls like memory — fleeting, quiet, unassuming — yet eternal in the frame." },
-  { src:"IMG_4101.jpg", caption:"The soul of stillness", description:"Sometimes stillness speaks louder than movement. The pause between breaths, the unspoken calm — this is where the image finds its soul." },
-  { src:"000000971.jpg", caption:"Timeless beauty", description:"In a place where nothing changes, beauty becomes infinite. Each shadow and reflection tells a story of patience and grace." },
-  { src:"000000791.jpg", caption:"Moments suspended in light", description:"Light doesn’t just illuminate — it remembers. It traces the curve of a face, the edge of a leaf, the silence of a room long after we’ve gone." },
-  { src:"000000801.jpg", caption:"Intimate elegance", description:"The closer we look, the softer the world becomes. Elegance is not in perfection, but in presence." }
+const galleryData=[
+  {src:"IMG_39041.jpg", caption:"Grace in motion", description:"Somewhere between dusk and dawn, the air carries a stillness that moves faster than time. In that silence, every step feels like part of a story waiting to be remembered."},
+  {src:"IMG_3912.jpg", caption:"Light and silence", description:"A forgotten alley, washed in soft gold. The light touches the walls like memory — fleeting, quiet, unassuming — yet eternal in the frame."},
+  {src:"IMG_4101.jpg", caption:"The soul of stillness", description:"Sometimes stillness speaks louder than movement. The pause between breaths, the unspoken calm — this is where the image finds its soul."},
+  {src:"000000971.jpg", caption:"Timeless beauty", description:"In a place where nothing changes, beauty becomes infinite. Each shadow and reflection tells a story of patience and grace."},
+  {src:"000000791.jpg", caption:"Moments suspended in light", description:"Light doesn’t just illuminate — it remembers. It traces the curve of a face, the edge of a leaf, the silence of a room long after we’ve gone."},
+  {src:"000000801.jpg", caption:"Intimate elegance", description:"The closer we look, the softer the world becomes. Elegance is not in perfection, but in presence."}
 ];
 
 let currentIndex=0;
@@ -176,7 +189,8 @@ function renderGallery(){
   const gallery=document.getElementById("gallery");
   gallery.innerHTML="";
   galleryData.forEach((item,index)=>{
-    const div=document.createElement("div"); div.classList.add("gallery-item");
+    const div=document.createElement("div");
+    div.classList.add("gallery-item");
     const img=document.createElement("img"); img.src=item.src; img.alt=item.caption;
     const caption=document.createElement("p"); caption.className="caption"; caption.textContent=item.caption;
     const desc=document.createElement("p"); desc.className="description"; desc.textContent=item.description;
@@ -197,9 +211,9 @@ function prevImage(){ currentIndex=(currentIndex-1+galleryData.length)%galleryDa
 function nextImage(){ currentIndex=(currentIndex+1)%galleryData.length; openLightbox(); }
 
 function revealOnScroll(){
-  document.querySelectorAll('.gallery-item').forEach(el=>{
-    if(el.getBoundingClientRect().top<window.innerHeight*0.9) el.classList.add('visible');
-  });
+  const elements=document.querySelectorAll('.gallery-item');
+  const triggerBottom=window.innerHeight*0.9;
+  elements.forEach(el=>{ if(el.getBoundingClientRect().top<triggerBottom) el.classList.add('visible'); });
 }
 
 window.addEventListener('scroll',revealOnScroll);
@@ -208,15 +222,13 @@ window.addEventListener('load',()=>{ renderGallery(); revealOnScroll(); });
 document.getElementById('lightbox-close').addEventListener('click',closeLightbox);
 document.getElementById('lightbox-prev').addEventListener('click',prevImage);
 document.getElementById('lightbox-next').addEventListener('click',nextImage);
-document.getElementById('lightbox').addEventListener('click', e=>{ if(e.target===e.currentTarget) closeLightbox(); });
+document.getElementById('lightbox').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeLightbox(); });
 
-// Swipe support
 let touchStartX=0,touchEndX=0;
 const lightbox=document.getElementById('lightbox');
 lightbox.addEventListener('touchstart',e=>{ touchStartX=e.changedTouches[0].screenX; });
 lightbox.addEventListener('touchend',e=>{ touchEndX=e.changedTouches[0].screenX; if(touchEndX<touchStartX-40) nextImage(); if(touchEndX>touchStartX+40) prevImage(); });
 
-// About modal
 const aboutModal=document.getElementById('about-modal');
 document.getElementById('about-btn').addEventListener('click',()=>aboutModal.style.display='flex');
 document.getElementById('about-close').addEventListener('click',()=>aboutModal.style.display='none');
