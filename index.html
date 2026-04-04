@@ -1,362 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGO BY GORUS | Whispers of the Mara</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-main: #111111;
-            --text-sub: #666666;
-            --accent: #000000;
-            --spacing-unit: 0.2em;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whispers of the Mara - Imago by Gorus</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0; padding: 0;
+    background: #fafafa;
+    color: #111;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0; padding: 0;
-            background: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.8;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+  /* Header */
+  header {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding:20px 30px;
+    background:#fff;
+    border-bottom:1px solid #e5e5e5;
+  }
 
-        /* --- Header & Navigation --- */
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-            background: #fff;
-            border-bottom: 1px solid #f0f0f0;
-        }
+  .header-top {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    max-width:1000px;
+  }
 
-        .header-top {
-            display: flex;
-            justify-content: flex-end;
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 40px;
-        }
+  .header-buttons {
+    display:flex;
+    gap:15px;
+  }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: var(--spacing-unit);
-            font-weight: 400;
-        }
+  .header-buttons div {
+    font-weight:700;
+    cursor:pointer;
+    border:1px solid #111;
+    padding:6px 12px;
+    border-radius:4px;
+    background:transparent;
+    transition:0.3s;
+    letter-spacing:0.1em;
+  }
+  .header-buttons div:hover { background:#111; color:#fff; }
 
-        .nav-links div {
-            cursor: pointer;
-            transition: 0.3s;
-            padding-bottom: 2px;
-            border-bottom: 1px solid transparent;
-        }
+  .header-center {
+    margin-top:15px;
+  }
+  .header-center h1 {
+    margin:5px 0;
+    font-size:1.8rem;
+    letter-spacing:0.1em;
+  }
+  .header-center p {
+    margin:0;
+    font-size:0.9rem;
+    font-style:italic;
+  }
+  .header-center h2 {
+    margin:15px 0 0 0;
+    font-size:1.2rem;
+    font-weight:500;
+    color:#555;
+  }
 
-        .nav-links div:hover {
-            border-bottom: 1px solid var(--text-main);
-        }
+  /* Gallery */
+  .gallery {
+    max-width:1000px;
+    margin:40px auto;
+    padding:0 20px;
+    display:flex;
+    flex-direction:column;
+    gap:5rem;
+  }
 
-        .brand-identity h1 {
-            font-weight: 200;
-            font-size: 2.5rem;
-            letter-spacing: 0.4em;
-            margin: 0;
-            text-transform: uppercase;
-        }
+  .gallery-item {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    opacity:0;
+    transform:translateY(40px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    cursor:pointer;
+  }
 
-        .brand-identity p {
-            font-size: 0.8rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--text-sub);
-            margin-top: 10px;
-        }
+  .gallery-item.visible { opacity:1; transform:translateY(0); }
 
-        .exhibition-title {
-            margin-top: 50px;
-            font-size: 1.1rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            color: #888;
-        }
+  .gallery-item img {
+    width:100%;
+    height:auto;
+    border-radius:6px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+  }
+  .gallery-item img:hover { transform: scale(1.02); opacity:0.95; }
 
-        /* --- Hero Section --- */
-        .hero {
-            width: 100%;
-            height: 80vh;
-            background: #000;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+  .caption { font-size:1rem; color:#222; margin-top:1rem; font-weight:500; opacity:0.9; }
+  .description { font-size:0.95rem; color:#555; max-width:700px; margin-top:0.5rem; line-height:1.8; text-align:justify; opacity:0.85; }
 
-        .hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.85;
-        }
+  /* Footer */
+  footer { text-align:center; padding:2rem 0; font-size:0.85rem; color:#888; border-top:1px solid #e5e5e5; }
+  footer a { color:#555; text-decoration:none; margin:0 10px; }
+  footer a:hover { color:#000; }
 
-        /* --- Gallery --- */
-        .gallery {
-            max-width: 1100px;
-            margin: 80px auto;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 120px; /* Veći razmak za "breathtaking" efekat */
-        }
+  /* Lightbox overlay */
+  .lightbox {
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.95);
+    display:none; justify-content:center; align-items:center;
+    flex-direction:column; z-index:1000; padding:10px; overflow-y:auto;
+  }
+  .lightbox img { width:100%; max-width:1000px; height:auto; border-radius:6px; margin-bottom:1rem; }
+  .lightbox .text { color:#fff; text-align:center; max-width:800px; font-size:1rem; line-height:1.6; padding:0 10px; }
+  .lightbox .close { position:absolute; top:20px; right:30px; font-size:2rem; color:#fff; cursor:pointer; z-index:1010; }
+  .lightbox .prev, .lightbox .next { position:absolute; top:50%; transform:translateY(-50%); font-size:3rem; color:#fff; cursor:pointer; user-select:none; z-index:1010; padding:0 15px; }
+  .lightbox .prev { left:10px; } .lightbox .next { right:10px; }
 
-        .gallery-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            opacity: 0;
-            transform: scale(0.98) translateY(30px);
-            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-        }
+  /* --- Ažuriran About Me modal --- */
+  .about-modal {
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.98); display:none; justify-content:center; align-items:center;
+    padding:40px 20px; z-index:1100; overflow-y:auto; color:#fff;
+  }
+  .about-modal .content {
+    max-width:1000px;
+    width: 100%;
+    display:flex;
+    gap:40px;
+    justify-content:center;
+    align-items:center;
+    margin: auto;
+  }
+  .about-modal .content img {
+    max-width:400px; /* Širina slike */
+    max-height: 80vh; /* Osigurava da slika ne bude viša od ekrana */
+    width:auto;
+    height: auto;
+    object-fit: contain;
+    border-radius:2px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .about-modal .text-container {
+    max-width:450px;
+    color:#fff;
+    line-height:1.8;
+  }
+  .about-modal h2 {
+    font-size: 2rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .about-modal .close { position:absolute; top:20px; right:30px; font-size:2.5rem; cursor:pointer; z-index: 1200; }
 
-        .gallery-item.visible { opacity: 1; transform: scale(1) translateY(0); }
+  @media(max-width:850px){
+    .about-modal .content { flex-direction:column; padding-top: 60px; }
+    .about-modal .content img { max-width: 100%; max-height: 50vh; }
+    .about-modal .text-container { text-align: center; }
+  }
 
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            transition: transform 0.8s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        
-        .gallery-item:hover img { transform: scale(1.01); }
-
-        .caption { 
-            font-size: 0.9rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.2em; 
-            margin-top: 2rem; 
-            font-weight: 700; 
-        }
-
-        .description { 
-            font-size: 0.9rem; 
-            color: var(--text-sub); 
-            max-width: 600px; 
-            margin-top: 1rem; 
-            font-weight: 300;
-            text-align: center; 
-        }
-
-        /* --- Footer --- */
-        footer { 
-            text-align: center; 
-            padding: 100px 0 50px; 
-            font-size: 0.7rem; 
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            border-top: 1px solid #f0f0f0; 
-        }
-
-        footer a { color: #111; text-decoration: none; margin: 0 15px; transition: 0.3s; }
-        footer a:hover { opacity: 0.5; }
-
-        /* --- Lightbox --- */
-        .lightbox {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.98); /* Premium bela pozadina za lightbox */
-            display: none; justify-content: center; align-items: center;
-            flex-direction: column; z-index: 2000; padding: 20px;
-        }
-        
-        .lightbox img { max-width: 90%; max-height: 75vh; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        
-        .lightbox .text { 
-            color: #111; text-align: center; max-width: 700px; margin-top: 30px; 
-            font-size: 0.9rem; letter-spacing: 0.05em; 
-        }
-
-        .lightbox .close { position: absolute; top: 30px; right: 40px; font-size: 2rem; cursor: pointer; font-weight: 200; }
-
-        /* --- About Modal --- */
-        .about-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; display: none; justify-content: center; align-items: center;
-            z-index: 3000; overflow-y: auto;
-        }
-
-        .about-modal .content {
-            max-width: 1000px; display: flex; gap: 60px; padding: 40px; align-items: center;
-        }
-
-        .about-modal img { width: 400px; height: auto; filter: grayscale(100%); }
-
-        .about-modal .text-container { max-width: 450px; }
-        
-        .about-modal h2 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 200; font-size: 2rem; margin-bottom: 30px; }
-
-        @media(max-width: 850px){
-            .about-modal .content { flex-direction: column; text-align: center; }
-            .about-modal img { width: 100%; max-width: 300px; }
-            .brand-identity h1 { font-size: 1.5rem; }
-        }
-    </style>
+</style>
 </head>
 <body>
 
 <header>
-    <div class="header-top">
-        <nav class="nav-links">
-            <div id="about-btn">About</div>
-            <div onclick="window.location.href='https://wa.me/381616651755';">Contact</div>
-        </nav>
+  <div class="header-top">
+    <div class="header-buttons">
+      <div id="about-btn">About Me</div>
+      <div onclick="window.location.href='https://wa.me/381616651755';">Contact Me</div>
     </div>
-    <div class="brand-identity">
-        <h1>IMAGO BY GORUS</h1>
-        <p>momentum aeternum</p>
-    </div>
-    <div class="exhibition-title">Exhibition: Whispers of the Mara</div>
+  </div>
+  <div class="header-center">
+    <h1>IMAGO BY GORUS</h1>
+    <p>momentum aeternum</p>
+    <h2>Exhibition: Whispers of the Mara</h2>
+  </div>
 </header>
-
-<section class="hero" id="hero-section">
-    </section>
 
 <section class="gallery" id="gallery"></section>
 
 <footer>
-    <p>
-        <a href="https://instagram.com/imagobygorus" target="_blank">Instagram</a>
-        <a href="mailto:imagobygorus@gmail.com">Inquiry</a>
-    </p>
-    <p style="margin-top: 20px; opacity: 0.4;">&copy; 2026 IBG VISION</p>
+  <p>
+    <a href="https://instagram.com/imagobygorus" target="_blank">Instagram</a> |
+    <a href="mailto:imagobygorus@gmail.com">Contact</a>
+  </p>
 </footer>
 
 <div class="lightbox" id="lightbox">
-    <span class="close" id="lightbox-close">&times;</span>
-    <img id="lightbox-img" src="" alt="">
-    <div class="text" id="lightbox-text"></div>
+  <span class="close" id="lightbox-close">&times;</span>
+  <span class="prev" id="lightbox-prev">&#10094;</span>
+  <span class="next" id="lightbox-next">&#10095;</span>
+  <img id="lightbox-img" src="" alt="">
+  <div class="text" id="lightbox-text"></div>
 </div>
 
 <div class="about-modal" id="about-modal">
-    <span class="close" style="position: absolute; top: 30px; right: 40px; font-size: 2rem; cursor: pointer;" id="about-close">&times;</span>
-    <div class="content">
-        <img src="IVP_8418.jpg" alt="Goran Portfolio Photo">
-        <div class="text-container">
-            <h2>The Vision</h2>
-            <p>
-                I am Goran—a photographer dedicated to the bold, the precise, and the unforgettable. 
-                My work is a pursuit of stillness within chaos, transforming fleeting moments into monolithic memories.
-                <br><br>
-                From the raw landscapes of the African savannah to high-end corporate visuals, 
-                every frame is crafted with an uncompromising eye for detail and an adventurous spirit. 
-                Let’s create images that carry weight.
-            </p>
-        </div>
+  <span class="close" id="about-close">&times;</span>
+  <div class="content">
+    <img src="IVP_8418.jpg" alt="Goran Photography">
+    <div class="text-container">
+      <h2>The Vision</h2>
+      <p>
+        I am Goran—a photographer dedicated to the bold, the precise, and the unforgettable. 
+        My work is a pursuit of stillness within chaos, transforming fleeting moments into monolithic memories.
+        <br><br>
+        From the raw landscapes of the African savannah to high-end corporate visuals, 
+        every frame is crafted with an uncompromising eye for detail and an adventurous spirit. 
+        Let’s create images that carry weight.
+      </p>
     </div>
+  </div>
 </div>
 
 <script>
 const galleryData = [
-    { src:"33.jpg", caption:"Sentinel of the Savannah", description:"Perched on a lone ridge, a solitary antelope scans the endless plains—a moment of pure, wild stillness." },
-    { src:"3.jpg", caption:"Sisters in the Sun", description:"Two lionesses spar playfully, sharpening instincts that will one day shape the future of their pride." },
-    { src:"23.jpg", caption:"Brothers of the Dusk", description:"Three male lions rest together in the warm glow of sunset." },
-    { src:"31.jpg", caption:"Whisper of the Wild", description:"A quiet moment, a wild heart, this lion breathes the art of the savannah." },
-    { src:"24.jpg", caption:"Echoes of Innocence", description:"Tiny hearts, wide eyes, whispers of innocence." },
-    { src:"26.jpg", caption:"Mother’s Embrace", description:"The wild’s tender whisper, carried in her care." },
-    { src:"12.jpg", caption:"Echoes of the Ancients", description:"A silent giant, surveying the world with ancient wisdom." },
-    { src:"16.jpg", caption:"Soul of the Savannah", description:"In his eyes, the weight of centuries and the silence of the wild." },
-    { src:"15.jpg", caption:"Ivory Strength", description:"Earth and ivory meet in this quiet giant." },
-    { src:"17.jpg", caption:"Quiet Company", description:"A moment of rest, a whisper of harmony." },
-    { src:"8.jpg", caption:"The Great Migration", description:"The herd moves as one, an endless pulse of life." },
-    { src:"19.jpg", caption:"Leisure of the Predator", description:"A moment of calm, eyes surveying the world below." },
-    { src:"18.jpg", caption:"Silent Contemplation", description:"A quiet observer, lost to the wind and light." },
-    { src:"35.jpg", caption:"Stripes of the Savannah", description:"Stripes that ripple across the plains, blending beauty and survival." },
-    { src:"10.jpg", caption:"Tree of the Endless Plain", description:"A single acacia tree anchors the horizon." }
+  { src:"33.jpg", caption:"Sentinel of the Savannah", description:"Perched on a lone ridge, a solitary antelope scans the endless plains—a moment of pure, wild stillness." },
+  { src:"3.jpg", caption:"Sisters in the Sun", description:"Two lionesses spar playfully, sharpening instincts that will one day shape the future of their pride." },
+  { src:"23.jpg", caption:"Brothers of the Dusk", description:"Three male lions rest together in the warm glow of sunset, their bond and calm presence capturing a rare moment of unity on the savanna." },
+  { src:"31.jpg", caption:"Whisper of the Wild", description:"A quiet moment, a wild heart, this lion breathes the art of the savannah." },
+  { src:"24.jpg", caption:"Echoes of Innocence", description:"Tiny hearts, wide eyes, whispers of innocence." },
+  { src:"26.jpg", caption:"Mother’s Embrace", description:"The wild’s tender whisper, carried in her care." },
+  { src:"12.jpg", caption:"Echoes of the Ancients", description:"A silent giant, surveying the world with ancient wisdom." },
+  { src:"16.jpg", caption:"Soul of the Savannah", description:"In his eyes, the weight of centuries and the silence of the wild." },
+  { src:"15.jpg", caption:"Ivory Strength", description:"Earth and ivory meet in this quiet giant." },
+  { src:"17.jpg", caption:"Quiet Company", description:"A moment of rest, a whisper of harmony." },
+  { src:"8.jpg", caption:"The Great Migration", description:"The herd moves as one, an endless pulse of life." },
+  { src:"19.jpg", caption:"Leisure of the Predator", description:"A moment of calm, eyes surveying the world below." },
+  { src:"18.jpg", caption:"Silent Contemplation", description:"A quiet observer, lost to the wind and light." },
+  { src:"35.jpg", caption:"Stripes of the Savannah", description:"Stripes that ripple across the plains, blending beauty and survival." },
+  { src:"10.jpg", caption:"Tree of the Endless Plain", description:"A single acacia tree anchors the horizon, rising from a sea of golden grass." },
 ];
 
-let currentIndex = 0;
-
-function init() {
-    // Postavi Hero sliku (prva iz niza)
-    const heroSection = document.getElementById('hero-section');
-    heroSection.innerHTML = `<img src="${galleryData[0].src}" alt="Hero Image" loading="eager">`;
-
-    renderGallery();
-    revealOnScroll();
-}
+let currentIndex=0;
 
 function renderGallery(){
-    const gallery = document.getElementById("gallery");
-    gallery.innerHTML = "";
-    galleryData.forEach((item, index) => {
-        const div = document.createElement("div"); 
-        div.classList.add("gallery-item");
-        
-        const img = document.createElement("img"); 
-        img.src = item.src; 
-        img.alt = item.caption;
-        img.loading = "lazy"; // Optimizacija performansi
-        
-        const caption = document.createElement("p"); 
-        caption.className = "caption"; 
-        caption.textContent = item.caption;
-        
-        const desc = document.createElement("p"); 
-        desc.className = "description"; 
-        desc.textContent = item.description;
-        
-        div.appendChild(img); 
-        div.appendChild(caption); 
-        div.appendChild(desc);
-        
-        div.addEventListener('click', () => { currentIndex = index; openLightbox(); });
-        gallery.appendChild(div);
-    });
+  const gallery=document.getElementById("gallery");
+  gallery.innerHTML="";
+  galleryData.forEach((item,index)=>{
+    const div=document.createElement("div"); div.classList.add("gallery-item");
+    const img=document.createElement("img"); img.src=item.src; img.alt=item.caption;
+    const caption=document.createElement("p"); caption.className="caption"; caption.textContent=item.caption;
+    const desc=document.createElement("p"); desc.className="description"; desc.textContent=item.description;
+    div.appendChild(img); div.appendChild(caption); div.appendChild(desc);
+    div.addEventListener('click',()=>{ currentIndex=index; openLightbox(); });
+    gallery.appendChild(div);
+  });
 }
 
 function openLightbox(){
-    const item = galleryData[currentIndex];
-    const lbImg = document.getElementById('lightbox-img');
-    lbImg.src = item.src;
-    document.getElementById('lightbox-text').innerHTML = `<strong>${item.caption}</strong><br>${item.description}`;
-    document.getElementById('lightbox').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // Stop scroll
+  const item=galleryData[currentIndex];
+  document.getElementById('lightbox-img').src=item.src;
+  document.getElementById('lightbox-text').textContent=item.caption+" — "+item.description;
+  document.getElementById('lightbox').style.display='flex';
+  document.body.style.overflow = 'hidden';
 }
-
 function closeLightbox(){ 
-    document.getElementById('lightbox').style.display = 'none'; 
-    document.body.style.overflow = 'auto';
+  document.getElementById('lightbox').style.display='none'; 
+  document.body.style.overflow = 'auto';
 }
+function prevImage(){ currentIndex=(currentIndex-1+galleryData.length)%galleryData.length; openLightbox(); }
+function nextImage(){ currentIndex=(currentIndex+1)%galleryData.length; openLightbox(); }
 
 function revealOnScroll(){
-    document.querySelectorAll('.gallery-item').forEach(el => {
-        if(el.getBoundingClientRect().top < window.innerHeight * 0.85) el.classList.add('visible');
-    });
+  document.querySelectorAll('.gallery-item').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight*0.9) el.classList.add('visible');
+  });
 }
 
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', init);
+window.addEventListener('scroll',revealOnScroll);
+window.addEventListener('load',()=>{ renderGallery(); revealOnScroll(); });
 
-document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-document.getElementById('lightbox').addEventListener('click', e => { if(e.target === e.currentTarget) closeLightbox(); });
+document.getElementById('lightbox-close').addEventListener('click',closeLightbox);
+document.getElementById('lightbox-prev').addEventListener('click',prevImage);
+document.getElementById('lightbox-next').addEventListener('click',nextImage);
+document.getElementById('lightbox').addEventListener('click', e=>{ if(e.target===e.currentTarget) closeLightbox(); });
 
-// About Modal Logic
-const aboutModal = document.getElementById('about-modal');
-document.getElementById('about-btn').addEventListener('click', () => {
-    aboutModal.style.display = 'flex';
+// Swipe support
+let touchStartX=0,touchEndX=0;
+const lightbox=document.getElementById('lightbox');
+lightbox.addEventListener('touchstart',e=>{ touchStartX=e.changedTouches[0].screenX; });
+lightbox.addEventListener('touchend',e=>{ touchEndX=e.changedTouches[0].screenX; if(touchEndX<touchStartX-40) nextImage(); if(touchEndX>touchStartX+40) prevImage(); });
+
+// About modal
+const aboutModal=document.getElementById('about-modal');
+document.getElementById('about-btn').addEventListener('click',()=>{
+    aboutModal.style.display='flex';
     document.body.style.overflow = 'hidden';
 });
-document.getElementById('about-close').addEventListener('click', () => {
-    aboutModal.style.display = 'none';
+document.getElementById('about-close').addEventListener('click',()=>{
+    aboutModal.style.display='none';
     document.body.style.overflow = 'auto';
 });
+aboutModal.addEventListener('click',e=>{ if(e.target===aboutModal) {
+    aboutModal.style.display='none';
+    document.body.style.overflow = 'auto';
+}});
 
 </script>
 </body>
