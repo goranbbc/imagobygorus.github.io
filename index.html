@@ -146,8 +146,57 @@
     .gallery-grid { gap: 50px; }
   }
 
-  footer { text-align: center; padding: 60px 0; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; border-top: 1px solid #eee; }
-  footer a { color: #111; text-decoration: none; margin: 0 10px; }
+  /* --- NOVI STIL ZA FOOTER --- */
+  footer {
+    text-align: center;
+    padding: 60px 0;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-top: 1px solid #eee;
+    background: var(--bg-color); /* Premium siva pozadina */
+  }
+
+  footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  footer p { margin: 0; }
+  
+  /* Linkovi za Instagram i Inquiry */
+  footer .main-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  footer .main-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    transition: 0.3s;
+  }
+  footer .main-links a:hover { opacity: 0.5; }
+
+  /* --- Boldovani link ka IBG Vision --- */
+  footer .ibg-pro-link a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.95rem; /* Malo veće da se istakne */
+    font-weight: 600;   /* Boldovano */
+    letter-spacing: 0.2em;
+    transition: 0.3s;
+  }
+  footer .ibg-pro-link a:hover { opacity: 0.5; }
+
+  /* Copyright tekst */
+  footer .copyright {
+    font-size: 0.65rem;
+    opacity: 0.3; /* Vrlo tanak i suptilan */
+  }
 </style>
 </head>
 <body>
@@ -192,8 +241,19 @@
 </div>
 
 <footer>
-  <p><a href="https://instagram.com/imago.by.gorus">Instagram</a> <a href="mailto:office@ibgvision.com">Inquiry</a></p>
-  <p style="margin-top:15px; opacity:0.3;">&copy; 2026 IBG VISION</p>
+  <div class="footer-content">
+    
+    <p class="main-links">
+      <a href="https://instagram.com/imago.by.gorus" target="_blank">Instagram</a>
+      <a href="mailto:office@ibgvision.com">Inquiry</a>
+    </p>
+
+    <p class="ibg-pro-link">
+      <a href="https://ibgvision.com" target="_blank">IBG Vision</a>
+    </p>
+
+    <p class="copyright">&copy; 2026 IBG VISION</p>
+  </div>
 </footer>
 
 <div class="modal-base lightbox" id="lightbox">
