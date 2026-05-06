@@ -77,22 +77,22 @@
   .gallery-grid { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px; }
   
   .gallery-item { opacity: 0; transform: translateY(20px); transition: 1s ease-out; text-align: center; position: relative; margin-bottom: 20px; }
-  .gallery-item::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer; }
-  .gallery-item.visible { opacity: 1; transform: translateY(0); }
   .gallery-item img { width: 100%; height: auto; display: block; margin-bottom: 20px; }
+  .gallery-item.visible { opacity: 1; transform: translateY(0); }
 
-  /* Premium Gallery Typography */
-  .gallery-item .caption {
+  /* Premium Gallery Typography - Unifikovano za oba prikaza */
+  .caption {
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.3em;
     font-weight: 200;
-    font-size: 0.75rem;
+    font-size: 0.75rem !important;
     color: var(--text-main);
+    margin: 0;
   }
-  .gallery-item .description {
+  .description {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem;
+    font-size: 0.65rem !important;
     letter-spacing: 0.1em;
     font-weight: 400;
     color: var(--text-sub);
@@ -106,11 +106,11 @@
   .modal-content img { max-width: 40%; max-height: 80vh; object-fit: contain; filter: grayscale(100%); }
   .modal-text h2 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 200; margin-bottom: 20px; }
   
-  .lightbox { background: rgba(247, 247, 247, 0.98); z-index: 4000; flex-direction: column; }
-  .lb-container { position: relative; display: flex; flex-direction: column; align-items: center; }
-  .lb-container::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 80%; z-index: 4005; }
-  .lightbox img { max-width: 90%; max-height: 75vh; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-  .close-btn { position: absolute; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 5000; }
+  /* Popravljena pozadina Lightboxa da bude identična sajtu */
+  .lightbox { background: var(--bg-color); z-index: 4000; flex-direction: column; }
+  .lb-container { position: relative; display: flex; flex-direction: column; align-items: center; width: 100%; }
+  .lightbox img { max-width: 90%; max-height: 70vh; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+  .close-btn { position: absolute; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 5000; font-weight: 200; }
 
   /* --- Mobile Refinement --- */
   @media(max-width: 768px){
@@ -171,10 +171,8 @@
   <div class="modal-content">
     <div class="modal-text">
       <h2>Collecting Imago</h2>
-      <p>All works from the collection are available as limited edition <strong>Fine Art</strong> prints or digital licenses.</p>
-      <p>We believe in a personalized approach — dimensions, archival paper types, and frame selections are discussed directly to ensure the piece fits your space perfectly.</p>
-      <p><strong>HOW TO PURCHASE:</strong></p>
-      <p>1. Explore the gallery.<br>2. Click on the artwork you desire.<br>3. Select "Purchase Fine Art Print" for a direct inquiry.</p>
+      <p>All works from the collection are available as limited edition <strong>Fine Art</strong> prints.</p>
+      <p>Dimensions, archival paper types, and frame selections are discussed directly to ensure the piece fits your space perfectly.</p>
       <button class="btn-imago" onclick="closeModal('prints-modal'); document.getElementById('exhibition-section').scrollIntoView({behavior:'smooth'})">Explore Gallery</button>
     </div>
   </div>
@@ -192,10 +190,10 @@
 </div>
 
 <div class="modal-base lightbox" id="lightbox">
-  <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
+  <span class="close-btn" onclick="closeModal('lightbox')">&times;</span>
   <div class="lb-container">
     <img id="lb-img" ondragstart="return false;">
-    <div id="lb-text" style="margin-top:25px; text-align:center;" class="gallery-item"></div>
+    <div id="lb-text" style="margin-top:25px; text-align:center;"></div>
     <button class="btn-imago" id="buy-print-btn" style="margin-top: 30px; font-size: 0.65rem;">Purchase Fine Art Print</button>
   </div>
 </div>
@@ -234,7 +232,9 @@ function renderGallery(){
   const grid = document.getElementById('gallery-grid');
   grid.innerHTML = galleryData.map((item, i) => `
     <div class="gallery-item" onclick="openLB(${i})">
-      <img src="${item.src}" loading="lazy" ondragstart="false">
+      <div style="position:relative; cursor:pointer;">
+        <img src="${item.src}" loading="lazy" ondragstart="false">
+      </div>
       <div class="caption">${item.caption}</div>
       <div class="description">${item.description}</div>
     </div>
@@ -246,6 +246,7 @@ function openLB(i){
   document.getElementById('lb-img').src = item.src;
   document.getElementById('lb-text').innerHTML = `<div class="caption">${item.caption}</div><div class="description">${item.description}</div>`;
   document.getElementById('lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
   document.getElementById('buy-print-btn').onclick = () => {
     const msg = `Hello Gorus, I am interested in a print of: ${item.caption}`;
     window.location.href = `https://wa.me/381616651755?text=${encodeURIComponent(msg)}`;
