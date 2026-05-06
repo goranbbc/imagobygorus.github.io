@@ -15,7 +15,7 @@
   body {
     font-family: 'Montserrat', sans-serif;
     margin: 0; padding: 0;
-    background: var(--bg-color); /* Fiksirana boja svuda */
+    background: var(--bg-color);
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
@@ -75,12 +75,32 @@
   }
   .gallery-overlay .close { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 1100; font-weight: 200; }
   .gallery-grid { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px; }
-  .gallery-item { opacity: 0; transform: translateY(20px); transition: 1s ease-out; text-align: center; position: relative; }
+  
+  .gallery-item { opacity: 0; transform: translateY(20px); transition: 1s ease-out; text-align: center; position: relative; margin-bottom: 20px; }
   .gallery-item::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer; }
   .gallery-item.visible { opacity: 1; transform: translateY(0); }
-  .gallery-item img { width: 100%; height: auto; display: block; }
+  .gallery-item img { width: 100%; height: auto; display: block; margin-bottom: 20px; }
 
-  /* --- Modals --- */
+  /* Premium Gallery Typography */
+  .gallery-item .caption {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-weight: 200;
+    font-size: 0.75rem;
+    color: var(--text-main);
+  }
+  .gallery-item .description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    color: var(--text-sub);
+    margin-top: 8px;
+    opacity: 0.8;
+  }
+
+  /* --- Modals & Lightbox --- */
   .modal-base { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); display: none; justify-content: center; align-items: center; z-index: 3000; padding: 20px; box-sizing: border-box; }
   .modal-content { max-width: 1000px; width: 100%; display: flex; gap: 40px; align-items: center; }
   .modal-content img { max-width: 40%; max-height: 80vh; object-fit: contain; filter: grayscale(100%); }
@@ -99,10 +119,10 @@
     .col-3 img { height: 172px; }
     .modal-content { flex-direction: column; text-align: center; }
     .modal-content img { max-width: 80%; }
-    .gallery-grid { gap: 40px; }
+    .gallery-grid { gap: 60px; }
   }
 
-  footer { text-align: center; padding: 60px 0; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; border-top: 1px solid #eee; }
+  footer { text-align: center; padding: 80px 0; border-top: 1px solid #eee; }
 </style>
 </head>
 <body oncontextmenu="return false;">
@@ -175,26 +195,20 @@
   <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
   <div class="lb-container">
     <img id="lb-img" ondragstart="return false;">
-    <div id="lb-text" style="margin-top:20px; text-align:center;"></div>
-    <button class="btn-imago" id="buy-print-btn" style="margin-top: 25px; font-size: 0.65rem;">Purchase Fine Art Print</button>
+    <div id="lb-text" style="margin-top:25px; text-align:center;" class="gallery-item"></div>
+    <button class="btn-imago" id="buy-print-btn" style="margin-top: 30px; font-size: 0.65rem;">Purchase Fine Art Print</button>
   </div>
 </div>
 
 <footer>
   <div style="display:flex; flex-direction:column; gap:25px; align-items:center;">
-    <!-- Samo Instagram kao vizuelna referenca -->
-    <a href="https://instagram.com/imago.by.gorus" target="_blank" style="color:#111; text-decoration:none; font-size: 0.8rem; letter-spacing: 0.15em;">Instagram</a>
-    
-    <!-- Veza sa glavnim biznisom -->
-    <a href="https://ibgvision.com" target="_blank" style="font-weight:600; color:#111; text-decoration:none; font-size: 0.9rem; letter-spacing: 0.2em;">IBG VISION</a>
-    
-    <!-- Suptilan copyright -->
-    <p style="opacity:0.2; margin:0; font-size: 0.6rem; letter-spacing: 0.1em;">&copy; 2026 IBG VISION</p>
+    <a href="https://instagram.com/imago.by.gorus" target="_blank" style="color:#111; text-decoration:none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;">Instagram</a>
+    <a href="https://ibgvision.com" target="_blank" style="font-weight:600; color:#111; text-decoration:none; font-size: 0.9rem; letter-spacing: 0.2em; text-transform: uppercase;">IBG Vision</a>
+    <p style="opacity:0.2; margin:0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;">&copy; 2026 IBG VISION</p>
   </div>
 </footer>
 
 <script>
-// Ista logika galerije i modal funkcije kao ranije, samo očišćene
 const galleryData = [
   { src:"33.jpg", caption:"Sentinel of the Savannah", description:"Perched on a lone ridge, a solitary antelope scans the endless plains." },
   { src:"3.jpg", caption:"Sisters in the Sun", description:"Two lionesses spar playfully, sharpening instincts." },
@@ -220,7 +234,7 @@ function renderGallery(){
   const grid = document.getElementById('gallery-grid');
   grid.innerHTML = galleryData.map((item, i) => `
     <div class="gallery-item" onclick="openLB(${i})">
-      <img src="${item.src}" loading="lazy" ondragstart="return false;">
+      <img src="${item.src}" loading="lazy" ondragstart="false">
       <div class="caption">${item.caption}</div>
       <div class="description">${item.description}</div>
     </div>
@@ -230,7 +244,7 @@ function renderGallery(){
 function openLB(i){
   const item = galleryData[i];
   document.getElementById('lb-img').src = item.src;
-  document.getElementById('lb-text').innerHTML = `<strong>${item.caption}</strong><br><small>${item.description}</small>`;
+  document.getElementById('lb-text').innerHTML = `<div class="caption">${item.caption}</div><div class="description">${item.description}</div>`;
   document.getElementById('lightbox').style.display = 'flex';
   document.getElementById('buy-print-btn').onclick = () => {
     const msg = `Hello Gorus, I am interested in a print of: ${item.caption}`;
@@ -243,7 +257,7 @@ document.getElementById('gallery-close').onclick = () => { document.getElementBy
 
 function reveal(){
   document.querySelectorAll('.gallery-item').forEach(el => {
-    if(el.getBoundingClientRect().top < window.innerHeight * 0.9) el.classList.add('visible');
+    if(el.getBoundingClientRect().top < window.innerHeight * 0.95) el.classList.add('visible');
   });
 }
 document.getElementById('gallery-overlay').onscroll = reveal;
