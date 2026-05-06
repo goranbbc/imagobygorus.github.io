@@ -21,6 +21,11 @@
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    /* Onemogućava selektovanje teksta radi dodatne zaštite */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   /* --- Navigation --- */
@@ -67,6 +72,7 @@
     max-width: 1100px;
     width: 100%;
     margin-bottom: 40px;
+    position: relative;
   }
 
   .triptych-col {
@@ -74,6 +80,15 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
+  }
+
+  /* ZAŠTITA: Providni sloj preko slika u triptihu */
+  .triptych-col::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 5;
   }
 
   .triptych-grid img {
@@ -99,6 +114,7 @@
     background: transparent;
     cursor: pointer;
     transition: 0.3s;
+    z-index: 10;
   }
   .btn-imago:hover { background: #111; color: #fff; }
 
@@ -118,9 +134,23 @@
   }
   .gallery-overlay .close { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 1100; font-weight: 200; }
   .gallery-grid { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px; }
-  .gallery-item { opacity: 0; transform: translateY(20px); transition: 1s ease-out; text-align: center; }
+  
+  .gallery-item { 
+    opacity: 0; transform: translateY(20px); transition: 1s ease-out; text-align: center; 
+    position: relative; /* Potrebno za overlay */
+  }
+
+  /* ZAŠTITA: Providni sloj preko galerije */
+  .gallery-item::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10;
+    cursor: pointer;
+  }
+
   .gallery-item.visible { opacity: 1; transform: translateY(0); }
-  .gallery-item img { width: 100%; height: auto; cursor: pointer; }
+  .gallery-item img { width: 100%; height: auto; display: block; }
   
   .caption { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 20px; }
   .description { font-size: 0.85rem; color: var(--text-sub); max-width: 550px; margin: 15px auto 0; font-weight: 300; }
@@ -132,21 +162,20 @@
   .about-text h2 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 200; }
   
   .lightbox { background: rgba(255,255,255,0.98); z-index: 4000; flex-direction: column; }
-  .lightbox img { max-width: 90%; max-height: 75vh; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-  .lightbox .close { position: absolute; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; }
-
-  /* --- Mobile Adjustments --- */
-  @media(max-width: 768px){
-    .triptych-grid { gap: 6px; }
-    .triptych-col { gap: 6px; }
-    .col-1 img, .col-2 img { height: 280px; }
-    .col-3 img { height: 137px; }
-    .about-content { flex-direction: column; text-align: center; overflow-y: auto; }
-    .about-content img { max-width: 80%; }
-    .gallery-grid { gap: 50px; }
+  .lb-container { position: relative; display: flex; flex-direction: column; align-items: center; }
+  
+  /* ZAŠTITA: Providni sloj u Lightbox-u */
+  .lb-container::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 85%; /* Pokriva sliku */
+    z-index: 4005;
   }
 
-  /* --- NOVI STIL ZA FOOTER --- */
+  .lightbox img { max-width: 90%; max-height: 75vh; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+  .lightbox .close { position: absolute; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 5000; }
+
+  /* --- Footer --- */
   footer {
     text-align: center;
     padding: 60px 0;
@@ -154,52 +183,25 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     border-top: 1px solid #eee;
-    background: var(--bg-color); /* Premium siva pozadina */
+    background: var(--bg-color);
   }
-
-  footer .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  footer p { margin: 0; }
-  
-  /* Linkovi za Instagram i Inquiry */
-  footer .main-links {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-  }
-  footer .main-links a {
-    color: var(--text-main);
-    text-decoration: none;
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    transition: 0.3s;
-  }
+  footer .footer-content { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  footer .main-links { display: flex; gap: 20px; justify-content: center; }
+  footer .main-links a { color: var(--text-main); text-decoration: none; font-size: 0.8rem; transition: 0.3s; }
   footer .main-links a:hover { opacity: 0.5; }
+  footer .ibg-pro-link a { color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.2em; transition: 0.3s; }
+  footer .copyright { font-size: 0.65rem; opacity: 0.3; }
 
-  /* --- Boldovani link ka IBG Vision --- */
-  footer .ibg-pro-link a {
-    color: var(--text-main);
-    text-decoration: none;
-    font-size: 0.95rem; /* Malo veće da se istakne */
-    font-weight: 600;   /* Boldovano */
-    letter-spacing: 0.2em;
-    transition: 0.3s;
-  }
-  footer .ibg-pro-link a:hover { opacity: 0.5; }
-
-  /* Copyright tekst */
-  footer .copyright {
-    font-size: 0.65rem;
-    opacity: 0.3; /* Vrlo tanak i suptilan */
+  @media(max-width: 768px){
+    .triptych-grid { gap: 6px; }
+    .col-1 img, .col-2 img { height: 280px; }
+    .col-3 img { height: 137px; }
+    .about-content { flex-direction: column; text-align: center; overflow-y: auto; }
+    .about-content img { max-width: 80%; }
   }
 </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <!-- Globalno onemogućen desni klik -->
 
 <nav class="header-nav">
   <div id="about-btn">About</div>
@@ -210,11 +212,11 @@
   <div class="main-logo"><h1>IMAGO BY GORUS</h1></div>
 
   <div class="triptych-grid">
-    <div class="triptych-col col-1"><img src="31.jpg"></div>
-    <div class="triptych-col col-2"><img src="000000971.jpg"></div>
+    <div class="triptych-col col-1"><img src="31.jpg" ondragstart="return false;"></div>
+    <div class="triptych-col col-2"><img src="000000971.jpg" ondragstart="return false;"></div>
     <div class="triptych-col col-3">
-      <img src="515151.jpg">
-      <img src="IMG_4296.jpg">
+      <img src="515151.jpg" ondragstart="return false;">
+      <img src="IMG_4296.jpg" ondragstart="return false;">
     </div>
   </div>
 
@@ -227,7 +229,7 @@
 
 <section class="exhibition-section" id="exhibition-section">
   <div class="exhibition-banner" id="whispers-banner">
-    <img src="12.jpg">
+    <img src="12.jpg" ondragstart="return false;">
     <div class="content">
       <h3>Whispers of the Mara</h3>
       <p>Exclusive Online Exhibition</p>
@@ -242,30 +244,31 @@
 
 <footer>
   <div class="footer-content">
-    
     <p class="main-links">
       <a href="https://instagram.com/imago.by.gorus" target="_blank">Instagram</a>
       <a href="mailto:office@ibgvision.com">Inquiry</a>
     </p>
-
-    <p class="ibg-pro-link">
-      <a href="https://ibgvision.com" target="_blank">IBG Vision</a>
-    </p>
-
+    <p class="ibg-pro-link"><a href="https://ibgvision.com" target="_blank">IBG Vision</a></p>
     <p class="copyright">&copy; 2026 IBG VISION</p>
   </div>
 </footer>
 
+<!-- Lightbox sa Shop opcijom -->
 <div class="modal-base lightbox" id="lightbox">
   <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
-  <img id="lb-img">
-  <div id="lb-text" style="margin-top:20px; text-align:center; padding:0 20px;"></div>
+  <div class="lb-container">
+    <img id="lb-img" ondragstart="return false;">
+    <div id="lb-text" style="margin-top:20px; text-align:center; padding:0 20px;"></div>
+    <button class="btn-imago" id="buy-print-btn" style="margin-top: 25px; font-size: 0.65rem;">
+      Purchase Fine Art Print
+    </button>
+  </div>
 </div>
 
 <div class="modal-base" id="about-modal">
   <span class="close" style="position:absolute; top:25px; right:25px; font-size:2rem; cursor:pointer;" onclick="closeAbout()">&times;</span>
   <div class="about-content">
-    <img src="IVP_8418.jpg">
+    <img src="IVP_8418.jpg" ondragstart="return false;">
     <div class="about-text">
       <h2>The Vision</h2>
       <p>I am Gorus, a visual storyteller dedicated to the bold, the precise, and the unforgettable. My work is a pursuit of stillness within chaos, transforming fleeting moments into monolithic memories.</p>
@@ -296,7 +299,7 @@ function renderGallery(){
   const grid = document.getElementById('gallery-grid');
   grid.innerHTML = galleryData.map((item, i) => `
     <div class="gallery-item" onclick="openLB(${i})">
-      <img src="${item.src}" loading="lazy">
+      <img src="${item.src}" loading="lazy" ondragstart="return false;">
       <div class="caption">${item.caption}</div>
       <div class="description">${item.description}</div>
     </div>
@@ -308,7 +311,17 @@ function openLB(i){
   document.getElementById('lb-img').src = item.src;
   document.getElementById('lb-text').innerHTML = `<strong>${item.caption}</strong><br><small>${item.description}</small>`;
   document.getElementById('lightbox').style.display = 'flex';
+  
+  document.getElementById('buy-print-btn').onclick = () => {
+    const message = `Hello Gorus, I am interested in purchasing a print of: ${item.caption}`;
+    window.location.href = `https://wa.me/381616651755?text=${encodeURIComponent(message)}`;
+  };
 }
+
+// Dodatna JS zaštita za desni klik na slikama
+document.addEventListener('contextmenu', function(e) {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+}, false);
 
 const overlay = document.getElementById('gallery-overlay');
 document.getElementById('whispers-banner').onclick = () => {
