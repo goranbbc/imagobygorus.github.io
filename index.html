@@ -112,7 +112,7 @@
   
   .close-btn { position: fixed; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; }
 
-  /* --- Interactive Wall/Studio Lightbox --- */
+  /* --- REALISTIC ROOM STUDIO LIGHTBOX --- */
   .lightbox-studio {
     display: flex;
     max-width: 1200px;
@@ -122,43 +122,90 @@
     align-items: center;
   }
 
-  /* Preview Container (Wall Simulator) */
+  /* Wall Room Preview (Simulacija Sobe) */
   .wall-preview {
     flex: 1.2;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #eaeaea;
-    padding: 30px;
+    /* Svetla minimalistička pozadina sa suptilnim zidnim izgledom i komodom pri dnu */
+    background: 
+      linear-gradient(to bottom, transparent 70%, #d8c3b0 70%, #8c5a3c 72%, #5c3a21 100%),
+      radial-gradient(circle at 50% 30%, #ffffff 0%, #f0f0f0 100%);
+    position: relative;
+    padding: 20px;
     box-sizing: border-box;
     border-radius: 4px;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.05);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   }
 
+  /* Simulacija biljke u uglu sobe za fotorealizam */
+  .wall-preview::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    width: 120px;
+    height: 180px;
+    background: radial-gradient(ellipse at bottom, rgba(40,90,40,0.85) 0%, transparent 70%);
+    filter: blur(2px);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  /* Ram sa realističnim dubinskim senkama */
   .frame-wrapper {
-    transition: all 0.4s ease;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-    background: #fff;
-    max-height: 80%;
-    max-width: 90%;
+    position: relative;
+    transition: all 0.3s ease;
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 65vh;
+    max-width: 80%;
+    margin-bottom: 40px; /* Dizanje iznad komode */
   }
 
   .frame-wrapper img {
-    max-height: 55vh;
+    max-height: 50vh;
     max-width: 100%;
     display: block;
     object-fit: contain;
   }
 
-  /* CSS Dinamički Ramovi */
-  .frame-none { border: 0px solid transparent; padding: 0; }
-  .frame-black { border: 18px solid #111; padding: 20px; background: #fff; }
-  .frame-white { border: 18px solid #ffffff; padding: 20px; background: #fff; box-shadow: 0 0 0 1px #ddd, 0 20px 40px rgba(0,0,0,0.15); }
-  .frame-oak { border: 18px solid #c2a382; padding: 20px; background: #fff; }
+  /* Fotorealistični profili ramova sa senkama na zidu */
+  .frame-none { 
+    border: 0px solid transparent; 
+    padding: 0; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+  }
+  .frame-black { 
+    border: 12px solid #1a1a1a; 
+    padding: 15px; 
+    background: #fff; 
+    box-shadow: 
+      inset 0 0 5px rgba(0,0,0,0.5), 
+      0 20px 40px rgba(0,0,0,0.25),
+      0 2px 4px rgba(0,0,0,0.3); 
+  }
+  .frame-white { 
+    border: 12px solid #fcfcfc; 
+    padding: 15px; 
+    background: #fff; 
+    box-shadow: 
+      inset 0 0 2px rgba(0,0,0,0.2), 
+      0 0 0 1px #e0e0e0,
+      0 20px 40px rgba(0,0,0,0.18); 
+  }
+  .frame-oak { 
+    border: 12px solid #b8936c; 
+    padding: 15px; 
+    background: #fff; 
+    box-shadow: 
+      inset 0 0 5px rgba(0,0,0,0.3), 
+      0 20px 40px rgba(0,0,0,0.22); 
+  }
 
   /* Controls Panel */
   .studio-controls {
@@ -183,6 +230,7 @@
     cursor: pointer;
     transition: 0.3s;
     text-transform: uppercase;
+    background: #fff;
   }
   .pill:hover, .pill.active { border-color: #111; background: #111; color: #fff; }
 
@@ -195,7 +243,7 @@
       overflow-y: auto; 
       padding-top: 20px;
     }
-    .wall-preview { width: 100%; min-height: 280px; height: auto; }
+    .wall-preview { width: 100%; min-height: 320px; height: auto; }
     .studio-controls { width: 100%; text-align: center; }
     .pills-container { justify-content: center; }
   }
@@ -266,12 +314,12 @@
   </div>
 </div>
 
-<!-- INTERAKTIVNI STUDIO LIGHTBOX -->
+<!-- REALISTIC ROOM STUDIO LIGHTBOX -->
 <div class="modal-base" id="lightbox">
   <span class="close-btn" onclick="closeModal('lightbox')">&times;</span>
   <div class="lightbox-studio">
     
-    <!-- Prikaz na Zidu sa Dinamičkim Ramom -->
+    <!-- Prikaz na Zidu iznad Komode -->
     <div class="wall-preview">
       <div class="frame-wrapper frame-black" id="frame-target">
         <img id="lb-img" ondragstart="return false;">
