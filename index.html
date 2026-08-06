@@ -80,7 +80,7 @@
   .gallery-item img { width: 100%; height: auto; display: block; margin-bottom: 20px; }
   .gallery-item.visible { opacity: 1; transform: translateY(0); }
 
-  /* Premium Gallery Typography - Unifikovano za oba prikaza */
+  /* Typography */
   .caption {
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
@@ -106,20 +106,88 @@
   .modal-content img { max-width: 40%; max-height: 80vh; object-fit: contain; filter: grayscale(100%); }
   .modal-text h2 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 200; margin-bottom: 20px; }
   
-  /* Popravljena pozadina Lightboxa da bude identična sajtu */
-  .lightbox { background: var(--bg-color); z-index: 4000; flex-direction: column; }
-  .lb-container { position: relative; display: flex; flex-direction: column; align-items: center; width: 100%; }
-  .lightbox img { max-width: 90%; max-height: 70vh; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
   .close-btn { position: absolute; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 5000; font-weight: 200; }
 
-  /* --- Mobile Refinement --- */
-  @media(max-width: 768px){
-    .triptych-grid { gap: 6px; }
-    .col-1 img, .col-2 img { height: 350px; }
-    .col-3 img { height: 172px; }
-    .modal-content { flex-direction: column; text-align: center; }
-    .modal-content img { max-width: 80%; }
-    .gallery-grid { gap: 60px; }
+  /* --- Interactive Wall/Studio Lightbox --- */
+  .lightbox-studio {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    height: 85vh;
+    gap: 40px;
+    align-items: center;
+  }
+
+  /* Preview Container (Wall Simulator) */
+  .wall-preview {
+    flex: 1.2;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eaeaea; /* Imitacija zida */
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.05);
+  }
+
+  .frame-wrapper {
+    transition: all 0.4s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    background: #fff;
+    max-height: 80%;
+    max-width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .frame-wrapper img {
+    max-height: 60vh;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* CSS Dinamički Ramovi */
+  .frame-none { border: 0px solid transparent; padding: 0; }
+  .frame-black { border: 18px solid #111; padding: 20px; background: #fff; }
+  .frame-white { border: 18px solid #ffffff; padding: 20px; background: #fff; box-shadow: 0 0 0 1px #ddd, 0 20px 40px rgba(0,0,0,0.15); }
+  .frame-oak { border: 18px solid #c2a382; padding: 20px; background: #fff; }
+
+  /* Controls Panel */
+  .studio-controls {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .option-group { margin-bottom: 25px; }
+  .option-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; margin-bottom: 10px; color: var(--text-sub); }
+  
+  .pills-container { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+  }
+  .pill:hover, .pill.active { border-color: #111; background: #111; color: #fff; }
+
+  /* Mobile Refinement */
+  @media(max-width: 850px){
+    .lightbox-studio { flex-direction: column; height: auto; }
+    .wall-preview { width: 100%; height: 350px; }
+    .studio-controls { width: 100%; text-align: center; }
+    .pills-container { justify-content: center; }
   }
 
   footer { text-align: center; padding: 80px 0; border-top: 1px solid #eee; }
@@ -172,11 +240,6 @@
     <div class="modal-text">
       <h2>Collecting Imago</h2>
       <p>All works from the collection are available as limited edition <strong>Fine Art</strong> prints or digital licenses.</p>
-      <p>We believe in a personalized approach — dimensions, archival paper types, and a selection of wooden frames are discussed directly to ensure the piece perfectly complements your space.</p>
-      <p style="text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; color: #111;"><strong>How to Purchase:</strong></p>
-      <p>1. Explore the photo gallery below.<br>
-         2. Click on the artwork you wish to add to your collection.<br>
-         3. Select <strong>"Purchase Fine Art Print"</strong> to send a direct inquiry.</p>
       <button class="btn-imago" style="margin-top: 20px;" onclick="closeModal('prints-modal'); document.getElementById('exhibition-section').scrollIntoView({behavior:'smooth'})">Explore Gallery</button>
     </div>
   </div>
@@ -188,17 +251,50 @@
     <img src="IVP_8418.jpg" ondragstart="return false;">
     <div class="modal-text">
       <h2>The Vision</h2>
-      <p>I am Gorus, a visual storyteller dedicated to the bold and the unforgettable. Photography is my medium, not my identity.</p>
+      <p>I am Gorus, a visual storyteller dedicated to the bold and the unforgettable.</p>
     </div>
   </div>
 </div>
 
-<div class="modal-base lightbox" id="lightbox">
+<!-- INTERAKTIVNI STUDIO LIGHTBOX -->
+<div class="modal-base" id="lightbox">
   <span class="close-btn" onclick="closeModal('lightbox')">&times;</span>
-  <div class="lb-container">
-    <img id="lb-img" ondragstart="return false;">
-    <div id="lb-text" style="margin-top:25px; text-align:center;"></div>
-    <button class="btn-imago" id="buy-print-btn" style="margin-top: 30px; font-size: 0.65rem;">Purchase Fine Art Print</button>
+  <div class="lightbox-studio">
+    
+    <!-- Prikaz na Zidu sa Dinamičkim Ramom -->
+    <div class="wall-preview">
+      <div class="frame-wrapper frame-black" id="frame-target">
+        <img id="lb-img" ondragstart="return false;">
+      </div>
+    </div>
+
+    <!-- Opcije za prilagođavanje -->
+    <div class="studio-controls">
+      <div id="lb-text" style="margin-bottom:20px;"></div>
+
+      <div class="option-group">
+        <div class="option-title">1. Select Frame Style</div>
+        <div class="pills-container" id="frame-options">
+          <div class="pill active" onclick="setFrame('frame-black', this)">Black Wood</div>
+          <div class="pill" onclick="setFrame('frame-white', this)">White Wood</div>
+          <div class="pill" onclick="setFrame('frame-oak', this)">Natural Oak</div>
+          <div class="pill" onclick="setFrame('frame-none', this)">Print Only</div>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <div class="option-title">2. Select Print Size</div>
+        <div class="pills-container" id="size-options">
+          <div class="pill active" onclick="setSize('30x45 cm', this)">30x45 cm</div>
+          <div class="pill" onclick="setSize('40x60 cm', this)">40x60 cm</div>
+          <div class="pill" onclick="setSize('60x90 cm', this)">60x90 cm</div>
+          <div class="pill" onclick="setSize('80x120 cm', this)">80x120 cm</div>
+        </div>
+      </div>
+
+      <button class="btn-imago" id="buy-print-btn" style="margin-top: 15px; width: 100%;">Order This Fine Art Print</button>
+    </div>
+
   </div>
 </div>
 
@@ -229,6 +325,9 @@ const galleryData = [
   { src:"10.jpg", caption:"Tree of the Endless Plain", description:"A single acacia tree anchors the horizon." }
 ];
 
+let selectedFrame = "Black Wood";
+let selectedSize = "30x45 cm";
+
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
@@ -245,14 +344,29 @@ function renderGallery(){
   `).join('');
 }
 
+function setFrame(className, el) {
+  const target = document.getElementById('frame-target');
+  target.className = 'frame-wrapper ' + className;
+  document.querySelectorAll('#frame-options .pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  selectedFrame = el.innerText;
+}
+
+function setSize(sizeStr, el) {
+  document.querySelectorAll('#size-options .pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  selectedSize = sizeStr;
+}
+
 function openLB(i){
   const item = galleryData[i];
   document.getElementById('lb-img').src = item.src;
   document.getElementById('lb-text').innerHTML = `<div class="caption">${item.caption}</div><div class="description">${item.description}</div>`;
   document.getElementById('lightbox').style.display = 'flex';
   document.body.style.overflow = 'hidden';
+  
   document.getElementById('buy-print-btn').onclick = () => {
-    const msg = `Hello Gorus, I am interested in a print of: ${item.caption}`;
+    const msg = `Hello Gorus, I would like to inquire about a print:\n\n- Artwork: ${item.caption}\n- Size: ${selectedSize}\n- Frame: ${selectedFrame}`;
     window.location.href = `https://wa.me/381616651755?text=${encodeURIComponent(msg)}`;
   };
 }
