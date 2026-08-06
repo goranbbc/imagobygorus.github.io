@@ -133,32 +133,84 @@
     width: 100%;
   }
 
-  /* Wall Room Preview */
+  /* Realistična Pozadina Zida sa Komodom i Saksijom pri dnu */
   .wall-preview {
     width: 100%;
-    height: 420px;
+    height: 480px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Pomeranje ulevo ka komodi kao na NS Canvas-u */
     align-items: center;
-    background: radial-gradient(circle at 50% 30%, #ffffff 0%, #ebebeb 100%);
+    padding-left: 10%;
+    /* Ako ubaciš room-bg.jpg koristiće sliku, u suprotnom generiše zid sa komodom */
+    background: 
+      url('room-bg.jpg') center/cover no-repeat,
+      linear-gradient(to bottom, #f8f8f8 75%, #5a3825 75%, #3d2417 100%);
     position: relative;
     box-sizing: border-box;
     border: 1px solid #eee;
+    overflow: hidden;
   }
 
+  /* Saksija sa zelenilom na komodi desno */
+  .wall-preview::after {
+    content: "";
+    position: absolute;
+    bottom: 5%;
+    right: 8%;
+    width: 70px;
+    height: 140px;
+    background: radial-gradient(circle at 50% 80%, #ffffff 20%, transparent 22%),
+                radial-gradient(ellipse at 50% 30%, #3a7d44 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Kontejner rama */
   .frame-wrapper {
     position: relative;
     transition: all 0.3s ease;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 50px; /* Podignuto iznad komode */
   }
 
   .frame-wrapper img {
     display: block;
     object-fit: contain;
-    max-height: 320px;
-    max-width: 80%;
+    max-height: 330px;
+    max-width: 100%;
+  }
+
+  /* FRAMOVI BEZ PASPARTUA - Uz samu sliku (padding: 0) */
+  .frame-none { 
+    border: 0px solid transparent; 
+    padding: 0; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.22); 
+  }
+  .frame-black { 
+    border: 6px solid #1a1a1a; /* Tanka profilisana lajsna */
+    padding: 0 !important; /* Prijanja DIREKTNO uz sliku */
+    background: #1a1a1a; 
+    box-shadow: 
+      inset 0 0 2px rgba(255,255,255,0.2), 
+      0 18px 35px rgba(0,0,0,0.3),
+      0 3px 6px rgba(0,0,0,0.2); 
+  }
+  .frame-white { 
+    border: 6px solid #f2f2f2; 
+    padding: 0 !important; 
+    background: #f2f2f2; 
+    box-shadow: 
+      0 0 0 1px #ddd, 
+      0 18px 35px rgba(0,0,0,0.18); 
+  }
+  .frame-oak { 
+    border: 6px solid #b38b5f; 
+    padding: 0 !important; 
+    background: #b38b5f; 
+    box-shadow: 
+      inset 0 0 2px rgba(0,0,0,0.3), 
+      0 18px 35px rgba(0,0,0,0.25); 
   }
 
   /* Thumbnails kao na NS Canvas-u */
@@ -185,12 +237,6 @@
     max-height: 90%;
     object-fit: contain;
   }
-
-  /* Profili ramova */
-  .frame-none { border: 0px solid transparent; padding: 0; box-shadow: 0 10px 25px rgba(0,0,0,0.18); }
-  .frame-black { border: 12px solid #111; padding: 12px; background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
-  .frame-white { border: 12px solid #fff; padding: 12px; background: #fff; box-shadow: 0 0 0 1px #ddd, 0 15px 35px rgba(0,0,0,0.12); }
-  .frame-oak { border: 12px solid #c2a382; padding: 12px; background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.18); }
 
   /* Controls Panel (Desna Strana) */
   .studio-controls {
@@ -254,7 +300,7 @@
   .frame-thumb-box.active { border: 2px solid #111; }
   .bg-black-frame { background: #111; }
   .bg-white-frame { background: #fff; border: 1px solid #ccc; }
-  .bg-oak-frame { background: #c2a382; }
+  .bg-oak-frame { background: #b38b5f; }
   .bg-none-frame { background: #eee; position: relative; }
   .bg-none-frame::after { content: "N/A"; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; height: 100%; color: #777; }
 
@@ -263,6 +309,7 @@
     .lightbox-studio { flex-direction: column; }
     .left-gallery-container { width: 100%; }
     .studio-controls { width: 100%; }
+    .wall-preview { padding-left: 0; justify-content: center; }
   }
 
   footer { text-align: center; padding: 80px 0; border-top: 1px solid #eee; }
