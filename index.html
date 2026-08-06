@@ -112,45 +112,38 @@
   
   .close-btn { position: fixed; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; }
 
-  /* --- GENERATED STUDIO WALL LIGHTBOX --- */
+  /* --- NS CANVAS STYLE PRODUCT STUDIO --- */
   .lightbox-studio {
     display: flex;
-    max-width: 1200px;
+    max-width: 1100px;
     width: 100%;
-    height: 85vh;
     gap: 40px;
-    align-items: center;
+    align-items: flex-start;
+    background: #fff;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   }
 
-  /* Zid sa svetlosnim efektima i blagim senkama */
-  .wall-preview {
+  .left-gallery-container {
     flex: 1.2;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  /* Wall Room Preview */
+  .wall-preview {
+    width: 100%;
+    height: 420px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: 
-      radial-gradient(circle at 50% 30%, #ffffff 0%, #eaeaea 70%, #d8d8d8 100%);
+    background: radial-gradient(circle at 50% 30%, #ffffff 0%, #ebebeb 100%);
     position: relative;
-    padding: 20px;
     box-sizing: border-box;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: inset 0 0 80px rgba(0,0,0,0.06);
-  }
-
-  /* Suptilna senka tropske biljke u uglu zida */
-  .wall-preview::before {
-    content: "";
-    position: absolute;
-    bottom: -10%;
-    left: -5%;
-    width: 250px;
-    height: 350px;
-    background: radial-gradient(ellipse at bottom left, rgba(0,0,0,0.08) 0%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(25px);
-    pointer-events: none;
+    border: 1px solid #eee;
   }
 
   .frame-wrapper {
@@ -164,85 +157,112 @@
   .frame-wrapper img {
     display: block;
     object-fit: contain;
-    transition: all 0.3s ease;
+    max-height: 320px;
+    max-width: 80%;
   }
 
-  /* Dinamične dimenzije zavisno od orijentacije */
-  .orientation-landscape img { max-height: 42vh; max-width: 80%; }
-  .orientation-portrait img { max-height: 52vh; max-width: 65%; }
-
-  /* Realistični ramovi i paspartu */
-  .frame-none { 
-    border: 0px solid transparent; 
-    padding: 0; 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.22); 
+  /* Thumbnails kao na NS Canvas-u */
+  .thumbs-list {
+    display: flex;
+    gap: 10px;
   }
-  .frame-black { 
-    border: 14px solid #111111; 
-    padding: 16px; 
-    background: #ffffff; 
-    box-shadow: 
-      inset 0 0 3px rgba(0,0,0,0.4), 
-      0 20px 45px rgba(0,0,0,0.22),
-      0 3px 6px rgba(0,0,0,0.15); 
+  .thumb-item {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+    transition: 0.3s;
   }
-  .frame-white { 
-    border: 14px solid #f9f9f9; 
-    padding: 16px; 
-    background: #ffffff; 
-    box-shadow: 
-      inset 0 0 2px rgba(0,0,0,0.15), 
-      0 0 0 1px #e2e2e2,
-      0 20px 40px rgba(0,0,0,0.12); 
+  .thumb-item.active, .thumb-item:hover {
+    border-color: #111;
   }
-  .frame-oak { 
-    border: 14px solid #b8936c; 
-    padding: 16px; 
-    background: #ffffff; 
-    box-shadow: 
-      inset 0 0 4px rgba(0,0,0,0.3), 
-      0 20px 40px rgba(0,0,0,0.2); 
+  .thumb-item img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
   }
 
-  /* Controls Panel */
+  /* Profili ramova */
+  .frame-none { border: 0px solid transparent; padding: 0; box-shadow: 0 10px 25px rgba(0,0,0,0.18); }
+  .frame-black { border: 12px solid #111; padding: 12px; background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+  .frame-white { border: 12px solid #fff; padding: 12px; background: #fff; box-shadow: 0 0 0 1px #ddd, 0 15px 35px rgba(0,0,0,0.12); }
+  .frame-oak { border: 12px solid #c2a382; padding: 12px; background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.18); }
+
+  /* Controls Panel (Desna Strana) */
   .studio-controls {
     flex: 0.8;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     text-align: left;
-    height: 100%;
-    overflow-y: auto;
   }
 
-  .option-group { margin-bottom: 25px; }
-  .option-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; margin-bottom: 10px; color: var(--text-sub); }
-  
-  .pills-container { display: flex; flex-wrap: wrap; gap: 8px; }
-  .pill {
+  .product-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+    letter-spacing: 0.05em;
+  }
+
+  .option-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  .pills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .pill-box {
     padding: 8px 14px;
     border: 1px solid #ddd;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
+    font-size: 0.7rem;
     cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
+    transition: 0.2s;
     background: #fff;
   }
-  .pill:hover, .pill.active { border-color: #111; background: #111; color: #fff; }
+  .pill-box:hover, .pill-box.active {
+    border-color: #111;
+    background: #111;
+    color: #fff;
+  }
+
+  /* Ram selektor slicice */
+  .frames-grid {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .frame-thumb-box {
+    width: 45px;
+    height: 45px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: 0.2s;
+  }
+  .frame-thumb-box.active { border: 2px solid #111; }
+  .bg-black-frame { background: #111; }
+  .bg-white-frame { background: #fff; border: 1px solid #ccc; }
+  .bg-oak-frame { background: #c2a382; }
+  .bg-none-frame { background: #eee; position: relative; }
+  .bg-none-frame::after { content: "N/A"; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; height: 100%; color: #777; }
 
   /* Mobile Refinement */
   @media(max-width: 850px){
-    .lightbox-studio { 
-      flex-direction: column; 
-      height: auto; 
-      max-height: 85vh; 
-      overflow-y: auto; 
-      padding-top: 20px;
-    }
-    .wall-preview { width: 100%; min-height: 320px; height: auto; }
-    .studio-controls { width: 100%; text-align: center; }
-    .pills-container { justify-content: center; }
+    .lightbox-studio { flex-direction: column; }
+    .left-gallery-container { width: 100%; }
+    .studio-controls { width: 100%; }
   }
 
   footer { text-align: center; padding: 80px 0; border-top: 1px solid #eee; }
@@ -311,43 +331,54 @@
   </div>
 </div>
 
-<!-- STUDIO LIGHTBOX -->
+<!-- PRODUCT STUDIO LIGHTBOX -->
 <div class="modal-base" id="lightbox">
   <span class="close-btn" onclick="closeModal('lightbox')">&times;</span>
   <div class="lightbox-studio">
     
-    <!-- Zid Prikaz -->
-    <div class="wall-preview">
-      <div class="frame-wrapper frame-black orientation-landscape" id="frame-target">
-        <img id="lb-img" ondragstart="return false;">
+    <!-- Leva strana: Veliki prikaz + Thumbnails -->
+    <div class="left-gallery-container">
+      <div class="wall-preview">
+        <div class="frame-wrapper frame-black" id="frame-target">
+          <img id="lb-img" ondragstart="return false;">
+        </div>
+      </div>
+
+      <!-- Slicice prikaza dole -->
+      <div class="thumbs-list">
+        <div class="thumb-item active" onclick="setFrame('frame-black', document.querySelectorAll('.frame-thumb-box')[1])">
+          <img id="thumb-1" src="">
+        </div>
+        <div class="thumb-item" onclick="setFrame('frame-none', document.querySelectorAll('.frame-thumb-box')[0])">
+          <img id="thumb-2" src="">
+        </div>
       </div>
     </div>
 
-    <!-- Opcije -->
+    <!-- Desna strana: Konfigurator -->
     <div class="studio-controls">
-      <div id="lb-text" style="margin-bottom:20px;"></div>
+      <h2 class="product-title" id="lb-title">Artwork Title</h2>
+      <p id="lb-desc" style="font-size: 0.75rem; color:#666; margin-bottom: 20px;"></p>
 
-      <div class="option-group">
-        <div class="option-title">1. Select Frame Style</div>
-        <div class="pills-container" id="frame-options">
-          <div class="pill active" onclick="setFrame('frame-black', this)">Black Wood</div>
-          <div class="pill" onclick="setFrame('frame-white', this)">White Wood</div>
-          <div class="pill" onclick="setFrame('frame-oak', this)">Natural Oak</div>
-          <div class="pill" onclick="setFrame('frame-none', this)">Print Only</div>
-        </div>
+      <div class="option-label">Size: <span id="selected-size-label">20×30</span></div>
+      <div class="pills-grid" id="size-options">
+        <div class="pill-box active" onclick="setSize('20x30 cm', this)">20×30</div>
+        <div class="pill-box" onclick="setSize('30x45 cm', this)">30×45</div>
+        <div class="pill-box" onclick="setSize('40x60 cm', this)">40×60</div>
+        <div class="pill-box" onclick="setSize('50x75 cm', this)">50×75</div>
+        <div class="pill-box" onclick="setSize('60x90 cm', this)">60×90</div>
+        <div class="pill-box" onclick="setSize('80x120 cm', this)">80×120</div>
       </div>
 
-      <div class="option-group">
-        <div class="option-title">2. Select Print Size</div>
-        <div class="pills-container" id="size-options">
-          <div class="pill active" onclick="setSize('30x45 cm', this)">30x45 cm</div>
-          <div class="pill" onclick="setSize('40x60 cm', this)">40x60 cm</div>
-          <div class="pill" onclick="setSize('60x90 cm', this)">60x90 cm</div>
-          <div class="pill" onclick="setSize('80x120 cm', this)">80x120 cm</div>
-        </div>
+      <div class="option-label">Ram: <span id="selected-frame-label">Crni Ram</span></div>
+      <div class="frames-grid" id="frame-options">
+        <div class="frame-thumb-box bg-none-frame" title="Print Only" onclick="setFrame('frame-none', this)"></div>
+        <div class="frame-thumb-box bg-black-frame active" title="Crni Ram" onclick="setFrame('frame-black', this)"></div>
+        <div class="frame-thumb-box bg-white-frame" title="Beli Ram" onclick="setFrame('frame-white', this)"></div>
+        <div class="frame-thumb-box bg-oak-frame" title="Drveni Ram" onclick="setFrame('frame-oak', this)"></div>
       </div>
 
-      <button class="btn-imago" id="buy-print-btn" style="margin-top: 15px; width: 100%;">Order This Fine Art Print</button>
+      <button class="btn-imago" id="buy-print-btn" style="margin-top: 15px; width: 100%; background:#111; color:#fff;">Order Fine Art Print</button>
     </div>
 
   </div>
@@ -380,9 +411,8 @@ const galleryData = [
   { src:"10.jpg", caption:"Tree of the Endless Plain", description:"A single acacia tree anchors the horizon." }
 ];
 
-let selectedFrame = "Black Wood";
-let selectedSize = "30x45 cm";
-let currentStyle = "frame-black";
+let selectedFrame = "Crni Ram";
+let selectedSize = "20x30 cm";
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
@@ -401,38 +431,43 @@ function renderGallery(){
 }
 
 function setFrame(className, el) {
-  currentStyle = className;
   const target = document.getElementById('frame-target');
-  const orientationClass = target.classList.contains('orientation-portrait') ? 'orientation-portrait' : 'orientation-landscape';
-  target.className = 'frame-wrapper ' + className + ' ' + orientationClass;
-  document.querySelectorAll('#frame-options .pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  selectedFrame = el.innerText;
+  target.className = 'frame-wrapper ' + className;
+  
+  document.querySelectorAll('#frame-options .frame-thumb-box').forEach(p => p.classList.remove('active'));
+  if(el) el.classList.add('active');
+  
+  const labels = {
+    'frame-none': 'Bez Rama (Print)',
+    'frame-black': 'Crni Ram',
+    'frame-white': 'Beli Ram',
+    'frame-oak': 'Drveni Ram'
+  };
+  selectedFrame = labels[className] || 'Crni Ram';
+  document.getElementById('selected-frame-label').innerText = selectedFrame;
 }
 
 function setSize(sizeStr, el) {
-  document.querySelectorAll('#size-options .pill').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#size-options .pill-box').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
   selectedSize = sizeStr;
+  document.getElementById('selected-size-label').innerText = sizeStr;
 }
 
 function openLB(i){
   const item = galleryData[i];
-  const imgEl = document.getElementById('lb-img');
-  const target = document.getElementById('frame-target');
+  document.getElementById('lb-img').src = item.src;
+  document.getElementById('thumb-1').src = item.src;
+  document.getElementById('thumb-2').src = item.src;
   
-  imgEl.onload = function() {
-    const isPortrait = this.naturalHeight > this.naturalWidth;
-    target.className = 'frame-wrapper ' + currentStyle + ' ' + (isPortrait ? 'orientation-portrait' : 'orientation-landscape');
-  };
+  document.getElementById('lb-title').innerText = item.caption;
+  document.getElementById('lb-desc').innerText = item.description;
   
-  imgEl.src = item.src;
-  document.getElementById('lb-text').innerHTML = `<div class="caption">${item.caption}</div><div class="description">${item.description}</div>`;
   document.getElementById('lightbox').style.display = 'flex';
   document.body.style.overflow = 'hidden';
   
   document.getElementById('buy-print-btn').onclick = () => {
-    const msg = `Hello Gorus, I would like to inquire about a print:\n\n- Artwork: ${item.caption}\n- Size: ${selectedSize}\n- Frame: ${selectedFrame}`;
+    const msg = `Zdravo Gorus, želeo bih da naručim print:\n\n- Slika: ${item.caption}\n- Dimenzije: ${selectedSize}\n- Ram: ${selectedFrame}`;
     window.location.href = `https://wa.me/381616651755?text=${encodeURIComponent(msg)}`;
   };
 }
