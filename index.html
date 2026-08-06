@@ -129,21 +129,20 @@
     flex: 1.2;
     display: flex;
     flex-direction: column;
-    gap: 15px;
     width: 100%;
   }
 
-  /* Čist studio zid sa blagim osvetljenjem u sredini */
+  /* Studio zid sa mekim gradijentom pozadine */
   .wall-preview {
     width: 100%;
     height: 460px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at 50% 40%, #ffffff 0%, #ededed 70%, #e0e0e0 100%);
+    background: radial-gradient(circle at 50% 30%, #ffffff 0%, #f1f3f5 70%, #e3e7eb 100%);
     position: relative;
     box-sizing: border-box;
-    border: 1px solid #eee;
+    border: 1px solid #e9ecef;
     overflow: hidden;
   }
 
@@ -165,61 +164,48 @@
     max-width: 100%;
   }
 
-  /* Ramovi uz samu sliku (padding: 0) */
+  /* --- HIGH-REALISM 3D FRAMES --- */
+  
+  /* Print Only */
   .frame-none { 
     border: 0px solid transparent; 
     padding: 0; 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.22); 
-  }
-  .frame-black { 
-    border: 8px solid #1a1a1a; 
-    padding: 0 !important; 
-    background: #1a1a1a; 
-    box-shadow: 
-      inset 0 0 2px rgba(255,255,255,0.2), 
-      0 18px 35px rgba(0,0,0,0.25),
-      0 3px 6px rgba(0,0,0,0.15); 
-  }
-  .frame-white { 
-    border: 8px solid #fdfdfd; 
-    padding: 0 !important; 
-    background: #fdfdfd; 
-    box-shadow: 
-      0 0 0 1px #ddd, 
-      0 18px 35px rgba(0,0,0,0.15); 
-  }
-  .frame-oak { 
-    border: 8px solid #b38b5f; 
-    padding: 0 !important; 
-    background: #b38b5f; 
-    box-shadow: 
-      inset 0 0 2px rgba(0,0,0,0.3), 
-      0 18px 35px rgba(0,0,0,0.2); 
+    box-shadow: 0 12px 28px rgba(0,0,0,0.18); 
   }
 
-  /* Thumbnails dole */
-  .thumbs-list {
-    display: flex;
-    gap: 10px;
+  /* Realistični Crni Ram */
+  .frame-black { 
+    border: 9px solid #1c1d1f; 
+    padding: 0 !important; 
+    background: #1c1d1f; 
+    box-shadow: 
+      inset 1px 1px 2px rgba(255, 255, 255, 0.25), /* Refleksija na gornjoj ivici */
+      inset -1px -1px 2px rgba(0, 0, 0, 0.8),    /* Unutrašnja senka lajsne */
+      0 12px 25px rgba(0, 0, 0, 0.25),          /* Glavna senka na zidu */
+      0 3px 6px rgba(0, 0, 0, 0.15);
   }
-  .thumb-item {
-    width: 65px;
-    height: 65px;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f9f9f9;
-    transition: 0.3s;
+
+  /* Realistični Beli Ram */
+  .frame-white { 
+    border: 9px solid #f4f5f7; 
+    padding: 0 !important; 
+    background: #f4f5f7; 
+    box-shadow: 
+      inset 1px 1px 2px rgba(255, 255, 255, 0.9),
+      inset -1px -1px 2px rgba(0, 0, 0, 0.18),    /* Blagi unutrašnji profil */
+      0 0 0 1px #d0d5dd,                          /* Spoljni profil */
+      0 12px 25px rgba(0, 0, 0, 0.12);            /* Senka na zidu */
   }
-  .thumb-item.active, .thumb-item:hover {
-    border-color: #111;
-  }
-  .thumb-item img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
+
+  /* Realistični Drveni Ram (Hrast) */
+  .frame-oak { 
+    border: 9px solid #c3a078; 
+    padding: 0 !important; 
+    background: linear-gradient(135deg, #d3b088 0%, #b39068 50%, #a27f57 100%); /* Imitacija teksture i pregiba svetla drveta */
+    box-shadow: 
+      inset 1px 1px 2px rgba(255, 255, 255, 0.35),
+      inset -1px -1px 2px rgba(0, 0, 0, 0.4),
+      0 12px 25px rgba(0, 0, 0, 0.2);
   }
 
   /* Controls Panel (Desna Strana) */
@@ -282,9 +268,9 @@
     transition: 0.2s;
   }
   .frame-thumb-box.active { border: 2px solid #111; }
-  .bg-black-frame { background: #111; }
-  .bg-white-frame { background: #fff; border: 1px solid #ccc; }
-  .bg-oak-frame { background: #b38b5f; }
+  .bg-black-frame { background: #1c1d1f; }
+  .bg-white-frame { background: #f4f5f7; border: 1px solid #ccc; }
+  .bg-oak-frame { background: linear-gradient(135deg, #d3b088, #a27f57); }
   .bg-none-frame { background: #eee; position: relative; }
   .bg-none-frame::after { content: "N/A"; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; height: 100%; color: #777; }
 
@@ -367,21 +353,11 @@
   <span class="close-btn" onclick="closeModal('lightbox')">&times;</span>
   <div class="lightbox-studio">
     
-    <!-- Leva strana: Studio prikaz + Thumbnails -->
+    <!-- Leva strana: Prikaz na zidu -->
     <div class="left-gallery-container">
       <div class="wall-preview">
         <div class="frame-wrapper frame-black" id="frame-target">
           <img id="lb-img" ondragstart="return false;">
-        </div>
-      </div>
-
-      <!-- Slicice dole -->
-      <div class="thumbs-list">
-        <div class="thumb-item active" onclick="setFrame('frame-black', document.querySelectorAll('.frame-thumb-box')[1])">
-          <img id="thumb-1" src="">
-        </div>
-        <div class="thumb-item" onclick="setFrame('frame-none', document.querySelectorAll('.frame-thumb-box')[0])">
-          <img id="thumb-2" src="">
         </div>
       </div>
     </div>
@@ -488,8 +464,6 @@ function setSize(sizeStr, el) {
 function openLB(i){
   const item = galleryData[i];
   document.getElementById('lb-img').src = item.src;
-  document.getElementById('thumb-1').src = item.src;
-  document.getElementById('thumb-2').src = item.src;
   
   document.getElementById('lb-title').innerText = item.caption;
   document.getElementById('lb-desc').innerText = item.description;
