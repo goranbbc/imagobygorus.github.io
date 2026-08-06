@@ -112,7 +112,7 @@
   
   .close-btn { position: fixed; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; }
 
-  /* --- PRODUCT STUDIO LIGHTBOX --- */
+  /* --- EXCLUSIVE STUDIO LIGHTBOX --- */
   .lightbox-studio {
     display: flex;
     max-width: 1100px;
@@ -132,7 +132,7 @@
     width: 100%;
   }
 
-  /* Studio zid sa mekim gradijentom pozadine */
+  /* Studio zid */
   .wall-preview {
     width: 100%;
     height: 460px;
@@ -146,7 +146,6 @@
     overflow: hidden;
   }
 
-  /* Kontejner rama */
   .frame-wrapper {
     position: relative;
     transition: all 0.3s ease;
@@ -164,8 +163,8 @@
     max-width: 100%;
   }
 
-  /* --- HIGH-REALISM 3D FRAMES --- */
-  
+  /* --- FLOATING FRAME EFEKTI (SA KANALOM I PROCEPOM) --- */
+
   /* Print Only */
   .frame-none { 
     border: 0px solid transparent; 
@@ -173,42 +172,38 @@
     box-shadow: 0 12px 28px rgba(0,0,0,0.18); 
   }
 
-  /* Realistični Crni Ram */
-  .frame-black { 
-    border: 9px solid #1c1d1f; 
-    padding: 0 !important; 
-    background: #1c1d1f; 
+  /* Black Floating Frame */
+  .frame-float-black { 
+    background: #0a0a0a; /* Crni procep / tamna senka kanala */
+    padding: 7px !important; /* Procep u kom slika "lebdi" */
+    border: 10px solid #1a1a1a; /* Spoljna drvena lajsna */
     box-shadow: 
-      inset 1px 1px 2px rgba(255, 255, 255, 0.25), /* Refleksija na gornjoj ivici */
-      inset -1px -1px 2px rgba(0, 0, 0, 0.8),    /* Unutrašnja senka lajsne */
-      0 12px 25px rgba(0, 0, 0, 0.25),          /* Glavna senka na zidu */
-      0 3px 6px rgba(0, 0, 0, 0.15);
+      inset 0 0 6px rgba(0, 0, 0, 0.9), /* Unutrašnja dubinska senka kanala */
+      0 18px 35px rgba(0, 0, 0, 0.28);    /* Senka rama na zidu */
   }
 
-  /* Realistični Beli Ram */
-  .frame-white { 
-    border: 9px solid #f4f5f7; 
-    padding: 0 !important; 
-    background: #f4f5f7; 
+  /* White Floating Frame */
+  .frame-float-white { 
+    background: #111111; /* Crni procep unutra za kontrast */
+    padding: 7px !important; 
+    border: 10px solid #f5f5f7; 
     box-shadow: 
-      inset 1px 1px 2px rgba(255, 255, 255, 0.9),
-      inset -1px -1px 2px rgba(0, 0, 0, 0.18),    /* Blagi unutrašnji profil */
-      0 0 0 1px #d0d5dd,                          /* Spoljni profil */
-      0 12px 25px rgba(0, 0, 0, 0.12);            /* Senka na zidu */
+      inset 0 0 6px rgba(0, 0, 0, 0.8), 
+      0 0 0 1px #d1d5db,
+      0 18px 35px rgba(0, 0, 0, 0.16);
   }
 
-  /* Realistični Drveni Ram (Hrast) */
-  .frame-oak { 
-    border: 9px solid #c3a078; 
-    padding: 0 !important; 
-    background: linear-gradient(135deg, #d3b088 0%, #b39068 50%, #a27f57 100%); /* Imitacija teksture i pregiba svetla drveta */
+  /* Natural Oak Floating Frame */
+  .frame-float-oak { 
+    background: #0d0d0d; 
+    padding: 7px !important; 
+    border: 10px solid #b8936c; 
     box-shadow: 
-      inset 1px 1px 2px rgba(255, 255, 255, 0.35),
-      inset -1px -1px 2px rgba(0, 0, 0, 0.4),
-      0 12px 25px rgba(0, 0, 0, 0.2);
+      inset 0 0 6px rgba(0, 0, 0, 0.85),
+      0 18px 35px rgba(0, 0, 0, 0.22);
   }
 
-  /* Controls Panel (Desna Strana) */
+  /* Controls Panel */
   .studio-controls {
     flex: 0.8;
     display: flex;
@@ -221,6 +216,19 @@
     font-weight: 700;
     margin: 0 0 5px 0;
     letter-spacing: 0.05em;
+  }
+
+  .badge-exclusive {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: #111;
+    color: #fff;
+    padding: 4px 8px;
+    display: inline-block;
+    margin-bottom: 12px;
+    width: fit-content;
   }
 
   .option-label {
@@ -256,23 +264,35 @@
   /* Ram selektor */
   .frames-grid {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 20px;
   }
   .frame-thumb-box {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
     border: 1px solid #ddd;
     cursor: pointer;
     box-sizing: border-box;
     transition: 0.2s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .frame-thumb-box.active { border: 2px solid #111; }
-  .bg-black-frame { background: #1c1d1f; }
-  .bg-white-frame { background: #f4f5f7; border: 1px solid #ccc; }
-  .bg-oak-frame { background: linear-gradient(135deg, #d3b088, #a27f57); }
-  .bg-none-frame { background: #eee; position: relative; }
-  .bg-none-frame::after { content: "N/A"; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; height: 100%; color: #777; }
+  
+  /* Prikaz procepa u selektoru */
+  .bg-float-black { background: #1a1a1a; }
+  .bg-float-black::after { content:""; width:60%; height:60%; background:#0a0a0a; border: 1px solid #333; }
+
+  .bg-float-white { background: #f5f5f7; border: 1px solid #ccc; }
+  .bg-float-white::after { content:""; width:60%; height:60%; background:#111; }
+
+  .bg-float-oak { background: #b8936c; }
+  .bg-float-oak::after { content:""; width:60%; height:60%; background:#0d0d0d; }
+
+  .bg-none-frame { background: #eee; }
+  .bg-none-frame::after { content: "N/A"; font-size: 0.5rem; color: #777; }
 
   /* Mobile Refinement */
   @media(max-width: 850px){
@@ -331,7 +351,7 @@
   <div class="modal-content">
     <div class="modal-text">
       <h2>Collecting Imago</h2>
-      <p>All works from the collection are available as limited edition <strong>Fine Art</strong> prints or digital licenses.</p>
+      <p>All works from the collection are available as limited edition <strong>Fine Art</strong> prints mounted in premium <strong>Floating Frames</strong> or as standalone prints.</p>
       <button class="btn-imago" style="margin-top: 20px;" onclick="closeModal('prints-modal'); document.getElementById('exhibition-section').scrollIntoView({behavior:'smooth'})">Explore Gallery</button>
     </div>
   </div>
@@ -356,7 +376,7 @@
     <!-- Leva strana: Prikaz na zidu -->
     <div class="left-gallery-container">
       <div class="wall-preview">
-        <div class="frame-wrapper frame-black" id="frame-target">
+        <div class="frame-wrapper frame-float-black" id="frame-target">
           <img id="lb-img" ondragstart="return false;">
         </div>
       </div>
@@ -364,28 +384,28 @@
 
     <!-- Desna strana: Konfigurator -->
     <div class="studio-controls">
+      <div class="badge-exclusive">Fine Art Edition</div>
       <h2 class="product-title" id="lb-title">Artwork Title</h2>
       <p id="lb-desc" style="font-size: 0.75rem; color:#666; margin-bottom: 20px;"></p>
 
-      <div class="option-label">Size: <span id="selected-size-label">20×30</span></div>
+      <div class="option-label">Size: <span id="selected-size-label">30×45 cm</span></div>
       <div class="pills-grid" id="size-options">
-        <div class="pill-box active" onclick="setSize('20x30 cm', this)">20×30</div>
-        <div class="pill-box" onclick="setSize('30x45 cm', this)">30×45</div>
+        <div class="pill-box active" onclick="setSize('30x45 cm', this)">30×45</div>
         <div class="pill-box" onclick="setSize('40x60 cm', this)">40×60</div>
         <div class="pill-box" onclick="setSize('50x75 cm', this)">50×75</div>
         <div class="pill-box" onclick="setSize('60x90 cm', this)">60×90</div>
         <div class="pill-box" onclick="setSize('80x120 cm', this)">80×120</div>
       </div>
 
-      <div class="option-label">Ram: <span id="selected-frame-label">Crni Ram</span></div>
+      <div class="option-label">Framing: <span id="selected-frame-label">Black Floating Frame</span></div>
       <div class="frames-grid" id="frame-options">
         <div class="frame-thumb-box bg-none-frame" title="Print Only" onclick="setFrame('frame-none', this)"></div>
-        <div class="frame-thumb-box bg-black-frame active" title="Crni Ram" onclick="setFrame('frame-black', this)"></div>
-        <div class="frame-thumb-box bg-white-frame" title="Beli Ram" onclick="setFrame('frame-white', this)"></div>
-        <div class="frame-thumb-box bg-oak-frame" title="Drveni Ram" onclick="setFrame('frame-oak', this)"></div>
+        <div class="frame-thumb-box bg-float-black active" title="Black Floating Frame" onclick="setFrame('frame-float-black', this)"></div>
+        <div class="frame-thumb-box bg-float-white" title="White Floating Frame" onclick="setFrame('frame-float-white', this)"></div>
+        <div class="frame-thumb-box bg-float-oak" title="Natural Oak Floating Frame" onclick="setFrame('frame-float-oak', this)"></div>
       </div>
 
-      <button class="btn-imago" id="buy-print-btn" style="margin-top: 15px; width: 100%; background:#111; color:#fff;">Order Fine Art Print</button>
+      <button class="btn-imago" id="buy-print-btn" style="margin-top: 15px; width: 100%; background:#111; color:#fff;">Order Collector Edition</button>
     </div>
 
   </div>
@@ -418,8 +438,8 @@ const galleryData = [
   { src:"10.jpg", caption:"Tree of the Endless Plain", description:"A single acacia tree anchors the horizon." }
 ];
 
-let selectedFrame = "Crni Ram";
-let selectedSize = "20x30 cm";
+let selectedFrame = "Black Floating Frame";
+let selectedSize = "30x45 cm";
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
@@ -445,12 +465,12 @@ function setFrame(className, el) {
   if(el) el.classList.add('active');
   
   const labels = {
-    'frame-none': 'Bez Rama (Print)',
-    'frame-black': 'Crni Ram',
-    'frame-white': 'Beli Ram',
-    'frame-oak': 'Drveni Ram'
+    'frame-none': 'Print Only (Unframed)',
+    'frame-float-black': 'Black Floating Frame',
+    'frame-float-white': 'White Floating Frame',
+    'frame-float-oak': 'Natural Oak Floating Frame'
   };
-  selectedFrame = labels[className] || 'Crni Ram';
+  selectedFrame = labels[className] || 'Black Floating Frame';
   document.getElementById('selected-frame-label').innerText = selectedFrame;
 }
 
@@ -472,7 +492,7 @@ function openLB(i){
   document.body.style.overflow = 'hidden';
   
   document.getElementById('buy-print-btn').onclick = () => {
-    const msg = `Zdravo Gorus, želeo bih da naručim print:\n\n- Slika: ${item.caption}\n- Dimenzije: ${selectedSize}\n- Ram: ${selectedFrame}`;
+    const msg = `Hello Gorus, I would like to order a Fine Art Print:\n\n- Artwork: ${item.caption}\n- Size: ${selectedSize}\n- Framing: ${selectedFrame}`;
     window.location.href = `https://wa.me/381616651755?text=${encodeURIComponent(msg)}`;
   };
 }
