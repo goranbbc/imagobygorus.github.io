@@ -143,19 +143,32 @@
     background: #f8f9fa;
   }
 
-  /* --- POZICIONIRANJE SLIKE KOJE PREKRIVA RUPU 100% --- */
+  /* SLIKA ISPOD SOBO - Horizontalna (agresivno pokriva ceo ram) */
   .art-under-room {
     position: absolute;
-    top: 23% !important;
-    left: 17% !important;
-    width: 66% !important;
-    height: 55% !important;
-    
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
+    top: 18% !important;        /* Pomera sliku znatno nagore pod gornju lajsnu */
+    left: 15% !important;       /* Širi sliku levo */
+    width: 70% !important;      /* Širina pokriva ram sa rezervom */
+    height: 62% !important;     /* Dovoljna visina da pokrije dno i vrh pod lajsne */
+    object-fit: cover !important;
     z-index: 1;
+    display: block;
+  }
 
+  /* SLIKA ISPOD SOBO - Vertikalna */
+  .art-under-room.vertical {
+    top: 15% !important;
+    left: 21% !important;
+    width: 58% !important;
+    height: 65% !important;
+  }
+
+  /* Sloj za efekat zategnutog platna preko slike */
+  .canvas-texture-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none;
     background-image: repeating-linear-gradient(
       0deg,
       rgba(0,0,0,0.03),
@@ -169,24 +182,15 @@
       transparent 1px,
       transparent 2px
     );
-    background-blend-mode: overlay;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.22);
   }
 
-  .art-under-room.vertical {
-    top: 17% !important;
-    left: 23% !important;
-    width: 54% !important;
-    height: 60% !important;
-  }
-
-  /* PNG slika sobe preko */
+  /* PNG slika sobe preko svega */
   .room-overlay-img {
     width: 100%;
     height: auto;
     display: block;
     position: relative;
-    z-index: 2;
+    z-index: 3;
     pointer-events: none;
   }
 
@@ -362,10 +366,13 @@
     <!-- Leva strana: Prikaz u sobi -->
     <div class="left-gallery-container">
       <div class="room-container">
-        <!-- Tvoja umetnička slika kao pozadinski sloj -->
-        <div id="lb-img-box" class="art-under-room"></div>
+        <!-- 1. Tvoja fotografija (sloj na dnu) -->
+        <img id="lb-img" class="art-under-room" src="" ondragstart="return false;">
         
-        <!-- Slika sobe sa providnim ramom preko -->
+        <!-- 2. Tekstura platna (sloj u sredini) -->
+        <div class="canvas-texture-overlay"></div>
+        
+        <!-- 3. Slika sobe sa providnim ramom (sloj na vrhu) -->
         <img id="room-overlay" class="room-overlay-img" src="room-black-vert.png" ondragstart="return false;">
       </div>
     </div>
@@ -448,10 +455,10 @@ function renderGallery(){
 
 function setFrame(frameColor, frameName, el) {
   currentFrameColor = frameColor;
-  const imgBox = document.getElementById('lb-img-box');
+  const img = document.getElementById('lb-img');
   const roomOverlay = document.getElementById('room-overlay');
   
-  const isHorizontal = imgBox.dataset.orientation === 'horiz';
+  const isHorizontal = img.dataset.orientation === 'horiz';
   const orientation = isHorizontal ? 'horiz' : 'vert';
 
   if (frameColor !== 'none') {
@@ -475,27 +482,24 @@ function setSize(sizeStr, el) {
 function openLB(i){
   const item = galleryData[i];
   
-  const imgBox = document.getElementById('lb-img-box');
+  const img = document.getElementById('lb-img');
   const roomOverlay = document.getElementById('room-overlay');
 
   document.getElementById('lb-title').innerText = item.caption;
   document.getElementById('lb-desc').innerText = item.description;
 
-  const tempImg = new Image();
-  tempImg.src = item.src;
+  img.src = item.src;
 
-  tempImg.onload = () => {
-    imgBox.style.backgroundImage = `url('${item.src}')`;
-
-    const isHorizontal = tempImg.naturalWidth > tempImg.naturalHeight;
+  img.onload = () => {
+    const isHorizontal = img.naturalWidth > img.naturalHeight;
     
     if (isHorizontal) {
-      imgBox.classList.remove('vertical');
-      imgBox.dataset.orientation = 'horiz';
+      img.classList.remove('vertical');
+      img.dataset.orientation = 'horiz';
       roomOverlay.src = `room-${currentFrameColor}-horiz.png`;
     } else {
-      imgBox.classList.add('vertical');
-      imgBox.dataset.orientation = 'vert';
+      img.classList.add('vertical');
+      img.dataset.orientation = 'vert';
       roomOverlay.src = `room-${currentFrameColor}-vert.png`;
     }
   };
