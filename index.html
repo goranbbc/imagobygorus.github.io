@@ -143,19 +143,27 @@
     background: #f8f9fa;
   }
 
-  /* 1. Tvoja fotografija (ide ispod) */
+  /* 1. Vertikalne fotografije (ispod) */
   .art-under-room {
     position: absolute;
-    top: 14.5%; 
-    left: 20.8%; 
-    width: 58.4%; 
-    height: 58.5%; 
+    top: 19.3%; 
+    left: 24.8%; 
+    width: 50.4%; 
+    height: 54.8%; 
     object-fit: cover;
     z-index: 1;
     display: block;
   }
 
-  /* 2. PNG slika sobe sa providnim ramom (ide preko) */
+  /* 2. Horizontalne fotografije (ispod) */
+  .art-under-room.horizontal {
+    top: 25.2%;
+    left: 19.5%;
+    width: 61.0%;
+    height: 48.0%;
+  }
+
+  /* 3. PNG slika sobe sa providnim ramom (preko) */
   .room-overlay-img {
     width: 100%;
     height: auto;
@@ -403,6 +411,7 @@ const galleryData = [
 
 let selectedFrame = "Black Floating Frame";
 let selectedSize = "30x45 cm";
+let currentFrameColor = "black";
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
@@ -421,10 +430,15 @@ function renderGallery(){
 }
 
 function setFrame(frameColor, frameName, el) {
+  currentFrameColor = frameColor;
+  const img = document.getElementById('lb-img');
   const roomOverlay = document.getElementById('room-overlay');
   
-  if (frameColor === 'black' || frameColor === 'frame-float-black') {
-    roomOverlay.src = 'room-black-vert.png';
+  const isHorizontal = img.naturalWidth > img.naturalHeight;
+  const orientation = isHorizontal ? 'horiz' : 'vert';
+
+  if (frameColor !== 'none') {
+    roomOverlay.src = `room-${frameColor}-${orientation}.png`;
   }
 
   document.querySelectorAll('#frame-options .frame-thumb-box').forEach(p => p.classList.remove('active'));
@@ -443,10 +457,24 @@ function setSize(sizeStr, el) {
 
 function openLB(i){
   const item = galleryData[i];
-  document.getElementById('lb-img').src = item.src;
-  
+  const img = document.getElementById('lb-img');
+  const roomOverlay = document.getElementById('room-overlay');
+
+  img.src = item.src;
   document.getElementById('lb-title').innerText = item.caption;
   document.getElementById('lb-desc').innerText = item.description;
+
+  img.onload = () => {
+    const isHorizontal = img.naturalWidth > img.naturalHeight;
+    
+    if (isHorizontal) {
+      img.classList.add('horizontal');
+      roomOverlay.src = `room-${currentFrameColor}-horiz.png`;
+    } else {
+      img.classList.remove('horizontal');
+      roomOverlay.src = `room-${currentFrameColor}-vert.png`;
+    }
+  };
   
   document.getElementById('lightbox').style.display = 'flex';
   document.body.style.overflow = 'hidden';
@@ -468,5 +496,4 @@ function reveal(){
 document.getElementById('gallery-overlay').onscroll = reveal;
 </script>
 </body>
-</html>
 </html>
