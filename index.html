@@ -143,24 +143,19 @@
     background: #f8f9fa;
   }
 
-  /* AUTOMATSKO POPUNJAVANJE RAMA (COVER) SA EFEKTOM PLATNA */
+  /* --- POZICIONIRANJE SLIKE UNUTAR RAMA --- */
   .art-under-room {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 27.2% !important;
+    left: 18.5% !important;
+    width: 63.0% !important;
+    height: 48.5% !important;
     
-    /* Zauzima otprilike površinu rama u sobi */
-    width: 72%;
-    height: 52%;
-    
-    /* Slika se automatski prilagođava i puni 100% otvora bez ikakvih belih margina */
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     z-index: 1;
 
-    /* Tekstura pamučnog/lanenog platna i dubinska senka */
     background-image: repeating-linear-gradient(
       0deg,
       rgba(0,0,0,0.03),
@@ -178,10 +173,11 @@
     box-shadow: inset 0 0 10px rgba(0,0,0,0.22);
   }
 
-  /* Okvirna površina za uspravne (vertikalne) ramove */
   .art-under-room.vertical {
-    width: 53%;
-    height: 58%;
+    top: 19.3% !important;
+    left: 24.8% !important;
+    width: 50.4% !important;
+    height: 54.8% !important;
   }
 
   /* PNG slika sobe preko */
@@ -366,7 +362,7 @@
     <!-- Leva strana: Prikaz u sobi -->
     <div class="left-gallery-container">
       <div class="room-container">
-        <!-- Tvoja umetnička slika kao pozadinski sloj koji popunjava ceo ram -->
+        <!-- Tvoja umetnička slika kao pozadinski sloj -->
         <div id="lb-img-box" class="art-under-room"></div>
         
         <!-- Slika sobe sa providnim ramom preko -->
@@ -491,7 +487,6 @@ function openLB(i){
   tempImg.src = item.src;
 
   tempImg.onload = () => {
-    // Postavlja sliku kao pozadinski sloj
     imgBox.style.backgroundImage = `url('${item.src}')`;
 
     const isHorizontal = tempImg.naturalWidth > tempImg.naturalHeight;
