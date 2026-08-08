@@ -143,13 +143,13 @@
     background: #f8f9fa;
   }
 
-  /* SLIKA ISPOD SOBO - Horizontalna (agresivno pokriva ceo ram) */
+  /* SLIKA ISPOD SOBO - Horizontalna */
   .art-under-room {
     position: absolute;
-    top: 18% !important;        /* Pomera sliku znatno nagore pod gornju lajsnu */
-    left: 15% !important;       /* Širi sliku levo */
-    width: 70% !important;      /* Širina pokriva ram sa rezervom */
-    height: 62% !important;     /* Dovoljna visina da pokrije dno i vrh pod lajsne */
+    top: 18% !important;
+    left: 15% !important;
+    width: 70% !important;
+    height: 62% !important;
     object-fit: cover !important;
     z-index: 1;
     display: block;
@@ -157,13 +157,13 @@
 
   /* SLIKA ISPOD SOBO - Vertikalna */
   .art-under-room.vertical {
-    top: 15% !important;
-    left: 21% !important;
-    width: 58% !important;
-    height: 65% !important;
+    top: 12% !important;
+    left: 20% !important;
+    width: 60% !important;
+    height: 68% !important;
   }
 
-  /* Sloj za efekat zategnutog platna preko slike */
+  /* Sloj za teksturu platna */
   .canvas-texture-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -184,7 +184,7 @@
     );
   }
 
-  /* PNG slika sobe preko svega */
+  /* PNG slika sobe preko */
   .room-overlay-img {
     width: 100%;
     height: auto;
