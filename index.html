@@ -143,13 +143,13 @@
     background: #f8f9fa;
   }
 
-  /* --- POZICIONIRANJE SLIKE UNUTAR RAMA --- */
+  /* --- POZICIONIRANJE SLIKE KOJE PREKRIVA RUPU 100% --- */
   .art-under-room {
     position: absolute;
-    top: 27.2% !important;
-    left: 18.5% !important;
-    width: 63.0% !important;
-    height: 48.5% !important;
+    top: 23% !important;
+    left: 17% !important;
+    width: 66% !important;
+    height: 55% !important;
     
     background-size: cover !important;
     background-position: center !important;
@@ -174,10 +174,10 @@
   }
 
   .art-under-room.vertical {
-    top: 19.3% !important;
-    left: 24.8% !important;
-    width: 50.4% !important;
-    height: 54.8% !important;
+    top: 17% !important;
+    left: 23% !important;
+    width: 54% !important;
+    height: 60% !important;
   }
 
   /* PNG slika sobe preko */
@@ -429,7 +429,6 @@ const galleryData = [
 let selectedFrame = "Black Floating Frame";
 let selectedSize = "30x45 cm";
 let currentFrameColor = "black";
-let currentImgSrc = "";
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
@@ -475,7 +474,6 @@ function setSize(sizeStr, el) {
 
 function openLB(i){
   const item = galleryData[i];
-  currentImgSrc = item.src;
   
   const imgBox = document.getElementById('lb-img-box');
   const roomOverlay = document.getElementById('room-overlay');
