@@ -153,7 +153,7 @@
     background: #f8f9fa;
   }
 
-  /* SLIKA ISPOD SOBO - Horizontalna */
+  /* SLIKA ISPOD - Horizontalna */
   .art-under-room {
     position: absolute;
     top: 18% !important;
@@ -165,7 +165,7 @@
     display: block;
   }
 
-  /* SLIKA ISPOD SOBO - Vertikalna */
+  /* SLIKA ISPOD - Vertikalna */
   .art-under-room.vertical {
     top: 12% !important;
     left: 20% !important;
@@ -282,12 +282,8 @@
   }
   .frame-thumb-box.active { border: 2px solid #111; }
   
-  /* Prikaz procepa u selektoru */
   .bg-float-black { background: #1a1a1a; }
   .bg-float-black::after { content:""; width:60%; height:60%; background:#0a0a0a; border: 1px solid #333; }
-
-  .bg-float-white { background: #f5f5f7; border: 1px solid #ccc; }
-  .bg-float-white::after { content:""; width:60%; height:60%; background:#111; }
 
   .bg-float-oak { background: #b8936c; }
   .bg-float-oak::after { content:""; width:60%; height:60%; background:#0d0d0d; }
@@ -295,7 +291,7 @@
   .bg-none-frame { background: #eee; }
   .bg-none-frame::after { content: "N/A"; font-size: 0.5rem; color: #777; }
 
-  /* --- PRILAGOĐAVANJE ZA MOBILNE UREĐAJE --- */
+  /* Mobile Refinement */
   @media(max-width: 850px){
     nav.header-nav { top: 15px; right: 15px; gap: 12px; font-size: 0.65rem; }
     .hero-landing { padding: 60px 15px 30px; }
@@ -305,8 +301,7 @@
     .col-3 img { height: 170px; }
 
     .lightbox-studio { flex-direction: column; padding: 20px 15px; gap: 25px; margin-top: 30px; }
-    .left-gallery-container { width: 100%; }
-    .studio-controls { width: 100%; }
+    .left-gallery-container, .studio-controls { width: 100%; }
     
     .modal-content { flex-direction: column; text-align: center; gap: 20px; }
     .modal-content img { max-width: 80%; }
@@ -397,13 +392,13 @@
     <!-- Leva strana: Prikaz u sobi -->
     <div class="left-gallery-container">
       <div class="room-container">
-        <!-- 1. Tvoja fotografija (sloj na dnu) -->
+        <!-- 1. Tvoja fotografija -->
         <img id="lb-img" class="art-under-room" src="" ondragstart="return false;">
         
-        <!-- 2. Tekstura platna (sloj u sredini) -->
+        <!-- 2. Tekstura platna -->
         <div class="canvas-texture-overlay"></div>
         
-        <!-- 3. Slika sobe sa providnim ramom (sloj na vrhu) -->
+        <!-- 3. Slika sobe sa providnim ramom preko -->
         <img id="room-overlay" class="room-overlay-img" src="room-black-vert.png" ondragstart="return false;">
       </div>
     </div>
@@ -427,7 +422,6 @@
       <div class="frames-grid" id="frame-options">
         <div class="frame-thumb-box bg-none-frame" title="Print Only" onclick="setFrame('none', 'Print Only (Unframed)', this)"></div>
         <div class="frame-thumb-box bg-float-black active" title="Black Floating Frame" onclick="setFrame('black', 'Black Floating Frame', this)"></div>
-        <div class="frame-thumb-box bg-float-white" title="White Floating Frame" onclick="setFrame('white', 'White Floating Frame', this)"></div>
         <div class="frame-thumb-box bg-float-oak" title="Natural Oak Floating Frame" onclick="setFrame('oak', 'Natural Oak Floating Frame', this)"></div>
       </div>
 
@@ -494,6 +488,9 @@ function setFrame(frameColor, frameName, el) {
 
   if (frameColor !== 'none') {
     roomOverlay.src = `room-${frameColor}-${orientation}.png`;
+    roomOverlay.style.display = 'block';
+  } else {
+    roomOverlay.style.display = 'none';
   }
 
   document.querySelectorAll('#frame-options .frame-thumb-box').forEach(p => p.classList.remove('active'));
@@ -527,11 +524,17 @@ function openLB(i){
     if (isHorizontal) {
       img.classList.remove('vertical');
       img.dataset.orientation = 'horiz';
-      roomOverlay.src = `room-${currentFrameColor}-horiz.png`;
+      if (currentFrameColor !== 'none') {
+        roomOverlay.src = `room-${currentFrameColor}-horiz.png`;
+        roomOverlay.style.display = 'block';
+      }
     } else {
       img.classList.add('vertical');
       img.dataset.orientation = 'vert';
-      roomOverlay.src = `room-${currentFrameColor}-vert.png`;
+      if (currentFrameColor !== 'none') {
+        roomOverlay.src = `room-${currentFrameColor}-vert.png`;
+        roomOverlay.style.display = 'block';
+      }
     }
   };
   
