@@ -150,27 +150,15 @@
     margin: 0 auto;
     overflow: hidden;
     border-radius: 4px;
-    background: #f8f9fa;
+    background: #000;
   }
 
-  /* SLIKA ISPOD - Horizontalna */
+  /* SLIKA ISPOD - Pozicioniranje */
   .art-under-room {
     position: absolute;
-    top: 18% !important;
-    left: 15% !important;
-    width: 70% !important;
-    height: 62% !important;
     object-fit: cover !important;
     z-index: 1;
     display: block;
-  }
-
-  /* SLIKA ISPOD - Vertikalna */
-  .art-under-room.vertical {
-    top: 12% !important;
-    left: 20% !important;
-    width: 60% !important;
-    height: 68% !important;
   }
 
   /* Sloj za teksturu platna */
@@ -478,6 +466,37 @@ function renderGallery(){
   `).join('');
 }
 
+// Funkcija koja dinamički pomera sliku za savršeno uklapanje
+function adjustArtPosition(frameColor, isHorizontal) {
+  const img = document.getElementById('lb-img');
+  
+  if (isHorizontal) {
+    if (frameColor === 'oak') {
+      img.style.setProperty('top', '17%', 'important');
+      img.style.setProperty('left', '14.5%', 'important');
+      img.style.setProperty('width', '71%', 'important');
+      img.style.setProperty('height', '64%', 'important');
+    } else {
+      img.style.setProperty('top', '18%', 'important');
+      img.style.setProperty('left', '15%', 'important');
+      img.style.setProperty('width', '70%', 'important');
+      img.style.setProperty('height', '62%', 'important');
+    }
+  } else {
+    if (frameColor === 'oak') {
+      img.style.setProperty('top', '11%', 'important');
+      img.style.setProperty('left', '19.5%', 'important');
+      img.style.setProperty('width', '61%', 'important');
+      img.style.setProperty('height', '70%', 'important');
+    } else {
+      img.style.setProperty('top', '12%', 'important');
+      img.style.setProperty('left', '20%', 'important');
+      img.style.setProperty('width', '60%', 'important');
+      img.style.setProperty('height', '68%', 'important');
+    }
+  }
+}
+
 function setFrame(frameColor, frameName, el) {
   currentFrameColor = frameColor;
   const img = document.getElementById('lb-img');
@@ -489,6 +508,7 @@ function setFrame(frameColor, frameName, el) {
   if (frameColor !== 'none') {
     roomOverlay.src = `room-${frameColor}-${orientation}.png`;
     roomOverlay.style.display = 'block';
+    adjustArtPosition(frameColor, isHorizontal);
   } else {
     roomOverlay.style.display = 'none';
   }
@@ -536,6 +556,8 @@ function openLB(i){
         roomOverlay.style.display = 'block';
       }
     }
+    
+    adjustArtPosition(currentFrameColor, isHorizontal);
   };
   
   document.getElementById('lightbox').style.display = 'flex';
