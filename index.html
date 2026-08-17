@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IMAGO BY GORUS | FINE ART GALLERY</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --bg-dark: #0a0a0a;
     --bg-light: #f4f4f4;
-    --text-gold: #a38552;
     --text-dark: #111111;
     --text-sub: #666666;
     --border-color: #e0e0e0;
@@ -78,7 +77,7 @@
 
   /* --- 2. EXHIBITIONS SECTION --- */
   .exhibitions-container { padding: 40px 20px 80px; max-width: 1100px; margin: 0 auto; text-align: center; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; color: var(--text-gold); margin-bottom: 30px; }
+  .section-title { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 30px; }
   
   .exhibition-banner { width: 100%; cursor: pointer; position: relative; overflow: hidden; transition: 0.5s; margin-bottom: 30px; }
   .exhibition-banner img { width: 100%; height: 450px; object-fit: cover; filter: brightness(0.65); transition: 0.5s; }
@@ -88,10 +87,10 @@
   
   .exhibition-grid-inline { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 
-  /* --- 3. SHOP SECTION (PETER LIK STYLE) --- */
+  /* --- 3. SHOP SECTION --- */
   #sec-shop { background: #fff; padding: 110px 20px 80px; text-align: center; }
-  .shop-intro-header h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--text-gold); font-weight: 400; margin-bottom: 10px; }
-  .shop-intro-header p { font-size: 0.8rem; color: var(--text-sub); max-width: 750px; margin: 0 auto 50px; line-height: 1.8; }
+  .shop-intro-header h1 { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 15px; }
+  .shop-intro-header p { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-sub); max-width: 750px; margin: 0 auto 50px; line-height: 1.8; text-transform: uppercase; }
 
   .peter-lik-grid {
     display: grid;
@@ -110,7 +109,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    min-height: 420px;
+    min-height: 400px;
   }
   .lik-card:hover { transform: translateY(-4px); }
   .lik-card-img-wrap { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
@@ -118,8 +117,7 @@
   
   .lik-card-meta { text-align: center; }
   .lik-card-edition { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-sub); margin-bottom: 4px; }
-  .lik-card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #111; margin: 0 0 6px 0; font-weight: 400; }
-  .lik-card-price { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text-gold); }
+  .lik-card-title { font-size: 0.85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.2em; color: #111; margin: 0; }
 
   /* --- 4. PRODUCT DETAIL PAGE - PDP --- */
   #sec-pdp { background: var(--bg-light); padding: 120px 20px 80px; }
@@ -132,9 +130,8 @@
   .pdp-room-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
   .pdp-controls { flex: 0.9; text-align: left; }
-  .pdp-title-text { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--text-gold); margin: 0 0 2px 0; font-weight: 400; }
-  .pdp-sub-badge { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: #777; margin-bottom: 15px; }
-  .pdp-price-text { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #222; margin-bottom: 25px; }
+  .pdp-title-text { font-size: 1.6rem; font-weight: 200; text-transform: uppercase; letter-spacing: 0.25em; color: #111; margin: 0 0 5px 0; }
+  .pdp-sub-badge { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: #777; margin-bottom: 25px; }
 
   .pdp-field-group { margin-bottom: 18px; }
   .pdp-field-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: #333; }
@@ -145,11 +142,11 @@
   }
 
   .btn-pdp-cart {
-    width: 100%; background: var(--text-gold); color: #fff; border: none;
+    width: 100%; background: #111; color: #fff; border: none;
     padding: 15px; font-family: 'Montserrat', sans-serif; text-transform: uppercase;
-    font-size: 0.75rem; letter-spacing: 0.2em; cursor: pointer; transition: 0.3s; margin-top: 10px;
+    font-size: 0.75rem; letter-spacing: 0.2em; cursor: pointer; transition: 0.3s; margin-top: 15px;
   }
-  .btn-pdp-cart:hover { background: #8a6f41; }
+  .btn-pdp-cart:hover { background: #333; }
 
   /* Frame Thumbnails Row Below Add To Cart */
   .frame-preview-row { margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 20px; }
@@ -240,7 +237,7 @@
   </div>
 </section>
 
-<!-- 3. SHOP SECTION (PETER LIK STYLE GRID) -->
+<!-- 3. SHOP SECTION -->
 <section class="page-section" id="sec-shop">
   <div class="shop-intro-header">
     <h1>Limited Edition Fine Art Photography</h1>
@@ -268,7 +265,6 @@
     <div class="pdp-controls">
       <h1 class="pdp-title-text" id="pdp-item-title">Artwork Title</h1>
       <div class="pdp-sub-badge">Limited Edition</div>
-      <div class="pdp-price-text" id="pdp-item-price">€5,600</div>
 
       <div class="pdp-field-group">
         <div class="pdp-field-label">Size:</div>
@@ -299,7 +295,7 @@
         </select>
       </div>
 
-      <button class="btn-pdp-cart" onclick="sendOrderRequest()">Add To Order Request &rarr;</button>
+      <button class="btn-pdp-cart" onclick="sendOrderRequest()">Inquire / Reserve Print &rarr;</button>
 
       <!-- Tri slicice floating ramova ispod Add To Cart -->
       <div class="frame-preview-row">
@@ -338,7 +334,7 @@
   <div class="modal-content">
     <img src="IVP_8418.jpg" ondragstart="return false;">
     <div>
-      <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; text-transform: uppercase;">The Vision</h2>
+      <h2 style="font-weight: 200; text-transform: uppercase; letter-spacing: 0.2em;">The Vision</h2>
       <p>I am Gorus, a visual storyteller dedicated to the bold and the unforgettable.</p>
     </div>
   </div>
@@ -354,14 +350,14 @@
 
 <script>
 const productsData = [
-  { id: "31", title: "Whisper of the Wild", price: "€5,600", src: "31.jpg", roomSrc: "31-black.jpg" },
-  { id: "12", title: "Echoes of the Ancients", price: "€5,600", src: "12.jpg", roomSrc: "12-black.jpg" },
-  { id: "33", title: "Sentinel of the Savannah", price: "€4,200", src: "33.jpg", roomSrc: "33-black.jpg" },
-  { id: "3", title: "Sisters in the Sun", price: "€4,800", src: "3.jpg", roomSrc: "3-black.jpg" },
-  { id: "23", title: "Brothers of the Dusk", price: "€5,100", src: "23.jpg", roomSrc: "23-black.jpg" },
-  { id: "24", title: "Echoes of Innocence", price: "€3,900", src: "24.jpg", roomSrc: "24-black.jpg" },
-  { id: "26", title: "Mother’s Embrace", price: "€4,500", src: "26.jpg", roomSrc: "26-black.jpg" },
-  { id: "16", title: "Soul of the Savannah", price: "€5,300", src: "16.jpg", roomSrc: "16-black.jpg" }
+  { id: "31", title: "Whisper of the Wild", src: "31.jpg", roomSrc: "31-black.jpg" },
+  { id: "12", title: "Echoes of the Ancients", src: "12.jpg", roomSrc: "12-black.jpg" },
+  { id: "33", title: "Sentinel of the Savannah", src: "33.jpg", roomSrc: "33-black.jpg" },
+  { id: "3", title: "Sisters in the Sun", src: "3.jpg", roomSrc: "3-black.jpg" },
+  { id: "23", title: "Brothers of the Dusk", src: "23.jpg", roomSrc: "23-black.jpg" },
+  { id: "24", title: "Echoes of Innocence", src: "24.jpg", roomSrc: "24-black.jpg" },
+  { id: "26", title: "Mother’s Embrace", src: "26.jpg", roomSrc: "26-black.jpg" },
+  { id: "16", title: "Soul of the Savannah", src: "16.jpg", roomSrc: "16-black.jpg" }
 ];
 
 let activeProduct = productsData[0];
@@ -383,7 +379,7 @@ function showSection(sectionId) {
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-// Render Peter Lik style grid u Shop-u
+// Render Shop grid
 function renderShopGrid() {
   const grid = document.getElementById('peter-lik-shop-grid');
   grid.innerHTML = productsData.map((p, index) => `
@@ -394,7 +390,6 @@ function renderShopGrid() {
       <div class="lik-card-meta">
         <div class="lik-card-edition">Limited Edition</div>
         <h3 class="lik-card-title">${p.title}</h3>
-        <div class="lik-card-price">${p.price}</div>
       </div>
     </div>
   `).join('');
@@ -411,18 +406,16 @@ function renderExhibitionItems() {
       <div class="lik-card-meta">
         <div class="lik-card-edition">Limited Edition</div>
         <h3 class="lik-card-title">${p.title}</h3>
-        <div class="lik-card-price">${p.price}</div>
       </div>
     </div>
   `).join('');
 }
 
-// Otvaranje pojedinačne stranice rada (PDP - Prikaz 2)
+// Otvaranje pojedinačne stranice rada (PDP)
 function openPDP(index) {
   activeProduct = productsData[index];
   
   document.getElementById('pdp-item-title').innerText = activeProduct.title;
-  document.getElementById('pdp-item-price').innerText = activeProduct.price;
   document.getElementById('pdp-main-img').src = activeProduct.src;
   document.getElementById('pdp-room-thumb-img').src = activeProduct.roomSrc;
 
