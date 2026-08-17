@@ -75,20 +75,8 @@
   }
   .btn-imago:hover { background: #111; color: #fff; }
 
-  /* --- 2. EXHIBITIONS SECTION --- */
-  .exhibitions-container { padding: 40px 20px 80px; max-width: 1100px; margin: 0 auto; text-align: center; }
-  .section-title { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 30px; }
-  
-  .exhibition-banner { width: 100%; cursor: pointer; position: relative; overflow: hidden; transition: 0.5s; margin-bottom: 30px; }
-  .exhibition-banner img { width: 100%; height: 450px; object-fit: cover; filter: brightness(0.65); transition: 0.5s; }
-  .exhibition-banner:hover img { filter: brightness(0.8); transform: scale(1.02); }
-  .exhibition-banner .content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; width: 100%; padding: 0 15px; }
-  .exhibition-banner h3 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 200; font-size: clamp(1.2rem, 3.5vw, 2.4rem); margin: 0; }
-  
-  .exhibition-grid-inline { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-
-  /* --- 3. SHOP SECTION --- */
-  #sec-shop { background: #fff; padding: 110px 20px 80px; text-align: center; }
+  /* --- 2. WORK & SHOP SECTION (PETER LIK STYLE GRID) --- */
+  .catalog-section { background: #fff; padding: 40px 20px 80px; text-align: center; }
   .shop-intro-header h1 { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 15px; }
   .shop-intro-header p { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-sub); max-width: 750px; margin: 0 auto 50px; line-height: 1.8; text-transform: uppercase; }
 
@@ -109,7 +97,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    min-height: 400px;
+    min-height: 380px;
   }
   .lik-card:hover { transform: translateY(-4px); }
   .lik-card-img-wrap { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
@@ -119,7 +107,7 @@
   .lik-card-edition { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-sub); margin-bottom: 4px; }
   .lik-card-title { font-size: 0.85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.2em; color: #111; margin: 0; }
 
-  /* --- 4. PRODUCT DETAIL PAGE - PDP --- */
+  /* --- 3. PRODUCT DETAIL PAGE - PDP --- */
   #sec-pdp { background: var(--bg-light); padding: 120px 20px 80px; }
   .pdp-wrapper { max-width: 1200px; margin: 0 auto; display: flex; gap: 50px; align-items: flex-start; }
   
@@ -155,7 +143,7 @@
   .frame-mini-card { text-align: center; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
   .frame-mini-box { width: 55px; height: 55px; border: 1px solid #ccc; margin-bottom: 5px; background-size: cover; background-position: center; }
 
-  /* --- 5. IN-ROOM LIGHTBOX MODAL --- */
+  /* --- 4. IN-ROOM LIGHTBOX MODAL --- */
   .room-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
@@ -165,7 +153,7 @@
   .room-modal-container img { max-width: 100%; max-height: 85vh; display: block; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
   .room-modal-close { position: absolute; top: -35px; right: 0; color: #fff; font-size: 2rem; cursor: pointer; font-weight: 200; }
 
-  /* --- MODALS (ABOUT, PRINTS) --- */
+  /* --- MODALS (ABOUT) --- */
   .modal-base { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
     background: #fff; display: none; justify-content: center; align-items: center; 
@@ -191,8 +179,7 @@
 <nav class="header-nav">
   <div class="brand-logo-text" onclick="showSection('home')">IMAGO BY GORUS</div>
   <div class="nav-links">
-    <div id="link-home" class="active" onclick="showSection('home')">The Work</div>
-    <div id="link-exhibitions" onclick="showSection('exhibitions')">Exhibitions</div>
+    <div id="link-work" class="active" onclick="showSection('work')">The Work</div>
     <div id="link-shop" onclick="showSection('shop')">Shop</div>
     <div onclick="openModal('about-modal')">About</div>
     <div onclick="window.location.href='https://wa.me/381616651755';">Contact</div>
@@ -215,43 +202,35 @@
       <h2>FINE ART PORTFOLIO |</h2>
       <p>A Personal Perspective by Gorus</p>
     </div>
-    <button class="btn-imago" onclick="showSection('shop')">Explore Shop Collection</button>
+    <button class="btn-imago" onclick="showSection('work')">Explore Portfolio</button>
   </div>
 </section>
 
-<!-- 2. EXHIBITIONS SECTION -->
-<section class="page-section" id="sec-exhibitions">
-  <div class="exhibitions-container">
-    <div class="section-title">Online Exhibitions</div>
-    
-    <div class="exhibition-banner" onclick="renderExhibitionItems()">
-      <img src="12.jpg" ondragstart="return false;">
-      <div class="content">
-        <h3>Whispers of the Mara</h3>
-        <p>Curated Collection — Masai Mara, Kenya</p>
-      </div>
-    </div>
-
-    <!-- Mreža fotki iz izložbe koja vodi na PDP -->
-    <div class="exhibition-grid-inline" id="exhibition-grid-inline"></div>
-  </div>
-</section>
-
-<!-- 3. SHOP SECTION -->
-<section class="page-section" id="sec-shop">
+<!-- 2. WORK SECTION (SAME CATALOG) -->
+<section class="page-section catalog-section" id="sec-work">
   <div class="shop-intro-header">
-    <h1>Limited Edition Fine Art Photography</h1>
+    <h1>The Fine Art Collection</h1>
     <p>Explore collectible fine art wildlife photography. Each Limited Edition photograph is custom crafted on museum-quality media and offered in select sizes and floating frame finishes.</p>
   </div>
 
-  <div class="peter-lik-grid" id="peter-lik-shop-grid"></div>
+  <div class="peter-lik-grid" id="work-grid"></div>
+</section>
+
+<!-- 3. SHOP SECTION (SAME CATALOG) -->
+<section class="page-section catalog-section" id="sec-shop">
+  <div class="shop-intro-header">
+    <h1>Limited Edition Fine Art Prints</h1>
+    <p>Explore collectible fine art wildlife photography. Each Limited Edition photograph is custom crafted on museum-quality media and offered in select sizes and floating frame finishes.</p>
+  </div>
+
+  <div class="peter-lik-grid" id="shop-grid"></div>
 </section>
 
 <!-- 4. PRODUCT DETAIL PAGE (PDP) -->
 <section class="page-section" id="sec-pdp">
   <div class="pdp-wrapper">
     
-    <!-- Visuals (Velika fotka + In-room pod-sličica) -->
+    <!-- Visuals -->
     <div class="pdp-visuals">
       <img id="pdp-main-img" class="pdp-main-photo" src="" onclick="openRoomModal()">
       
@@ -371,7 +350,8 @@ function showSection(sectionId) {
     document.getElementById(`link-${sectionId}`).classList.add('active');
   }
 
-  if(sectionId === 'shop') renderShopGrid();
+  if(sectionId === 'work') renderGrid('work-grid');
+  if(sectionId === 'shop') renderGrid('shop-grid');
   
   window.scrollTo(0, 0);
 }
@@ -379,26 +359,10 @@ function showSection(sectionId) {
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-// Render Shop grid
-function renderShopGrid() {
-  const grid = document.getElementById('peter-lik-shop-grid');
+// Univerzalni render kataloga za Work i Shop
+function renderGrid(containerId) {
+  const grid = document.getElementById(containerId);
   grid.innerHTML = productsData.map((p, index) => `
-    <div class="lik-card" onclick="openPDP(${index})">
-      <div class="lik-card-img-wrap">
-        <img src="${p.src}" loading="lazy">
-      </div>
-      <div class="lik-card-meta">
-        <div class="lik-card-edition">Limited Edition</div>
-        <h3 class="lik-card-title">${p.title}</h3>
-      </div>
-    </div>
-  `).join('');
-}
-
-// Render slika unutar izložbe
-function renderExhibitionItems() {
-  const container = document.getElementById('exhibition-grid-inline');
-  container.innerHTML = productsData.map((p, index) => `
     <div class="lik-card" onclick="openPDP(${index})">
       <div class="lik-card-img-wrap">
         <img src="${p.src}" loading="lazy">
