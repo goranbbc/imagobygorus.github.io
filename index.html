@@ -3,42 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMAGO BY GORUS | FINE ART PORTFOLIO</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
+<title>IMAGO BY GORUS | FINE ART GALLERY</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg-color: #f7f7f7;
-    --text-main: #111111;
-    --text-sub: #555555;
+    --bg-dark: #0a0a0a;
+    --bg-light: #f4f4f4;
+    --text-gold: #a38552;
+    --text-dark: #111111;
+    --text-sub: #666666;
+    --border-color: #e0e0e0;
   }
 
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
+  *, *::before, *::after { box-sizing: border-box; }
 
   body {
     font-family: 'Montserrat', sans-serif;
     margin: 0; padding: 0;
-    background: var(--bg-color);
-    color: var(--text-main);
+    background: #fff;
+    color: var(--text-dark);
     line-height: 1.6;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -webkit-user-select: none; user-select: none;
   }
 
-  /* --- Navigation --- */
+  /* --- HEADER NAV --- */
   nav.header-nav {
     position: fixed; top: 0; left: 0; width: 100%;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 25px 40px; z-index: 2000;
-    background: rgba(247, 247, 247, 0.95);
+    padding: 22px 40px; z-index: 2000;
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
   }
   .brand-logo-text {
     font-size: 0.85rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
-    cursor: pointer;
+    cursor: pointer; font-family: 'Montserrat', sans-serif;
   }
   .nav-links {
     display: flex; gap: 25px;
@@ -48,33 +48,25 @@
   .nav-links div { cursor: pointer; transition: 0.3s; }
   .nav-links div:hover, .nav-links div.active { opacity: 0.5; }
 
-  /* --- Section Display Management --- */
+  /* --- PAGE SECTIONS --- */
   .page-section { display: none; min-height: 100vh; padding-top: 90px; }
   .page-section.active { display: block; }
 
-  /* --- Hero Landing (HOME) --- */
+  /* --- 1. HOME SECTION --- */
   .hero-landing {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 40px 15px; text-align: center;
   }
-
   .main-logo h1 { 
-    font-weight: 200; 
-    font-size: clamp(1.2rem, 4vw, 3rem); 
-    letter-spacing: 0.4em; 
-    margin: 0 0 30px 0; 
-    text-transform: uppercase; 
+    font-weight: 200; font-size: clamp(1.2rem, 4vw, 3rem); 
+    letter-spacing: 0.4em; margin: 0 0 30px 0; text-transform: uppercase; 
   }
-
-  /* --- Triptych Logic --- */
   .triptych-grid { display: flex; gap: 10px; max-width: 1100px; width: 100%; margin-bottom: 40px; position: relative; }
   .triptych-col { flex: 1; display: flex; flex-direction: column; gap: 10px; position: relative; }
-  .triptych-col::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; }
   .triptych-grid img { width: 100%; object-fit: cover; display: block; }
   .col-1 img, .col-2 img { height: 600px; }
   .col-3 img { height: 295px; }
 
-  .hero-text { margin-bottom: 30px; }
   .hero-text h2 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 400; font-size: clamp(0.9rem, 2.5vw, 1.8rem); margin: 0; }
   .hero-text p { font-size: 0.85rem; letter-spacing: 0.1em; color: var(--text-sub); margin-top: 5px; }
 
@@ -84,258 +76,127 @@
   }
   .btn-imago:hover { background: #111; color: #fff; }
 
-  /* --- Exhibitions Section --- */
+  /* --- 2. EXHIBITIONS SECTION --- */
   .exhibitions-container { padding: 40px 20px 80px; max-width: 1100px; margin: 0 auto; text-align: center; }
-  .section-title { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 40px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; color: var(--text-gold); margin-bottom: 30px; }
   
   .exhibition-banner { width: 100%; cursor: pointer; position: relative; overflow: hidden; transition: 0.5s; margin-bottom: 30px; }
   .exhibition-banner img { width: 100%; height: 450px; object-fit: cover; filter: brightness(0.65); transition: 0.5s; }
   .exhibition-banner:hover img { filter: brightness(0.8); transform: scale(1.02); }
   .exhibition-banner .content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; width: 100%; padding: 0 15px; }
   .exhibition-banner h3 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 200; font-size: clamp(1.2rem, 3.5vw, 2.4rem); margin: 0; }
-  .exhibition-banner p { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; margin-top: 10px; }
-
-  /* --- Gallery Overlay --- */
-  .gallery-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: var(--bg-color); display: none; flex-direction: column;
-    z-index: 3000; overflow-y: auto; padding: 80px 15px 60px;
-  }
-  .gallery-overlay .close { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 3100; font-weight: 200; }
-  .gallery-grid { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 60px; width: 100%; }
   
-  .gallery-item { opacity: 0; transform: translateY(20px); transition: 1s ease-out; text-align: center; position: relative; margin-bottom: 20px; }
-  .gallery-item img { width: 100%; height: auto; display: block; margin-bottom: 15px; }
-  .gallery-item.visible { opacity: 1; transform: translateY(0); }
+  .exhibition-grid-inline { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 
-  /* Typography */
-  .caption {
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-weight: 200;
-    font-size: 0.75rem !important;
-    color: var(--text-main);
-    margin: 0;
-  }
-  .description {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem !important;
-    letter-spacing: 0.1em;
-    font-weight: 400;
-    color: var(--text-sub);
-    margin-top: 6px;
-    opacity: 0.8;
+  /* --- 3. SHOP SECTION (PETER LIK STYLE) --- */
+  #sec-shop { background: #fff; padding: 110px 20px 80px; text-align: center; }
+  .shop-intro-header h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--text-gold); font-weight: 400; margin-bottom: 10px; }
+  .shop-intro-header p { font-size: 0.8rem; color: var(--text-sub); max-width: 750px; margin: 0 auto 50px; line-height: 1.8; }
+
+  .peter-lik-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1250px;
+    margin: 0 auto;
   }
 
-  /* --- Modals & Lightbox --- */
+  .lik-card {
+    background: #e9e9e9;
+    padding: 35px 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 420px;
+  }
+  .lik-card:hover { transform: translateY(-4px); }
+  .lik-card-img-wrap { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .lik-card img { max-width: 100%; max-height: 250px; object-fit: contain; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+  
+  .lik-card-meta { text-align: center; }
+  .lik-card-edition { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-sub); margin-bottom: 4px; }
+  .lik-card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #111; margin: 0 0 6px 0; font-weight: 400; }
+  .lik-card-price { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text-gold); }
+
+  /* --- 4. PRODUCT DETAIL PAGE - PDP --- */
+  #sec-pdp { background: var(--bg-light); padding: 120px 20px 80px; }
+  .pdp-wrapper { max-width: 1200px; margin: 0 auto; display: flex; gap: 50px; align-items: flex-start; }
+  
+  .pdp-visuals { flex: 1.3; width: 100%; }
+  .pdp-main-photo { width: 100%; height: auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.12); margin-bottom: 15px; cursor: pointer; }
+  
+  .pdp-room-thumb { width: 110px; height: 110px; border: 1px solid #ccc; cursor: pointer; overflow: hidden; background: #fff; padding: 3px; }
+  .pdp-room-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .pdp-controls { flex: 0.9; text-align: left; }
+  .pdp-title-text { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--text-gold); margin: 0 0 2px 0; font-weight: 400; }
+  .pdp-sub-badge { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: #777; margin-bottom: 15px; }
+  .pdp-price-text { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #222; margin-bottom: 25px; }
+
+  .pdp-field-group { margin-bottom: 18px; }
+  .pdp-field-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: #333; }
+  
+  .pdp-select-box {
+    width: 100%; padding: 11px 12px; border: 1px solid #ccc; background: #fff;
+    font-family: 'Montserrat', sans-serif; font-size: 0.78rem; outline: none; cursor: pointer;
+  }
+
+  .btn-pdp-cart {
+    width: 100%; background: var(--text-gold); color: #fff; border: none;
+    padding: 15px; font-family: 'Montserrat', sans-serif; text-transform: uppercase;
+    font-size: 0.75rem; letter-spacing: 0.2em; cursor: pointer; transition: 0.3s; margin-top: 10px;
+  }
+  .btn-pdp-cart:hover { background: #8a6f41; }
+
+  /* Frame Thumbnails Row Below Add To Cart */
+  .frame-preview-row { margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+  .frame-preview-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 10px; color: #555; }
+  .frame-thumbs-flex { display: flex; gap: 15px; }
+  .frame-mini-card { text-align: center; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
+  .frame-mini-box { width: 55px; height: 55px; border: 1px solid #ccc; margin-bottom: 5px; background-size: cover; background-position: center; }
+
+  /* --- 5. IN-ROOM LIGHTBOX MODAL --- */
+  .room-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
+    display: none; justify-content: center; align-items: center; z-index: 5000;
+  }
+  .room-modal-container { position: relative; max-width: 90%; max-height: 90vh; }
+  .room-modal-container img { max-width: 100%; max-height: 85vh; display: block; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+  .room-modal-close { position: absolute; top: -35px; right: 0; color: #fff; font-size: 2rem; cursor: pointer; font-weight: 200; }
+
+  /* --- MODALS (ABOUT, PRINTS) --- */
   .modal-base { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: var(--bg-color); display: none; justify-content: center; align-items: center; 
+    background: #fff; display: none; justify-content: center; align-items: center; 
     z-index: 4000; padding: 20px; overflow-y: auto;
   }
-  .modal-content { max-width: 1000px; width: 100%; display: flex; gap: 40px; align-items: center; }
-  .modal-content img { max-width: 40%; max-height: 80vh; object-fit: contain; filter: grayscale(100%); }
-  .modal-text h2 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 200; margin-bottom: 20px; }
-  
-  .close-btn { position: fixed; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; }
+  .modal-content { max-width: 900px; width: 100%; display: flex; gap: 40px; align-items: center; }
+  .modal-content img { max-width: 40%; max-height: 70vh; object-fit: contain; }
+  .close-btn { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; }
 
-  /* --- EXCLUSIVE STUDIO LIGHTBOX --- */
-  .lightbox-studio {
-    display: flex;
-    max-width: 1100px;
-    width: 100%;
-    gap: 40px;
-    align-items: flex-start;
-    background: #fff;
-    padding: 35px;
-    border-radius: 4px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-  }
-
-  .left-gallery-container {
-    flex: 1.2;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  /* --- ROOM MOCKUP KONTEJNER --- */
-  .room-container {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 4px;
-    background: #000;
-  }
-
-  /* SLIKA ISPOD - Pozicioniranje */
-  .art-under-room {
-    position: absolute;
-    object-fit: cover !important;
-    z-index: 1;
-    display: block;
-  }
-
-  /* Sloj za teksturu platna */
-  .canvas-texture-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 2;
-    pointer-events: none;
-    background-image: repeating-linear-gradient(
-      0deg,
-      rgba(0,0,0,0.03),
-      rgba(0,0,0,0.03) 1px,
-      transparent 1px,
-      transparent 2px
-    ), repeating-linear-gradient(
-      90deg,
-      rgba(0,0,0,0.03),
-      rgba(0,0,0,0.03) 1px,
-      transparent 1px,
-      transparent 2px
-    );
-  }
-
-  /* PNG slika sobe preko */
-  .room-overlay-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    position: relative;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  /* Controls Panel */
-  .studio-controls {
-    flex: 0.8;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width: 100%;
-  }
-
-  .product-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin: 0 0 5px 0;
-    letter-spacing: 0.05em;
-  }
-
-  .badge-exclusive {
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 700;
-    background: #111;
-    color: #fff;
-    padding: 4px 8px;
-    display: inline-block;
-    margin-bottom: 12px;
-    width: fit-content;
-  }
-
-  .option-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    color: #333;
-  }
-
-  .pills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-
-  .pill-box {
-    padding: 8px 14px;
-    border: 1px solid #ddd;
-    font-size: 0.7rem;
-    cursor: pointer;
-    transition: 0.2s;
-    background: #fff;
-  }
-  .pill-box:hover, .pill-box.active {
-    border-color: #111;
-    background: #111;
-    color: #fff;
-  }
-
-  /* Ram selektor */
-  .frames-grid {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .frame-thumb-box {
-    width: 48px;
-    height: 48px;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    transition: 0.2s;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .frame-thumb-box.active { border: 2px solid #111; }
-  
-  .bg-float-black { background: #1a1a1a; }
-  .bg-float-black::after { content:""; width:60%; height:60%; background:#0a0a0a; border: 1px solid #333; }
-
-  .bg-float-oak { background: #b8936c; }
-  .bg-float-oak::after { content:""; width:60%; height:60%; background:#0d0d0d; }
-
-  .bg-none-frame { background: #eee; }
-  .bg-none-frame::after { content: "N/A"; font-size: 0.5rem; color: #777; }
-
-  /* Mobile Refinement */
   @media(max-width: 850px){
     nav.header-nav { padding: 15px 20px; }
-    .hero-landing { padding: 20px 15px 30px; }
-    
-    .triptych-grid { margin-bottom: 25px; }
-    .col-1 img, .col-2 img { height: 350px; }
-    .col-3 img { height: 170px; }
-
-    .lightbox-studio { flex-direction: column; padding: 20px 15px; gap: 25px; margin-top: 30px; }
-    .left-gallery-container, .studio-controls { width: 100%; }
-    
-    .modal-content { flex-direction: column; text-align: center; gap: 20px; }
-    .modal-content img { max-width: 80%; }
+    .pdp-wrapper, .modal-content { flex-direction: column; }
+    .pdp-visuals, .pdp-controls { width: 100%; }
+    .peter-lik-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
   }
 
-  @media(max-width: 500px){
-    .main-logo h1 { letter-spacing: 0.2em; }
-    .hero-text h2 { letter-spacing: 0.15em; }
-    .col-1 img, .col-2 img { height: 260px; }
-    .col-3 img { height: 125px; }
-    
-    .pills-grid { gap: 6px; }
-    .pill-box { padding: 6px 10px; font-size: 0.65rem; }
-    .frame-thumb-box { width: 42px; height: 42px; }
-  }
-
-  footer { text-align: center; padding: 60px 0; border-top: 1px solid #eee; }
+  footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border-color); margin-top: 40px; }
 </style>
 </head>
 <body oncontextmenu="return false;">
 
-<!-- GLOBAL FIXED HEADER -->
+<!-- GLOBAL HEADER NAV -->
 <nav class="header-nav">
   <div class="brand-logo-text" onclick="showSection('home')">IMAGO BY GORUS</div>
   <div class="nav-links">
     <div id="link-home" class="active" onclick="showSection('home')">The Work</div>
     <div id="link-exhibitions" onclick="showSection('exhibitions')">Exhibitions</div>
-    <div onclick="openModal('prints-modal')">Prints</div>
+    <div id="link-shop" onclick="showSection('shop')">Shop</div>
     <div onclick="openModal('about-modal')">About</div>
     <div onclick="window.location.href='https://wa.me/381616651755';">Contact</div>
   </div>
@@ -357,7 +218,7 @@
       <h2>FINE ART PORTFOLIO |</h2>
       <p>A Personal Perspective by Gorus</p>
     </div>
-    <button class="btn-imago" onclick="showSection('exhibitions')">Explore Exhibitions</button>
+    <button class="btn-imago" onclick="showSection('shop')">Explore Shop Collection</button>
   </div>
 </section>
 
@@ -366,31 +227,108 @@
   <div class="exhibitions-container">
     <div class="section-title">Online Exhibitions</div>
     
-    <div class="exhibition-banner" id="whispers-banner">
+    <div class="exhibition-banner" onclick="renderExhibitionItems()">
       <img src="12.jpg" ondragstart="return false;">
       <div class="content">
         <h3>Whispers of the Mara</h3>
         <p>Curated Collection — Masai Mara, Kenya</p>
       </div>
     </div>
+
+    <!-- Mreža fotki iz izložbe koja vodi na PDP -->
+    <div class="exhibition-grid-inline" id="exhibition-grid-inline"></div>
   </div>
 </section>
 
-<!-- EXHIBITION GALLERY OVERLAY -->
-<div class="gallery-overlay" id="gallery-overlay">
-  <span class="close" id="gallery-close">&times;</span>
-  <div class="gallery-grid" id="gallery-grid"></div>
-</div>
+<!-- 3. SHOP SECTION (PETER LIK STYLE GRID) -->
+<section class="page-section" id="sec-shop">
+  <div class="shop-intro-header">
+    <h1>Limited Edition Fine Art Photography</h1>
+    <p>Explore collectible fine art wildlife photography. Each Limited Edition photograph is custom crafted on museum-quality media and offered in select sizes and floating frame finishes.</p>
+  </div>
 
-<!-- PRINTS INFO MODAL -->
-<div class="modal-base" id="prints-modal">
-  <span class="close-btn" onclick="closeModal('prints-modal')">&times;</span>
-  <div class="modal-content">
-    <div class="modal-text">
-      <h2>Collecting Imago</h2>
-      <p>All works from the collection are available as limited edition <strong>Fine Art</strong> prints mounted in premium <strong>Floating Frames</strong> or as standalone prints.</p>
-      <button class="btn-imago" style="margin-top: 20px;" onclick="closeModal('prints-modal'); showSection('exhibitions');">Explore Exhibitions</button>
+  <div class="peter-lik-grid" id="peter-lik-shop-grid"></div>
+</section>
+
+<!-- 4. PRODUCT DETAIL PAGE (PDP) -->
+<section class="page-section" id="sec-pdp">
+  <div class="pdp-wrapper">
+    
+    <!-- Visuals (Velika fotka + In-room pod-sličica) -->
+    <div class="pdp-visuals">
+      <img id="pdp-main-img" class="pdp-main-photo" src="" onclick="openRoomModal()">
+      
+      <!-- Pod-sličica za prikaz u prostoru -->
+      <div class="pdp-room-thumb" onclick="openRoomModal()" title="View in Room">
+        <img id="pdp-room-thumb-img" src="">
+      </div>
     </div>
+
+    <!-- Controls Configurator -->
+    <div class="pdp-controls">
+      <h1 class="pdp-title-text" id="pdp-item-title">Artwork Title</h1>
+      <div class="pdp-sub-badge">Limited Edition</div>
+      <div class="pdp-price-text" id="pdp-item-price">€5,600</div>
+
+      <div class="pdp-field-group">
+        <div class="pdp-field-label">Size:</div>
+        <select class="pdp-select-box" id="pdp-size-select">
+          <option>40 × 60 cm (15.7 × 23.6 in)</option>
+          <option>60 × 90 cm (23.6 × 35.4 in)</option>
+          <option>80 × 120 cm (31.5 × 47.2 in)</option>
+          <option>100 × 150 cm (39.4 × 59.1 in)</option>
+        </select>
+      </div>
+
+      <div class="pdp-field-group">
+        <div class="pdp-field-label">Finish / Mounting:</div>
+        <select class="pdp-select-box" id="pdp-finish-select">
+          <option>Floating Frame (Mounted)</option>
+          <option>Blind Frame (Stretcher Bar)</option>
+          <option>Passe-Partout Mount</option>
+          <option>Print Only (Unframed)</option>
+        </select>
+      </div>
+
+      <div class="pdp-field-group">
+        <div class="pdp-field-label">Liner Option:</div>
+        <select class="pdp-select-box" id="pdp-liner-select">
+          <option>None</option>
+          <option>White Linen Liner</option>
+          <option>Black Linen Liner</option>
+        </select>
+      </div>
+
+      <button class="btn-pdp-cart" onclick="sendOrderRequest()">Add To Order Request &rarr;</button>
+
+      <!-- Tri slicice floating ramova ispod Add To Cart -->
+      <div class="frame-preview-row">
+        <div class="frame-preview-title">Available Floating Frame Options:</div>
+        <div class="frame-thumbs-flex">
+          <div class="frame-mini-card">
+            <div class="frame-mini-box" style="background:#1a1a1a; border: 3px solid #000;"></div>
+            Black
+          </div>
+          <div class="frame-mini-card">
+            <div class="frame-mini-box" style="background:#f5f5f5; border: 3px solid #e0e0e0;"></div>
+            White
+          </div>
+          <div class="frame-mini-card">
+            <div class="frame-mini-box" style="background:#b8936c; border: 3px solid #96724d;"></div>
+            Oak
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 5. IN-ROOM LIGHTBOX MODAL -->
+<div class="room-modal" id="roomModal" onclick="closeRoomModal()">
+  <div class="room-modal-container" onclick="event.stopPropagation()">
+    <span class="room-modal-close" onclick="closeRoomModal()">&times;</span>
+    <img id="roomModalImg" src="">
   </div>
 </div>
 
@@ -399,97 +337,45 @@
   <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
   <div class="modal-content">
     <img src="IVP_8418.jpg" ondragstart="return false;">
-    <div class="modal-text">
-      <h2>The Vision</h2>
+    <div>
+      <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; text-transform: uppercase;">The Vision</h2>
       <p>I am Gorus, a visual storyteller dedicated to the bold and the unforgettable.</p>
     </div>
   </div>
 </div>
 
-<!-- PRODUCT STUDIO LIGHTBOX -->
-<div class="modal-base" id="lightbox">
-  <span class="close-btn" onclick="closeModal('lightbox')">&times;</span>
-  <div class="lightbox-studio">
-    
-    <!-- Leva strana: Prikaz u sobi -->
-    <div class="left-gallery-container">
-      <div class="room-container">
-        <!-- 1. Tvoja fotografija -->
-        <img id="lb-img" class="art-under-room" src="" ondragstart="return false;">
-        
-        <!-- 2. Tekstura platna -->
-        <div class="canvas-texture-overlay"></div>
-        
-        <!-- 3. Slika sobe sa providnim ramom preko -->
-        <img id="room-overlay" class="room-overlay-img" src="room-black-vert.png" ondragstart="return false;">
-      </div>
-    </div>
-
-    <!-- Desna strana: Konfigurator -->
-    <div class="studio-controls">
-      <div class="badge-exclusive">Fine Art Edition</div>
-      <h2 class="product-title" id="lb-title">Artwork Title</h2>
-      <p id="lb-desc" style="font-size: 0.75rem; color:#666; margin-bottom: 20px;"></p>
-
-      <div class="option-label">Size: <span id="selected-size-label">30×45 cm</span></div>
-      <div class="pills-grid" id="size-options">
-        <div class="pill-box active" onclick="setSize('30x45 cm', this)">30×45</div>
-        <div class="pill-box" onclick="setSize('40x60 cm', this)">40×60</div>
-        <div class="pill-box" onclick="setSize('50x75 cm', this)">50×75</div>
-        <div class="pill-box" onclick="setSize('60x90 cm', this)">60×90</div>
-        <div class="pill-box" onclick="setSize('80x120 cm', this)">80×120</div>
-      </div>
-
-      <div class="option-label">Framing: <span id="selected-frame-label">Black Floating Frame</span></div>
-      <div class="frames-grid" id="frame-options">
-        <div class="frame-thumb-box bg-none-frame" title="Print Only" onclick="setFrame('none', 'Print Only (Unframed)', this)"></div>
-        <div class="frame-thumb-box bg-float-black active" title="Black Floating Frame" onclick="setFrame('black', 'Black Floating Frame', this)"></div>
-        <div class="frame-thumb-box bg-float-oak" title="Natural Oak Floating Frame" onclick="setFrame('oak', 'Natural Oak Floating Frame', this)"></div>
-      </div>
-
-      <button class="btn-imago" id="buy-print-btn" style="margin-top: 15px; width: 100%; background:#111; color:#fff;">Order Collector Edition</button>
-    </div>
-
-  </div>
-</div>
-
 <footer>
-  <div style="display:flex; flex-direction:column; gap:25px; align-items:center;">
+  <div style="display:flex; flex-direction:column; gap:20px; align-items:center;">
     <a href="https://instagram.com/imago.by.gorus" target="_blank" style="color:#111; text-decoration:none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;">Instagram</a>
-    <a href="https://ibgvision.com" target="_blank" style="font-weight:600; color:#111; text-decoration:none; font-size: 0.9rem; letter-spacing: 0.2em; text-transform: uppercase;">IBG Vision</a>
-    <p style="opacity:0.2; margin:0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;">&copy; 2026 IBG VISION</p>
+    <a href="https://ibgvision.com" target="_blank" style="font-weight:600; color:#111; text-decoration:none; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;">IBG Vision</a>
+    <p style="opacity:0.3; margin:0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;">&copy; 2026 IBG VISION</p>
   </div>
 </footer>
 
 <script>
-const galleryData = [
-  { src:"33.jpg", caption:"Sentinel of the Savannah", description:"Perched on a lone ridge, a solitary antelope scans the endless plains." },
-  { src:"3.jpg", caption:"Sisters in the Sun", description:"Two lionesses spar playfully, sharpening instincts." },
-  { src:"23.jpg", caption:"Brothers of the Dusk", description:"Three male lions rest together in the warm glow of sunset." },
-  { src:"31.jpg", caption:"Whisper of the Wild", description:"A quiet moment, a wild heart, this lion breathes the art of the savannah." },
-  { src:"24.jpg", caption:"Echoes of Innocence", description:"Tiny hearts, wide eyes, whispers of innocence." },
-  { src:"26.jpg", caption:"Mother’s Embrace", description:"The wild’s tender whisper, carried in her care." },
-  { src:"12.jpg", caption:"Echoes of the Ancients", description:"A silent giant, surveying the world with ancient wisdom." },
-  { src:"16.jpg", caption:"Soul of the Savannah", description:"In his eyes, the weight of centuries." },
-  { src:"15.jpg", caption:"Ivory Strength", description:"Earth and ivory meet in this quiet giant." },
-  { src:"17.jpg", caption:"Quiet Company", description:"A moment of rest, a whisper of harmony." },
-  { src:"8.jpg", caption:"The Great Migration", description:"The herd moves as one, an endless pulse of life." },
-  { src:"19.jpg", caption:"Leisure of the Predator", description:"A moment of calm, eyes surveying the world below." },
-  { src:"18.jpg", caption:"Silent Contemplation", description:"A quiet observer, lost to the wind and light." },
-  { src:"35.jpg", caption:"Stripes of the Savannah", description:"Stripes that ripple across the plains." },
-  { src:"10.jpg", caption:"Tree of the Endless Plain", description:"A single acacia tree anchors the horizon." }
+const productsData = [
+  { id: "31", title: "Whisper of the Wild", price: "€5,600", src: "31.jpg", roomSrc: "31-black.jpg" },
+  { id: "12", title: "Echoes of the Ancients", price: "€5,600", src: "12.jpg", roomSrc: "12-black.jpg" },
+  { id: "33", title: "Sentinel of the Savannah", price: "€4,200", src: "33.jpg", roomSrc: "33-black.jpg" },
+  { id: "3", title: "Sisters in the Sun", price: "€4,800", src: "3.jpg", roomSrc: "3-black.jpg" },
+  { id: "23", title: "Brothers of the Dusk", price: "€5,100", src: "23.jpg", roomSrc: "23-black.jpg" },
+  { id: "24", title: "Echoes of Innocence", price: "€3,900", src: "24.jpg", roomSrc: "24-black.jpg" },
+  { id: "26", title: "Mother’s Embrace", price: "€4,500", src: "26.jpg", roomSrc: "26-black.jpg" },
+  { id: "16", title: "Soul of the Savannah", price: "€5,300", src: "16.jpg", roomSrc: "16-black.jpg" }
 ];
 
-let selectedFrame = "Black Floating Frame";
-let selectedSize = "30x45 cm";
-let currentFrameColor = "black";
+let activeProduct = productsData[0];
 
 function showSection(sectionId) {
   document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(`sec-${sectionId}`).classList.add('active');
   
-  document.getElementById('link-home').classList.toggle('active', sectionId === 'home');
-  document.getElementById('link-exhibitions').classList.toggle('active', sectionId === 'exhibitions');
+  document.querySelectorAll('.nav-links div').forEach(el => el.classList.remove('active'));
+  if(document.getElementById(`link-${sectionId}`)) {
+    document.getElementById(`link-${sectionId}`).classList.add('active');
+  }
+
+  if(sectionId === 'shop') renderShopGrid();
   
   window.scrollTo(0, 0);
 }
@@ -497,131 +383,71 @@ function showSection(sectionId) {
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-function renderGallery(){
-  const grid = document.getElementById('gallery-grid');
-  grid.innerHTML = galleryData.map((item, i) => `
-    <div class="gallery-item" onclick="openLB(${i})">
-      <div style="position:relative; cursor:pointer;">
-        <img src="${item.src}" loading="lazy" ondragstart="false">
+// Render Peter Lik style grid u Shop-u
+function renderShopGrid() {
+  const grid = document.getElementById('peter-lik-shop-grid');
+  grid.innerHTML = productsData.map((p, index) => `
+    <div class="lik-card" onclick="openPDP(${index})">
+      <div class="lik-card-img-wrap">
+        <img src="${p.src}" loading="lazy">
       </div>
-      <div class="caption">${item.caption}</div>
-      <div class="description">${item.description}</div>
+      <div class="lik-card-meta">
+        <div class="lik-card-edition">Limited Edition</div>
+        <h3 class="lik-card-title">${p.title}</h3>
+        <div class="lik-card-price">${p.price}</div>
+      </div>
     </div>
   `).join('');
 }
 
-// Funkcija koja dinamički pomera sliku za savršeno uklapanje
-function adjustArtPosition(frameColor, isHorizontal) {
-  const img = document.getElementById('lb-img');
-  
-  if (isHorizontal) {
-    if (frameColor === 'oak') {
-      img.style.setProperty('top', '17%', 'important');
-      img.style.setProperty('left', '14.5%', 'important');
-      img.style.setProperty('width', '71%', 'important');
-      img.style.setProperty('height', '64%', 'important');
-    } else {
-      img.style.setProperty('top', '18%', 'important');
-      img.style.setProperty('left', '15%', 'important');
-      img.style.setProperty('width', '70%', 'important');
-      img.style.setProperty('height', '62%', 'important');
-    }
-  } else {
-    if (frameColor === 'oak') {
-      img.style.setProperty('top', '11%', 'important');
-      img.style.setProperty('left', '19.5%', 'important');
-      img.style.setProperty('width', '61%', 'important');
-      img.style.setProperty('height', '70%', 'important');
-    } else {
-      img.style.setProperty('top', '12%', 'important');
-      img.style.setProperty('left', '20%', 'important');
-      img.style.setProperty('width', '60%', 'important');
-      img.style.setProperty('height', '68%', 'important');
-    }
-  }
+// Render slika unutar izložbe
+function renderExhibitionItems() {
+  const container = document.getElementById('exhibition-grid-inline');
+  container.innerHTML = productsData.map((p, index) => `
+    <div class="lik-card" onclick="openPDP(${index})">
+      <div class="lik-card-img-wrap">
+        <img src="${p.src}" loading="lazy">
+      </div>
+      <div class="lik-card-meta">
+        <div class="lik-card-edition">Limited Edition</div>
+        <h3 class="lik-card-title">${p.title}</h3>
+        <div class="lik-card-price">${p.price}</div>
+      </div>
+    </div>
+  `).join('');
 }
 
-function setFrame(frameColor, frameName, el) {
-  currentFrameColor = frameColor;
-  const img = document.getElementById('lb-img');
-  const roomOverlay = document.getElementById('room-overlay');
+// Otvaranje pojedinačne stranice rada (PDP - Prikaz 2)
+function openPDP(index) {
+  activeProduct = productsData[index];
   
-  const isHorizontal = img.dataset.orientation === 'horiz';
-  const orientation = isHorizontal ? 'horiz' : 'vert';
+  document.getElementById('pdp-item-title').innerText = activeProduct.title;
+  document.getElementById('pdp-item-price').innerText = activeProduct.price;
+  document.getElementById('pdp-main-img').src = activeProduct.src;
+  document.getElementById('pdp-room-thumb-img').src = activeProduct.roomSrc;
 
-  if (frameColor !== 'none') {
-    roomOverlay.src = `room-${frameColor}-${orientation}.png`;
-    roomOverlay.style.display = 'block';
-    adjustArtPosition(frameColor, isHorizontal);
-  } else {
-    roomOverlay.style.display = 'none';
-  }
-
-  document.querySelectorAll('#frame-options .frame-thumb-box').forEach(p => p.classList.remove('active'));
-  if(el) el.classList.add('active');
-
-  selectedFrame = frameName;
-  document.getElementById('selected-frame-label').innerText = frameName;
+  document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById('sec-pdp').classList.add('active');
+  window.scrollTo(0, 0);
 }
 
-function setSize(sizeStr, el) {
-  document.querySelectorAll('#size-options .pill-box').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  selectedSize = sizeStr;
-  document.getElementById('selected-size-label').innerText = sizeStr;
+// In-room lightbox
+function openRoomModal() {
+  document.getElementById('roomModalImg').src = activeProduct.roomSrc;
+  document.getElementById('roomModal').style.display = 'flex';
+}
+function closeRoomModal() {
+  document.getElementById('roomModal').style.display = 'none';
 }
 
-function openLB(i){
-  const item = galleryData[i];
+function sendOrderRequest() {
+  const size = document.getElementById('pdp-size-select').value;
+  const finish = document.getElementById('pdp-finish-select').value;
+  const liner = document.getElementById('pdp-liner-select').value;
   
-  const img = document.getElementById('lb-img');
-  const roomOverlay = document.getElementById('room-overlay');
-
-  document.getElementById('lb-title').innerText = item.caption;
-  document.getElementById('lb-desc').innerText = item.description;
-
-  img.src = item.src;
-
-  img.onload = () => {
-    const isHorizontal = img.naturalWidth > img.naturalHeight;
-    
-    if (isHorizontal) {
-      img.classList.remove('vertical');
-      img.dataset.orientation = 'horiz';
-      if (currentFrameColor !== 'none') {
-        roomOverlay.src = `room-${currentFrameColor}-horiz.png`;
-        roomOverlay.style.display = 'block';
-      }
-    } else {
-      img.classList.add('vertical');
-      img.dataset.orientation = 'vert';
-      if (currentFrameColor !== 'none') {
-        roomOverlay.src = `room-${currentFrameColor}-vert.png`;
-        roomOverlay.style.display = 'block';
-      }
-    }
-    
-    adjustArtPosition(currentFrameColor, isHorizontal);
-  };
-  
-  document.getElementById('lightbox').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  
-  document.getElementById('buy-print-btn').onclick = () => {
-    const msg = `Hello Gorus, I would like to order a Fine Art Print:\n\n- Artwork: ${item.caption}\n- Size: ${selectedSize}\n- Framing: ${selectedFrame}`;
-    window.location.href = `https://wa.me/381616651755?text=${encodeURIComponent(msg)}`;
-  };
+  const msg = `Hello Gorus, I would like to inquire about ordering:\n\n- Artwork: ${activeProduct.title}\n- Size: ${size}\n- Finish: ${finish}\n- Liner: ${liner}`;
+  window.location.href = `https://wa.me/381616651755?text=${encodeURIComponent(msg)}`;
 }
-
-document.getElementById('whispers-banner').onclick = () => { renderGallery(); document.getElementById('gallery-overlay').style.display = 'flex'; document.body.style.overflow = 'hidden'; setTimeout(reveal, 100); };
-document.getElementById('gallery-close').onclick = () => { document.getElementById('gallery-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; };
-
-function reveal(){
-  document.querySelectorAll('.gallery-item').forEach(el => {
-    if(el.getBoundingClientRect().top < window.innerHeight * 0.95) el.classList.add('visible');
-  });
-}
-document.getElementById('gallery-overlay').onscroll = reveal;
 </script>
 </body>
 </html>
