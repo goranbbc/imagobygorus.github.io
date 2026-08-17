@@ -410,7 +410,31 @@ function renderExhibitionItems() {
     </div>
   `).join('');
 }
-ct').value;
+
+// Otvaranje pojedinačne stranice rada (PDP)
+function openPDP(index) {
+  activeProduct = productsData[index];
+  
+  document.getElementById('pdp-item-title').innerText = activeProduct.title;
+  document.getElementById('pdp-main-img').src = activeProduct.src;
+  document.getElementById('pdp-room-thumb-img').src = activeProduct.roomSrc;
+
+  document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById('sec-pdp').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// In-room lightbox
+function openRoomModal() {
+  document.getElementById('roomModalImg').src = activeProduct.roomSrc;
+  document.getElementById('roomModal').style.display = 'flex';
+}
+function closeRoomModal() {
+  document.getElementById('roomModal').style.display = 'none';
+}
+
+function sendOrderRequest() {
+  const size = document.getElementById('pdp-size-select').value;
   const finish = document.getElementById('pdp-finish-select').value;
   const liner = document.getElementById('pdp-liner-select').value;
   
