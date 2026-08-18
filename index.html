@@ -105,13 +105,13 @@
   .dropdown-content.show-dropdown { display: block !important; }
 
   /* --- PAGE SECTIONS --- */
-  .page-section { display: none; min-height: 100vh; padding-top: 90px; }
+  .page-section { display: none; min-height: 100vh; padding-top: 120px; }
   .page-section.active { display: block; }
 
   /* --- 1. HOME SECTION --- */
   .hero-landing {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 20px 15px 60px; text-align: center;
+    padding: 0 15px 60px; text-align: center;
   }
   .main-logo h1 { 
     font-weight: 200; font-size: clamp(1.2rem, 4vw, 3rem); 
@@ -136,32 +136,6 @@
   .triptych-grid img { width: 100%; object-fit: cover; display: block; }
   .col-1 img, .col-2 img { height: 600px; }
   .col-3 img { height: 295px; }
-
-  /* "My Work" Sličica preko triptiha */
-  .my-work-badge {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fdfbf7;
-    padding: 12px 28px;
-    border: 1px solid #111;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    cursor: pointer;
-    z-index: 10;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .my-work-badge:hover {
-    transform: translate(-50%, -55%);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-  }
-  .my-work-badge span {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: #111;
-  }
 
   .hero-text h2 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 400; font-size: clamp(0.9rem, 2.5vw, 1.8rem); margin: 0; }
   .hero-text p { font-size: 0.85rem; letter-spacing: 0.1em; color: var(--text-sub); margin-top: 5px; margin-bottom: 25px; }
@@ -216,7 +190,7 @@
     margin-bottom: 30px;
   }
 
-  /* --- PORTFOLIO OVERVIEW PAGE (EXPLORE PORTFOLIO) --- */
+  /* --- PORTFOLIO OVERVIEW PAGE --- */
   .portfolio-banner {
     position: relative;
     width: 100%;
@@ -270,10 +244,10 @@
   }
 
   /* --- 2. WORK / WILDLIFE SECTION --- */
-  .catalog-section { background: #fff; padding: 20px 0 80px; text-align: center; }
+  .catalog-section { background: #fff; padding: 30px 0 80px; text-align: center; }
   .category-title { 
-    font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 300; letter-spacing: 0.2em; 
-    text-transform: uppercase; margin: 20px 0 40px; color: var(--text-dark); 
+    font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 300; letter-spacing: 0.25em; 
+    text-transform: uppercase; margin: 0 0 40px; color: var(--text-dark); 
   }
 
   .full-photo-grid {
@@ -300,7 +274,7 @@
   }
   .photo-card:hover img { transform: scale(1.04); }
 
-  /* --- 3. UNDER CONSTRUCTION --- */
+  /* --- 3. UNDER CONSTRUCTION (STREET & SHOP) --- */
   .construction-box {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     min-height: 60vh; padding: 0 20px; text-align: center;
@@ -310,7 +284,7 @@
 
   /* --- 4. EXPEDITIONS SECTION --- */
   .expeditions-wrapper {
-    max-width: 1100px; margin: 20px auto 80px; padding: 0 20px;
+    max-width: 1100px; margin: 0 auto 80px; padding: 0 20px;
     display: flex; flex-direction: column; align-items: center; text-align: center;
   }
   .expeditions-hero-img { width: 100%; max-height: 600px; object-fit: cover; margin-bottom: 40px; }
@@ -350,7 +324,8 @@
     nav.header-nav { padding: 14px 15px; flex-direction: column; gap: 12px; }
     .brand-logo-text { font-size: 0.8rem; letter-spacing: 0.25em; }
     .nav-links { gap: 12px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
-    .page-section { padding-top: 110px; }
+    
+    .page-section { padding-top: 125px; }
 
     .dropdown-content {
       position: absolute; top: 130%; left: 50%; transform: translateX(-50%);
@@ -361,15 +336,23 @@
     .col-1 img, .col-2 img { height: 220px !important; }
     .col-3 img { height: 105px !important; }
 
-    .my-work-badge { padding: 8px 18px; }
-    .my-work-badge span { font-size: 0.65rem; }
-
     .meet-creator-wrapper { flex-direction: column; text-align: center; gap: 25px; margin: 30px auto; }
     .meet-creator-img { height: 350px; }
 
     .portfolio-banner { height: 45vh; min-height: 280px; }
 
-    .full-photo-grid { grid-template-columns: repeat(1, 1fr); gap: 15px; padding: 0 12px; }
+    /* MREŽA SLIKA NA MOBILNOM: 2 KOLONE (Staje 8+ slika na ekran za brzi pregled) */
+    .full-photo-grid { 
+      grid-template-columns: repeat(2, 1fr) !important; 
+      gap: 8px !important; 
+      padding: 0 8px !important; 
+    }
+    .photo-card {
+      aspect-ratio: 1 / 1 !important; /* Kvadratni ili kompaktan oblik da stane vise slika */
+    }
+
+    .category-title { font-size: 1.5rem; margin-bottom: 20px; }
+
     .modal-content { flex-direction: column; text-align: center; }
     .modal-content img { max-width: 100%; max-height: 45vh; }
   }
@@ -396,7 +379,7 @@
     </div>
 
     <div onclick="showSection('expeditions')">Expeditions</div>
-    <div id="link-shop" onclick="showSection('wildlife')">Shop</div>
+    <div id="link-shop" onclick="showSection('shop')">Shop</div>
     <div onclick="openModal('about-modal')">About</div>
     <div onclick="window.location.href='https://wa.me/381616651755';">Contact</div>
   </div>
@@ -407,18 +390,13 @@
   <div class="hero-landing">
     <div class="main-logo"><h1>IMAGO BY GORUS</h1></div>
     
-    <!-- Triptych Grid sa My Work sličicom u sredini -->
+    <!-- Triptych Grid -->
     <div class="triptych-grid">
       <div class="triptych-col col-1"><img src="31.jpg" ondragstart="return false;"></div>
       <div class="triptych-col col-2"><img src="000000971.jpg" ondragstart="return false;"></div>
       <div class="triptych-col col-3">
         <img src="515151.jpg" ondragstart="return false;">
         <img src="IMG_4296.jpg" ondragstart="return false;">
-      </div>
-
-      <!-- My Work Kartica Preko Triptiha -->
-      <div class="my-work-badge" onclick="showSection('portfolio-overview')">
-        <span>My Work &gt;</span>
       </div>
     </div>
 
@@ -445,10 +423,9 @@
   </div>
 </section>
 
-<!-- PORTFOLIO OVERVIEW SECTION (OTVARA SE NA EXPLORE PORTFOLIO / MY WORK) -->
-<section class="page-section" id="sec-portfolio-overview" style="padding-top: 80px;">
+<!-- PORTFOLIO OVERVIEW SECTION -->
+<section class="page-section" id="sec-portfolio-overview">
   
-  <!-- Wildlife Banner -->
   <div class="portfolio-banner" onclick="showSection('wildlife')">
     <img src="31.jpg" alt="Wildlife Category" ondragstart="return false;">
     <div class="portfolio-banner-overlay">
@@ -457,7 +434,6 @@
     </div>
   </div>
 
-  <!-- Street Photo Banner -->
   <div class="portfolio-banner" onclick="showSection('street')">
     <img src="000000971.jpg" alt="Street Photo Category" ondragstart="return false;">
     <div class="portfolio-banner-overlay">
@@ -474,7 +450,7 @@
   <div class="full-photo-grid" id="wildlife-grid"></div>
 </section>
 
-<!-- 3. STREET PHOTO SECTION -->
+<!-- 3. STREET PHOTO SECTION (UNDER CONSTRUCTION) -->
 <section class="page-section" id="sec-street">
   <div class="construction-box">
     <h2>Street Photography</h2>
@@ -482,7 +458,15 @@
   </div>
 </section>
 
-<!-- 4. EXPEDITIONS SECTION -->
+<!-- 4. SHOP SECTION (UNDER CONSTRUCTION) -->
+<section class="page-section" id="sec-shop">
+  <div class="construction-box">
+    <h2>Print Shop</h2>
+    <p>Under Construction — Collection Coming Soon</p>
+  </div>
+</section>
+
+<!-- 5. EXPEDITIONS SECTION -->
 <section class="page-section" id="sec-expeditions">
   <div class="expeditions-wrapper">
     <img src="31.jpg" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
