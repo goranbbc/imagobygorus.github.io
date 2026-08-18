@@ -51,7 +51,7 @@
   .nav-links div { cursor: pointer; transition: 0.3s; color: var(--text-dark); }
   .nav-links div:hover, .nav-links div.active { opacity: 0.5; }
 
-  /* Dropdown Menu za Desktop & Mobilni */
+  /* Dropdown Menu */
   .dropdown {
     position: relative;
     display: inline-flex;
@@ -100,18 +100,9 @@
   }
 
   @media(min-width: 851px) {
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+    .dropdown:hover .dropdown-content { display: block; }
   }
-
-  /* Class za prikaz menija */
-  .dropdown-content.show-dropdown {
-    display: block !important;
-  }
-  .dropdown.open .dropdown-arrow {
-    transform: rotate(180deg);
-  }
+  .dropdown-content.show-dropdown { display: block !important; }
 
   /* --- PAGE SECTIONS --- */
   .page-section { display: none; min-height: 100vh; padding-top: 90px; }
@@ -120,13 +111,14 @@
   /* --- 1. HOME SECTION --- */
   .hero-landing {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 40px 15px; text-align: center;
+    padding: 20px 15px 60px; text-align: center;
   }
   .main-logo h1 { 
     font-weight: 200; font-size: clamp(1.2rem, 4vw, 3rem); 
     letter-spacing: 0.4em; margin: 0 0 30px 0; text-transform: uppercase; 
   }
 
+  /* Triptych Grid sa My Work sličicom preko */
   .triptych-grid { 
     display: flex; 
     gap: 10px; 
@@ -146,8 +138,102 @@
   .col-1 img, .col-2 img { height: 600px; }
   .col-3 img { height: 295px; }
 
-  .hero-text h2 { text-transform: uppercase; letter-spacing: 0.3em; font-weight: 400; font-size: clamp(0.9rem, 2.5vw, 1.8rem); margin: 0; }
-  .hero-text p { font-size: 0.85rem; letter-spacing: 0.1em; color: var(--text-sub); margin-top: 5px; }
+  /* "My Work" Sličica preko triptiha */
+  .my-work-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fdfbf7;
+    padding: 12px 28px;
+    border: 1px solid #111;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .my-work-badge:hover {
+    transform: translate(-50%, -55%);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  }
+  .my-work-badge span {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #111;
+  }
+
+  /* KAJRON (Marquee) */
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background: #fafafa;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    margin-bottom: 60px;
+  }
+  .marquee-content {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+  }
+  .marquee-item {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-sub);
+    padding: 0 30px;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* MEET THE CREATOR SEKCIJA */
+  .meet-creator-wrapper {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    text-align: left;
+  }
+  .meet-creator-img {
+    flex: 1;
+    max-width: 500px;
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  }
+  .meet-creator-info {
+    flex: 1;
+  }
+  .meet-subtitle {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-sub);
+    margin-bottom: 10px;
+  }
+  .meet-title {
+    font-size: 2rem;
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+  }
+  .meet-desc {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+    color: var(--text-sub);
+    margin-bottom: 30px;
+  }
 
   .btn-imago {
     font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.2em;
@@ -184,120 +270,39 @@
     display: block;
     transition: transform 0.5s ease;
   }
-  .photo-card:hover img {
-    transform: scale(1.04);
-  }
+  .photo-card:hover img { transform: scale(1.04); }
 
   /* --- 3. UNDER CONSTRUCTION --- */
   .construction-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    padding: 0 20px;
-    text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 60vh; padding: 0 20px; text-align: center;
   }
-  .construction-box h2 {
-    font-size: 1.5rem;
-    font-weight: 200;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-  }
-  .construction-box p {
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    color: var(--text-sub);
-    text-transform: uppercase;
-  }
+  .construction-box h2 { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 15px; }
+  .construction-box p { font-size: 0.8rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase; }
 
   /* --- 4. EXPEDITIONS SECTION --- */
   .expeditions-wrapper {
-    max-width: 1100px;
-    margin: 20px auto 80px;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    max-width: 1100px; margin: 20px auto 80px; padding: 0 20px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
   }
-  .expeditions-hero-img {
-    width: 100%;
-    max-height: 600px;
-    object-fit: cover;
-    margin-bottom: 40px;
-  }
-  .expeditions-text {
-    max-width: 800px;
-  }
-  .expeditions-text h2 {
-    font-size: clamp(1.3rem, 3vw, 2rem);
-    font-weight: 200;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  .expeditions-text p {
-    font-size: 0.85rem;
-    letter-spacing: 0.12em;
-    line-height: 1.9;
-    color: var(--text-sub);
-    text-transform: uppercase;
-    margin-bottom: 30px;
-  }
+  .expeditions-hero-img { width: 100%; max-height: 600px; object-fit: cover; margin-bottom: 40px; }
+  .expeditions-text { max-width: 800px; }
+  .expeditions-text h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 20px; }
+  .expeditions-text p { font-size: 0.85rem; letter-spacing: 0.12em; line-height: 1.9; color: var(--text-sub); text-transform: uppercase; margin-bottom: 30px; }
 
   /* --- LIGHTBOX MODAL --- */
   .lightbox-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(8px);
-    display: flex; justify-content: center; align-items: center;
-    z-index: 5000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
+    background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(8px);
+    display: flex; justify-content: center; align-items: center; z-index: 5000;
+    opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease;
   }
-  .lightbox-modal.show {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .lightbox-content {
-    position: relative;
-    max-width: 95%;
-    max-height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .lightbox-modal img {
-    max-width: 100%;
-    max-height: 80vh;
-    object-fit: contain;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    transform: scale(0.92);
-    transition: transform 0.35s ease-out, opacity 0.25s ease;
-    cursor: pointer;
-  }
-  .lightbox-modal.show img {
-    transform: scale(1);
-  }
-
-  .lightbox-close {
-    position: absolute; top: 15px; right: 20px;
-    color: #fff; font-size: 2.2rem; cursor: pointer; font-weight: 200;
-    z-index: 5002; transition: opacity 0.2s;
-    padding: 10px;
-  }
-  .lightbox-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    color: #fff; font-size: 2.5rem; cursor: pointer;
-    padding: 20px 15px; user-select: none; z-index: 5001;
-    transition: opacity 0.3s, transform 0.2s;
-    opacity: 0.6;
-  }
+  .lightbox-modal.show { opacity: 1; visibility: visible; }
+  .lightbox-content { position: relative; max-width: 95%; max-height: 85vh; display: flex; align-items: center; justify-content: center; }
+  .lightbox-modal img { max-width: 100%; max-height: 80vh; object-fit: contain; box-shadow: 0 10px 40px rgba(0,0,0,0.6); transform: scale(0.92); transition: transform 0.35s ease-out, opacity 0.25s ease; cursor: pointer; }
+  .lightbox-modal.show img { transform: scale(1); }
+  .lightbox-close { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 2.2rem; cursor: pointer; font-weight: 200; z-index: 5002; padding: 10px; }
+  .lightbox-arrow { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2.5rem; cursor: pointer; padding: 20px 15px; user-select: none; z-index: 5001; opacity: 0.6; }
   .lightbox-arrow:hover { opacity: 1; }
   .lightbox-prev { left: 10px; }
   .lightbox-next { right: 10px; }
@@ -312,81 +317,31 @@
   .modal-content img { max-width: 40%; max-height: 70vh; object-fit: contain; }
   .close-btn { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; color: var(--text-dark); }
 
-  /* --- MOBILNA REDIZAJNIRANA NAVIGACIJA --- */
+  /* --- MOBILNA OPTIMIZACIJA --- */
   @media(max-width: 850px){
-    nav.header-nav { 
-      padding: 14px 15px; 
-      flex-direction: column;
-      gap: 12px;
-    }
-    .brand-logo-text { 
-      font-size: 0.8rem; 
-      letter-spacing: 0.25em; 
-    }
-    .nav-links { 
-      gap: 12px; 
-      font-size: 0.6rem; 
-      letter-spacing: 0.1em;
-      width: 100%;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
+    nav.header-nav { padding: 14px 15px; flex-direction: column; gap: 12px; }
+    .brand-logo-text { font-size: 0.8rem; letter-spacing: 0.25em; }
+    .nav-links { gap: 12px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
     .page-section { padding-top: 110px; }
 
-    /* Elegantan mobilni padajući meni */
     .dropdown-content {
-      position: absolute;
-      top: 130%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      background: rgba(255, 255, 255, 0.98);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-      padding: 6px 0;
-    }
-    .dropdown-content a {
-      padding: 14px 20px;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      border-bottom: 1px solid #f2f2f2;
-    }
-    .dropdown-content a:last-child {
-      border-bottom: none;
+      position: absolute; top: 130%; left: 50%; transform: translateX(-50%);
+      width: 200px; background: rgba(255, 255, 255, 0.98); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 0;
     }
 
-    /* Triptih zadržan u 3 kolone */
-    .triptych-grid { 
-      display: flex !important;
-      flex-direction: row !important;
-      gap: 5px !important; 
-    }
+    .triptych-grid { display: flex !important; flex-direction: row !important; gap: 5px !important; }
     .col-1 img, .col-2 img { height: 220px !important; }
     .col-3 img { height: 105px !important; }
 
-    .full-photo-grid { 
-      grid-template-columns: repeat(1, 1fr); 
-      gap: 15px; 
-      padding: 0 12px;
-    }
+    .my-work-badge { padding: 8px 18px; }
+    .my-work-badge span { font-size: 0.65rem; }
 
+    .meet-creator-wrapper { flex-direction: column; text-align: center; gap: 25px; margin: 30px auto; }
+    .meet-creator-img { height: 350px; }
+
+    .full-photo-grid { grid-template-columns: repeat(1, 1fr); gap: 15px; padding: 0 12px; }
     .modal-content { flex-direction: column; text-align: center; }
     .modal-content img { max-width: 100%; max-height: 45vh; }
-
-    .lightbox-arrow { 
-      font-size: 1.8rem; 
-      padding: 15px 8px; 
-      background: rgba(0,0,0,0.3);
-      border-radius: 4px;
-    }
-    .lightbox-prev { left: 5px; }
-    .lightbox-next { right: 5px; }
-
-    .expeditions-wrapper { margin-top: 0; padding: 0 15px; }
-    .expeditions-hero-img { max-height: 300px; margin-bottom: 25px; }
-    .expeditions-text p { font-size: 0.78rem; line-height: 1.8; }
   }
 
   footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border-color); margin-top: 40px; }
@@ -400,7 +355,6 @@
   <div class="nav-links">
     <div onclick="showSection('home')">Home</div>
     
-    <!-- Redizajnirani Work Dropdown -->
     <div class="dropdown" id="dropdownContainer">
       <div class="dropdown-label" onclick="toggleMobileDropdown(event)">
         Work <span class="dropdown-arrow">&#9662;</span>
@@ -423,6 +377,7 @@
   <div class="hero-landing">
     <div class="main-logo"><h1>IMAGO BY GORUS</h1></div>
     
+    <!-- Triptych Grid sa My Work sličicom u sredini -->
     <div class="triptych-grid">
       <div class="triptych-col col-1"><img src="31.jpg" ondragstart="return false;"></div>
       <div class="triptych-col col-2"><img src="000000971.jpg" ondragstart="return false;"></div>
@@ -430,13 +385,51 @@
         <img src="515151.jpg" ondragstart="return false;">
         <img src="IMG_4296.jpg" ondragstart="return false;">
       </div>
-    </div>
 
-    <div class="hero-text">
-      <h2>FINE ART PORTFOLIO |</h2>
-      <p>A Personal Perspective by Gorus</p>
+      <!-- My Work Kartica Preko Triptiha -->
+      <div class="my-work-badge" onclick="showSection('wildlife')">
+        <span>My Work &gt;</span>
+      </div>
     </div>
-    <button class="btn-imago" onclick="showSection('wildlife')">Explore Portfolio</button>
+  </div>
+
+  <!-- KAJRON (Marquee Traka) -->
+  <div class="marquee-container">
+    <div class="marquee-content">
+      <div class="marquee-item">FINE ART WILDLIFE PHOTOGRAPHY</div>
+      <div class="marquee-item">&bull;</div>
+      <div class="marquee-item">LIMITED EDITION PRINTS</div>
+      <div class="marquee-item">&bull;</div>
+      <div class="marquee-item">AUTHENTIC SAFARI VISIONS</div>
+      <div class="marquee-item">&bull;</div>
+      <div class="marquee-item">IBG VISION</div>
+      <div class="marquee-item">&bull;</div>
+      <!-- Dupliran tekst radi beskonačne animacije -->
+      <div class="marquee-item">FINE ART WILDLIFE PHOTOGRAPHY</div>
+      <div class="marquee-item">&bull;</div>
+      <div class="marquee-item">LIMITED EDITION PRINTS</div>
+      <div class="marquee-item">&bull;</div>
+      <div class="marquee-item">AUTHENTIC SAFARI VISIONS</div>
+      <div class="marquee-item">&bull;</div>
+      <div class="marquee-item">IBG VISION</div>
+      <div class="marquee-item">&bull;</div>
+    </div>
+  </div>
+
+  <!-- MEET THE CREATOR SEKCIJA -->
+  <div class="meet-creator-wrapper">
+    <!-- Ovde stavi svoju sliku sa terena -->
+    <img src="IVP_8418.jpg" class="meet-creator-img" alt="Gorus Photography" ondragstart="return false;">
+    
+    <div class="meet-creator-info">
+      <div class="meet-subtitle">Meet the Creator</div>
+      <h2 class="meet-title">Gorus</h2>
+      <p class="meet-desc">
+        Visual storyteller and fine art photographer capturing raw, unscripted moments in the world’s most untouched wildernesses. 
+        Through a blend of patience, perspective, and passion, every print tells a story of authenticity.
+      </p>
+      <button class="btn-imago" onclick="openModal('about-modal')">Meet Gorus &gt;</button>
+    </div>
   </div>
 </section>
 
@@ -597,7 +590,6 @@ function updateLightboxImage() {
   }, 120);
 }
 
-// Touch swipe gestures za mobilne telefone
 const modal = document.getElementById('lightboxModal');
 
 modal.addEventListener('touchstart', function(e) {
@@ -611,12 +603,8 @@ modal.addEventListener('touchend', function(e) {
 
 function handleSwipe() {
   const swipeThreshold = 50;
-  if (touchEndX < touchStartX - swipeThreshold) {
-    nextImage();
-  }
-  if (touchEndX > touchStartX + swipeThreshold) {
-    prevImage();
-  }
+  if (touchEndX < touchStartX - swipeThreshold) nextImage();
+  if (touchEndX > touchStartX + swipeThreshold) prevImage();
 }
 
 document.addEventListener('keydown', function(e) {
