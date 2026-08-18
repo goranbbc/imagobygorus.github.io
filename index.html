@@ -104,8 +104,8 @@
   }
   .dropdown-content.show-dropdown { display: block !important; }
 
-  /* --- PAGE SECTIONS --- */
-  .page-section { display: none; min-height: 100vh; padding-top: 120px; }
+  /* --- PAGE SECTIONS (DODAT RAZMAK TAKO DA FIKSNA NAVIGACIJA NIKADA NE ZAKLANJA NASLOVE) --- */
+  .page-section { display: none; min-height: 100vh; padding-top: 180px; }
   .page-section.active { display: block; }
 
   /* --- 1. HOME SECTION --- */
@@ -244,10 +244,10 @@
   }
 
   /* --- 2. WORK / WILDLIFE SECTION --- */
-  .catalog-section { background: #fff; padding: 30px 0 80px; text-align: center; }
+  .catalog-section { background: #fff; padding: 20px 0 80px; text-align: center; }
   .category-title { 
     font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 300; letter-spacing: 0.25em; 
-    text-transform: uppercase; margin: 0 0 10px; color: var(--text-dark); 
+    text-transform: uppercase; margin: 0 0 10px 0; color: var(--text-dark); 
   }
   .category-subtitle {
     font-size: 0.75rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase;
@@ -270,7 +270,7 @@
     background: #f4f4f4;
   }
   .photo-card.room-card {
-    aspect-ratio: 4 / 5; /* Vertikalni format za In-Room pregled */
+    aspect-ratio: 4 / 5;
   }
   .photo-card img {
     width: 100%;
@@ -284,7 +284,7 @@
   /* --- 3. UNDER CONSTRUCTION (STREET) --- */
   .construction-box {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 60vh; padding: 0 20px; text-align: center;
+    min-height: 50vh; padding: 0 20px; text-align: center;
   }
   .construction-box h2 { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 15px; }
   .construction-box p { font-size: 0.8rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase; }
@@ -332,7 +332,8 @@
     .brand-logo-text { font-size: 0.8rem; letter-spacing: 0.25em; }
     .nav-links { gap: 12px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
     
-    .page-section { padding-top: 125px; }
+    /* DODATNI PROSTOR ZA MOBILNI ZBOG DVOETAŽNE NAVIGACIJE */
+    .page-section { padding-top: 170px; }
 
     .dropdown-content {
       position: absolute; top: 130%; left: 50%; transform: translateX(-50%);
