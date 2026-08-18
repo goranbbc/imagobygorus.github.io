@@ -7,11 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg-dark: #0a0a0a;
-    --bg-light: #f4f4f4;
-    --text-dark: #111111;
-    --text-sub: #666666;
-    --border-color: #e0e0e0;
+    --bg-dark: #000000;
+    --text-light: #ffffff;
+    --text-sub: #a0a0a0;
+    --border-color: #222222;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -19,8 +18,8 @@
   body {
     font-family: 'Montserrat', sans-serif;
     margin: 0; padding: 0;
-    background: #fff;
-    color: var(--text-dark);
+    background: var(--bg-dark);
+    color: var(--text-light);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -webkit-user-select: none; user-select: none;
@@ -31,21 +30,57 @@
     position: fixed; top: 0; left: 0; width: 100%;
     display: flex; justify-content: space-between; align-items: center;
     padding: 22px 40px; z-index: 2000;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
   }
   .brand-logo-text {
     font-size: 0.85rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
-    cursor: pointer; font-family: 'Montserrat', sans-serif;
+    cursor: pointer; font-family: 'Montserrat', sans-serif; color: #fff;
   }
   .nav-links {
     display: flex; gap: 25px;
     text-transform: uppercase; font-size: 0.7rem;
     letter-spacing: 0.2em;
   }
-  .nav-links div { cursor: pointer; transition: 0.3s; }
+  .nav-links div { cursor: pointer; transition: 0.3s; color: #fff; }
   .nav-links div:hover, .nav-links div.active { opacity: 0.5; }
+
+  /* Dropdown Menu za Work */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.95);
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 2001;
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid var(--border-color);
+  }
+  .dropdown-content a {
+    color: #fff;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: 0.2s;
+  }
+  .dropdown-content a:hover {
+    opacity: 0.5;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 
   /* --- PAGE SECTIONS --- */
   .page-section { display: none; min-height: 100vh; padding-top: 90px; }
@@ -71,103 +106,75 @@
 
   .btn-imago {
     font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.2em;
-    padding: 12px 30px; border: 1px solid #111; background: transparent; cursor: pointer; transition: 0.3s;
+    padding: 12px 30px; border: 1px solid #fff; color: #fff; background: transparent; cursor: pointer; transition: 0.3s;
   }
-  .btn-imago:hover { background: #111; color: #fff; }
+  .btn-imago:hover { background: #fff; color: #000; }
 
-  /* --- 2. WORK & SHOP SECTION (PETER LIK STYLE GRID) --- */
-  .catalog-section { background: #fff; padding: 40px 20px 80px; text-align: center; }
-  .shop-intro-header h1 { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 15px; }
-  .shop-intro-header p { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-sub); max-width: 750px; margin: 0 auto 50px; line-height: 1.8; text-transform: uppercase; }
+  /* --- 2. WORK / WILDLIFE SECTION (FULL IMAGE GRID) --- */
+  .catalog-section { background: #000; padding: 40px 0 80px; text-align: center; }
+  .category-title { 
+    font-size: 2.5rem; font-weight: 300; letter-spacing: 0.2em; 
+    text-transform: uppercase; margin: 20px 0 40px; color: #fff; 
+  }
 
-  .peter-lik-grid {
+  .full-photo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 1250px;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+    padding: 0 15px;
   }
 
-  .lik-card {
-    background: #e9e9e9;
-    padding: 35px 20px;
+  .photo-card {
+    position: relative;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 380px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: #111;
   }
-  .lik-card:hover { transform: translateY(-4px); }
-  .lik-card-img-wrap { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-  .lik-card img { max-width: 100%; max-height: 250px; object-fit: contain; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-  
-  .lik-card-meta { text-align: center; }
-  .lik-card-edition { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-sub); margin-bottom: 4px; }
-  .lik-card-title { font-size: 0.85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.2em; color: #111; margin: 0; }
-
-  /* --- 3. PRODUCT DETAIL PAGE - PDP --- */
-  #sec-pdp { background: var(--bg-light); padding: 120px 20px 80px; }
-  .pdp-wrapper { max-width: 1200px; margin: 0 auto; display: flex; gap: 50px; align-items: flex-start; }
-  
-  .pdp-visuals { flex: 1.3; width: 100%; }
-  .pdp-main-photo { width: 100%; height: auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.12); margin-bottom: 15px; cursor: pointer; }
-  
-  .pdp-room-thumb { width: 110px; height: 110px; border: 1px solid #ccc; cursor: pointer; overflow: hidden; background: #fff; padding: 3px; }
-  .pdp-room-thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-  .pdp-controls { flex: 0.9; text-align: left; }
-  .pdp-title-text { font-size: 1.6rem; font-weight: 200; text-transform: uppercase; letter-spacing: 0.25em; color: #111; margin: 0 0 5px 0; }
-  .pdp-sub-badge { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: #777; margin-bottom: 25px; }
-
-  .pdp-field-group { margin-bottom: 18px; }
-  .pdp-field-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; color: #333; }
-  
-  .pdp-select-box {
-    width: 100%; padding: 11px 12px; border: 1px solid #ccc; background: #fff;
-    font-family: 'Montserrat', sans-serif; font-size: 0.78rem; outline: none; cursor: pointer;
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .photo-card:hover img {
+    transform: scale(1.03);
   }
 
-  .btn-pdp-cart {
-    width: 100%; background: #111; color: #fff; border: none;
-    padding: 15px; font-family: 'Montserrat', sans-serif; text-transform: uppercase;
-    font-size: 0.75rem; letter-spacing: 0.2em; cursor: pointer; transition: 0.3s; margin-top: 15px;
-  }
-  .btn-pdp-cart:hover { background: #333; }
-
-  /* Frame Thumbnails Row Below Add To Cart */
-  .frame-preview-row { margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 20px; }
-  .frame-preview-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 10px; color: #555; }
-  .frame-thumbs-flex { display: flex; gap: 15px; }
-  .frame-mini-card { text-align: center; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
-  .frame-mini-box { width: 55px; height: 55px; border: 1px solid #ccc; margin-bottom: 5px; background-size: cover; background-position: center; }
-
-  /* --- 4. IN-ROOM LIGHTBOX MODAL --- */
-  .room-modal {
+  /* --- LIGHTBOX MODAL ZA UVEĆANU SLIKU --- */
+  .lightbox-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
-    display: none; justify-content: center; align-items: center; z-index: 5000;
+    background: rgba(0, 0, 0, 0.95);
+    display: none; justify-content: center; align-items: center;
+    z-index: 5000;
   }
-  .room-modal-container { position: relative; max-width: 90%; max-height: 90vh; }
-  .room-modal-container img { max-width: 100%; max-height: 85vh; display: block; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
-  .room-modal-close { position: absolute; top: -35px; right: 0; color: #fff; font-size: 2rem; cursor: pointer; font-weight: 200; }
+  .lightbox-modal img {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+  }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 30px;
+    color: #fff; font-size: 2.5rem; cursor: pointer; font-weight: 200;
+  }
 
   /* --- MODALS (ABOUT) --- */
   .modal-base { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: #fff; display: none; justify-content: center; align-items: center; 
-    z-index: 4000; padding: 20px; overflow-y: auto;
+    background: #000; display: none; justify-content: center; align-items: center; 
+    z-index: 4000; padding: 20px; overflow-y: auto; color: #fff;
   }
   .modal-content { max-width: 900px; width: 100%; display: flex; gap: 40px; align-items: center; }
   .modal-content img { max-width: 40%; max-height: 70vh; object-fit: contain; }
-  .close-btn { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; }
+  .close-btn { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; color: #fff; }
 
   @media(max-width: 850px){
     nav.header-nav { padding: 15px 20px; }
-    .pdp-wrapper, .modal-content { flex-direction: column; }
-    .pdp-visuals, .pdp-controls { width: 100%; }
-    .peter-lik-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .full-photo-grid { grid-template-columns: repeat(1, 1fr); }
+    .modal-content { flex-direction: column; }
   }
 
   footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border-color); margin-top: 40px; }
@@ -179,8 +186,22 @@
 <nav class="header-nav">
   <div class="brand-logo-text" onclick="showSection('home')">IMAGO BY GORUS</div>
   <div class="nav-links">
-    <div id="link-work" class="active" onclick="showSection('work')">The Work</div>
-    <div id="link-shop" onclick="showSection('shop')">Shop</div>
+    <div>Home</div>
+    
+    <!-- Work Padajući Meni -->
+    <div class="dropdown" id="link-work">
+      <div onclick="showSection('wildlife')">Work</div>
+      <div class="dropdown-content">
+        <a href="#">Hotels & Lodges</a>
+        <a href="#" onclick="showSection('wildlife'); return false;">Wildlife</a>
+        <a href="#">Street Photo</a>
+        <a href="#">Corporate & NGOs</a>
+      </div>
+    </div>
+
+    <div>Expeditions</div>
+    <div id="link-shop" onclick="showSection('wildlife')">Shop</div>
+    <div>Clients</div>
     <div onclick="openModal('about-modal')">About</div>
     <div onclick="window.location.href='https://wa.me/381616651755';">Contact</div>
   </div>
@@ -202,109 +223,20 @@
       <h2>FINE ART PORTFOLIO |</h2>
       <p>A Personal Perspective by Gorus</p>
     </div>
-    <button class="btn-imago" onclick="showSection('work')">Explore Portfolio</button>
+    <button class="btn-imago" onclick="showSection('wildlife')">Explore Portfolio</button>
   </div>
 </section>
 
-<!-- 2. WORK SECTION (SAME CATALOG) -->
-<section class="page-section catalog-section" id="sec-work">
-  <div class="shop-intro-header">
-    <h1>The Fine Art Collection</h1>
-    <p>Explore collectible fine art wildlife photography. Each Limited Edition photograph is custom crafted on museum-quality media and offered in select sizes and floating frame finishes.</p>
-  </div>
-
-  <div class="peter-lik-grid" id="work-grid"></div>
+<!-- 2. WILDLIFE SECTION -->
+<section class="page-section catalog-section" id="sec-wildlife">
+  <h1 class="category-title">Wildlife</h1>
+  <div class="full-photo-grid" id="wildlife-grid"></div>
 </section>
 
-<!-- 3. SHOP SECTION (SAME CATALOG) -->
-<section class="page-section catalog-section" id="sec-shop">
-  <div class="shop-intro-header">
-    <h1>Limited Edition Fine Art Prints</h1>
-    <p>Explore collectible fine art wildlife photography. Each Limited Edition photograph is custom crafted on museum-quality media and offered in select sizes and floating frame finishes.</p>
-  </div>
-
-  <div class="peter-lik-grid" id="shop-grid"></div>
-</section>
-
-<!-- 4. PRODUCT DETAIL PAGE (PDP) -->
-<section class="page-section" id="sec-pdp">
-  <div class="pdp-wrapper">
-    
-    <!-- Visuals -->
-    <div class="pdp-visuals">
-      <img id="pdp-main-img" class="pdp-main-photo" src="" onclick="openRoomModal()">
-      
-      <!-- Pod-sličica za prikaz u prostoru -->
-      <div class="pdp-room-thumb" onclick="openRoomModal()" title="View in Room">
-        <img id="pdp-room-thumb-img" src="">
-      </div>
-    </div>
-
-    <!-- Controls Configurator -->
-    <div class="pdp-controls">
-      <h1 class="pdp-title-text" id="pdp-item-title">Artwork Title</h1>
-      <div class="pdp-sub-badge">Limited Edition</div>
-
-      <div class="pdp-field-group">
-        <div class="pdp-field-label">Size:</div>
-        <select class="pdp-select-box" id="pdp-size-select">
-          <option>40 × 60 cm (15.7 × 23.6 in)</option>
-          <option>60 × 90 cm (23.6 × 35.4 in)</option>
-          <option>80 × 120 cm (31.5 × 47.2 in)</option>
-          <option>100 × 150 cm (39.4 × 59.1 in)</option>
-        </select>
-      </div>
-
-      <div class="pdp-field-group">
-        <div class="pdp-field-label">Finish / Mounting:</div>
-        <select class="pdp-select-box" id="pdp-finish-select">
-          <option>Floating Frame (Mounted)</option>
-          <option>Blind Frame (Stretcher Bar)</option>
-          <option>Passe-Partout Mount</option>
-          <option>Print Only (Unframed)</option>
-        </select>
-      </div>
-
-      <div class="pdp-field-group">
-        <div class="pdp-field-label">Liner Option:</div>
-        <select class="pdp-select-box" id="pdp-liner-select">
-          <option>None</option>
-          <option>White Linen Liner</option>
-          <option>Black Linen Liner</option>
-        </select>
-      </div>
-
-      <button class="btn-pdp-cart" onclick="sendOrderRequest()">Inquire / Reserve Print &rarr;</button>
-
-      <!-- Tri slicice floating ramova ispod Add To Cart -->
-      <div class="frame-preview-row">
-        <div class="frame-preview-title">Available Floating Frame Options:</div>
-        <div class="frame-thumbs-flex">
-          <div class="frame-mini-card">
-            <div class="frame-mini-box" style="background:#1a1a1a; border: 3px solid #000;"></div>
-            Black
-          </div>
-          <div class="frame-mini-card">
-            <div class="frame-mini-box" style="background:#f5f5f5; border: 3px solid #e0e0e0;"></div>
-            White
-          </div>
-          <div class="frame-mini-card">
-            <div class="frame-mini-box" style="background:#b8936c; border: 3px solid #96724d;"></div>
-            Oak
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- 5. IN-ROOM LIGHTBOX MODAL -->
-<div class="room-modal" id="roomModal" onclick="closeRoomModal()">
-  <div class="room-modal-container" onclick="event.stopPropagation()">
-    <span class="room-modal-close" onclick="closeRoomModal()">&times;</span>
-    <img id="roomModalImg" src="">
-  </div>
+<!-- LIGHTBOX MODAL FOR ENLARGED PHOTO -->
+<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <img id="lightboxImg" src="" onclick="event.stopPropagation()">
 </div>
 
 <!-- ABOUT MODAL -->
@@ -321,37 +253,29 @@
 
 <footer>
   <div style="display:flex; flex-direction:column; gap:20px; align-items:center;">
-    <a href="https://instagram.com/imago.by.gorus" target="_blank" style="color:#111; text-decoration:none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;">Instagram</a>
-    <a href="https://ibgvision.com" target="_blank" style="font-weight:600; color:#111; text-decoration:none; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;">IBG Vision</a>
+    <a href="https://instagram.com/imago.by.gorus" target="_blank" style="color:#fff; text-decoration:none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;">Instagram</a>
+    <a href="https://ibgvision.com" target="_blank" style="font-weight:600; color:#fff; text-decoration:none; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;">IBG Vision</a>
     <p style="opacity:0.3; margin:0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;">&copy; 2026 IBG VISION</p>
   </div>
 </footer>
 
 <script>
 const productsData = [
-  { id: "31", title: "Whisper of the Wild", src: "31.jpg", roomSrc: "31-black.jpg" },
-  { id: "12", title: "Echoes of the Ancients", src: "12.jpg", roomSrc: "12-black.jpg" },
-  { id: "33", title: "Sentinel of the Savannah", src: "33.jpg", roomSrc: "33-black.jpg" },
-  { id: "3", title: "Sisters in the Sun", src: "3.jpg", roomSrc: "3-black.jpg" },
-  { id: "23", title: "Brothers of the Dusk", src: "23.jpg", roomSrc: "23-black.jpg" },
-  { id: "24", title: "Echoes of Innocence", src: "24.jpg", roomSrc: "24-black.jpg" },
-  { id: "26", title: "Mother’s Embrace", src: "26.jpg", roomSrc: "26-black.jpg" },
-  { id: "16", title: "Soul of the Savannah", src: "16.jpg", roomSrc: "16-black.jpg" }
+  { id: "31", title: "Whisper of the Wild", src: "31.jpg" },
+  { id: "12", title: "Echoes of the Ancients", src: "12.jpg" },
+  { id: "33", title: "Sentinel of the Savannah", src: "33.jpg" },
+  { id: "3", title: "Sisters in the Sun", src: "3.jpg" },
+  { id: "23", title: "Brothers of the Dusk", src: "23.jpg" },
+  { id: "24", title: "Echoes of Innocence", src: "24.jpg" },
+  { id: "26", title: "Mother’s Embrace", src: "26.jpg" },
+  { id: "16", title: "Soul of the Savannah", src: "16.jpg" }
 ];
-
-let activeProduct = productsData[0];
 
 function showSection(sectionId) {
   document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(`sec-${sectionId}`).classList.add('active');
-  
-  document.querySelectorAll('.nav-links div').forEach(el => el.classList.remove('active'));
-  if(document.getElementById(`link-${sectionId}`)) {
-    document.getElementById(`link-${sectionId}`).classList.add('active');
-  }
 
-  if(sectionId === 'work') renderGrid('work-grid');
-  if(sectionId === 'shop') renderGrid('shop-grid');
+  if(sectionId === 'wildlife') renderWildlifeGrid();
   
   window.scrollTo(0, 0);
 }
@@ -359,51 +283,26 @@ function showSection(sectionId) {
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-// Univerzalni render kataloga za Work i Shop
-function renderGrid(containerId) {
-  const grid = document.getElementById(containerId);
-  grid.innerHTML = productsData.map((p, index) => `
-    <div class="lik-card" onclick="openPDP(${index})">
-      <div class="lik-card-img-wrap">
-        <img src="${p.src}" loading="lazy">
-      </div>
-      <div class="lik-card-meta">
-        <div class="lik-card-edition">Limited Edition</div>
-        <h3 class="lik-card-title">${p.title}</h3>
-      </div>
+// Prikaz slika u Wildlife sekciji (3 u redu)
+function renderWildlifeGrid() {
+  const grid = document.getElementById('wildlife-grid');
+  grid.innerHTML = productsData.map((p) => `
+    <div class="photo-card" onclick="openLightbox('${p.src}')">
+      <img src="${p.src}" alt="${p.title}" loading="lazy">
     </div>
   `).join('');
 }
 
-// Otvaranje pojedinačne stranice rada (PDP)
-function openPDP(index) {
-  activeProduct = productsData[index];
-  
-  document.getElementById('pdp-item-title').innerText = activeProduct.title;
-  document.getElementById('pdp-main-img').src = activeProduct.src;
-  document.getElementById('pdp-room-thumb-img').src = activeProduct.roomSrc;
-
-  document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-  document.getElementById('sec-pdp').classList.add('active');
-  window.scrollTo(0, 0);
+// Otvaranje uvećane slike (Lightbox)
+function openLightbox(imageSrc) {
+  document.getElementById('lightboxImg').src = imageSrc;
+  document.getElementById('lightboxModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
-// In-room lightbox
-function openRoomModal() {
-  document.getElementById('roomModalImg').src = activeProduct.roomSrc;
-  document.getElementById('roomModal').style.display = 'flex';
-}
-function closeRoomModal() {
-  document.getElementById('roomModal').style.display = 'none';
-}
-
-function sendOrderRequest() {
-  const size = document.getElementById('pdp-size-select').value;
-  const finish = document.getElementById('pdp-finish-select').value;
-  const liner = document.getElementById('pdp-liner-select').value;
-  
-  const msg = `Hello Gorus, I would like to inquire about ordering:\n\n- Artwork: ${activeProduct.title}\n- Size: ${size}\n- Finish: ${finish}\n- Liner: ${liner}`;
-  window.location.href = `https://wa.me/381616651755?text=${encodeURIComponent(msg)}`;
+function closeLightbox() {
+  document.getElementById('lightboxModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
 }
 </script>
 </body>
