@@ -247,7 +247,11 @@
   .catalog-section { background: #fff; padding: 30px 0 80px; text-align: center; }
   .category-title { 
     font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 300; letter-spacing: 0.25em; 
-    text-transform: uppercase; margin: 0 0 40px; color: var(--text-dark); 
+    text-transform: uppercase; margin: 0 0 10px; color: var(--text-dark); 
+  }
+  .category-subtitle {
+    font-size: 0.75rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase;
+    margin-bottom: 40px;
   }
 
   .full-photo-grid {
@@ -265,6 +269,9 @@
     aspect-ratio: 4 / 3;
     background: #f4f4f4;
   }
+  .photo-card.room-card {
+    aspect-ratio: 4 / 5; /* Vertikalni format za In-Room pregled */
+  }
   .photo-card img {
     width: 100%;
     height: 100%;
@@ -274,7 +281,7 @@
   }
   .photo-card:hover img { transform: scale(1.04); }
 
-  /* --- 3. UNDER CONSTRUCTION (STREET & SHOP) --- */
+  /* --- 3. UNDER CONSTRUCTION (STREET) --- */
   .construction-box {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     min-height: 60vh; padding: 0 20px; text-align: center;
@@ -341,17 +348,21 @@
 
     .portfolio-banner { height: 45vh; min-height: 280px; }
 
-    /* MREŽA SLIKA NA MOBILNOM: 2 KOLONE (Staje 8+ slika na ekran za brzi pregled) */
+    /* MREŽA SLIKA NA MOBILNOM: 2 KOLONE × 3 REDA = ALL 6 PHOTOS ON SCREEN */
     .full-photo-grid { 
       grid-template-columns: repeat(2, 1fr) !important; 
       gap: 8px !important; 
       padding: 0 8px !important; 
     }
     .photo-card {
-      aspect-ratio: 1 / 1 !important; /* Kvadratni ili kompaktan oblik da stane vise slika */
+      aspect-ratio: 1 / 1 !important;
+    }
+    .photo-card.room-card {
+      aspect-ratio: 4 / 5 !important;
     }
 
-    .category-title { font-size: 1.5rem; margin-bottom: 20px; }
+    .category-title { font-size: 1.4rem; margin-bottom: 5px; }
+    .category-subtitle { font-size: 0.65rem; margin-bottom: 25px; }
 
     .modal-content { flex-direction: column; text-align: center; }
     .modal-content img { max-width: 100%; max-height: 45vh; }
@@ -458,12 +469,12 @@
   </div>
 </section>
 
-<!-- 4. SHOP SECTION (UNDER CONSTRUCTION) -->
-<section class="page-section" id="sec-shop">
-  <div class="construction-box">
-    <h2>Print Shop</h2>
-    <p>Under Construction — Collection Coming Soon</p>
-  </div>
+<!-- 4. SHOP SECTION (IN-ROOM PREVIEW GRID - 6 MOCKUP FOTKI) -->
+<section class="page-section catalog-section" id="sec-shop">
+  <h1 class="category-title">Print Shop</h1>
+  <div class="category-subtitle">In-Room Preview — Official Collection Coming Soon</div>
+  
+  <div class="full-photo-grid" id="shop-room-grid"></div>
 </section>
 
 <!-- 5. EXPEDITIONS SECTION -->
@@ -514,7 +525,8 @@
 </footer>
 
 <script>
-const productsData = [
+// Slika za Wildlife Galeriju
+const wildlifeData = [
   { id: "31", title: "Whisper of the Wild", src: "31.jpg" },
   { id: "12", title: "Echoes of the Ancients", src: "12.jpg" },
   { id: "33", title: "Sentinel of the Savannah", src: "33.jpg" },
@@ -525,6 +537,17 @@ const productsData = [
   { id: "16", title: "Soul of the Savannah", src: "16.jpg" }
 ];
 
+// 6 Mockup Slika za Shop Sekciju
+const shopRoomData = [
+  { id: "s1", title: "In-Room Display I", src: "shop-room-1.jpg" },
+  { id: "s2", title: "In-Room Display II", src: "shop-room-2.jpg" },
+  { id: "s3", title: "In-Room Display III", src: "shop-room-3.jpg" },
+  { id: "s4", title: "In-Room Display IV", src: "shop-room-4.jpg" },
+  { id: "s5", title: "In-Room Display V", src: "shop-room-5.jpg" },
+  { id: "s6", title: "In-Room Display VI", src: "shop-room-6.jpg" }
+];
+
+let activeDataset = wildlifeData;
 let currentIndex = 0;
 let touchStartX = 0;
 let touchEndX = 0;
@@ -535,7 +558,8 @@ function showSection(sectionId) {
 
   closeMobileDropdown();
 
-  if(sectionId === 'wildlife') renderWildlifeGrid();
+  if(sectionId === 'wildlife') renderGrid('wildlife-grid', wildlifeData);
+  if(sectionId === 'shop') renderGrid('shop-room-grid', shopRoomData, true);
   
   window.scrollTo(0, 0);
 }
@@ -563,19 +587,22 @@ document.addEventListener('click', function() {
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-function renderWildlifeGrid() {
-  const grid = document.getElementById('wildlife-grid');
-  grid.innerHTML = productsData.map((p, index) => `
-    <div class="photo-card" onclick="openLightbox(${index})">
+// Univerzalna funkcija za renderovanje slika
+function renderGrid(containerId, dataset, isRoomCard = false) {
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = dataset.map((p, index) => `
+    <div class="photo-card ${isRoomCard ? 'room-card' : ''}" onclick="openLightbox(${index}, '${containerId}')">
       <img src="${p.src}" alt="${p.title}" loading="lazy">
     </div>
   `).join('');
 }
 
-function openLightbox(index) {
+function openLightbox(index, containerId) {
+  activeDataset = (containerId === 'shop-room-grid') ? shopRoomData : wildlifeData;
   currentIndex = index;
+  
   const imgElement = document.getElementById('lightboxImg');
-  imgElement.src = productsData[currentIndex].src;
+  imgElement.src = activeDataset[currentIndex].src;
 
   const modal = document.getElementById('lightboxModal');
   modal.classList.add('show');
@@ -590,13 +617,13 @@ function closeLightbox() {
 
 function nextImage(event) {
   if (event) event.stopPropagation();
-  currentIndex = (currentIndex + 1) % productsData.length;
+  currentIndex = (currentIndex + 1) % activeDataset.length;
   updateLightboxImage();
 }
 
 function prevImage(event) {
   if (event) event.stopPropagation();
-  currentIndex = (currentIndex - 1 + productsData.length) % productsData.length;
+  currentIndex = (currentIndex - 1 + activeDataset.length) % activeDataset.length;
   updateLightboxImage();
 }
 
@@ -604,7 +631,7 @@ function updateLightboxImage() {
   const imgElement = document.getElementById('lightboxImg');
   imgElement.style.opacity = '0';
   setTimeout(() => {
-    imgElement.src = productsData[currentIndex].src;
+    imgElement.src = activeDataset[currentIndex].src;
     imgElement.style.opacity = '1';
   }, 120);
 }
