@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg-dark: #0a0a0a;
     --bg-light: #ffffff;
     --text-dark: #111111;
     --text-sub: #666666;
@@ -40,20 +39,17 @@
     cursor: pointer; font-family: 'Montserrat', sans-serif; color: var(--text-dark);
   }
   .nav-links {
-    display: flex; gap: 25px; align-items: center;
+    display: flex; gap: 25px;
     text-transform: uppercase; font-size: 0.7rem;
     letter-spacing: 0.2em;
   }
-  .nav-links div, .nav-links a { cursor: pointer; transition: 0.3s; color: var(--text-dark); text-decoration: none; }
-  .nav-links div:hover, .nav-links div.active, .nav-links a:hover { opacity: 0.5; }
+  .nav-links div { cursor: pointer; transition: 0.3s; color: var(--text-dark); }
+  .nav-links div:hover, .nav-links div.active { opacity: 0.5; }
 
-  /* Dropdown Menu na Hover iznad Work */
+  /* Dropdown Menu za Work */
   .dropdown {
     position: relative;
     display: inline-block;
-  }
-  .dropdown-btn {
-    padding: 10px 0;
   }
   .dropdown-content {
     display: none;
@@ -62,16 +58,16 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(255, 255, 255, 0.98);
-    min-width: 190px;
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.08);
+    min-width: 180px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.08);
     z-index: 2001;
     text-align: center;
-    padding: 12px 0;
+    padding: 10px 0;
     border: 1px solid var(--border-color);
   }
   .dropdown-content a {
     color: var(--text-dark);
-    padding: 8px 15px;
+    padding: 10px 12px;
     text-decoration: none;
     display: block;
     font-size: 0.65rem;
@@ -79,9 +75,9 @@
     text-transform: uppercase;
     transition: 0.2s;
   }
-  .dropdown-content a:hover, .dropdown-content a.active {
+  .dropdown-content a:hover {
     opacity: 0.5;
-    background: #f8f8f8;
+    background: #f9f9f9;
   }
   .dropdown:hover .dropdown-content {
     display: block;
@@ -116,10 +112,10 @@
   .btn-imago:hover { background: #111; color: #fff; }
 
   /* --- 2. WORK / WILDLIFE SECTION --- */
-  .catalog-section { background: var(--bg-light); padding: 20px 0 80px; text-align: center; }
+  .catalog-section { background: #fff; padding: 20px 0 80px; text-align: center; }
   .category-title { 
-    font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 200; letter-spacing: 0.25em; 
-    text-transform: uppercase; margin: 20px 0 35px; color: var(--text-dark); 
+    font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 300; letter-spacing: 0.2em; 
+    text-transform: uppercase; margin: 20px 0 40px; color: var(--text-dark); 
   }
 
   .full-photo-grid {
@@ -145,56 +141,121 @@
     transition: transform 0.5s ease;
   }
   .photo-card:hover img {
-    transform: scale(1.03);
+    transform: scale(1.04);
   }
 
-  /* --- LIGHTBOX MODAL S UNAPREĐENOM SLIDE/ZOOM ANIMACIJOM --- */
+  /* --- 3. UNDER CONSTRUCTION (STREET PHOTO) --- */
+  .construction-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .construction-box h2 {
+    font-size: 1.5rem;
+    font-weight: 200;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  .construction-box p {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--text-sub);
+    text-transform: uppercase;
+  }
+
+  /* --- 4. EXPEDITIONS SECTION --- */
+  .expeditions-wrapper {
+    max-width: 1100px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .expeditions-hero-img {
+    width: 100%;
+    max-height: 650px;
+    object-fit: cover;
+    margin-bottom: 40px;
+  }
+  .expeditions-text {
+    max-width: 800px;
+  }
+  .expeditions-text h2 {
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 200;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .expeditions-text p {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    line-height: 1.9;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  /* --- LIGHTBOX MODAL WITH ANIMATION & NAVIGATION --- */
   .lightbox-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.92);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(5px);
     display: flex; justify-content: center; align-items: center;
     z-index: 5000;
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s ease;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
   }
-  .lightbox-modal.active {
+  .lightbox-modal.show {
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .lightbox-modal img {
-    max-width: 85%;
+    max-width: 100%;
     max-height: 85vh;
     object-fit: contain;
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    cursor: pointer;
     transform: scale(0.92);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
-    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.3s ease;
+    cursor: pointer;
   }
-  .lightbox-modal.active img.loaded {
+  .lightbox-modal.show img {
     transform: scale(1);
-    opacity: 1;
   }
 
   .lightbox-close {
     position: absolute; top: 20px; right: 30px;
-    color: #fff; font-size: 2.2rem; cursor: pointer; font-weight: 200;
-    z-index: 5010; transition: opacity 0.2s;
+    color: #fff; font-size: 2.5rem; cursor: pointer; font-weight: 200;
+    z-index: 5002; transition: opacity 0.2s;
   }
-  .lightbox-close:hover { opacity: 0.6; }
-
-  /* Navigacione strelice u Lightbox-u */
-  .lightbox-nav {
+  .lightbox-arrow {
     position: absolute; top: 50%; transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.7); font-size: 2.5rem; cursor: pointer;
-    padding: 20px; user-select: none; z-index: 5005; transition: 0.2s ease;
+    color: #fff; font-size: 2.5rem; cursor: pointer;
+    padding: 15px; user-select: none; z-index: 5001;
+    transition: opacity 0.3s, transform 0.2s;
+    opacity: 0.7;
   }
-  .lightbox-nav:hover { color: #fff; opacity: 1; }
-  .lightbox-prev { left: 15px; }
-  .lightbox-next { right: 15px; }
+  .lightbox-arrow:hover { opacity: 1; transform: translateY(-50%) scale(1.1); }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
 
   /* --- MODALS (ABOUT) --- */
   .modal-base { 
@@ -206,29 +267,26 @@
   .modal-content img { max-width: 40%; max-height: 70vh; object-fit: contain; }
   .close-btn { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; color: var(--text-dark); }
 
-  /* --- OPTIMIZACIJA ZA MOBILNI ELEKTOR / TELEFONE --- */
+  /* --- MOBILE OPTIMIZATION --- */
   @media(max-width: 850px){
     nav.header-nav { padding: 15px 20px; }
-    .brand-logo-text { font-size: 0.75rem; }
-    .nav-links { gap: 12px; font-size: 0.6rem; letter-spacing: 0.1em; }
-
+    .nav-links { gap: 15px; font-size: 0.65rem; }
+    
     .full-photo-grid { 
       grid-template-columns: repeat(1, 1fr); 
-      gap: 12px; 
-      padding: 0 10px; 
+      gap: 10px; 
+      padding: 0 10px;
     }
-    .photo-card { aspect-ratio: 3 / 2; }
 
     .triptych-grid { flex-direction: column; }
-    .col-1 img, .col-2 img, .col-3 img { height: 260px; }
+    .col-1 img, .col-2 img, .col-3 img { height: 350px; }
 
-    .modal-content { flex-direction: column; text-align: center; }
+    .modal-content { flex-direction: column; }
     .modal-content img { max-width: 80%; }
 
-    .lightbox-nav { font-size: 1.8rem; padding: 10px; }
+    .lightbox-arrow { font-size: 1.8rem; padding: 8px; }
     .lightbox-prev { left: 5px; }
     .lightbox-next { right: 5px; }
-    .lightbox-modal img { max-width: 95%; max-height: 80vh; }
   }
 
   footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border-color); margin-top: 40px; }
@@ -242,18 +300,16 @@
   <div class="nav-links">
     <div onclick="showSection('home')">Home</div>
     
-    <!-- Work Dropdown -->
+    <!-- Work Padajući Meni -->
     <div class="dropdown" id="link-work">
-      <div class="dropdown-btn" onclick="showSection('wildlife')">Work</div>
+      <div onclick="showSection('wildlife')">Work</div>
       <div class="dropdown-content">
-        <a href="#" onclick="return false;">Hotels & Lodges</a>
-        <a href="#" class="active" onclick="showSection('wildlife'); return false;">Wildlife</a>
-        <a href="#" onclick="return false;">Street Photo</a>
-        <a href="#" onclick="return false;">Corporate & NGOs</a>
+        <a href="#" onclick="showSection('wildlife'); return false;">Wildlife</a>
+        <a href="#" onclick="showSection('street'); return false;">Street Photo</a>
       </div>
     </div>
 
-    <div onclick="showSection('wildlife')">Expeditions</div>
+    <div onclick="showSection('expeditions')">Expeditions</div>
     <div id="link-shop" onclick="showSection('wildlife')">Shop</div>
     <div onclick="openModal('about-modal')">About</div>
     <div onclick="window.location.href='https://wa.me/381616651755';">Contact</div>
@@ -276,7 +332,7 @@
       <h2>FINE ART PORTFOLIO |</h2>
       <p>A Personal Perspective by Gorus</p>
     </div>
-    <button class="btn-imago" style="margin-top:20px;" onclick="showSection('wildlife')">Explore Portfolio</button>
+    <button class="btn-imago" onclick="showSection('wildlife')">Explore Portfolio</button>
   </div>
 </section>
 
@@ -286,12 +342,40 @@
   <div class="full-photo-grid" id="wildlife-grid"></div>
 </section>
 
-<!-- LIGHTBOX MODAL WITH SMOOTH ANIMATION & NAVIGATION -->
+<!-- 3. STREET PHOTO SECTION (UNDER CONSTRUCTION) -->
+<section class="page-section" id="sec-street">
+  <div class="construction-box">
+    <h2>Street Photography</h2>
+    <p>Under Construction — Collection Coming Soon</p>
+  </div>
+</section>
+
+<!-- 4. EXPEDITIONS SECTION -->
+<section class="page-section" id="sec-expeditions">
+  <div class="expeditions-wrapper">
+    <!-- Ovde zameni "31.jpg" sa svojom slikom po izboru -->
+    <img src="31.jpg" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
+    
+    <div class="expeditions-text">
+      <h2>Raw Wilderness. Unfiltered Stories.</h2>
+      <p>
+        Fotografija nije samo hvatanje svetla na senzoru — ona je potraga za neispricanim pricama u najdivljijim uglovima planete. 
+        Uskoro otvaramo vrata ekskluzivnim foto-ekspedicijama namenjenim strastvenim stvaraocima koji zele vise od obicnog putovanja. 
+        Pridruzite mi se na terenu, zakoracite van utabanih staza i zabelezimo trenutke koji ostavljaju neizbrisiv trag.
+      </p>
+      <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';">Inquire & Join Waiting List</button>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
 <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
   <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-  <span class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); changeImage(-1);">&#10094;</span>
-  <span class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); changeImage(1);">&#10095;</span>
-  <img id="lightboxImg" src="" onclick="event.stopPropagation(); changeImage(1);">
+  <span class="lightbox-arrow lightbox-prev" onclick="prevImage(event)">&#10094;</span>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" onclick="nextImage(event)">
+  </div>
+  <span class="lightbox-arrow lightbox-next" onclick="nextImage(event)">&#10095;</span>
 </div>
 
 <!-- ABOUT MODAL -->
@@ -326,7 +410,7 @@ const productsData = [
   { id: "16", title: "Soul of the Savannah", src: "16.jpg" }
 ];
 
-let currentImgIndex = 0;
+let currentIndex = 0;
 
 function showSection(sectionId) {
   document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
@@ -340,7 +424,6 @@ function showSection(sectionId) {
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-// Prikaz slika u Wildlife sekciji
 function renderWildlifeGrid() {
   const grid = document.getElementById('wildlife-grid');
   grid.innerHTML = productsData.map((p, index) => `
@@ -350,77 +433,51 @@ function renderWildlifeGrid() {
   `).join('');
 }
 
-// Otvaranje uvećane slike sa postepenim zoom-in efektom
 function openLightbox(index) {
-  currentImgIndex = index;
+  currentIndex = index;
+  const imgElement = document.getElementById('lightboxImg');
+  imgElement.src = productsData[currentIndex].src;
+
   const modal = document.getElementById('lightboxModal');
-  const img = document.getElementById('lightboxImg');
-
-  img.classList.remove('loaded');
-  img.src = productsData[currentImgIndex].src;
-  modal.classList.add('active');
+  modal.classList.add('show');
   document.body.style.overflow = 'hidden';
-
-  setTimeout(() => {
-    img.classList.add('loaded');
-  }, 30);
-}
-
-// Promena slike (Napred / Nazad)
-function changeImage(direction) {
-  currentImgIndex += direction;
-  
-  if (currentImgIndex >= productsData.length) {
-    currentImgIndex = 0;
-  } else if (currentImgIndex < 0) {
-    currentImgIndex = productsData.length - 1;
-  }
-
-  const img = document.getElementById('lightboxImg');
-  img.classList.remove('loaded');
-
-  setTimeout(() => {
-    img.src = productsData[currentImgIndex].src;
-    img.classList.add('loaded');
-  }, 150);
 }
 
 function closeLightbox() {
   const modal = document.getElementById('lightboxModal');
-  const img = document.getElementById('lightboxImg');
-  img.classList.remove('loaded');
-  modal.classList.remove('active');
+  modal.classList.remove('show');
   document.body.style.overflow = 'auto';
 }
 
-// Tastatura Kontrole (Strelice Levo/Desno i ESC)
+function nextImage(event) {
+  if (event) event.stopPropagation();
+  currentIndex = (currentIndex + 1) % productsData.length;
+  updateLightboxImage();
+}
+
+function prevImage(event) {
+  if (event) event.stopPropagation();
+  currentIndex = (currentIndex - 1 + productsData.length) % productsData.length;
+  updateLightboxImage();
+}
+
+function updateLightboxImage() {
+  const imgElement = document.getElementById('lightboxImg');
+  imgElement.style.opacity = '0';
+  setTimeout(() => {
+    imgElement.src = productsData[currentIndex].src;
+    imgElement.style.opacity = '1';
+  }, 150);
+}
+
 document.addEventListener('keydown', function(e) {
   const modal = document.getElementById('lightboxModal');
-  if (modal.classList.contains('active')) {
-    if (e.key === 'ArrowRight') changeImage(1);
-    if (e.key === 'ArrowLeft') changeImage(-1);
+  if (modal.classList.contains('show')) {
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
     if (e.key === 'Escape') closeLightbox();
   }
 });
-
-// Touch / Swipe Gestovi za mobilni
-let touchStartX = 0;
-let touchEndX = 0;
-
-const modalElem = document.getElementById('lightboxModal');
-modalElem.addEventListener('touchstart', function(e) {
-  touchStartX = e.changedTouches[0].screenX;
-}, false);
-
-modalElem.addEventListener('touchend', function(e) {
-  touchEndX = e.changedTouches[0].screenX;
-  handleSwipe();
-}, false);
-
-function handleSwipe() {
-  if (touchEndX < touchStartX - 40) changeImage(1);  // Swipe Ulevo -> Sledeća
-  if (touchEndX > touchStartX + 40) changeImage(-1); // Swipe Udesno -> Prethodna
-}
 </script>
 </body>
 </html>
