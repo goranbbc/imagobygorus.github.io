@@ -51,14 +51,24 @@
   .nav-links div { cursor: pointer; transition: 0.3s; color: var(--text-dark); }
   .nav-links div:hover, .nav-links div.active { opacity: 0.5; }
 
-  /* Dropdown Menu za Work */
+  /* Dropdown Menu za Desktop & Mobilni */
   .dropdown {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
   .dropdown-label {
     cursor: pointer !important;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
+  .dropdown-arrow {
+    font-size: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
   .dropdown-content {
     display: none;
     position: absolute;
@@ -67,7 +77,7 @@
     transform: translateX(-50%);
     background-color: rgba(255, 255, 255, 0.98);
     min-width: 180px;
-    box-shadow: 0px 8px 20px rgba(0,0,0,0.08);
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.08);
     z-index: 2001;
     text-align: center;
     padding: 10px 0;
@@ -95,15 +105,19 @@
     }
   }
 
+  /* Class za prikaz menija */
   .dropdown-content.show-dropdown {
     display: block !important;
+  }
+  .dropdown.open .dropdown-arrow {
+    transform: rotate(180deg);
   }
 
   /* --- PAGE SECTIONS --- */
   .page-section { display: none; min-height: 100vh; padding-top: 90px; }
   .page-section.active { display: block; }
 
-  /* --- 1. HOME SECTION (TRIPTYCH ORIGINAL GRID) --- */
+  /* --- 1. HOME SECTION --- */
   .hero-landing {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 40px 15px; text-align: center;
@@ -113,7 +127,6 @@
     letter-spacing: 0.4em; margin: 0 0 30px 0; text-transform: uppercase; 
   }
 
-  /* Izvorne Triptych Proporcije */
   .triptych-grid { 
     display: flex; 
     gap: 10px; 
@@ -175,7 +188,7 @@
     transform: scale(1.04);
   }
 
-  /* --- 3. UNDER CONSTRUCTION (STREET PHOTO) --- */
+  /* --- 3. UNDER CONSTRUCTION --- */
   .construction-box {
     display: flex;
     flex-direction: column;
@@ -299,7 +312,7 @@
   .modal-content img { max-width: 40%; max-height: 70vh; object-fit: contain; }
   .close-btn { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; color: var(--text-dark); }
 
-  /* --- MOBILE OPTIMIZATION --- */
+  /* --- MOBILNA REDIZAJNIRANA NAVIGACIJA --- */
   @media(max-width: 850px){
     nav.header-nav { 
       padding: 14px 15px; 
@@ -321,7 +334,30 @@
     
     .page-section { padding-top: 110px; }
 
-    /* Zadržavanje trokolonskog izgleda triptik-a i na mobilnom ekranu */
+    /* Elegantan mobilni padajući meni */
+    .dropdown-content {
+      position: absolute;
+      top: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      padding: 6px 0;
+    }
+    .dropdown-content a {
+      padding: 14px 20px;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      border-bottom: 1px solid #f2f2f2;
+    }
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    /* Triptih zadržan u 3 kolone */
     .triptych-grid { 
       display: flex !important;
       flex-direction: row !important;
@@ -347,17 +383,6 @@
     }
     .lightbox-prev { left: 5px; }
     .lightbox-next { right: 5px; }
-    
-    .dropdown-content {
-      position: fixed;
-      top: 105px;
-      left: 0;
-      width: 100%;
-      transform: none;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      border-left: none;
-      border-right: none;
-    }
 
     .expeditions-wrapper { margin-top: 0; padding: 0 15px; }
     .expeditions-hero-img { max-height: 300px; margin-bottom: 25px; }
@@ -375,9 +400,11 @@
   <div class="nav-links">
     <div onclick="showSection('home')">Home</div>
     
-    <!-- Work Padajući Meni -->
-    <div class="dropdown">
-      <div class="dropdown-label" onclick="toggleMobileDropdown(event)">Work</div>
+    <!-- Redizajnirani Work Dropdown -->
+    <div class="dropdown" id="dropdownContainer">
+      <div class="dropdown-label" onclick="toggleMobileDropdown(event)">
+        Work <span class="dropdown-arrow">&#9662;</span>
+      </div>
       <div class="dropdown-content" id="workDropdown">
         <a onclick="showSection('wildlife')">Wildlife</a>
         <a onclick="showSection('street')">Street Photo</a>
@@ -396,7 +423,6 @@
   <div class="hero-landing">
     <div class="main-logo"><h1>IMAGO BY GORUS</h1></div>
     
-    <!-- Triptych Grid - Zadržana 3-kolonska struktura i na telefonima -->
     <div class="triptych-grid">
       <div class="triptych-col col-1"><img src="31.jpg" ondragstart="return false;"></div>
       <div class="triptych-col col-2"><img src="000000971.jpg" ondragstart="return false;"></div>
@@ -495,7 +521,7 @@ function showSection(sectionId) {
   document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(`sec-${sectionId}`).classList.add('active');
 
-  document.getElementById('workDropdown').classList.remove('show-dropdown');
+  closeMobileDropdown();
 
   if(sectionId === 'wildlife') renderWildlifeGrid();
   
@@ -503,16 +529,23 @@ function showSection(sectionId) {
 }
 
 function toggleMobileDropdown(event) {
-  if (window.innerWidth <= 850) {
-    event.stopPropagation();
-    const dropdown = document.getElementById('workDropdown');
-    dropdown.classList.toggle('show-dropdown');
-  }
+  event.stopPropagation();
+  const dropdown = document.getElementById('workDropdown');
+  const container = document.getElementById('dropdownContainer');
+  
+  dropdown.classList.toggle('show-dropdown');
+  container.classList.toggle('open');
+}
+
+function closeMobileDropdown() {
+  const dropdown = document.getElementById('workDropdown');
+  const container = document.getElementById('dropdownContainer');
+  if (dropdown) dropdown.classList.remove('show-dropdown');
+  if (container) container.classList.remove('open');
 }
 
 document.addEventListener('click', function() {
-  const dropdown = document.getElementById('workDropdown');
-  if (dropdown) dropdown.classList.remove('show-dropdown');
+  closeMobileDropdown();
 });
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
