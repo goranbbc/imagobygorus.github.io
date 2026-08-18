@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>IMAGO BY GORUS | FINE ART GALLERY</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
@@ -13,7 +13,10 @@
     --border-color: #e0e0e0;
   }
 
-  *, *::before, *::after { box-sizing: border-box; }
+  *, *::before, *::after { 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; 
+  }
 
   body {
     font-family: 'Montserrat', sans-serif;
@@ -22,7 +25,9 @@
     color: var(--text-dark);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    -webkit-user-select: none; user-select: none;
+    -webkit-user-select: none; 
+    user-select: none;
+    touch-action: manipulation;
   }
 
   /* --- HEADER NAV --- */
@@ -84,14 +89,12 @@
     background: #f9f9f9;
   }
 
-  /* Na desktopu otvara na Hover */
   @media(min-width: 851px) {
     .dropdown:hover .dropdown-content {
       display: block;
     }
   }
 
-  /* Klasa za otvaranje na dodir na mobilnim uređajima */
   .dropdown-content.show-dropdown {
     display: block !important;
   }
@@ -100,7 +103,7 @@
   .page-section { display: none; min-height: 100vh; padding-top: 90px; }
   .page-section.active { display: block; }
 
-  /* --- 1. HOME SECTION --- */
+  /* --- 1. HOME SECTION (TRIPTYCH ORIGINAL GRID) --- */
   .hero-landing {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 40px 15px; text-align: center;
@@ -109,8 +112,23 @@
     font-weight: 200; font-size: clamp(1.2rem, 4vw, 3rem); 
     letter-spacing: 0.4em; margin: 0 0 30px 0; text-transform: uppercase; 
   }
-  .triptych-grid { display: flex; gap: 10px; max-width: 1100px; width: 100%; margin-bottom: 40px; position: relative; }
-  .triptych-col { flex: 1; display: flex; flex-direction: column; gap: 10px; position: relative; }
+
+  /* Izvorne Triptych Proporcije */
+  .triptych-grid { 
+    display: flex; 
+    gap: 10px; 
+    max-width: 1100px; 
+    width: 100%; 
+    margin-bottom: 40px; 
+    position: relative; 
+  }
+  .triptych-col { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    position: relative; 
+  }
   .triptych-grid img { width: 100%; object-fit: cover; display: block; }
   .col-1 img, .col-2 img { height: 600px; }
   .col-3 img { height: 295px; }
@@ -219,8 +237,8 @@
   /* --- LIGHTBOX MODAL --- */
   .lightbox-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.94);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(8px);
     display: flex; justify-content: center; align-items: center;
     z-index: 5000;
     opacity: 0;
@@ -234,8 +252,8 @@
 
   .lightbox-content {
     position: relative;
-    max-width: 90%;
-    max-height: 90vh;
+    max-width: 95%;
+    max-height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -243,11 +261,11 @@
 
   .lightbox-modal img {
     max-width: 100%;
-    max-height: 85vh;
+    max-height: 80vh;
     object-fit: contain;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
     transform: scale(0.92);
-    transition: transform 0.4s ease-out, opacity 0.3s ease;
+    transition: transform 0.35s ease-out, opacity 0.25s ease;
     cursor: pointer;
   }
   .lightbox-modal.show img {
@@ -255,20 +273,21 @@
   }
 
   .lightbox-close {
-    position: absolute; top: 20px; right: 25px;
-    color: #fff; font-size: 2.5rem; cursor: pointer; font-weight: 200;
+    position: absolute; top: 15px; right: 20px;
+    color: #fff; font-size: 2.2rem; cursor: pointer; font-weight: 200;
     z-index: 5002; transition: opacity 0.2s;
+    padding: 10px;
   }
   .lightbox-arrow {
     position: absolute; top: 50%; transform: translateY(-50%);
     color: #fff; font-size: 2.5rem; cursor: pointer;
-    padding: 15px; user-select: none; z-index: 5001;
+    padding: 20px 15px; user-select: none; z-index: 5001;
     transition: opacity 0.3s, transform 0.2s;
-    opacity: 0.7;
+    opacity: 0.6;
   }
-  .lightbox-arrow:hover { opacity: 1; transform: translateY(-50%) scale(1.1); }
-  .lightbox-prev { left: 20px; }
-  .lightbox-next { right: 20px; }
+  .lightbox-arrow:hover { opacity: 1; }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
 
   /* --- MODALS (ABOUT) --- */
   .modal-base { 
@@ -280,45 +299,72 @@
   .modal-content img { max-width: 40%; max-height: 70vh; object-fit: contain; }
   .close-btn { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; color: var(--text-dark); }
 
-  /* --- ADVANCED MOBILE OPTIMIZATION --- */
+  /* --- MOBILE OPTIMIZATION --- */
   @media(max-width: 850px){
     nav.header-nav { 
-      padding: 15px 18px; 
+      padding: 14px 15px; 
+      flex-direction: column;
+      gap: 12px;
+    }
+    .brand-logo-text { 
+      font-size: 0.8rem; 
+      letter-spacing: 0.25em; 
+    }
+    .nav-links { 
+      gap: 12px; 
+      font-size: 0.6rem; 
+      letter-spacing: 0.1em;
+      width: 100%;
+      justify-content: center;
       flex-wrap: wrap;
     }
-    .brand-logo-text { font-size: 0.75rem; letter-spacing: 0.2em; }
-    .nav-links { gap: 12px; font-size: 0.6rem; letter-spacing: 0.12em; }
     
+    .page-section { padding-top: 110px; }
+
+    /* Zadržavanje trokolonskog izgleda triptik-a i na mobilnom ekranu */
+    .triptych-grid { 
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 5px !important; 
+    }
+    .col-1 img, .col-2 img { height: 220px !important; }
+    .col-3 img { height: 105px !important; }
+
     .full-photo-grid { 
       grid-template-columns: repeat(1, 1fr); 
-      gap: 12px; 
-      padding: 0 10px;
+      gap: 15px; 
+      padding: 0 12px;
     }
-
-    .triptych-grid { flex-direction: column; gap: 8px; }
-    .col-1 img, .col-2 img, .col-3 img { height: 280px; }
 
     .modal-content { flex-direction: column; text-align: center; }
     .modal-content img { max-width: 100%; max-height: 45vh; }
 
-    .lightbox-arrow { font-size: 2rem; padding: 10px; }
+    .lightbox-arrow { 
+      font-size: 1.8rem; 
+      padding: 15px 8px; 
+      background: rgba(0,0,0,0.3);
+      border-radius: 4px;
+    }
     .lightbox-prev { left: 5px; }
     .lightbox-next { right: 5px; }
     
     .dropdown-content {
       position: fixed;
-      top: 60px;
+      top: 105px;
       left: 0;
       width: 100%;
       transform: none;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-left: none;
+      border-right: none;
     }
 
-    .expeditions-wrapper { margin-top: 10px; }
-    .expeditions-hero-img { max-height: 350px; }
+    .expeditions-wrapper { margin-top: 0; padding: 0 15px; }
+    .expeditions-hero-img { max-height: 300px; margin-bottom: 25px; }
+    .expeditions-text p { font-size: 0.78rem; line-height: 1.8; }
   }
 
-  footer { text-align: center; padding: 50px 0; border-top: 1px solid var(--border-color); margin-top: 40px; }
+  footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border-color); margin-top: 40px; }
 </style>
 </head>
 <body oncontextmenu="return false;">
@@ -349,6 +395,8 @@
 <section class="page-section active" id="sec-home">
   <div class="hero-landing">
     <div class="main-logo"><h1>IMAGO BY GORUS</h1></div>
+    
+    <!-- Triptych Grid - Zadržana 3-kolonska struktura i na telefonima -->
     <div class="triptych-grid">
       <div class="triptych-col col-1"><img src="31.jpg" ondragstart="return false;"></div>
       <div class="triptych-col col-2"><img src="000000971.jpg" ondragstart="return false;"></div>
@@ -357,6 +405,7 @@
         <img src="IMG_4296.jpg" ondragstart="return false;">
       </div>
     </div>
+
     <div class="hero-text">
       <h2>FINE ART PORTFOLIO |</h2>
       <p>A Personal Perspective by Gorus</p>
@@ -371,7 +420,7 @@
   <div class="full-photo-grid" id="wildlife-grid"></div>
 </section>
 
-<!-- 3. STREET PHOTO SECTION (UNDER CONSTRUCTION) -->
+<!-- 3. STREET PHOTO SECTION -->
 <section class="page-section" id="sec-street">
   <div class="construction-box">
     <h2>Street Photography</h2>
@@ -379,7 +428,7 @@
   </div>
 </section>
 
-<!-- 4. EXPEDITIONS SECTION (ENGLISH TEXT) -->
+<!-- 4. EXPEDITIONS SECTION -->
 <section class="page-section" id="sec-expeditions">
   <div class="expeditions-wrapper">
     <img src="31.jpg" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
@@ -439,12 +488,13 @@ const productsData = [
 ];
 
 let currentIndex = 0;
+let touchStartX = 0;
+let touchEndX = 0;
 
 function showSection(sectionId) {
   document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(`sec-${sectionId}`).classList.add('active');
 
-  // Zatvori mobilni dropdown ako je otvoren
   document.getElementById('workDropdown').classList.remove('show-dropdown');
 
   if(sectionId === 'wildlife') renderWildlifeGrid();
@@ -460,7 +510,6 @@ function toggleMobileDropdown(event) {
   }
 }
 
-// Zatvaranje dropdown-a ako se klikne van njega na mobilnom
 document.addEventListener('click', function() {
   const dropdown = document.getElementById('workDropdown');
   if (dropdown) dropdown.classList.remove('show-dropdown');
@@ -512,11 +561,32 @@ function updateLightboxImage() {
   setTimeout(() => {
     imgElement.src = productsData[currentIndex].src;
     imgElement.style.opacity = '1';
-  }, 150);
+  }, 120);
+}
+
+// Touch swipe gestures za mobilne telefone
+const modal = document.getElementById('lightboxModal');
+
+modal.addEventListener('touchstart', function(e) {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+modal.addEventListener('touchend', function(e) {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+  const swipeThreshold = 50;
+  if (touchEndX < touchStartX - swipeThreshold) {
+    nextImage();
+  }
+  if (touchEndX > touchStartX + swipeThreshold) {
+    prevImage();
+  }
 }
 
 document.addEventListener('keydown', function(e) {
-  const modal = document.getElementById('lightboxModal');
   if (modal.classList.contains('show')) {
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
