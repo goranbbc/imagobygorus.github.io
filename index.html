@@ -34,7 +34,7 @@
   nav.header-nav {
     position: fixed; top: 0; left: 0; width: 100%;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 22px 40px; z-index: 2000;
+    padding: 18px 40px; z-index: 2000;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
@@ -104,8 +104,8 @@
   }
   .dropdown-content.show-dropdown { display: block !important; }
 
-  /* --- PAGE SECTIONS (DODAT RAZMAK TAKO DA FIKSNA NAVIGACIJA NIKADA NE ZAKLANJA NASLOVE) --- */
-  .page-section { display: none; min-height: 100vh; padding-top: 180px; }
+  /* --- PAGE SECTIONS (OPTIMIZOVAN I PRIRODAN RAZMAK ZA SVE EKRANE) --- */
+  .page-section { display: none; min-height: 100vh; padding-top: 100px; }
   .page-section.active { display: block; }
 
   /* --- 1. HOME SECTION --- */
@@ -244,14 +244,14 @@
   }
 
   /* --- 2. WORK / WILDLIFE SECTION --- */
-  .catalog-section { background: #fff; padding: 20px 0 80px; text-align: center; }
+  .catalog-section { background: #fff; padding: 10px 0 80px; text-align: center; }
   .category-title { 
-    font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 300; letter-spacing: 0.25em; 
-    text-transform: uppercase; margin: 0 0 10px 0; color: var(--text-dark); 
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem); font-weight: 300; letter-spacing: 0.25em; 
+    text-transform: uppercase; margin: 10px 0 15px 0; color: var(--text-dark); 
   }
   .category-subtitle {
-    font-size: 0.75rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase;
-    margin-bottom: 40px;
+    font-size: 0.7rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase;
+    margin-bottom: 30px;
   }
 
   .full-photo-grid {
@@ -328,12 +328,12 @@
 
   /* --- MOBILNA OPTIMIZACIJA --- */
   @media(max-width: 850px){
-    nav.header-nav { padding: 14px 15px; flex-direction: column; gap: 12px; }
+    nav.header-nav { padding: 12px 15px; flex-direction: column; gap: 8px; }
     .brand-logo-text { font-size: 0.8rem; letter-spacing: 0.25em; }
-    .nav-links { gap: 12px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
+    .nav-links { gap: 10px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
     
-    /* DODATNI PROSTOR ZA MOBILNI ZBOG DVOETAŽNE NAVIGACIJE */
-    .page-section { padding-top: 170px; }
+    /* IDEALAN RAZMAK NA MOBILNOM BEZ VELIKE PRAZNINE */
+    .page-section { padding-top: 110px; }
 
     .dropdown-content {
       position: absolute; top: 130%; left: 50%; transform: translateX(-50%);
@@ -349,7 +349,7 @@
 
     .portfolio-banner { height: 45vh; min-height: 280px; }
 
-    /* MREŽA SLIKA NA MOBILNOM: 2 KOLONE × 3 REDA = ALL 6 PHOTOS ON SCREEN */
+    /* MREŽA SLIKA NA MOBILNOM: 2 KOLONE × 3 REDA */
     .full-photo-grid { 
       grid-template-columns: repeat(2, 1fr) !important; 
       gap: 8px !important; 
@@ -362,8 +362,8 @@
       aspect-ratio: 4 / 5 !important;
     }
 
-    .category-title { font-size: 1.4rem; margin-bottom: 5px; }
-    .category-subtitle { font-size: 0.65rem; margin-bottom: 25px; }
+    .category-title { font-size: 1.3rem; margin: 5px 0; }
+    .category-subtitle { font-size: 0.62rem; margin-bottom: 20px; }
 
     .modal-content { flex-direction: column; text-align: center; }
     .modal-content img { max-width: 100%; max-height: 45vh; }
@@ -481,13 +481,12 @@
 <!-- 5. EXPEDITIONS SECTION -->
 <section class="page-section" id="sec-expeditions">
   <div class="expeditions-wrapper">
-    <img src="ekspedicija.JPG" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
+    <img src="31.jpg" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
     
     <div class="expeditions-text">
       <h2>Raw Wilderness. Unfiltered Stories.</h2>
       <p>
-        Photography is more than capturing light on a sensor — it is a relentless pursuit of untold stories in the world's most remote landscapes. 
-        We are preparing exclusive fine art photo expeditions designed for passionate creators who crave more than ordinary travel. 
+         I am preparing exclusive fine art photo expeditions designed for passionate creators who crave more than ordinary travel. 
         Join me in the field, step beyond the beaten path, and let us immortalize raw, unforgettable moments together.
       </p>
       <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';">Inquire & Join Waiting List</button>
