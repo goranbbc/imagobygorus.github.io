@@ -39,7 +39,7 @@
     cursor: pointer; font-family: 'Montserrat', sans-serif; color: var(--text-dark);
   }
   .nav-links {
-    display: flex; gap: 25px;
+    display: flex; gap: 25px; align-items: center;
     text-transform: uppercase; font-size: 0.7rem;
     letter-spacing: 0.2em;
   }
@@ -50,6 +50,9 @@
   .dropdown {
     position: relative;
     display: inline-block;
+  }
+  .dropdown-label {
+    cursor: pointer !important;
   }
   .dropdown-content {
     display: none;
@@ -67,20 +70,30 @@
   }
   .dropdown-content a {
     color: var(--text-dark);
-    padding: 10px 12px;
+    padding: 12px 16px;
     text-decoration: none;
     display: block;
     font-size: 0.65rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     transition: 0.2s;
+    cursor: pointer;
   }
   .dropdown-content a:hover {
     opacity: 0.5;
     background: #f9f9f9;
   }
-  .dropdown:hover .dropdown-content {
-    display: block;
+
+  /* Na desktopu otvara na Hover */
+  @media(min-width: 851px) {
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  }
+
+  /* Klasa za otvaranje na dodir na mobilnim uređajima */
+  .dropdown-content.show-dropdown {
+    display: block !important;
   }
 
   /* --- PAGE SECTIONS --- */
@@ -171,7 +184,7 @@
   /* --- 4. EXPEDITIONS SECTION --- */
   .expeditions-wrapper {
     max-width: 1100px;
-    margin: 40px auto 80px;
+    margin: 20px auto 80px;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
@@ -180,7 +193,7 @@
   }
   .expeditions-hero-img {
     width: 100%;
-    max-height: 650px;
+    max-height: 600px;
     object-fit: cover;
     margin-bottom: 40px;
   }
@@ -188,7 +201,7 @@
     max-width: 800px;
   }
   .expeditions-text h2 {
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-size: clamp(1.3rem, 3vw, 2rem);
     font-weight: 200;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -203,10 +216,10 @@
     margin-bottom: 30px;
   }
 
-  /* --- LIGHTBOX MODAL WITH ANIMATION & NAVIGATION --- */
+  /* --- LIGHTBOX MODAL --- */
   .lightbox-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.92);
+    background: rgba(0, 0, 0, 0.94);
     backdrop-filter: blur(5px);
     display: flex; justify-content: center; align-items: center;
     z-index: 5000;
@@ -242,7 +255,7 @@
   }
 
   .lightbox-close {
-    position: absolute; top: 20px; right: 30px;
+    position: absolute; top: 20px; right: 25px;
     color: #fff; font-size: 2.5rem; cursor: pointer; font-weight: 200;
     z-index: 5002; transition: opacity 0.2s;
   }
@@ -267,29 +280,45 @@
   .modal-content img { max-width: 40%; max-height: 70vh; object-fit: contain; }
   .close-btn { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; color: var(--text-dark); }
 
-  /* --- MOBILE OPTIMIZATION --- */
+  /* --- ADVANCED MOBILE OPTIMIZATION --- */
   @media(max-width: 850px){
-    nav.header-nav { padding: 15px 20px; }
-    .nav-links { gap: 15px; font-size: 0.65rem; }
+    nav.header-nav { 
+      padding: 15px 18px; 
+      flex-wrap: wrap;
+    }
+    .brand-logo-text { font-size: 0.75rem; letter-spacing: 0.2em; }
+    .nav-links { gap: 12px; font-size: 0.6rem; letter-spacing: 0.12em; }
     
     .full-photo-grid { 
       grid-template-columns: repeat(1, 1fr); 
-      gap: 10px; 
+      gap: 12px; 
       padding: 0 10px;
     }
 
-    .triptych-grid { flex-direction: column; }
-    .col-1 img, .col-2 img, .col-3 img { height: 350px; }
+    .triptych-grid { flex-direction: column; gap: 8px; }
+    .col-1 img, .col-2 img, .col-3 img { height: 280px; }
 
-    .modal-content { flex-direction: column; }
-    .modal-content img { max-width: 80%; }
+    .modal-content { flex-direction: column; text-align: center; }
+    .modal-content img { max-width: 100%; max-height: 45vh; }
 
-    .lightbox-arrow { font-size: 1.8rem; padding: 8px; }
+    .lightbox-arrow { font-size: 2rem; padding: 10px; }
     .lightbox-prev { left: 5px; }
     .lightbox-next { right: 5px; }
+    
+    .dropdown-content {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      transform: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .expeditions-wrapper { margin-top: 10px; }
+    .expeditions-hero-img { max-height: 350px; }
   }
 
-  footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border-color); margin-top: 40px; }
+  footer { text-align: center; padding: 50px 0; border-top: 1px solid var(--border-color); margin-top: 40px; }
 </style>
 </head>
 <body oncontextmenu="return false;">
@@ -301,11 +330,11 @@
     <div onclick="showSection('home')">Home</div>
     
     <!-- Work Padajući Meni -->
-    <div class="dropdown" id="link-work">
-      <div onclick="showSection('wildlife')">Work</div>
-      <div class="dropdown-content">
-        <a href="#" onclick="showSection('wildlife'); return false;">Wildlife</a>
-        <a href="#" onclick="showSection('street'); return false;">Street Photo</a>
+    <div class="dropdown">
+      <div class="dropdown-label" onclick="toggleMobileDropdown(event)">Work</div>
+      <div class="dropdown-content" id="workDropdown">
+        <a onclick="showSection('wildlife')">Wildlife</a>
+        <a onclick="showSection('street')">Street Photo</a>
       </div>
     </div>
 
@@ -350,18 +379,17 @@
   </div>
 </section>
 
-<!-- 4. EXPEDITIONS SECTION -->
+<!-- 4. EXPEDITIONS SECTION (ENGLISH TEXT) -->
 <section class="page-section" id="sec-expeditions">
   <div class="expeditions-wrapper">
-    <!-- Ovde zameni "31.jpg" sa svojom slikom po izboru -->
     <img src="31.jpg" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
     
     <div class="expeditions-text">
       <h2>Raw Wilderness. Unfiltered Stories.</h2>
       <p>
-        Fotografija nije samo hvatanje svetla na senzoru — ona je potraga za neispricanim pricama u najdivljijim uglovima planete. 
-        Uskoro otvaramo vrata ekskluzivnim foto-ekspedicijama namenjenim strastvenim stvaraocima koji zele vise od obicnog putovanja. 
-        Pridruzite mi se na terenu, zakoracite van utabanih staza i zabelezimo trenutke koji ostavljaju neizbrisiv trag.
+        Photography is more than capturing light on a sensor — it is a relentless pursuit of untold stories in the world's most remote landscapes. 
+        We are preparing exclusive fine art photo expeditions designed for passionate creators who crave more than ordinary travel. 
+        Join me in the field, step beyond the beaten path, and let us immortalize raw, unforgettable moments together.
       </p>
       <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';">Inquire & Join Waiting List</button>
     </div>
@@ -416,10 +444,27 @@ function showSection(sectionId) {
   document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(`sec-${sectionId}`).classList.add('active');
 
+  // Zatvori mobilni dropdown ako je otvoren
+  document.getElementById('workDropdown').classList.remove('show-dropdown');
+
   if(sectionId === 'wildlife') renderWildlifeGrid();
   
   window.scrollTo(0, 0);
 }
+
+function toggleMobileDropdown(event) {
+  if (window.innerWidth <= 850) {
+    event.stopPropagation();
+    const dropdown = document.getElementById('workDropdown');
+    dropdown.classList.toggle('show-dropdown');
+  }
+}
+
+// Zatvaranje dropdown-a ako se klikne van njega na mobilnom
+document.addEventListener('click', function() {
+  const dropdown = document.getElementById('workDropdown');
+  if (dropdown) dropdown.classList.remove('show-dropdown');
+});
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
