@@ -104,8 +104,8 @@
   }
   .dropdown-content.show-dropdown { display: block !important; }
 
-  /* --- PAGE SECTIONS --- */
-  .page-section { display: none; min-height: 100vh; padding-top: 120px; }
+  /* --- PAGE SECTIONS (DOVOLJAN RAZMAK DA FIKSIRANI HEADER NE ZAKLANJA NASLOV) --- */
+  .page-section { display: none; min-height: 100vh; padding-top: 140px; }
   .page-section.active { display: block; }
 
   /* --- 1. HOME SECTION --- */
@@ -244,14 +244,14 @@
   }
 
   /* --- 2. WORK / WILDLIFE SECTION --- */
-  .catalog-section { background: #fff; padding: 30px 0 80px; text-align: center; }
+  .catalog-section { background: #fff; padding: 20px 0 80px; text-align: center; }
   .category-title { 
     font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 300; letter-spacing: 0.25em; 
-    text-transform: uppercase; margin: 0 0 10px; color: var(--text-dark); 
+    text-transform: uppercase; margin: 0 0 10px 0; color: var(--text-dark); 
   }
   .category-subtitle {
-    font-size: 0.75rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase;
-    margin-bottom: 40px;
+    font-size: 0.7rem; letter-spacing: 0.18em; color: var(--text-sub); text-transform: uppercase;
+    margin-bottom: 35px;
   }
 
   .full-photo-grid {
@@ -270,7 +270,7 @@
     background: #f4f4f4;
   }
   .photo-card.room-card {
-    aspect-ratio: 4 / 5; /* Vertikalni format za In-Room pregled */
+    aspect-ratio: 4 / 5;
   }
   .photo-card img {
     width: 100%;
@@ -284,7 +284,7 @@
   /* --- 3. UNDER CONSTRUCTION (STREET) --- */
   .construction-box {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 60vh; padding: 0 20px; text-align: center;
+    min-height: 50vh; padding: 0 20px; text-align: center;
   }
   .construction-box h2 { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 15px; }
   .construction-box p { font-size: 0.8rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase; }
@@ -332,7 +332,8 @@
     .brand-logo-text { font-size: 0.8rem; letter-spacing: 0.25em; }
     .nav-links { gap: 12px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
     
-    .page-section { padding-top: 125px; }
+    /* RAZMAK NA MOBILNOM PREKO FIKSIRANE NAVIGACIJE */
+    .page-section { padding-top: 150px; }
 
     .dropdown-content {
       position: absolute; top: 130%; left: 50%; transform: translateX(-50%);
@@ -362,7 +363,7 @@
     }
 
     .category-title { font-size: 1.4rem; margin-bottom: 5px; }
-    .category-subtitle { font-size: 0.65rem; margin-bottom: 25px; }
+    .category-subtitle { font-size: 0.62rem; letter-spacing: 0.12em; margin-bottom: 25px; }
 
     .modal-content { flex-direction: column; text-align: center; }
     .modal-content img { max-width: 100%; max-height: 45vh; }
@@ -403,11 +404,11 @@
     
     <!-- Triptych Grid -->
     <div class="triptych-grid">
-      <div class="triptych-col col-1"><img src="31.jpg" ondragstart="return false;"></div>
-      <div class="triptych-col col-2"><img src="000000971.jpg" ondragstart="return false;"></div>
+      <div class="triptych-col col-1"><img src="31.png" ondragstart="return false;"></div>
+      <div class="triptych-col col-2"><img src="000000971.png" ondragstart="return false;"></div>
       <div class="triptych-col col-3">
-        <img src="515151.jpg" ondragstart="return false;">
-        <img src="IMG_4296.jpg" ondragstart="return false;">
+        <img src="515151.png" ondragstart="return false;">
+        <img src="IMG_4296.png" ondragstart="return false;">
       </div>
     </div>
 
@@ -420,7 +421,7 @@
 
   <!-- MEET THE CREATOR SEKCIJA -->
   <div class="meet-creator-wrapper">
-    <img src="IVP_8418.jpg" class="meet-creator-img" alt="Gorus Photography" ondragstart="return false;">
+    <img src="IVP_8418.png" class="meet-creator-img" alt="Gorus Photography" ondragstart="return false;">
     
     <div class="meet-creator-info">
       <div class="meet-subtitle">Meet the Creator</div>
@@ -438,7 +439,7 @@
 <section class="page-section" id="sec-portfolio-overview">
   
   <div class="portfolio-banner" onclick="showSection('wildlife')">
-    <img src="31.jpg" alt="Wildlife Category" ondragstart="return false;">
+    <img src="31.png" alt="Wildlife Category" ondragstart="return false;">
     <div class="portfolio-banner-overlay">
       <h2>Wildlife</h2>
       <span>View Gallery &gt;</span>
@@ -446,7 +447,7 @@
   </div>
 
   <div class="portfolio-banner" onclick="showSection('street')">
-    <img src="000000971.jpg" alt="Street Photo Category" ondragstart="return false;">
+    <img src="000000971.png" alt="Street Photo Category" ondragstart="return false;">
     <div class="portfolio-banner-overlay">
       <h2>Street Photo</h2>
       <span>View Gallery &gt;</span>
@@ -469,10 +470,10 @@
   </div>
 </section>
 
-<!-- 4. SHOP SECTION (IN-ROOM PREVIEW GRID - 6 MOCKUP FOTKI) -->
+<!-- 4. SHOP SECTION (PREVIEW GRID SA PNG SLIKAMA) -->
 <section class="page-section catalog-section" id="sec-shop">
   <h1 class="category-title">Print Shop</h1>
-  <div class="category-subtitle">In-Room Preview — Official Collection Coming Soon</div>
+  <div class="category-subtitle">OFFICIAL COLLECTION COMING SOON</div>
   
   <div class="full-photo-grid" id="shop-room-grid"></div>
 </section>
@@ -480,7 +481,7 @@
 <!-- 5. EXPEDITIONS SECTION -->
 <section class="page-section" id="sec-expeditions">
   <div class="expeditions-wrapper">
-    <img src="31.jpg" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
+    <img src="31.png" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
     
     <div class="expeditions-text">
       <h2>Raw Wilderness. Unfiltered Stories.</h2>
@@ -508,7 +509,7 @@
 <div class="modal-base" id="about-modal">
   <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
   <div class="modal-content">
-    <img src="IVP_8418.jpg" ondragstart="return false;">
+    <img src="IVP_8418.png" ondragstart="return false;">
     <div>
       <h2 style="font-weight: 200; text-transform: uppercase; letter-spacing: 0.2em;">The Vision</h2>
       <p>I am Gorus, a visual storyteller dedicated to the bold and the unforgettable.</p>
@@ -525,26 +526,26 @@
 </footer>
 
 <script>
-// Slika za Wildlife Galeriju
+// Slike za Wildlife Galeriju
 const wildlifeData = [
-  { id: "31", title: "Whisper of the Wild", src: "31.jpg" },
-  { id: "12", title: "Echoes of the Ancients", src: "12.jpg" },
-  { id: "33", title: "Sentinel of the Savannah", src: "33.jpg" },
-  { id: "3", title: "Sisters in the Sun", src: "3.jpg" },
-  { id: "23", title: "Brothers of the Dusk", src: "23.jpg" },
-  { id: "24", title: "Echoes of Innocence", src: "24.jpg" },
-  { id: "26", title: "Mother’s Embrace", src: "26.jpg" },
-  { id: "16", title: "Soul of the Savannah", src: "16.jpg" }
+  { id: "31", title: "Whisper of the Wild", src: "31.png" },
+  { id: "12", title: "Echoes of the Ancients", src: "12.png" },
+  { id: "33", title: "Sentinel of the Savannah", src: "33.png" },
+  { id: "3", title: "Sisters in the Sun", src: "3.png" },
+  { id: "23", title: "Brothers of the Dusk", src: "23.png" },
+  { id: "24", title: "Echoes of Innocence", src: "24.png" },
+  { id: "26", title: "Mother’s Embrace", src: "26.png" },
+  { id: "16", title: "Soul of the Savannah", src: "16.png" }
 ];
 
-// 6 Mockup Slika za Shop Sekciju
+// 6 Mockup PNG Slika za Shop Sekciju
 const shopRoomData = [
-  { id: "s1", title: "In-Room Display I", src: "shop-room-1.jpg" },
-  { id: "s2", title: "In-Room Display II", src: "shop-room-2.jpg" },
-  { id: "s3", title: "In-Room Display III", src: "shop-room-3.jpg" },
-  { id: "s4", title: "In-Room Display IV", src: "shop-room-4.jpg" },
-  { id: "s5", title: "In-Room Display V", src: "shop-room-5.jpg" },
-  { id: "s6", title: "In-Room Display VI", src: "shop-room-6.jpg" }
+  { id: "s1", title: "In-Room Display I", src: "shop-room-1.png" },
+  { id: "s2", title: "In-Room Display II", src: "shop-room-2.png" },
+  { id: "s3", title: "In-Room Display III", src: "shop-room-3.png" },
+  { id: "s4", title: "In-Room Display IV", src: "shop-room-4.png" },
+  { id: "s5", title: "In-Room Display V", src: "shop-room-5.png" },
+  { id: "s6", title: "In-Room Display VI", src: "shop-room-6.png" }
 ];
 
 let activeDataset = wildlifeData;
@@ -587,7 +588,6 @@ document.addEventListener('click', function() {
 function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-// Univerzalna funkcija za renderovanje slika
 function renderGrid(containerId, dataset, isRoomCard = false) {
   const grid = document.getElementById(containerId);
   grid.innerHTML = dataset.map((p, index) => `
