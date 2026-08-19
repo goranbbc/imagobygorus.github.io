@@ -34,12 +34,12 @@
 
   /* --- ZAŠTITA FOTOGRAFIJA --- */
   img {
-    -webkit-touch-callout: none !important; /* Blokira pop-up na iOS uređajima na dug dodir */
+    -webkit-touch-callout: none !important;
     -webkit-user-select: none !important;
     -moz-user-select: none !important;
     -ms-user-select: none !important;
     user-select: none !important;
-    pointer-events: none !important; /* Onemogućava direktan interaktivni dodir sa slikom */
+    pointer-events: none !important;
   }
 
   /* --- HEADER NAV --- */
@@ -274,7 +274,6 @@
     padding: 0 15px;
   }
 
-  /* Providna zaštita na nivo svake kartice slika */
   .photo-card {
     position: relative;
     cursor: pointer;
@@ -317,7 +316,7 @@
   .expeditions-hero-img { width: 100%; max-height: 600px; object-fit: cover; margin-bottom: 40px; }
   .expeditions-text { max-width: 800px; }
   .expeditions-text h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 20px; }
-  .expeditions-text p { font-size: 0.85rem; letter-spacing: 0.12em; line-height: 1.9; color: var(--text-sub); text-transform: uppercase; margin-bottom: 30px; }
+  .expeditions-text p { font-size: 0.85rem; letter-spacing: 0.08em; line-height: 1.8; color: var(--text-sub); text-transform: none; margin-bottom: 30px; }
 
   /* --- LIGHTBOX MODAL --- */
   .lightbox-modal {
@@ -331,7 +330,6 @@
   .lightbox-modal img { max-width: 100%; max-height: 80vh; object-fit: contain; box-shadow: 0 10px 40px rgba(0,0,0,0.6); transform: scale(0.92); transition: transform 0.35s ease-out, opacity 0.25s ease; cursor: pointer; }
   .lightbox-modal.show img { transform: scale(1); }
   
-  /* Diskretni vodeni žig preko Lightbox-a protiv Screenshot-a */
   .lightbox-content::after {
     content: '© IMAGO BY GORUS';
     position: absolute;
@@ -384,7 +382,6 @@
 
     .portfolio-banner { height: 45vh; min-height: 280px; }
 
-    /* MREŽA SLIKA NA MOBILNOM: 2 KOLONE × 3 REDA */
     .full-photo-grid { 
       grid-template-columns: repeat(2, 1fr) !important; 
       gap: 8px !important; 
@@ -521,7 +518,7 @@
     <div class="expeditions-text">
       <h2>Raw Wilderness. Unfiltered Stories.</h2>
       <p>
-         I am preparing exclusive fine art photo expeditions designed for passionate creators who crave more than ordinary travel. 
+        I am preparing exclusive fine art photo expeditions designed for passionate creators who crave more than ordinary travel. 
         Join me in the field, step beyond the beaten path, and let us immortalize raw, unforgettable moments together.
       </p>
       <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';">Inquire & Join Waiting List</button>
@@ -689,7 +686,6 @@ function handleSwipe() {
 }
 
 document.addEventListener('keydown', function(e) {
-  // Blokiranje prečica tastera za preuzimanje i Inspect Element
   if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 's')) {
     e.preventDefault();
   }
