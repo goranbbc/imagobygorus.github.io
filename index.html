@@ -300,13 +300,56 @@
   }
   .photo-card:hover img { transform: scale(1.04); }
 
-  /* --- 3. UNDER CONSTRUCTION (STREET) --- */
-  .construction-box {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 50vh; padding: 0 20px; text-align: center;
+  /* --- 3. UNDER CONSTRUCTION (STREET) - BLUROVANA POZADINA --- */
+  #sec-street {
+    padding-top: 0;
   }
-  .construction-box h2 { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 15px; }
-  .construction-box p { font-size: 0.8rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase; }
+  .construction-box {
+    position: relative;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    min-height: 80vh; 
+    padding: 0 20px; 
+    text-align: center;
+    overflow: hidden;
+    color: #ffffff;
+  }
+  .construction-bg-img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    filter: blur(12px);
+    transform: scale(1.08); /* Sprečava bele ivice od blura */
+    z-index: 1;
+  }
+  .construction-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 2;
+  }
+  .construction-content {
+    position: relative;
+    z-index: 3;
+    max-width: 600px;
+  }
+  .construction-box h2 { 
+    font-size: clamp(1.8rem, 4vw, 2.5rem); 
+    font-weight: 200; 
+    letter-spacing: 0.35em; 
+    text-transform: uppercase; 
+    margin-bottom: 15px; 
+    color: #ffffff;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  .construction-box p { 
+    font-size: 0.85rem; 
+    letter-spacing: 0.2em; 
+    color: rgba(255, 255, 255, 0.85); 
+    text-transform: uppercase; 
+  }
 
   /* --- 4. EXPEDITIONS SECTION --- */
   .expeditions-wrapper {
@@ -367,6 +410,7 @@
     .nav-links { gap: 10px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
     
     .page-section { padding-top: 110px; }
+    #sec-street { padding-top: 0; }
 
     .dropdown-content {
       position: absolute; top: 130%; left: 50%; transform: translateX(-50%);
@@ -493,11 +537,15 @@
   <div class="full-photo-grid" id="wildlife-grid"></div>
 </section>
 
-<!-- 3. STREET PHOTO SECTION (UNDER CONSTRUCTION) -->
+<!-- 3. STREET PHOTO SECTION (SA ZAMUĆENOM POZADINSKOM SLIKOM) -->
 <section class="page-section" id="sec-street">
   <div class="construction-box">
-    <h2>Street Photography</h2>
-    <p>Under Construction — Collection Coming Soon</p>
+    <img src="000000971.jpg" class="construction-bg-img" alt="Street Photography Background" ondragstart="return false;">
+    <div class="construction-overlay"></div>
+    <div class="construction-content">
+      <h2>Street Photography</h2>
+      <p>Under Construction — Collection Coming Soon</p>
+    </div>
   </div>
 </section>
 
