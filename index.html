@@ -206,8 +206,8 @@
   .portfolio-banner {
     position: relative;
     width: 100%;
-    height: 65vh;
-    min-height: 400px;
+    height: 55vh;
+    min-height: 350px;
     margin-bottom: 10px;
     cursor: pointer;
     overflow: hidden;
@@ -300,8 +300,8 @@
   }
   .photo-card:hover img { transform: scale(1.04); }
 
-  /* --- 3. UNDER CONSTRUCTION (STREET) - BLUROVANA POZADINA --- */
-  #sec-street {
+  /* --- 3. UNDER CONSTRUCTION SECTIONS (STREET & PORTRAITURE) --- */
+  #sec-street, #sec-portraiture {
     padding-top: 0;
   }
   .construction-box {
@@ -321,7 +321,7 @@
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
     filter: blur(12px);
-    transform: scale(1.08); /* Sprečava bele ivice od blura */
+    transform: scale(1.08);
     z-index: 1;
   }
   .construction-overlay {
@@ -410,7 +410,7 @@
     .nav-links { gap: 10px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
     
     .page-section { padding-top: 110px; }
-    #sec-street { padding-top: 0; }
+    #sec-street, #sec-portraiture { padding-top: 0; }
 
     .dropdown-content {
       position: absolute; top: 130%; left: 50%; transform: translateX(-50%);
@@ -424,7 +424,7 @@
     .meet-creator-wrapper { flex-direction: column; text-align: center; gap: 25px; margin: 30px auto; }
     .meet-creator-img { height: 350px; }
 
-    .portfolio-banner { height: 45vh; min-height: 280px; }
+    .portfolio-banner { height: 35vh; min-height: 240px; }
 
     .full-photo-grid { 
       grid-template-columns: repeat(2, 1fr) !important; 
@@ -463,6 +463,7 @@
       <div class="dropdown-content" id="workDropdown">
         <a onclick="showSection('wildlife')">Wildlife</a>
         <a onclick="showSection('street')">Street Photo</a>
+        <a onclick="showSection('portraiture')">Portraiture</a>
       </div>
     </div>
 
@@ -522,9 +523,17 @@
   </div>
 
   <div class="portfolio-banner" onclick="showSection('street')">
-    <img src="000000971.jpg" alt="Street Photo Category" ondragstart="return false;">
+    <img src="IMG_4121.jpg" alt="Street Photo Category" ondragstart="return false;">
     <div class="portfolio-banner-overlay">
       <h2>Street Photo</h2>
+      <span>View Gallery &gt;</span>
+    </div>
+  </div>
+
+  <div class="portfolio-banner" onclick="showSection('portraiture')">
+    <img src="000000971.jpg" alt="Portraiture Category" ondragstart="return false;">
+    <div class="portfolio-banner-overlay">
+      <h2>Portraiture</h2>
       <span>View Gallery &gt;</span>
     </div>
   </div>
@@ -537,7 +546,7 @@
   <div class="full-photo-grid" id="wildlife-grid"></div>
 </section>
 
-<!-- 3. STREET PHOTO SECTION (SA ZAMUĆENOM POZADINSKOM SLIKOM) -->
+<!-- 3. STREET PHOTO SECTION -->
 <section class="page-section" id="sec-street">
   <div class="construction-box">
     <img src="IMG_4121.jpg" class="construction-bg-img" alt="Street Photography Background" ondragstart="return false;">
@@ -549,7 +558,19 @@
   </div>
 </section>
 
-<!-- 4. SHOP SECTION (IN-ROOM PREVIEW GRID - 6 MOCKUP FOTKI) -->
+<!-- 4. PORTRAITURE SECTION -->
+<section class="page-section" id="sec-portraiture">
+  <div class="construction-box">
+    <img src="000000971.jpg" class="construction-bg-img" alt="Portraiture Background" ondragstart="return false;">
+    <div class="construction-overlay"></div>
+    <div class="construction-content">
+      <h2>Portraiture</h2>
+      <p>Under Construction — Collection Coming Soon</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. SHOP SECTION (IN-ROOM PREVIEW GRID - 6 MOCKUP FOTKI) -->
 <section class="page-section catalog-section" id="sec-shop">
   <h1 class="category-title">Print Shop</h1>
   <div class="category-subtitle">Official Collection Coming Soon</div>
@@ -557,7 +578,7 @@
   <div class="full-photo-grid" id="shop-room-grid"></div>
 </section>
 
-<!-- 5. EXPEDITIONS SECTION -->
+<!-- 6. EXPEDITIONS SECTION -->
 <section class="page-section" id="sec-expeditions">
   <div class="expeditions-wrapper">
     <img src="ekspedicija.JPG" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
