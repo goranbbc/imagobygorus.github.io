@@ -207,7 +207,7 @@
     position: relative;
     width: 100%;
     height: 35vh;
-    min-height: 250px;
+    min-height: 200px;
     margin-bottom: 10px;
     cursor: pointer;
     overflow: hidden;
@@ -685,4 +685,157 @@
       <div style="font-size: 0.75rem; color: var(--text-sub); letter-spacing: 0.05em;">• Private 4x4 safari vehicles (1 window seat per photographer)<br>• Daily guided game drives & field mentoring<br>• Luxury camp accommodation & full board</div>
     </div>
 
-    <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="background
+    <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="background: #111; color: #fff; width: 100%;">Inquire via WhatsApp &gt;</button>
+  </div>
+</div>
+
+<footer>
+  <div style="display:flex; flex-direction:column; gap:20px; align-items:center;">
+    <a href="https://instagram.com/imago.by.gorus" target="_blank" style="color:#111; text-decoration:none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;">Instagram</a>
+    <a href="https://ibgvision.com" target="_blank" style="font-weight:600; color:#111; text-decoration:none; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;">IBG Vision</a>
+    <p style="opacity:0.3; margin:0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;">&copy; 2026 IBG VISION</p>
+  </div>
+</footer>
+
+<script>
+// Slika za Wildlife Galeriju
+const wildlifeData = [
+  { id: "31", title: "Whisper of the Wild", src: "31.jpg" },
+  { id: "12", title: "Echoes of the Ancients", src: "12.jpg" },
+  { id: "33", title: "Sentinel of the Savannah", src: "33.jpg" },
+  { id: "3", title: "Sisters in the Sun", src: "3.jpg" },
+  { id: "23", title: "Brothers of the Dusk", src: "23.jpg" },
+  { id: "24", title: "Echoes of Innocence", src: "24.jpg" },
+  { id: "26", title: "Mother’s Embrace", src: "26.jpg" },
+  { id: "16", title: "Soul of the Savannah", src: "16.jpg" }
+];
+
+// 6 Mockup Slika za Shop Sekciju
+const shopRoomData = [
+  { id: "s1", title: "In-Room Display I", src: "shop-room-1.jpg" },
+  { id: "s2", title: "In-Room Display II", src: "shop-room-2.jpg" },
+  { id: "s3", title: "In-Room Display III", src: "shop-room-3.jpg" },
+  { id: "s4", title: "In-Room Display IV", src: "shop-room-4.jpg" },
+  { id: "s5", title: "In-Room Display V", src: "shop-room-5.jpg" },
+  { id: "s6", title: "In-Room Display VI", src: "shop-room-6.jpg" }
+];
+
+let activeDataset = wildlifeData;
+let currentIndex = 0;
+let touchStartX = 0;
+let touchEndX = 0;
+
+function showSection(sectionId) {
+  document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(`sec-${sectionId}`).classList.add('active');
+
+  closeMobileDropdown();
+
+  if(sectionId === 'wildlife') renderGrid('wildlife-grid', wildlifeData);
+  if(sectionId === 'shop') renderGrid('shop-room-grid', shopRoomData, true);
+  
+  window.scrollTo(0, 0);
+}
+
+function toggleMobileDropdown(event) {
+  event.stopPropagation();
+  const dropdown = document.getElementById('workDropdown');
+  const container = document.getElementById('dropdownContainer');
+  
+  dropdown.classList.toggle('show-dropdown');
+  container.classList.toggle('open');
+}
+
+function closeMobileDropdown() {
+  const dropdown = document.getElementById('workDropdown');
+  const container = document.getElementById('dropdownContainer');
+  if (dropdown) dropdown.classList.remove('show-dropdown');
+  if (container) container.classList.remove('open');
+}
+
+document.addEventListener('click', function() {
+  closeMobileDropdown();
+});
+
+function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
+
+// Univerzalna funkcija za renderovanje slika
+function renderGrid(containerId, dataset, isRoomCard = false) {
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = dataset.map((p, index) => `
+    <div class="photo-card ${isRoomCard ? 'room-card' : ''}" onclick="openLightbox(${index}, '${containerId}')">
+      <img src="${p.src}" alt="${p.title}" loading="lazy">
+    </div>
+  `).join('');
+}
+
+function openLightbox(index, containerId) {
+  activeDataset = (containerId === 'shop-room-grid') ? shopRoomData : wildlifeData;
+  currentIndex = index;
+  
+  const imgElement = document.getElementById('lightboxImg');
+  imgElement.src = activeDataset[currentIndex].src;
+
+  const modal = document.getElementById('lightboxModal');
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  const modal = document.getElementById('lightboxModal');
+  modal.classList.remove('show');
+  document.body.style.overflow = 'auto';
+}
+
+function nextImage(event) {
+  if (event) event.stopPropagation();
+  currentIndex = (currentIndex + 1) % activeDataset.length;
+  updateLightboxImage();
+}
+
+function prevImage(event) {
+  if (event) event.stopPropagation();
+  currentIndex = (currentIndex - 1 + activeDataset.length) % activeDataset.length;
+  updateLightboxImage();
+}
+
+function updateLightboxImage() {
+  const imgElement = document.getElementById('lightboxImg');
+  imgElement.style.opacity = '0';
+  setTimeout(() => {
+    imgElement.src = activeDataset[currentIndex].src;
+    imgElement.style.opacity = '1';
+  }, 120);
+}
+
+const modal = document.getElementById('lightboxModal');
+
+modal.addEventListener('touchstart', function(e) {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+modal.addEventListener('touchend', function(e) {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+  const swipeThreshold = 50;
+  if (touchEndX < touchStartX - swipeThreshold) nextImage();
+  if (touchEndX > touchStartX + swipeThreshold) prevImage();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 's')) {
+    e.preventDefault();
+  }
+  if (modal.classList.contains('show')) {
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'Escape') closeLightbox();
+  }
+});
+</script>
+</body>
+</html>
