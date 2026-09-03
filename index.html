@@ -206,8 +206,8 @@
   .portfolio-banner {
     position: relative;
     width: 100%;
-    height: 55vh;
-    min-height: 350px;
+    height: 35vh;
+    min-height: 250px;
     margin-bottom: 10px;
     cursor: pointer;
     overflow: hidden;
@@ -356,10 +356,19 @@
     max-width: 1100px; margin: 0 auto 80px; padding: 0 20px;
     display: flex; flex-direction: column; align-items: center; text-align: center;
   }
-  .expeditions-hero-img { width: 100%; max-height: 600px; object-fit: cover; margin-bottom: 40px; }
+  .expeditions-hero-img { width: 100%; max-height: 500px; object-fit: cover; margin-bottom: 30px; }
   .expeditions-text { max-width: 800px; }
   .expeditions-text h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 20px; }
   .expeditions-text p { font-size: 0.85rem; letter-spacing: 0.08em; line-height: 1.8; color: var(--text-sub); text-transform: none; margin-bottom: 30px; }
+
+  /* Tour Cards stilovi */
+  .tour-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .tour-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  }
 
   /* --- LIGHTBOX MODAL --- */
   .lightbox-modal {
@@ -393,7 +402,7 @@
   .lightbox-prev { left: 10px; }
   .lightbox-next { right: 10px; }
 
-  /* --- MODALS (ABOUT) --- */
+  /* --- MODALS (ABOUT & TOURS) --- */
   .modal-base { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
     background: #fff; display: none; justify-content: center; align-items: center; 
@@ -424,7 +433,7 @@
     .meet-creator-wrapper { flex-direction: column; text-align: center; gap: 25px; margin: 30px auto; }
     .meet-creator-img { height: 350px; }
 
-    .portfolio-banner { height: 35vh; min-height: 240px; }
+    .portfolio-banner { height: 30vh; min-height: 200px; }
 
     .full-photo-grid { 
       grid-template-columns: repeat(2, 1fr) !important; 
@@ -450,7 +459,6 @@
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;">
 
-<!-- GLOBAL HEADER NAV -->
 <nav class="header-nav">
   <div class="brand-logo-text" onclick="showSection('home')">IMAGO BY GORUS</div>
   <div class="nav-links">
@@ -474,12 +482,10 @@
   </div>
 </nav>
 
-<!-- 1. HOME SECTION -->
 <section class="page-section active" id="sec-home">
   <div class="hero-landing">
     <div class="main-logo"><h1>IMAGO BY GORUS</h1></div>
     
-    <!-- Triptych Grid -->
     <div class="triptych-grid">
       <div class="triptych-col col-1"><img src="31.jpg" ondragstart="return false;"></div>
       <div class="triptych-col col-2"><img src="000000971.jpg" ondragstart="return false;"></div>
@@ -496,7 +502,6 @@
     <button class="btn-imago" onclick="showSection('portfolio-overview')">Explore Portfolio</button>
   </div>
 
-  <!-- MEET THE CREATOR SEKCIJA -->
   <div class="meet-creator-wrapper">
     <img src="DSC_2425-4.jpg" class="meet-creator-img" alt="Gorus Photography" ondragstart="return false;">
     
@@ -511,7 +516,6 @@
   </div>
 </section>
 
-<!-- PORTFOLIO OVERVIEW SECTION -->
 <section class="page-section" id="sec-portfolio-overview">
   
   <div class="portfolio-banner" onclick="showSection('wildlife')">
@@ -540,13 +544,11 @@
 
 </section>
 
-<!-- 2. WILDLIFE SECTION -->
 <section class="page-section catalog-section" id="sec-wildlife">
   <h1 class="category-title">Wildlife</h1>
   <div class="full-photo-grid" id="wildlife-grid"></div>
 </section>
 
-<!-- 3. STREET PHOTO SECTION -->
 <section class="page-section" id="sec-street">
   <div class="construction-box">
     <img src="IMG_4121.jpg" class="construction-bg-img" alt="Street Photography Background" ondragstart="return false;">
@@ -558,7 +560,6 @@
   </div>
 </section>
 
-<!-- 4. PORTRAITURE SECTION -->
 <section class="page-section" id="sec-portraiture">
   <div class="construction-box">
     <img src="000000971.jpg" class="construction-bg-img" alt="Portraiture Background" ondragstart="return false;">
@@ -570,7 +571,6 @@
   </div>
 </section>
 
-<!-- 5. SHOP SECTION (IN-ROOM PREVIEW GRID - 6 MOCKUP FOTKI) -->
 <section class="page-section catalog-section" id="sec-shop">
   <h1 class="category-title">Print Shop</h1>
   <div class="category-subtitle">Official Collection Coming Soon</div>
@@ -578,7 +578,6 @@
   <div class="full-photo-grid" id="shop-room-grid"></div>
 </section>
 
-<!-- 6. EXPEDITIONS SECTION -->
 <section class="page-section" id="sec-expeditions">
   <div class="expeditions-wrapper">
     <img src="ekspedicija.JPG" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
@@ -586,15 +585,56 @@
     <div class="expeditions-text">
       <h2>Raw Wilderness. Unfiltered Stories.</h2>
       <p>
-        I am preparing exclusive fine art photo expeditions designed for passionate creators who crave more than ordinary travel. 
-        Join me in the field, step beyond the beaten path, and let us immortalize raw, unforgettable moments together.
+        Exclusive fine art photo expeditions designed for passionate creators who crave more than ordinary travel. 
+        Step beyond the beaten path and immortalize raw, unforgettable moments in the field.
       </p>
-      <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';">Inquire & Join Waiting List</button>
     </div>
+
+    <div style="width: 100%; display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
+      
+      <div class="tour-card" onclick="openModal('modal-tour-past')" style="border: 1px solid var(--border-color); padding: 25px; text-align: left; cursor: pointer; background: #fff;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #888; border: 1px solid #888; padding: 2px 8px;">Completed</span>
+            <h3 style="font-size: 1.2rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; margin: 10px 0 5px 0;">Kenya Photo Expedition</h3>
+            <div style="font-size: 0.8rem; color: var(--text-sub); letter-spacing: 0.1em;">June 04 – June 11 | Realized</div>
+          </div>
+          <button class="btn-imago" style="padding: 8px 18px; font-size: 0.65rem;">View Gallery & Story &gt;</button>
+        </div>
+      </div>
+
+      <div class="tour-card" onclick="openModal('modal-tour-upcoming')" style="border: 1px solid #111; padding: 25px; text-align: left; cursor: pointer; background: #fafafa;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; background: #111; padding: 3px 8px;">Booking Open</span>
+            <h3 style="font-size: 1.2rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; margin: 10px 0 5px 0;">Kenya Wildlife Safari</h3>
+            <div style="font-size: 0.8rem; color: var(--text-dark); font-weight: 600; letter-spacing: 0.1em;">January 19 – January 27</div>
+          </div>
+          <button class="btn-imago" style="background: #111; color: #fff; padding: 8px 18px; font-size: 0.65rem;">Details & Apply &gt;</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 10px;">
+        
+        <div style="border: 1px dashed var(--border-color); padding: 20px; text-align: center; opacity: 0.7;">
+          <span style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-sub);">Upcoming</span>
+          <h4 style="font-size: 1rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; margin: 5px 0;">June 2027</h4>
+          <div style="font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-sub);">Details Coming Soon</div>
+        </div>
+
+        <div style="border: 1px dashed var(--border-color); padding: 20px; text-align: center; opacity: 0.7;">
+          <span style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-sub);">Upcoming</span>
+          <h4 style="font-size: 1rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; margin: 5px 0;">September 2027</h4>
+          <div style="font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-sub);">Details Coming Soon</div>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 </section>
 
-<!-- LIGHTBOX MODAL -->
 <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
   <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
   <span class="lightbox-arrow lightbox-prev" onclick="prevImage(event)">&#10094;</span>
@@ -604,7 +644,6 @@
   <span class="lightbox-arrow lightbox-next" onclick="nextImage(event)">&#10095;</span>
 </div>
 
-<!-- ABOUT MODAL -->
 <div class="modal-base" id="about-modal">
   <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
   <div class="modal-content">
@@ -616,153 +655,34 @@
   </div>
 </div>
 
-<footer>
-  <div style="display:flex; flex-direction:column; gap:20px; align-items:center;">
-    <a href="https://instagram.com/imago.by.gorus" target="_blank" style="color:#111; text-decoration:none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;">Instagram</a>
-    <a href="https://ibgvision.com" target="_blank" style="font-weight:600; color:#111; text-decoration:none; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;">IBG Vision</a>
-    <p style="opacity:0.3; margin:0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;">&copy; 2026 IBG VISION</p>
+<div class="modal-base" id="modal-tour-past">
+  <span class="close-btn" onclick="closeModal('modal-tour-past')">&times;</span>
+  <div class="modal-content" style="flex-direction: column; max-width: 800px; text-align: left;">
+    <h2 style="font-weight: 200; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 5px;">Kenya Expedition | June 2026</h2>
+    <div style="font-size: 0.75rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase; margin-bottom: 25px;">Successful Realization</div>
+    
+    <img src="ekspedicija.JPG" style="width: 100%; max-height: 400px; object-fit: cover; margin-bottom: 20px;" ondragstart="return false;">
+    
+    <p style="font-size: 0.85rem; letter-spacing: 0.08em; line-height: 1.8; color: var(--text-sub);">
+      In June 2026, we spent 8 unforgettable days in the heart of the savannah. From golden hour predator tracking to fine art composition workshops in the field, this journey brought together extraordinary light, wildlife encounters, and creative storytelling.
+    </p>
   </div>
-</footer>
+</div>
 
-<script>
-// Slika za Wildlife Galeriju
-const wildlifeData = [
-  { id: "31", title: "Whisper of the Wild", src: "31.jpg" },
-  { id: "12", title: "Echoes of the Ancients", src: "12.jpg" },
-  { id: "33", title: "Sentinel of the Savannah", src: "33.jpg" },
-  { id: "3", title: "Sisters in the Sun", src: "3.jpg" },
-  { id: "23", title: "Brothers of the Dusk", src: "23.jpg" },
-  { id: "24", title: "Echoes of Innocence", src: "24.jpg" },
-  { id: "26", title: "Mother’s Embrace", src: "26.jpg" },
-  { id: "16", title: "Soul of the Savannah", src: "16.jpg" }
-];
+<div class="modal-base" id="modal-tour-upcoming">
+  <span class="close-btn" onclick="closeModal('modal-tour-upcoming')">&times;</span>
+  <div class="modal-content" style="flex-direction: column; max-width: 800px; text-align: left;">
+    <span style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #fff; background: #111; padding: 3px 8px; width: fit-content;">Applications Open</span>
+    <h2 style="font-weight: 200; text-transform: uppercase; letter-spacing: 0.2em; margin: 15px 0 5px 0;">Kenya Photo Expedition</h2>
+    <div style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 25px;">January 19 – January 27</div>
+    
+    <p style="font-size: 0.85rem; letter-spacing: 0.08em; line-height: 1.8; color: var(--text-sub); margin-bottom: 20px;">
+      Join me for an intensive 9-day photo safari designed for photographers and visual creators. We will explore key wildlife reserves during optimal light conditions, focusing on advanced field techniques, composition, and visual narrative.
+    </p>
 
-// 6 Mockup Slika za Shop Sekciju
-const shopRoomData = [
-  { id: "s1", title: "In-Room Display I", src: "shop-room-1.jpg" },
-  { id: "s2", title: "In-Room Display II", src: "shop-room-2.jpg" },
-  { id: "s3", title: "In-Room Display III", src: "shop-room-3.jpg" },
-  { id: "s4", title: "In-Room Display IV", src: "shop-room-4.jpg" },
-  { id: "s5", title: "In-Room Display V", src: "shop-room-5.jpg" },
-  { id: "s6", title: "In-Room Display VI", src: "shop-room-6.jpg" }
-];
-
-let activeDataset = wildlifeData;
-let currentIndex = 0;
-let touchStartX = 0;
-let touchEndX = 0;
-
-function showSection(sectionId) {
-  document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-  document.getElementById(`sec-${sectionId}`).classList.add('active');
-
-  closeMobileDropdown();
-
-  if(sectionId === 'wildlife') renderGrid('wildlife-grid', wildlifeData);
-  if(sectionId === 'shop') renderGrid('shop-room-grid', shopRoomData, true);
-  
-  window.scrollTo(0, 0);
-}
-
-function toggleMobileDropdown(event) {
-  event.stopPropagation();
-  const dropdown = document.getElementById('workDropdown');
-  const container = document.getElementById('dropdownContainer');
-  
-  dropdown.classList.toggle('show-dropdown');
-  container.classList.toggle('open');
-}
-
-function closeMobileDropdown() {
-  const dropdown = document.getElementById('workDropdown');
-  const container = document.getElementById('dropdownContainer');
-  if (dropdown) dropdown.classList.remove('show-dropdown');
-  if (container) container.classList.remove('open');
-}
-
-document.addEventListener('click', function() {
-  closeMobileDropdown();
-});
-
-function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
-
-// Univerzalna funkcija za renderovanje slika
-function renderGrid(containerId, dataset, isRoomCard = false) {
-  const grid = document.getElementById(containerId);
-  grid.innerHTML = dataset.map((p, index) => `
-    <div class="photo-card ${isRoomCard ? 'room-card' : ''}" onclick="openLightbox(${index}, '${containerId}')">
-      <img src="${p.src}" alt="${p.title}" loading="lazy">
+    <div style="border-top: 1px solid var(--border-color); padding-top: 15px; margin-bottom: 25px; width: 100%;">
+      <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; margin-bottom: 5px;">Includes:</div>
+      <div style="font-size: 0.75rem; color: var(--text-sub); letter-spacing: 0.05em;">• Private 4x4 safari vehicles (1 window seat per photographer)<br>• Daily guided game drives & field mentoring<br>• Luxury camp accommodation & full board</div>
     </div>
-  `).join('');
-}
 
-function openLightbox(index, containerId) {
-  activeDataset = (containerId === 'shop-room-grid') ? shopRoomData : wildlifeData;
-  currentIndex = index;
-  
-  const imgElement = document.getElementById('lightboxImg');
-  imgElement.src = activeDataset[currentIndex].src;
-
-  const modal = document.getElementById('lightboxModal');
-  modal.classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-  const modal = document.getElementById('lightboxModal');
-  modal.classList.remove('show');
-  document.body.style.overflow = 'auto';
-}
-
-function nextImage(event) {
-  if (event) event.stopPropagation();
-  currentIndex = (currentIndex + 1) % activeDataset.length;
-  updateLightboxImage();
-}
-
-function prevImage(event) {
-  if (event) event.stopPropagation();
-  currentIndex = (currentIndex - 1 + activeDataset.length) % activeDataset.length;
-  updateLightboxImage();
-}
-
-function updateLightboxImage() {
-  const imgElement = document.getElementById('lightboxImg');
-  imgElement.style.opacity = '0';
-  setTimeout(() => {
-    imgElement.src = activeDataset[currentIndex].src;
-    imgElement.style.opacity = '1';
-  }, 120);
-}
-
-const modal = document.getElementById('lightboxModal');
-
-modal.addEventListener('touchstart', function(e) {
-  touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
-
-modal.addEventListener('touchend', function(e) {
-  touchEndX = e.changedTouches[0].screenX;
-  handleSwipe();
-}, { passive: true });
-
-function handleSwipe() {
-  const swipeThreshold = 50;
-  if (touchEndX < touchStartX - swipeThreshold) nextImage();
-  if (touchEndX > touchStartX + swipeThreshold) prevImage();
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 's')) {
-    e.preventDefault();
-  }
-  if (modal.classList.contains('show')) {
-    if (e.key === 'ArrowRight') nextImage();
-    if (e.key === 'ArrowLeft') prevImage();
-    if (e.key === 'Escape') closeLightbox();
-  }
-});
-</script>
-</body>
-</html>
+    <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="background
