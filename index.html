@@ -370,6 +370,30 @@
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   }
 
+  /* STILOVI ZA ITINERAR I DETALJE TURE */
+  .itinerary-day {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+  }
+  .itinerary-day:last-child {
+    border-bottom: none;
+  }
+  .itinerary-day h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    margin: 0 0 6px 0;
+  }
+  .itinerary-day p {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-sub);
+    margin: 0 0 8px 0;
+  }
+
   /* --- LIGHTBOX MODAL --- */
   .lightbox-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -717,24 +741,80 @@
   </div>
 </div>
 
-<!-- MODAL: NAJAVA ZA JANUAR (THE SAVANNAH LIGHT) -->
+<!-- MODAL: NAJAVA ZA JANUAR (THE SAVANNAH LIGHT - AZURIRAN ITINERAR) -->
 <div class="modal-base" id="modal-tour-upcoming">
   <span class="close-btn" onclick="closeModal('modal-tour-upcoming')">&times;</span>
-  <div class="modal-content" style="flex-direction: column; max-width: 800px; text-align: left;">
-    <span style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #fff; background: #111; padding: 3px 8px; width: fit-content;">Applications Open</span>
-    <h2 style="font-weight: 200; text-transform: uppercase; letter-spacing: 0.2em; margin: 15px 0 5px 0;">The Savannah Light</h2>
-    <div style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 25px;">Masai Mara Photo Expedition | January 19 – January 27</div>
+  <div class="modal-content" style="flex-direction: column; max-width: 800px; text-align: left; padding: 20px 0;">
     
-    <p style="font-size: 0.85rem; letter-spacing: 0.08em; line-height: 1.8; color: var(--text-sub); margin-bottom: 20px;">
-      Join me for an intensive Masai Mara photo safari. Designed specifically for photographers who want dedicated window seating, optimal golden hour game drives, and personalized visual mentoring in one of Earth's most iconic wildlife sanctuaries.
-    </p>
+    <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 25px; width: 100%;">
+      <span style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #fff; background: #111; padding: 3px 8px; width: fit-content;">Applications Open</span>
+      <h2 style="font-weight: 200; text-transform: uppercase; letter-spacing: 0.2em; margin: 15px 0 5px 0; font-size: clamp(1.4rem, 3vw, 2.2rem);">The Savannah Light</h2>
+      <div style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark);">Masai Mara Photo Expedition | January 19 – January 27</div>
+    </div>
+    
+    <!-- ITINERARY SEKCIJA -->
+    <div style="width: 100%; margin-bottom: 30px;">
+      <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 20px; border-left: 2px solid #111; padding-left: 10px;">Itinerary</div>
 
-    <div style="border-top: 1px solid var(--border-color); padding-top: 15px; margin-bottom: 25px; width: 100%;">
-      <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; margin-bottom: 5px;">Includes:</div>
-      <div style="font-size: 0.75rem; color: var(--text-sub); letter-spacing: 0.05em;">• Private 4x4 photo-safari vehicles (1 dedicated window seat per photographer)<br>• Daily guided game drives & field mentoring<br>• Luxury camp accommodation & full board</div>
+      <div class="itinerary-day">
+        <h4>Day 1: Arrival in Nairobi</h4>
+        <p><strong>Arrive at Nairobi Airport (NBO)</strong><br>Our group meets at Nairobi Airport upon arrival.</p>
+        <p><strong>Transfer to Hotel and overnight stay</strong><br>After arrival, we will be transferred to a hotel in Nairobi for check-in. We will spend the night here, relaxing and preparing for the adventure ahead.</p>
+      </div>
+
+      <div class="itinerary-day">
+        <h4>Day 2: Nairobi to Masai Mara</h4>
+        <p><strong>Transfer to Maasai Mara</strong><br>After breakfast, we depart for Maasai Mara.</p>
+        <p><strong>Check-in to camp and rest</strong><br>We will arrive in the Maasai Mara in the afternoon and check in to our camp. After settling in, we’ll enjoy a delicious dinner and take time to relax and unwind, preparing for our first safari day.</p>
+      </div>
+
+      <div class="itinerary-day">
+        <h4>Day 3 - 6: Full Days at Maasai Mara</h4>
+        <p><strong>Morning Game Drive</strong><br>We will wake up early and head out for a morning game drive in the reserve, starting at 6:00 AM. We will enjoy the wildlife at its most active, with a stop for breakfast in the savannah amidst the beauty of nature. The game drive will last until about noon, depending on animal activity.</p>
+        <p><strong>Return to Accommodation for Rest</strong><br>After the morning game drive, we will return to our accommodation for lunch, rest, editing or backing up your images.</p>
+        <p><strong>Afternoon Game Drive</strong><br>In the afternoon, we will head out for our second game drive starting at 4:00 PM, continuing until sunset. We will return to our accommodation for dinner and an overnight stay.</p>
+      </div>
+
+      <div class="itinerary-day">
+        <h4>Day 7: Morning Game Drive and Return to Nairobi</h4>
+        <p><strong>Morning Game Drive</strong><br>On our last day, we will enjoy one final early morning game drive, followed by breakfast in the savannah.</p>
+        <p><strong>Return to Nairobi</strong><br>After the game drive and breakfast, we will be transferred to the Nairobi International Airport for our return flight.</p>
+      </div>
     </div>
 
-    <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="background: #111; color: #fff; width: 100%;">Inquire via WhatsApp &gt;</button>
+    <!-- INCLUDES / EXCLUDES SEKCIJA -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; border-top: 1px solid var(--border-color); padding-top: 25px; margin-bottom: 25px;">
+      <div>
+        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 10px; color: #111;">Tour Includes</div>
+        <ul style="font-size: 0.75rem; color: var(--text-sub); line-height: 1.8; padding-left: 18px; margin: 0;">
+          <li>Transfers (Nairobi to Maasai Mara, Maasai Mara to Nairobi)</li>
+          <li>Accommodation (1x Nairobi, 5x Maasai Mara)</li>
+          <li>All meals (Breakfast, Lunch, and Dinner)</li>
+          <li>10 safari drives</li>
+          <li>Off-road driving</li>
+          <li>National park entry fees</li>
+          <li>Photography guidance/tutorials</li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 10px; color: #111;">Tour Excludes</div>
+        <ul style="font-size: 0.75rem; color: var(--text-sub); line-height: 1.8; padding-left: 18px; margin: 0;">
+          <li>International flights</li>
+          <li>Kenya visa</li>
+          <li>Tips and gratuities for camp staff and guides</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CENA I CONTACT -->
+    <div style="width: 100%; background: #f9f9f9; padding: 20px; border: 1px solid var(--border-color); text-align: center; margin-bottom: 20px;">
+      <div style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-sub); margin-bottom: 5px;">Price Per Person</div>
+      <div style="font-size: 1.8rem; font-weight: 300; letter-spacing: 0.1em; color: #111; margin-bottom: 15px;">3,000 €</div>
+      <p style="font-size: 0.75rem; color: var(--text-sub); margin-bottom: 15px; letter-spacing: 0.05em;">To book your spot, please contact me via WhatsApp.</p>
+      <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="background: #111; color: #fff; width: 100%;">Inquire / Book Spot via WhatsApp &gt;</button>
+    </div>
+
   </div>
 </div>
 
