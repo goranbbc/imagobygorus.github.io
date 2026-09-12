@@ -426,7 +426,7 @@
   .lightbox-prev { left: 10px; }
   .lightbox-next { right: 10px; }
 
-  /* --- MODALS (ABOUT & TOURS) - POPRAVLJENO POZICIONIRANJE I SKROL --- */
+  /* --- MODALS (ABOUT & TOURS) --- */
   .modal-base { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
     background: #fff; display: none; justify-content: center; align-items: flex-start; 
@@ -746,16 +746,20 @@
   </div>
 </div>
 
-<!-- MODAL: NAJAVA ZA JANUAR (THE SAVANNAH LIGHT - AZURIRAN ITINERAR) -->
+<!-- MODAL: NAJAVA ZA JANUAR (THE SAVANNAH LIGHT - SA 3 SLIKE ZA MAKSIMALAN EFEKAT) -->
 <div class="modal-base" id="modal-tour-upcoming">
   <span class="close-btn" onclick="closeModal('modal-tour-upcoming')">&times;</span>
   <div class="modal-content" style="flex-direction: column; max-width: 800px; text-align: left; padding: 20px 0;">
     
+    <!-- NASLOV I INFORMACIJE -->
     <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 25px; width: 100%;">
       <span style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #fff; background: #111; padding: 3px 8px; width: fit-content;">Applications Open</span>
       <h2 style="font-weight: 200; text-transform: uppercase; letter-spacing: 0.2em; margin: 15px 0 5px 0; font-size: clamp(1.4rem, 3vw, 2.2rem);">The Savannah Light</h2>
       <div style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark);">Masai Mara Photo Expedition | January 19 – January 27</div>
     </div>
+
+    <!-- 1. HERO SLIKA NA VRHU (ZEBRE U ZLATNOM SVETLU) -->
+    <img src="_53A2711.jpg" style="width: 100%; max-height: 420px; object-fit: cover; margin-bottom: 30px;" alt="The Savannah Light - Masai Mara" ondragstart="return false;">
     
     <!-- ITINERARY SEKCIJA -->
     <div style="width: 100%; margin-bottom: 30px;">
@@ -787,6 +791,12 @@
       </div>
     </div>
 
+    <!-- 2. SLIKA TERENSKOG ISKUSTVA (DŽIP I LAVICA) -->
+    <div style="width: 100%; margin-bottom: 30px;">
+      <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 12px; border-left: 2px solid #111; padding-left: 10px;">In The Field & Dedicated Window Seating</div>
+      <img src="IMG_4914.jpg" style="width: 100%; max-height: 400px; object-fit: cover;" alt="Photo Safari Land Cruiser Experience" ondragstart="return false;">
+    </div>
+
     <!-- INCLUDES / EXCLUDES SEKCIJA -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; border-top: 1px solid var(--border-color); padding-top: 25px; margin-bottom: 25px;">
       <div>
@@ -812,8 +822,11 @@
       </div>
     </div>
 
-    <!-- CENA I CONTACT -->
-    <div style="width: 100%; background: #f9f9f9; padding: 20px; border: 1px solid var(--border-color); text-align: center; margin-bottom: 20px;">
+    <!-- 3. FINE-ART AKCENAT (SILUETA SLONA) -->
+    <img src="_53A9579.jpg" style="width: 100%; max-height: 350px; object-fit: cover; margin-bottom: 25px;" alt="Fine Art Silhouette Masai Mara" ondragstart="return false;">
+
+    <!-- CENA I CONTACT DUGME -->
+    <div style="width: 100%; background: #f9f9f9; padding: 25px 20px; border: 1px solid var(--border-color); text-align: center; margin-bottom: 20px;">
       <div style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-sub); margin-bottom: 5px;">Price Per Person</div>
       <div style="font-size: 1.8rem; font-weight: 300; letter-spacing: 0.1em; color: #111; margin-bottom: 15px;">3,000 €</div>
       <p style="font-size: 0.75rem; color: var(--text-sub); margin-bottom: 15px; letter-spacing: 0.05em;">To book your spot, please contact me via WhatsApp.</p>
