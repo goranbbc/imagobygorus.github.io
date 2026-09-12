@@ -426,15 +426,20 @@
   .lightbox-prev { left: 10px; }
   .lightbox-next { right: 10px; }
 
-  /* --- MODALS (ABOUT & TOURS) --- */
+  /* --- MODALS (ABOUT & TOURS) - POPRAVLJENO POZICIONIRANJE I SKROL --- */
   .modal-base { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: #fff; display: none; justify-content: center; align-items: center; 
-    z-index: 4000; padding: 20px; overflow-y: auto; color: var(--text-dark);
+    background: #fff; display: none; justify-content: center; align-items: flex-start; 
+    z-index: 4000; padding: 70px 20px 40px 20px; overflow-y: auto; color: var(--text-dark);
   }
-  .modal-content { max-width: 900px; width: 100%; display: flex; gap: 40px; align-items: center; }
+  .modal-content { max-width: 900px; width: 100%; display: flex; gap: 40px; align-items: flex-start; }
   .modal-content img { max-width: 40%; max-height: 70vh; object-fit: contain; }
-  .close-btn { position: fixed; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 6000; font-weight: 200; color: var(--text-dark); }
+  .close-btn { 
+    position: fixed; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; 
+    z-index: 6000; font-weight: 200; color: var(--text-dark); background: rgba(255, 255, 255, 0.9);
+    width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
 
   /* --- MOBILNA OPTIMIZACIJA --- */
   @media(max-width: 850px){
@@ -886,8 +891,17 @@ document.addEventListener('click', function() {
   closeMobileDropdown();
 });
 
-function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
+function openModal(id) { 
+  const modalElem = document.getElementById(id);
+  modalElem.scrollTop = 0;
+  modalElem.style.display = 'flex'; 
+  document.body.style.overflow = 'hidden'; 
+}
+
+function closeModal(id) { 
+  document.getElementById(id).style.display = 'none'; 
+  document.body.style.overflow = 'auto'; 
+}
 
 // Univerzalna funkcija za renderovanje slika
 function renderGrid(containerId, dataset, isRoomCard = false) {
