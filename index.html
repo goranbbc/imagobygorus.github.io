@@ -434,6 +434,17 @@
   }
   .modal-content { max-width: 900px; width: 100%; display: flex; gap: 40px; align-items: flex-start; }
   .modal-content img { max-width: 40%; max-height: 70vh; object-fit: contain; }
+  
+  /* POSEBAN STIL ZA FULL-WIDTH SLIKE U MODALU TURE */
+  .modal-content img.modal-hero-img {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 450px !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
   .close-btn { 
     position: fixed; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; 
     z-index: 6000; font-weight: 200; color: var(--text-dark); background: rgba(255, 255, 255, 0.9);
@@ -481,6 +492,10 @@
 
     .modal-content { flex-direction: column; text-align: center; }
     .modal-content img { max-width: 100%; max-height: 45vh; }
+    
+    .modal-content img.modal-hero-img {
+      max-height: 250px !important;
+    }
   }
 
   footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border-color); margin-top: 40px; }
@@ -711,9 +726,9 @@
       <div style="font-size: 0.75rem; letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase;">Masai Mara, Kenya | June 04 – June 11</div>
     </div>
     
-    <img src="ekspedicija.JPG" style="width: 100%; max-height: 450px; object-fit: cover; margin-bottom: 25px;" ondragstart="return false;">
+    <img src="ekspedicija.JPG" class="modal-hero-img" alt="The Raw Wilderness Expedition" ondragstart="return false;">
     
-    <div style="margin-bottom: 35px; line-height: 1.8; color: var(--text-sub); font-size: 0.85rem; letter-spacing: 0.05em;">
+    <div style="margin-bottom: 35px; line-height: 1.8; color: var(--text-sub); font-size: 0.85rem; letter-spacing: 0.05em; margin-top: 25px;">
       <p style="margin-bottom: 15px;">
         8 days in the heart of Masai Mara. We tracked the first light across the golden savannah, positioning our vehicles for precise angle framing, natural backlit silhouettes, and clean fine art compositions.
       </p>
@@ -746,7 +761,7 @@
   </div>
 </div>
 
-<!-- MODAL: NAJAVA ZA JANUAR (THE SAVANNAH LIGHT - SA 3 SLIKE ZA MAKSIMALAN EFEKAT) -->
+<!-- MODAL: NAJAVA ZA JANUAR (THE SAVANNAH LIGHT - FULL WIDTH SLIKE) -->
 <div class="modal-base" id="modal-tour-upcoming">
   <span class="close-btn" onclick="closeModal('modal-tour-upcoming')">&times;</span>
   <div class="modal-content" style="flex-direction: column; max-width: 800px; text-align: left; padding: 20px 0;">
@@ -758,11 +773,11 @@
       <div style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark);">Masai Mara Photo Expedition | January 19 – January 27</div>
     </div>
 
-    <!-- 1. HERO SLIKA NA VRHU (ZEBRE U ZLATNOM SVETLU) -->
-    <img src="53A2711.jpg" style="width: 100%; max-height: 420px; object-fit: cover; margin-bottom: 30px;" alt="The Savannah Light - Masai Mara" ondragstart="return false;">
+    <!-- 1. HERO SLIKA NA VRHU -->
+    <img src="_53A2711.jpg" class="modal-hero-img" alt="The Savannah Light - Masai Mara" ondragstart="return false;">
     
     <!-- ITINERARY SEKCIJA -->
-    <div style="width: 100%; margin-bottom: 30px;">
+    <div style="width: 100%; margin-top: 30px; margin-bottom: 30px;">
       <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 20px; border-left: 2px solid #111; padding-left: 10px;">Itinerary</div>
 
       <div class="itinerary-day">
@@ -794,7 +809,7 @@
     <!-- 2. SLIKA TERENSKOG ISKUSTVA (DŽIP I LAVICA) -->
     <div style="width: 100%; margin-bottom: 30px;">
       <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 12px; border-left: 2px solid #111; padding-left: 10px;">In The Field & Dedicated Window Seating</div>
-      <img src="121212.JPG" style="width: 100%; max-height: 400px; object-fit: cover;" alt="Photo Safari Land Cruiser Experience" ondragstart="return false;">
+      <img src="IMG_4914.jpg" class="modal-hero-img" alt="Photo Safari Land Cruiser Experience" ondragstart="return false;">
     </div>
 
     <!-- INCLUDES / EXCLUDES SEKCIJA -->
@@ -823,7 +838,9 @@
     </div>
 
     <!-- 3. FINE-ART AKCENAT (SILUETA SLONA) -->
-    <img src="53A9579.jpg" style="width: 100%; max-height: 350px; object-fit: cover; margin-bottom: 25px;" alt="Fine Art Silhouette Masai Mara" ondragstart="return false;">
+    <div style="width: 100%; margin-bottom: 25px;">
+      <img src="_53A9579.jpg" class="modal-hero-img" alt="Fine Art Silhouette Masai Mara" ondragstart="return false;">
+    </div>
 
     <!-- CENA I CONTACT DUGME -->
     <div style="width: 100%; background: #f9f9f9; padding: 25px 20px; border: 1px solid var(--border-color); text-align: center; margin-bottom: 20px;">
