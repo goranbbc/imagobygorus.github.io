@@ -300,57 +300,6 @@
   }
   .photo-card:hover img { transform: scale(1.04); }
 
-  /* --- 3. UNDER CONSTRUCTION SECTION (STREET) --- */
-  #sec-street {
-    padding-top: 0;
-  }
-  .construction-box {
-    position: relative;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center;
-    min-height: 80vh; 
-    padding: 0 20px; 
-    text-align: center;
-    overflow: hidden;
-    color: #ffffff;
-  }
-  .construction-bg-img {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    object-fit: cover;
-    filter: blur(12px);
-    transform: scale(1.08);
-    z-index: 1;
-  }
-  .construction-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: 2;
-  }
-  .construction-content {
-    position: relative;
-    z-index: 3;
-    max-width: 600px;
-  }
-  .construction-box h2 { 
-    font-size: clamp(1.8rem, 4vw, 2.5rem); 
-    font-weight: 200; 
-    letter-spacing: 0.35em; 
-    text-transform: uppercase; 
-    margin-bottom: 15px; 
-    color: #ffffff;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  }
-  .construction-box p { 
-    font-size: 0.85rem; 
-    letter-spacing: 0.2em; 
-    color: rgba(255, 255, 255, 0.85); 
-    text-transform: uppercase; 
-  }
-
   /* --- 4. EXPEDITIONS SECTION --- */
   .expeditions-wrapper {
     max-width: 1100px; margin: 0 auto 80px; padding: 0 20px;
@@ -459,7 +408,6 @@
     .nav-links { gap: 10px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
     
     .page-section { padding-top: 110px; }
-    #sec-street { padding-top: 0; }
 
     .dropdown-content {
       position: absolute; top: 130%; left: 50%; transform: translateX(-50%);
@@ -599,19 +547,13 @@
   <div class="full-photo-grid" id="wildlife-grid"></div>
 </section>
 
-<!-- 3. STREET PHOTO SECTION -->
-<section class="page-section" id="sec-street">
-  <div class="construction-box">
-    <img src="IMG_4121.jpg" class="construction-bg-img" alt="Street Photography Background" ondragstart="return false;">
-    <div class="construction-overlay"></div>
-    <div class="construction-content">
-      <h2>Street Photography</h2>
-      <p>Under Construction — Collection Coming Soon</p>
-    </div>
-  </div>
+<!-- 3. STREET PHOTO SECTION (AŽURIRANA U AKTIVNU GALERIJU) -->
+<section class="page-section catalog-section" id="sec-street">
+  <h1 class="category-title">Street Photography</h1>
+  <div class="full-photo-grid" id="street-grid"></div>
 </section>
 
-<!-- 4. PORTRAITURE SECTION (UREĐEN DEO - GALERIJA SA 9 SLIKA) -->
+<!-- 4. PORTRAITURE SECTION -->
 <section class="page-section catalog-section" id="sec-portraiture">
   <h1 class="category-title">Portraiture</h1>
   <div class="full-photo-grid" id="portraiture-grid"></div>
@@ -868,14 +810,24 @@ const wildlifeData = [
   { id: "16", title: "Soul of the Savannah", src: "16.jpg" }
 ];
 
-// Slika za Portraiture Galeriju (9 slika - popuni prave nazive fajlova po želji)
+// Slika za Street Photo Galeriju (zameniti sa željenim fajlovima)
+const streetData = [
+  { id: "st1", title: "Street I", src: "IMG_4121.jpg" },
+  { id: "st2", title: "Street II", src: "IMG_4296.jpg" },
+  { id: "st3", title: "Street III", src: "IMG_4101.jpg" },
+  { id: "st4", title: "Street IV", src: "IMG_3912.jpg" },
+  { id: "st5", title: "Street V", src: "999.jpg" },
+  { id: "st6", title: "Street VI", src: "777.jpg" }
+];
+
+// Slika za Portraiture Galeriju
 const portraitureData = [
   { id: "p1", title: "Portrait I", src: "000000971.jpg" },
   { id: "p2", title: "Portrait II", src: "3331.jpg" },
   { id: "p3", title: "Portrait III", src: "515151.jpg" },
-  { id: "p4", title: "Portrait IV", src: "4441.jpg" },
+  { id: "p4", title: "Portrait IV", src: "111.jpg" },
   { id: "p5", title: "Portrait V", src: "IMG_3904.jpg" },
-  { id: "p6", title: "Portrait VI", src: "2221.jpg" },
+  { id: "p6", title: "Portrait VI", src: "2221.jpg" }
 ];
 
 // 6 Mockup Slika za Shop Sekciju
@@ -900,6 +852,7 @@ function showSection(sectionId) {
   closeMobileDropdown();
 
   if(sectionId === 'wildlife') renderGrid('wildlife-grid', wildlifeData);
+  if(sectionId === 'street') renderGrid('street-grid', streetData);
   if(sectionId === 'portraiture') renderGrid('portraiture-grid', portraitureData);
   if(sectionId === 'shop') renderGrid('shop-room-grid', shopRoomData, true);
   
@@ -954,6 +907,8 @@ function openLightbox(index, containerId) {
     activeDataset = shopRoomData;
   } else if (containerId === 'portraiture-grid') {
     activeDataset = portraitureData;
+  } else if (containerId === 'street-grid') {
+    activeDataset = streetData;
   } else {
     activeDataset = wildlifeData;
   }
