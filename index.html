@@ -341,6 +341,38 @@
     margin-bottom: 25px;
   }
 
+  /* --- CONTACT SECTION STILOVI --- */
+  .contact-wrapper {
+    max-width: 800px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .contact-info-box {
+    border: 1px solid var(--border-color);
+    padding: 40px 20px;
+    margin-top: 30px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .contact-item-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-sub);
+  }
+  .contact-item-value {
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--text-dark);
+    text-decoration: none;
+  }
+
   /* --- 4. EXPEDITIONS SECTION --- */
   .expeditions-wrapper {
     max-width: 1100px; margin: 0 auto 80px; padding: 0 20px;
@@ -509,10 +541,11 @@
       </div>
     </div>
 
-    <div onclick="showSection('commissions')">Commissions</div>
+    <!-- EXPEDITIONS JE SADA ISPRED COMMISSIONS -->
     <div onclick="showSection('expeditions')">Expeditions</div>
+    <div onclick="showSection('commissions')">Commissions</div>
     <div id="link-shop" onclick="showSection('shop')">Shop</div>
-    <div onclick="window.location.href='https://wa.me/381616651755';">Contact</div>
+    <div onclick="showSection('contact')">Contact</div>
   </div>
 </nav>
 
@@ -582,7 +615,7 @@
 
 </section>
 
-<!-- 2. WILDLIFE SECTION (SMANJENO NA 6 FOTOGRAFIJA) -->
+<!-- 2. WILDLIFE SECTION -->
 <section class="page-section catalog-section" id="sec-wildlife">
   <h1 class="category-title">Wildlife</h1>
   <div class="full-photo-grid" id="wildlife-grid"></div>
@@ -600,54 +633,7 @@
   <div class="full-photo-grid" id="portraiture-grid"></div>
 </section>
 
-<!-- COMMISSIONS / SERVICES SECTION -->
-<section class="page-section" id="sec-commissions">
-  <div class="commissions-wrapper">
-    <h1 class="category-title">Commissions & Services</h1>
-    <div class="category-subtitle">Bespoke Visual Storytelling for Private Clients & Brands</div>
-
-    <div class="commissions-grid">
-      
-      <!-- CARD 1 -->
-      <div class="commission-card">
-        <div>
-          <h3>Fine Art Portraiture</h3>
-          <p>Authentic, cinematic portrait sessions tailored to capture your individual essence in natural light or unique architectural environments.</p>
-        </div>
-        <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="width: 100%;">Inquire Rate &gt;</button>
-      </div>
-
-      <!-- CARD 2 -->
-      <div class="commission-card">
-        <div>
-          <h3>Travel & Editorial Assignments</h3>
-          <p>On-location visual coverage for international expeditions, luxury resorts, commercial brands, and editorial publications worldwide.</p>
-        </div>
-        <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="width: 100%;">Inquire Rate &gt;</button>
-      </div>
-
-      <!-- CARD 3 -->
-      <div class="commission-card">
-        <div>
-          <h3>Custom Fine Art Prints</h3>
-          <p>Exclusive, limited-edition fine art prints individually framed and tailored for private residences, corporate spaces, and galleries.</p>
-        </div>
-        <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="width: 100%;">Inquire Rate &gt;</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- 5. SHOP SECTION -->
-<section class="page-section catalog-section" id="sec-shop">
-  <h1 class="category-title">Print Shop</h1>
-  <div class="category-subtitle">Official Collection Coming Soon</div>
-  
-  <div class="full-photo-grid" id="shop-room-grid"></div>
-</section>
-
-<!-- 6. EXPEDITIONS SECTION -->
+<!-- 5. EXPEDITIONS SECTION -->
 <section class="page-section" id="sec-expeditions">
   <div class="expeditions-wrapper">
     <img src="ekspedicija.JPG" class="expeditions-hero-img" alt="Expeditions Header Image" ondragstart="return false;">
@@ -706,6 +692,86 @@
 
     </div>
 
+  </div>
+</section>
+
+<!-- COMMISSIONS / SERVICES SECTION -->
+<section class="page-section" id="sec-commissions">
+  <div class="commissions-wrapper">
+    <h1 class="category-title">Commissions & Services</h1>
+    <div class="category-subtitle">Bespoke Visual Storytelling for Private Clients & Brands</div>
+
+    <div class="commissions-grid">
+      
+      <!-- CARD 1 -->
+      <div class="commission-card">
+        <div>
+          <h3>Fine Art Portraiture</h3>
+          <p>Authentic, cinematic portrait sessions tailored to capture your individual essence in natural light or unique architectural environments.</p>
+        </div>
+        <button class="btn-imago" onclick="showSection('contact')" style="width: 100%;">Inquire Rate &gt;</button>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="commission-card">
+        <div>
+          <h3>Travel & Editorial Assignments</h3>
+          <p>On-location visual coverage for international expeditions, luxury resorts, commercial brands, and editorial publications worldwide.</p>
+        </div>
+        <button class="btn-imago" onclick="showSection('contact')" style="width: 100%;">Inquire Rate &gt;</button>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="commission-card">
+        <div>
+          <h3>Custom Fine Art Prints</h3>
+          <p>Exclusive, limited-edition fine art prints individually framed and tailored for private residences, corporate spaces, and galleries.</p>
+        </div>
+        <button class="btn-imago" onclick="showSection('contact')" style="width: 100%;">Inquire Rate &gt;</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 6. SHOP SECTION -->
+<section class="page-section catalog-section" id="sec-shop">
+  <h1 class="category-title">Print Shop</h1>
+  <div class="category-subtitle">Official Collection Coming Soon</div>
+  
+  <div class="full-photo-grid" id="shop-room-grid"></div>
+</section>
+
+<!-- 7. CONTACT SECTION -->
+<section class="page-section" id="sec-contact">
+  <div class="contact-wrapper">
+    <h1 class="category-title">Get in Touch</h1>
+    <div class="category-subtitle">Available for Worldwide Commissions & Expeditions</div>
+
+    <div class="contact-info-box">
+      <div>
+        <div class="contact-item-title">Direct WhatsApp</div>
+        <a href="https://wa.me/381616651755" class="contact-item-value" target="_blank">+381 61 665 1755</a>
+      </div>
+
+      <div style="width: 50px; height: 1px; background: var(--border-color);"></div>
+
+      <div>
+        <div class="contact-item-title">Official Instagram</div>
+        <a href="https://instagram.com/imago.by.gorus" class="contact-item-value" target="_blank">@imago.by.gorus</a>
+      </div>
+
+      <div style="width: 50px; height: 1px; background: var(--border-color);"></div>
+
+      <div>
+        <div class="contact-item-title">Base Location</div>
+        <div class="contact-item-value">Novi Sad, Serbia | Worldwide</div>
+      </div>
+
+      <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="margin-top: 15px; background: #111; color: #fff; width: 100%; max-width: 320px;">
+        Chat via WhatsApp &gt;
+      </button>
+    </div>
   </div>
 </section>
 
@@ -866,7 +932,7 @@
 </footer>
 
 <script>
-// Slika za Wildlife Galeriju (Smanjeno na 6 najjačih kadrova)
+// Slika za Wildlife Galeriju
 const wildlifeData = [
   { id: "31", title: "Whisper of the Wild", src: "31.jpg" },
   { id: "12", title: "Echoes of the Ancients", src: "12.jpg" },
