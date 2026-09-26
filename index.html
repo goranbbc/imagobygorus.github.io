@@ -255,7 +255,7 @@
     opacity: 1;
   }
 
-  /* --- 2. WORK / WILDLIFE SECTION --- */
+  /* --- 2. WORK / GALLERY SECTIONS --- */
   .catalog-section { background: #fff; padding: 10px 0 80px; text-align: center; }
   .category-title { 
     font-size: clamp(1.6rem, 3.5vw, 2.3rem); font-weight: 300; letter-spacing: 0.25em; 
@@ -300,8 +300,8 @@
   }
   .photo-card:hover img { transform: scale(1.04); }
 
-  /* --- 3. UNDER CONSTRUCTION SECTIONS (STREET & PORTRAITURE) --- */
-  #sec-street, #sec-portraiture {
+  /* --- 3. UNDER CONSTRUCTION SECTION (STREET) --- */
+  #sec-street {
     padding-top: 0;
   }
   .construction-box {
@@ -459,7 +459,7 @@
     .nav-links { gap: 10px; font-size: 0.6rem; letter-spacing: 0.1em; width: 100%; justify-content: center; flex-wrap: wrap; }
     
     .page-section { padding-top: 110px; }
-    #sec-street, #sec-portraiture { padding-top: 0; }
+    #sec-street { padding-top: 0; }
 
     .dropdown-content {
       position: absolute; top: 130%; left: 50%; transform: translateX(-50%);
@@ -611,16 +611,10 @@
   </div>
 </section>
 
-<!-- 4. PORTRAITURE SECTION -->
-<section class="page-section" id="sec-portraiture">
-  <div class="construction-box">
-    <img src="000000971.jpg" class="construction-bg-img" alt="Portraiture Background" ondragstart="return false;">
-    <div class="construction-overlay"></div>
-    <div class="construction-content">
-      <h2>Portraiture</h2>
-      <p>Under Construction — Collection Coming Soon</p>
-    </div>
-  </div>
+<!-- 4. PORTRAITURE SECTION (UREĐEN DEO - GALERIJA SA 9 SLIKA) -->
+<section class="page-section catalog-section" id="sec-portraiture">
+  <h1 class="category-title">Portraiture</h1>
+  <div class="full-photo-grid" id="portraiture-grid"></div>
 </section>
 
 <!-- 5. SHOP SECTION (IN-ROOM PREVIEW GRID - 6 MOCKUP FOTKI) -->
@@ -737,7 +731,7 @@
       </p>
     </div>
 
-    <!-- BEHIND THE LENS (FOTKE IZ DŽIPA/SA TERENA) -->
+    <!-- BEHIND THE LENS -->
     <div style="width: 100%; margin-bottom: 35px;">
       <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 15px; border-left: 2px solid #111; padding-left: 10px;">Behind The Lens & In The Field</div>
       
@@ -747,7 +741,7 @@
       </div>
     </div>
 
-    <!-- CAPTURED ON LOCATION (FINE ART REZULTATI) -->
+    <!-- CAPTURED ON LOCATION -->
     <div style="width: 100%; margin-bottom: 20px;">
       <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 15px; border-left: 2px solid #111; padding-left: 10px;">Captured On Location</div>
       
@@ -761,7 +755,7 @@
   </div>
 </div>
 
-<!-- MODAL: NAJAVA ZA JANUAR (THE SAVANNAH LIGHT - FULL WIDTH SLIKE) -->
+<!-- MODAL: NAJAVA ZA JANUAR -->
 <div class="modal-base" id="modal-tour-upcoming">
   <span class="close-btn" onclick="closeModal('modal-tour-upcoming')">&times;</span>
   <div class="modal-content" style="flex-direction: column; max-width: 800px; text-align: left; padding: 20px 0;">
@@ -806,7 +800,7 @@
       </div>
     </div>
 
-    <!-- 2. SLIKA TERENSKOG ISKUSTVA (DŽIP I LAVICA) -->
+    <!-- 2. SLIKA TERENSKOG ISKUSTVA -->
     <div style="width: 100%; margin-bottom: 30px;">
       <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 12px; border-left: 2px solid #111; padding-left: 10px;">In The Field & Dedicated Window Seating</div>
       <img src="121212.JPG" class="modal-hero-img" alt="Photo Safari Land Cruiser Experience" ondragstart="return false;">
@@ -837,7 +831,7 @@
       </div>
     </div>
 
-    <!-- 3. FINE-ART AKCENAT (SILUETA SLONA) -->
+    <!-- 3. FINE-ART AKCENAT -->
     <div style="width: 100%; margin-bottom: 25px;">
       <img src="53A9579.jpg" class="modal-hero-img" alt="Fine Art Silhouette Masai Mara" ondragstart="return false;">
     </div>
@@ -874,6 +868,19 @@ const wildlifeData = [
   { id: "16", title: "Soul of the Savannah", src: "16.jpg" }
 ];
 
+// Slika za Portraiture Galeriju (9 slika - popuni prave nazive fajlova po želji)
+const portraitureData = [
+  { id: "p1", title: "Portrait I", src: "000000971.jpg" },
+  { id: "p2", title: "Portrait II", src: "portrait2.jpg" },
+  { id: "p3", title: "Portrait III", src: "portrait3.jpg" },
+  { id: "p4", title: "Portrait IV", src: "portrait4.jpg" },
+  { id: "p5", title: "Portrait V", src: "portrait5.jpg" },
+  { id: "p6", title: "Portrait VI", src: "portrait6.jpg" },
+  { id: "p7", title: "Portrait VII", src: "portrait7.jpg" },
+  { id: "p8", title: "Portrait VIII", src: "portrait8.jpg" },
+  { id: "p9", title: "Portrait IX", src: "portrait9.jpg" }
+];
+
 // 6 Mockup Slika za Shop Sekciju
 const shopRoomData = [
   { id: "s1", title: "In-Room Display I", src: "shop-room-1.jpg" },
@@ -896,6 +903,7 @@ function showSection(sectionId) {
   closeMobileDropdown();
 
   if(sectionId === 'wildlife') renderGrid('wildlife-grid', wildlifeData);
+  if(sectionId === 'portraiture') renderGrid('portraiture-grid', portraitureData);
   if(sectionId === 'shop') renderGrid('shop-room-grid', shopRoomData, true);
   
   window.scrollTo(0, 0);
@@ -936,6 +944,7 @@ function closeModal(id) {
 // Univerzalna funkcija za renderovanje slika
 function renderGrid(containerId, dataset, isRoomCard = false) {
   const grid = document.getElementById(containerId);
+  if (!grid) return;
   grid.innerHTML = dataset.map((p, index) => `
     <div class="photo-card ${isRoomCard ? 'room-card' : ''}" onclick="openLightbox(${index}, '${containerId}')">
       <img src="${p.src}" alt="${p.title}" loading="lazy">
@@ -944,7 +953,14 @@ function renderGrid(containerId, dataset, isRoomCard = false) {
 }
 
 function openLightbox(index, containerId) {
-  activeDataset = (containerId === 'shop-room-grid') ? shopRoomData : wildlifeData;
+  if (containerId === 'shop-room-grid') {
+    activeDataset = shopRoomData;
+  } else if (containerId === 'portraiture-grid') {
+    activeDataset = portraitureData;
+  } else {
+    activeDataset = wildlifeData;
+  }
+  
   currentIndex = index;
   
   const imgElement = document.getElementById('lightboxImg');
