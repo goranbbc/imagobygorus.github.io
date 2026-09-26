@@ -416,7 +416,7 @@
   .lightbox-prev { left: 10px; }
   .lightbox-next { right: 10px; }
 
-  /* --- MODALS (ABOUT & TOURS) --- */
+  /* --- MODALS (TOURS) --- */
   .modal-base { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
     background: #fff; display: none; justify-content: center; align-items: flex-start; 
@@ -512,7 +512,6 @@
     <div onclick="showSection('commissions')">Commissions</div>
     <div onclick="showSection('expeditions')">Expeditions</div>
     <div id="link-shop" onclick="showSection('shop')">Shop</div>
-    <div onclick="openModal('about-modal')">About</div>
     <div onclick="window.location.href='https://wa.me/381616651755';">Contact</div>
   </div>
 </nav>
@@ -549,7 +548,7 @@
       <p class="meet-desc">
         No, I am not merely a photographer. I'm just someone capturing what the eye often misses and what the soul deeply feels. The camera is simply my instrument, a tool that allows me to freeze a fleeting emotion, a breath of raw wilderness, and share that exact, unfiltered moment with you.
       </p>
-      <button class="btn-imago" onclick="openModal('about-modal')">Meet Gorus &gt;</button>
+      <button class="btn-imago" onclick="showSection('portfolio-overview')">Explore Works &gt;</button>
     </div>
   </div>
 </section>
@@ -718,18 +717,6 @@
     <img id="lightboxImg" src="" onclick="nextImage(event)">
   </div>
   <span class="lightbox-arrow lightbox-next" onclick="nextImage(event)">&#10095;</span>
-</div>
-
-<!-- ABOUT MODAL -->
-<div class="modal-base" id="about-modal">
-  <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
-  <div class="modal-content">
-    <img src="DSC_2425-4.jpg" ondragstart="return false;">
-    <div>
-      <h2 style="font-weight: 200; text-transform: uppercase; letter-spacing: 0.2em;">The Vision</h2>
-      <p>I am Gorus, a visual storyteller dedicated to the bold and the unforgettable.</p>
-    </div>
-  </div>
 </div>
 
 <!-- MODAL: REALIZOVANA TURA (THE RAW WILDERNESS) -->
