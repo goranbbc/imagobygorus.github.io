@@ -300,6 +300,47 @@
   }
   .photo-card:hover img { transform: scale(1.04); }
 
+  /* --- COMMISSIONS / SERVICES STILOVI --- */
+  .commissions-wrapper {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .commissions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    text-align: left;
+  }
+  .commission-card {
+    border: 1px solid var(--border-color);
+    padding: 35px 25px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s;
+  }
+  .commission-card:hover {
+    border-color: var(--text-dark);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+  .commission-card h3 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0 0 15px 0;
+  }
+  .commission-card p {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    line-height: 1.7;
+    margin-bottom: 25px;
+  }
+
   /* --- 4. EXPEDITIONS SECTION --- */
   .expeditions-wrapper {
     max-width: 1100px; margin: 0 auto 80px; padding: 0 20px;
@@ -468,6 +509,7 @@
       </div>
     </div>
 
+    <div onclick="showSection('commissions')">Commissions</div>
     <div onclick="showSection('expeditions')">Expeditions</div>
     <div id="link-shop" onclick="showSection('shop')">Shop</div>
     <div onclick="openModal('about-modal')">About</div>
@@ -541,13 +583,13 @@
 
 </section>
 
-<!-- 2. WILDLIFE SECTION -->
+<!-- 2. WILDLIFE SECTION (SMANJENO NA 6 FOTOGRAFIJA) -->
 <section class="page-section catalog-section" id="sec-wildlife">
   <h1 class="category-title">Wildlife</h1>
   <div class="full-photo-grid" id="wildlife-grid"></div>
 </section>
 
-<!-- 3. STREET PHOTO SECTION (AŽURIRANA U AKTIVNU GALERIJU) -->
+<!-- 3. STREET PHOTO SECTION -->
 <section class="page-section catalog-section" id="sec-street">
   <h1 class="category-title">Street Photography</h1>
   <div class="full-photo-grid" id="street-grid"></div>
@@ -559,7 +601,46 @@
   <div class="full-photo-grid" id="portraiture-grid"></div>
 </section>
 
-<!-- 5. SHOP SECTION (IN-ROOM PREVIEW GRID - 6 MOCKUP FOTKI) -->
+<!-- COMMISSIONS / SERVICES SECTION -->
+<section class="page-section" id="sec-commissions">
+  <div class="commissions-wrapper">
+    <h1 class="category-title">Commissions & Services</h1>
+    <div class="category-subtitle">Bespoke Visual Storytelling for Private Clients & Brands</div>
+
+    <div class="commissions-grid">
+      
+      <!-- CARD 1 -->
+      <div class="commission-card">
+        <div>
+          <h3>Fine Art Portraiture</h3>
+          <p>Authentic, cinematic portrait sessions tailored to capture your individual essence in natural light or unique architectural environments.</p>
+        </div>
+        <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="width: 100%;">Inquire Rate &gt;</button>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="commission-card">
+        <div>
+          <h3>Travel & Editorial Assignments</h3>
+          <p>On-location visual coverage for international expeditions, luxury resorts, commercial brands, and editorial publications worldwide.</p>
+        </div>
+        <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="width: 100%;">Inquire Rate &gt;</button>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="commission-card">
+        <div>
+          <h3>Custom Fine Art Prints</h3>
+          <p>Exclusive, limited-edition fine art prints individually framed and tailored for private residences, corporate spaces, and galleries.</p>
+        </div>
+        <button class="btn-imago" onclick="window.location.href='https://wa.me/381616651755';" style="width: 100%;">Inquire Rate &gt;</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 5. SHOP SECTION -->
 <section class="page-section catalog-section" id="sec-shop">
   <h1 class="category-title">Print Shop</h1>
   <div class="category-subtitle">Official Collection Coming Soon</div>
@@ -798,19 +879,17 @@
 </footer>
 
 <script>
-// Slika za Wildlife Galeriju
+// Slika za Wildlife Galeriju (Smanjeno na 6 najjačih kadrova)
 const wildlifeData = [
   { id: "31", title: "Whisper of the Wild", src: "31.jpg" },
   { id: "12", title: "Echoes of the Ancients", src: "12.jpg" },
   { id: "33", title: "Sentinel of the Savannah", src: "33.jpg" },
   { id: "3", title: "Sisters in the Sun", src: "3.jpg" },
   { id: "23", title: "Brothers of the Dusk", src: "23.jpg" },
-  { id: "24", title: "Echoes of Innocence", src: "24.jpg" },
-  { id: "26", title: "Mother’s Embrace", src: "26.jpg" },
   { id: "16", title: "Soul of the Savannah", src: "16.jpg" }
 ];
 
-// Slika za Street Photo Galeriju (zameniti sa željenim fajlovima)
+// Slika za Street Photo Galeriju
 const streetData = [
   { id: "st1", title: "Street I", src: "IMG_4121.jpg" },
   { id: "st2", title: "Street II", src: "IMG_4296.jpg" },
